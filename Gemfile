@@ -21,6 +21,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~>3.0.4'
 
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '~>1.3.0'
 
@@ -28,6 +29,14 @@ gem 'turbolinks', '~>1.3.0'
 gem 'jbuilder', '~> 1.2'
 
 gem 'puma'
+
+gem 'bootstrap-sass'
+
+gem 'protected_attributes'
+
+gem 'simple_form', '>= 3.0.0.rc'
+
+gem 'client_side_validations', :git =>  'git@github.com:bcardarella/client_side_validations.git', :branch => '4-0-beta'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -43,6 +52,9 @@ group :production do
 
 	gem 'pg'
 end
+
+gem 'cancan'
+gem "devise", "~> 3.0.0"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
