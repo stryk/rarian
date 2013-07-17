@@ -11,7 +11,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130716164717) do
+ActiveRecord::Schema.define(version: 20130716205035) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "companies", force: true do |t|
+    t.string   "name"
+    t.string   "ticker"
+    t.string   "exchange"
+    t.boolean  "active"
+    t.integer  "ipo_year"
+    t.string   "sector"
+    t.string   "industry"
+    t.string   "website_url"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "companies", ["active"], name: "index_companies_on_active", using: :btree
+  add_index "companies", ["exchange"], name: "index_companies_on_exchange", using: :btree
+  add_index "companies", ["industry"], name: "index_companies_on_industry", using: :btree
+  add_index "companies", ["ipo_year"], name: "index_companies_on_ipo_year", using: :btree
+  add_index "companies", ["name"], name: "index_companies_on_name", using: :btree
+  add_index "companies", ["sector"], name: "index_companies_on_sector", using: :btree
+  add_index "companies", ["ticker"], name: "index_companies_on_ticker", using: :btree
+
+  create_table "quote_imports", force: true do |t|
+    t.string   "filename"
+    t.string   "signature"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "quotes", force: true do |t|
+    t.datetime "date_time"
+    t.boolean  "closing"
+    t.decimal  "price"
+    t.decimal  "market_cap"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "quotes", ["date_time"], name: "index_quotes_on_date_time", using: :btree
+  add_index "quotes", ["market_cap"], name: "index_quotes_on_market_cap", using: :btree
+  add_index "quotes", ["price"], name: "index_quotes_on_price", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

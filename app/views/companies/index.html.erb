@@ -1,0 +1,33 @@
+<div class="row">
+	<div class="span3">
+		<div class="left_column">
+			<h3>Wizards</h3>
+		</div>
+	</div>
+	<div class="span6">
+		<div class="center_column">
+			<% @companies.each do |company| %>
+				<p>Name: <%= company.name %></p>
+				<p>Ticker: <%= company.ticker %></p>
+				<p>Exchange: <%= company.exchange %></p>
+				<p>Sector: <%= company.sector %></p>
+				<p>Industry: <%= company.industry %></p>
+				<p>Last close: <%= company.quotes.last.price %></p>
+				<br>
+			<% end %>
+		</div>
+	</div>
+	<div class="span3">
+		<h3>News</h3>
+
+		<h3>Admin Only Section</h3>
+		<p>Import Company Data</p>
+
+		<%= form_tag import_companies_path, multipart: true do %>
+			<%= file_field_tag :file %>
+			<%= select_tag "exchange", "<option>Nasdaq</option><option>NYSE</option><option>AMEX</option>".html_safe %>
+			<%= submit_tag "Import" %>
+		<% end %>
+	</div>
+</div>
+

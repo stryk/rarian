@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  ticker: MyString
+  exchange: MyString
+  active: false
+  ipo_year: 1
+  sector: MyString
+  industry: MyString
+  website_url: MyString
+  description: MyText
+
+two:
+  name: MyString
+  ticker: MyString
+  exchange: MyString
+  active: false
+  ipo_year: 1
+  sector: MyString
+  industry: MyString
+  website_url: MyString
+  description: MyText

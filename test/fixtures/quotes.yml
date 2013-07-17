@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date_time: 2013-07-16 16:43:47
+  closing: false
+  price: 9.99
+  market_cap: 9.99
+
+two:
+  date_time: 2013-07-16 16:43:47
+  closing: false
+  price: 9.99
+  market_cap: 9.99
