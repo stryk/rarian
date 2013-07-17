@@ -17,6 +17,7 @@
 			<% end %>
 		</div>
 	</div>
+  <% if can? :import, Company %>
 	<div class="span3">
 		<h3>News</h3>
 
@@ -31,6 +32,8 @@
 			<%= select_date(Time.now) %></p>
 			<%= submit_tag "Import" %>
 		<% end %>
+
 	</div>
+  <% end %>
 </div>
 

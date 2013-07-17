@@ -34,8 +34,6 @@ gem 'bootstrap-sass'
 
 gem 'protected_attributes'
 
-gem 'simple_form', '>= 3.0.0.rc'
-
 gem 'client_side_validations', :git =>  'git@github.com:bcardarella/client_side_validations.git', :branch => '4-0-beta'
 
 group :doc do

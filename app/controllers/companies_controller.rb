@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  skip_authorization_check
+
 	def index
 		@companies = Company.all.limit(50)
 	end
