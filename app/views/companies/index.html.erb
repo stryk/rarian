@@ -25,7 +25,10 @@
 
 		<%= form_tag import_companies_path, multipart: true do %>
 			<%= file_field_tag :file %>
-			<%= select_tag "exchange", "<option>Nasdaq</option><option>NYSE</option><option>AMEX</option>".html_safe %>
+			<p>Exchange:
+			<%= select_tag "exchange", "<option>Nasdaq</option><option>NYSE</option><option>AMEX</option>".html_safe %></p>
+			<p>Closing Date:
+			<%= select_date(Time.now) %></p>
 			<%= submit_tag "Import" %>
 		<% end %>
 	</div>

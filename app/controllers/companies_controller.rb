@@ -4,7 +4,7 @@ class CompaniesController < ApplicationController
 	end
 
 	def import
-		Company.import(params[:file], params[:exchange])
+		Company.import(params[:file], params[:exchange], params[:date])
 		redirect_to companies_path, notice: "Company quotes imported."
 	end
 

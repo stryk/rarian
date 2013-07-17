@@ -1,7 +1,7 @@
 class Company < ActiveRecord::Base
 	has_many :quotes
 
-	def self.import(file, exchange)
+	def self.import(file, exchange, date)
 		#  checking file signature to prevent duplicates from uploading
 		signature = Digest::SHA1.file(file.path).hexdigest
 		same_file = QuoteImport.find_by(signature: signature)
@@ -19,11 +19,10 @@ class Company < ActiveRecord::Base
 					quote = company.quotes.build
 					quote.price = row_hash['LastSale'].to_d
 					quote.market_cap = row_hash['MarketCap'].to_d 
-					quote.date_time = Time.now - 1.day
+					quote.date_time = DateTime.civil_from_format(:local, date['year'].to_i, date['month'].to_i, date['day'].to_i)
 					company.save!
 					quote.save!
 				rescue ActiveRecord::RecordNotSaved
-					debugger
 					logger.info "Unable to save a row during company data import process."
 					logger.info row
 				end
