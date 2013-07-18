@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130718112630) do
+ActiveRecord::Schema.define(version: 20130718133541) do
+
+  create_table "blips", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.string   "action"
+    t.text     "content"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "blips", ["company_id"], name: "index_blips_on_company_id", using: :btree
+  add_index "blips", ["user_id"], name: "index_blips_on_user_id", using: :btree
 
   create_table "companies", force: true do |t|
     t.string   "name"
