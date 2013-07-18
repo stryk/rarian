@@ -1,6 +1,55 @@
-<p>Name: <%= @company.name %></p>
-<p>Ticker: <%= @company.ticker %></p>
-<p>Exchange: <%= @company.exchange %></p>
-<p>Sector: <%= @company.sector %></p>
-<p>Industry: <%= @company.industry %></p>
-<p>Last close: <%= @company.quotes.last.price %></p>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <p><%= @company.name %> (<%= @company.ticker %>)</p>
+
+      <div class="row-fluid">
+
+        <%= render 'shared/companies_left' %>
+
+        <div class="span4">
+          <div class="row-fluid">
+            <div class="span12">
+
+              <p>
+                Alpha Blips (Limit 140 characters per blip)
+              </p>
+
+              <p>
+                <textarea rows="10" cols="30" id="alpha_blips" disabled></textarea>
+              </p>
+
+              <p>
+                <a href="#add_blip" role="button" class="btn btn-primary" data-toggle="modal">Write Blip</a>
+              </p>
+
+            </div>
+
+          </div>
+        </div>
+
+        <%= render 'shared/companies_right' %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/add_blip' %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

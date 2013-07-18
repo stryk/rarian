@@ -22,7 +22,7 @@ class Company < ActiveRecord::Base
 					company.industry = row_hash['industry']
 					quote = company.quotes.build
 					quote.price = row_hash['LastSale'].to_d
-					quote.market_cap = row_hash['MarketCap'].to_d 
+					quote.market_cap = row_hash['MarketCap'].to_d
 					quote.date_time = DateTime.civil_from_format(:local, date['year'].to_i, date['month'].to_i, date['day'].to_i)
 					company.save!
 					quote.save!
