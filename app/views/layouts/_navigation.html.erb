@@ -1,4 +1,7 @@
 <ul class="nav">
+  <li>
+    <%= link_to 'Home', root_path %>
+  </li>
   <% if user_signed_in? %>
     <li>
     <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
