@@ -242,9 +242,8 @@
           return $(this).attr('data-validate', true);
         }).on(event, binding);
       }
-      $input.filter(':checkbox').on('click.ClientSideValidations', function() {
-        $(this).isValid(form.ClientSideValidations.settings.validators);
-        return true;
+      $input.filter(':checkbox').on('change.ClientSideValidations', function() {
+        return $(this).isValid(form.ClientSideValidations.settings.validators);
       });
       return $input.filter('[id$=_confirmation]').each(function() {
         var confirmationElement, element, _ref1, _results;
@@ -275,6 +274,11 @@
       return jQuery.extend({}, ClientSideValidations.validators.local, ClientSideValidations.validators.remote);
     },
     local: {
+      absence: function(element, options) {
+        if (!/^\s*$/.test(element.val() || '')) {
+          return options.message;
+        }
+      },
       presence: function(element, options) {
         if (/^\s*$/.test(element.val() || '')) {
           return options.message;
@@ -321,7 +325,6 @@
           }
           return options.messages.numericality;
         }
-        val = val.replace(new RegExp("\\" + ClientSideValidations.number_format.delimiter, 'g'), "").replace(new RegExp("\\" + ClientSideValidations.number_format.separator, 'g'), ".");
         if (options.only_integer && !/^[+-]?\d+$/.test(val)) {
           return options.messages.only_integer;
         }
@@ -345,6 +348,7 @@
           } else {
             return;
           }
+          val = val.replace(new RegExp("\\" + ClientSideValidations.number_format.delimiter, 'g'), "").replace(new RegExp("\\" + ClientSideValidations.number_format.separator, 'g'), ".");
           fn = new Function("return " + val + " " + operator + " " + check_value);
           if (!fn()) {
             return options.messages[check];
@@ -533,8 +537,11 @@
           name = options['class'] + '[' + name.split('[')[1];
         }
         data[name] = element.val();
+        if (ClientSideValidations.remote_validators_prefix == null) {
+          ClientSideValidations.remote_validators_prefix = "";
+        }
         if (jQuery.ajax({
-          url: ClientSideValidations.remote_validators_url_for('uniqueness'),
+          url: "" + ClientSideValidations.remote_validators_prefix + "/validators/uniqueness",
           data: data,
           async: false,
           cache: false
@@ -542,14 +549,6 @@
           return options.message;
         }
       }
-    }
-  };
-
-  window.ClientSideValidations.remote_validators_url_for = function(validator) {
-    if (ClientSideValidations.remote_validators_prefix != null) {
-      return "//" + window.location.host + "/" + ClientSideValidations.remote_validators_prefix + "/validators/" + validator;
-    } else {
-      return "//" + window.location.host + "/validators/" + validator;
     }
   };
 
@@ -576,7 +575,7 @@
       add: function(element, settings, message) {
         var form, inputErrorField, label, labelErrorField;
         form = $(element[0].form);
-        if (element.data('valid') !== false && !(form.find("label.message[for='" + (element.attr('id')) + "']")[0] != null)) {
+        if (element.data('valid') !== false && (form.find("label.message[for='" + (element.attr('id')) + "']")[0] == null)) {
           inputErrorField = jQuery(settings.input_tag);
           labelErrorField = jQuery(settings.label_tag);
           label = form.find("label[for='" + (element.attr('id')) + "']:not(.message)");

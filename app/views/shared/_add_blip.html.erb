@@ -4,13 +4,37 @@
     <h3 id="myModalLabel"><%= @company.name %></h3>
   </div>
   <div class="modal-body">
-    <%= form_for(Blip.new, :html => {:class => 'form-vertical' }, :remote => true) do |f| %>
-         <% f.select :action, "Action",  %>
-        <%= f.button :submit, 'Submit', id: 'create_blip', :class => 'btn-primary' %>
+    <%= form_for(Blip.new, :html => {:class => 'form-horizontal'}, :validate => true) do |f| %>
+      <div class="control-group">
+        <%= f.label :action, :class => "control-label" %>
+        <div class="controls">
+          <%= f.select :action, Blip::ACTIONS %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :content, :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :content, :validate => true %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :quantity, :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :quantity %>
+        </div>
+      </div>
+
+      <%= f.hidden_field :company_id, :value => @company.id %>
+      <%= f.hidden_field :user_id, :value => current_user.try(:id) %>
+
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <%= f.button 'Submit', id: 'create_blip', :class => 'btn-primary' %>
+      </div>
     <% end %>
   </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-  </div>
 </div>
+
+

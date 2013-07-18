@@ -3,6 +3,7 @@ Rarian::Application.routes.draw do
     collection { post :import }
   end
 
+  resources :blips
 
   #devise_scope :users do
   #  get "users/sign_up", :to => "users/registrations#new"

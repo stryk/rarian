@@ -1,11 +1,11 @@
 class Company < ActiveRecord::Base
 
-  validates :ticker, :name, presence: true
   extend FriendlyId
 
   friendly_id :slug_candidates, use: :slugged
 
-	has_many :quotes
+  validates :ticker, :name, presence: true
+  has_many :quotes
 
 	def self.import(file, exchange, date)
 		#  checking file signature to prevent duplicates from uploading
