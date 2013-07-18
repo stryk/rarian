@@ -1,4 +1,8 @@
 class Company < ActiveRecord::Base
+
+  include FriendlyId
+  friendly_id :name, use: :slugged
+
 	has_many :quotes
 
 	def self.import(file, exchange, date)

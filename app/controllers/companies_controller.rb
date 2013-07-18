@@ -3,7 +3,11 @@ class CompaniesController < ApplicationController
 
 	def index
 		@companies = Company.all.limit(50)
-	end
+  end
+
+  def show
+    @company = Company.find(params[:id])
+  end
 
 	def import
 		Company.import(params[:file], params[:exchange], params[:date])

@@ -1,4 +1,11 @@
 GIT
+  remote: git@github.com:FriendlyId/friendly_id.git
+  revision: c49ce30ff2b370669ccf1708e99fb08ab51435d9
+  branch: rails4
+  specs:
+    friendly_id (4.1.0.beta.2)
+
+GIT
   remote: git@github.com:bcardarella/client_side_validations.git
   revision: 9461cb92e1dfb64895d590c6d435cdf48fcede45
   branch: 4-0-beta
@@ -145,6 +152,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   debugger
   devise (~> 3.0.0)
+  friendly_id!
   jbuilder (~> 1.2)
   jquery-rails (~> 3.0.4)
   pg

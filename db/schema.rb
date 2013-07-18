@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130717164244) do
+ActiveRecord::Schema.define(version: 20130718112630) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20130717164244) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   add_index "companies", ["active"], name: "index_companies_on_active", using: :btree
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 20130717164244) do
   add_index "companies", ["ipo_year"], name: "index_companies_on_ipo_year", using: :btree
   add_index "companies", ["name"], name: "index_companies_on_name", using: :btree
   add_index "companies", ["sector"], name: "index_companies_on_sector", using: :btree
+  add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
   add_index "companies", ["ticker"], name: "index_companies_on_ticker", using: :btree
 
   create_table "quote_imports", force: true do |t|

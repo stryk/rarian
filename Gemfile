@@ -54,7 +54,7 @@ end
 
 gem 'cancan'
 gem "devise", "~> 3.0.0"
-
+gem 'friendly_id', :git => 'git@github.com:FriendlyId/friendly_id.git', :branch => 'rails4'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

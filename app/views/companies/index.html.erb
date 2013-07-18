@@ -7,7 +7,7 @@
 	<div class="span6">
 		<div class="center_column">
 			<% @companies.each do |company| %>
-				<p>Name: <%= company.name %></p>
+				<p>Name: <%= link_to company.name, company_path(company) %></p>
 				<p>Ticker: <%= company.ticker %></p>
 				<p>Exchange: <%= company.exchange %></p>
 				<p>Sector: <%= company.sector %></p>
