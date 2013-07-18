@@ -1,7 +1,8 @@
 class Company < ActiveRecord::Base
 
-  include FriendlyId
-  friendly_id :name, use: :slugged
+  extend FriendlyId
+
+	friendly_id :slug_candidate, use: :slugged
 
 	has_many :quotes
 
@@ -36,6 +37,12 @@ class Company < ActiveRecord::Base
 			new_file.filename = file.original_filename
 			new_file.save
 		end
+	end
 
+	def slug_candidates
+		[
+			:ticker,
+			[:ticker, :name]
+		]
 	end
 end
