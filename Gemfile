@@ -34,6 +34,8 @@ gem 'bootstrap-sass'
 
 gem 'protected_attributes'
 
+gem 'make_voteable'
+
 gem 'client_side_validations', :git =>  'git@github.com:bcardarella/client_side_validations.git', :branch => '4-0-beta'
 
 group :doc do

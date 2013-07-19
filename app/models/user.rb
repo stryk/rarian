@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   attr_accessor :roles
 
+  make_voter
+
   ROLES = %w[admin moderator author banned]
 
   def roles=(roles)

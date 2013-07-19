@@ -6,6 +6,7 @@ class Company < ActiveRecord::Base
 
   validates :ticker, :name, presence: true
   has_many :quotes
+  has_many :blips
 
 	def self.import(file, exchange, date)
 		#  checking file signature to prevent duplicates from uploading

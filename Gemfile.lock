@@ -87,6 +87,8 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    make_voteable (0.0.2)
+      activerecord (>= 3.0.0)
     mime-types (1.23)
     minitest (4.7.5)
     multi_json (1.7.7)
@@ -175,6 +177,7 @@ DEPENDENCIES
   friendly_id!
   jbuilder (~> 1.2)
   jquery-rails (~> 3.0.4)
+  make_voteable
   pg
   protected_attributes
   puma

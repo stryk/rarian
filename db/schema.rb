@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130718133541) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20130719150912) do
 
   create_table "blips", force: true do |t|
     t.integer  "user_id"
@@ -24,6 +21,8 @@ ActiveRecord::Schema.define(version: 20130718133541) do
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "up_votes",   default: 0, null: false
+    t.integer  "down_votes", default: 0, null: false
   end
 
   add_index "blips", ["company_id"], name: "index_blips_on_company_id", using: :btree
@@ -88,9 +87,25 @@ ActiveRecord::Schema.define(version: 20130718133541) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "roles_mask"
+    t.integer  "up_votes",               default: 0,  null: false
+    t.integer  "down_votes",             default: 0,  null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "votings", force: true do |t|
+    t.string   "voteable_type"
+    t.integer  "voteable_id"
+    t.string   "voter_type"
+    t.integer  "voter_id"
+    t.boolean  "up_vote",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votings", ["voteable_type", "voteable_id", "voter_type", "voter_id"], name: "unique_voters", unique: true, using: :btree
+  add_index "votings", ["voteable_type", "voteable_id"], name: "index_votings_on_voteable_type_and_voteable_id", using: :btree
+  add_index "votings", ["voter_type", "voter_id"], name: "index_votings_on_voter_type_and_voter_id", using: :btree
 
 end

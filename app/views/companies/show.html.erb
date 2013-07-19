@@ -16,7 +16,19 @@
               </p>
 
               <p>
-                <textarea rows="10" cols="30" id="alpha_blips" disabled></textarea>
+                <div>
+                  <% @company.blips.each do |blip| %>
+                    <div>
+                      <%= link_to vote_up_blip_path(blip),:remote => true, :method => :put, :id => "vote_up_#{blip.id}" do %>
+                        <i class="icon-thumbs-up"></i>
+                      <% end %>
+                      <%= link_to vote_down_blip_path(blip), :remote => true, :method => :put, :id => "vote_down_#{blip.id}" do %>
+                        <i class="icon-thumbs-down"></i>
+                      <% end %>
+                      <%= blip.content %>
+                    </div>
+                  <% end %>
+                </div>
               </p>
 
               <p>
