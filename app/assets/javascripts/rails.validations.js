@@ -640,7 +640,7 @@
 }).call(this);
 
 (function() {
-    $(document).ready(function() {
+    $(document).on("page:change", function() {
         return $("div.control-group").focusout(function() {
             if (!$("div.control-group").hasClass("error")) {
                 return $(this).addClass("success");
