@@ -31,15 +31,15 @@ describe CompaniesController do
 
   describe "Post: Import Companies" do
     it "responds successfully with an HTTP 200 status code" do
-      company = FactoryGirl.create(:company)
-      get :show, :id => company.id
+      post :import, :file => "/home/mitesh/Documents/work/Bhupinder/companylist.csv",
+           :exchange => 'NSDAQ', :date => {'year' => '2013', 'month' => '07', 'day' => '22'}
       expect(response.status).to eq(200)
     end
 
-    it "response failure with an HTTP 403 status code" do
-      get :show, :id => 2
-      expect(response.status).to eq(403)
-    end
+    #it "response failure with an HTTP 403 status code" do
+    #  get :show, :id => 2
+    #  expect(response.status).to eq(403)
+    #end
   end
 
 end
