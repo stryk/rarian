@@ -20,14 +20,14 @@
                   <% @company.blips.each do |blip| %>
                     <div>
                       <%= link_to vote_up_blip_path(blip),:remote => true, :method => :put, :id => "vote_up_#{blip.id}" do %>
-                        <i class="icon-thumbs-up"></i>
+                        <%= raw (current_user && current_user.up_voted?(blip)) ? '<i class="icon-thumbs-up"></i> Upvoted(undo)': '<i class="icon-thumbs-up"></i> Upvote' %>
                       <% end %>
                       <%= link_to vote_down_blip_path(blip), :remote => true, :method => :put, :id => "vote_down_#{blip.id}" do %>
-                        <i class="icon-thumbs-down"></i>
+                        <%= raw (current_user && current_user.down_voted?(blip)) ? '<i class="icon-thumbs-down"></i> Downvoted(undo)': '<i class="icon-thumbs-down"></i>' %>
                       <% end %>
                       <%= blip.content %>
                     </div>
-                  <% end %>
+                  <% end %>                                                        `
                 </div>
               </p>
 

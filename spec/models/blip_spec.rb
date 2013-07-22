@@ -12,4 +12,25 @@ describe Blip do
     @blip.save
     @blip.errors.full_messages.should_not eq([])
   end
+
+  it "blip validation" do
+    @blip = FactoryGirl.build(:blip, :content => nil)
+    @blip.save
+
+    @blip.errors.messages[:content].should_not eq([])
+
+    @blip.content = "test blip"
+    @blip.company = nil
+    @blip.save
+    @blip.errors.messages[:content].should eq(nil)
+    @blip.errors.messages[:company].should_not eq([])
+
+
+    @blip.company = FactoryGirl.create(:company)
+    @blip.user = nil
+    @blip.save
+    @blip.errors.messages[:content].should eq(nil)
+    @blip.errors.messages[:company].should eq(nil)
+    @blip.errors.messages[:user].should_not eq([])
+  end
 end

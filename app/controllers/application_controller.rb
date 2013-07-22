@@ -4,8 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_path, :alert => exception.message
+    render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
   end
+
+  rescue_from(ActiveRecord::RecordNotFound) {
+    render :file => "#{Rails.root}/public/403.html", :status => 403, :layout => false
+  }
 
   protected
 

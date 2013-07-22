@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130719150912) do
+ActiveRecord::Schema.define(version: 20130722104907) do
 
   create_table "blips", force: true do |t|
     t.integer  "user_id"
@@ -89,6 +89,14 @@ ActiveRecord::Schema.define(version: 20130719150912) do
     t.integer  "roles_mask"
     t.integer  "up_votes",               default: 0,  null: false
     t.integer  "down_votes",             default: 0,  null: false
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",        default: 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.string   "authentication_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
