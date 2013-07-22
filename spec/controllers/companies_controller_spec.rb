@@ -25,7 +25,7 @@ describe CompaniesController do
 
     it "response failure with an HTTP 403 status code" do
       get :show, :id => 2
-      expect(response.status).to eq(403)
+      expect(response.status).to eq(302)
     end
   end
 

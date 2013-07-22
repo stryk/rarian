@@ -6,8 +6,14 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       flash[:error] = exception.message
-      format.js {flash_to_headers}
-      format.html {redirect_to root_path, :alert => exception.message}
+      format.js { flash_to_headers }
+      format.html { redirect_to root_path, :alert => exception.message }
+    end
+  end
+
+  rescue_from(ActiveRecord::RecordNotFound) do |exception|
+    respond_to do |format|
+      format.html { redirect_to root_path, :alert => "Invalid Access!" }
     end
   end
 
@@ -27,16 +33,12 @@ class ApplicationController < ActionController::Base
     [:error, :warning, :notice].each do |type|
       return flash[type] unless flash[type].blank?
     end
-   end
+  end
 
   def flash_type
     [:error, :warning, :notice].each do |type|
       return type unless flash[type].blank?
     end
   end
-
-
-
-
 
 end
