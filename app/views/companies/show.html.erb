@@ -13,22 +13,30 @@
 
               <p>
                 Alpha Blips (Limit 140 characters per blip)
+                <%= select_tag("sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "span3",
+                               data: {
+                                 remote: true,
+                                 url: url_for(action: :index, :controller => :blips),
+                                 update: "message_div_id"
+                               }
+                    ) %>
               </p>
 
               <p>
-                <div>
-                  <% @company.blips.each do |blip| %>
-                    <div>
-                      <%= link_to vote_up_blip_path(blip),:remote => true, :method => :put, :id => "vote_up_#{blip.id}" do %>
-                        <%= raw (current_user && current_user.up_voted?(blip)) ? '<i class="icon-thumbs-up"></i> Upvoted(undo)': '<i class="icon-thumbs-up"></i> Upvote' %>
-                      <% end %>
-                      <%= link_to vote_down_blip_path(blip), :remote => true, :method => :put, :id => "vote_down_#{blip.id}" do %>
-                        <%= raw (current_user && current_user.down_voted?(blip)) ? '<i class="icon-thumbs-down"></i> Downvoted(undo)': '<i class="icon-thumbs-down"></i>' %>
-                      <% end %>
-                      <%= blip.content %>
-                    </div>
-                  <% end %>                                                        `
-                </div>
+
+              <div>
+                <% @company.blips.each do |blip| %>
+                  <div>
+                    <%= link_to vote_up_blip_path(blip), :remote => true, :method => :put, :id => "vote_up_#{blip.id}" do %>
+                      <%= raw (current_user && current_user.up_voted?(blip)) ? '<i class="icon-thumbs-up"></i> Upvoted(undo)' : '<i class="icon-thumbs-up"></i> Upvote' %>
+                    <% end %>
+                    <%= link_to vote_down_blip_path(blip), :remote => true, :method => :put, :id => "vote_down_#{blip.id}" do %>
+                      <%= raw (current_user && current_user.down_voted?(blip)) ? '<i class="icon-thumbs-down"></i> Downvoted(undo)' : '<i class="icon-thumbs-down"></i>' %>
+                    <% end %>
+                    <%= blip.content %>
+                  </div>
+                <% end %>                                                        `
+              </div>
               </p>
 
               <p>
