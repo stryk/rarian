@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130722104907) do
+ActiveRecord::Schema.define(version: 20130723104157) do
 
   create_table "blips", force: true do |t|
     t.integer  "user_id"
@@ -23,10 +23,29 @@ ActiveRecord::Schema.define(version: 20130722104907) do
     t.datetime "updated_at"
     t.integer  "up_votes",   default: 0, null: false
     t.integer  "down_votes", default: 0, null: false
+    t.string   "slug"
   end
 
   add_index "blips", ["company_id"], name: "index_blips_on_company_id", using: :btree
+  add_index "blips", ["slug"], name: "index_blips_on_slug", unique: true, using: :btree
   add_index "blips", ["user_id"], name: "index_blips_on_user_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.string   "title",            limit: 50, default: ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.string   "role",                        default: "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
+  end
+
+  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
+  add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
+  add_index "comments", ["slug"], name: "index_comments_on_slug", unique: true, using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "companies", force: true do |t|
     t.string   "name"

@@ -7,7 +7,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
-
+    @blips = @company.blips
   end
 
 	def import

@@ -34,3 +34,7 @@
 .up_vote {
     background-image:url(../images/up_down_arrow.gif)
 }
+
+.scroll{
+    overflow:auto; height:150px;
+}

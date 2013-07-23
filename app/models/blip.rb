@@ -16,4 +16,6 @@ class Blip < ActiveRecord::Base
 
   make_voteable
 
+  acts_as_commentable
+
 end

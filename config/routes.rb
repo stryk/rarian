@@ -1,6 +1,7 @@
 Rarian::Application.routes.draw do
   resources :companies do
     collection { post :import }
+    resources :blips, :only => [:index]
   end
 
   resources :blips do
@@ -8,13 +9,15 @@ Rarian::Application.routes.draw do
       put :vote_up
       put :vote_down
     end
+
+    resources :comments
   end
 
   #devise_scope :users do
   #  get "users/sign_up", :to => "users/registrations#new"
   #end
 
-  devise_for :users, :controllers => { :registrations => "users/registrations" }
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
 
 
   resources :home
@@ -60,7 +63,7 @@ Rarian::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
