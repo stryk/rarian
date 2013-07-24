@@ -1,0 +1,29 @@
+<%= form_for(Pitch.new, :url => create_pitch_company_path(@company), :html => {:class => 'form-horizontal'}, :validate => true) do |f| %>
+  <div class="control-group">
+    <%= f.label :action, :class => "control-label" %>
+    <div class="controls">
+      <%= f.select :action, Blip::ACTIONS %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :title, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :title %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :multimedia_content, "Content", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_area :multimedia_content, :class => "ckeditor", :toolbar => "basic"%>
+    </div>
+  </div>
+
+  <div class="span12">
+    <div class="span2"></div>
+    <div class="span4"><%= link_to "Close", company_path(@company), :class => "btn btn-large btn-block" %></div>
+    <div><%= f.button 'Submit', id: 'create_reason', :class => 'btn btn-large btn-block btn-primary span4' %></div>
+  </div>
+
+<% end %>

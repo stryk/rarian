@@ -31,6 +31,12 @@ gem 'puma'
 
 gem 'bootstrap-sass'
 
+gem "ckeditor"
+
+gem "carrierwave"
+
+gem "mini_magick"
+
 gem 'protected_attributes'
 
 gem 'make_voteable'

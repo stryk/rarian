@@ -15,3 +15,4 @@
 //= require bootstrap
 //= require_tree .
 //= require rails.validations
+//= require ckeditor/init

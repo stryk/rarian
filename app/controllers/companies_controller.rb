@@ -13,7 +13,22 @@ class CompaniesController < ApplicationController
 	def import
 		Company.import(params[:file], params[:exchange], params[:date])
 		redirect_to companies_path, notice: "Company quotes imported."
-	end
+  end
+
+  def new_pitch
+
+  end
+
+  def create_pitch
+    pitch = @company.pitches.create(params[:pitch].merge!(:user_id => current_user.id))
+    if pitch.errors.blank?
+      flash[:notice] = "Successfully added the reason"
+      redirect_to company_path(@company)
+    else
+      flash[:error] = pitch.errors.full_messages.join(",")
+      render :new_pitch
+    end
+  end
 
 
 end

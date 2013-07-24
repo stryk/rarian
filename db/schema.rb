@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130723104157) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20130724205155) do
 
   create_table "blips", force: true do |t|
     t.integer  "user_id"
@@ -32,6 +29,22 @@ ActiveRecord::Schema.define(version: 20130723104157) do
   add_index "blips", ["company_id"], name: "index_blips_on_company_id", using: :btree
   add_index "blips", ["slug"], name: "index_blips_on_slug", unique: true, using: :btree
   add_index "blips", ["user_id"], name: "index_blips_on_user_id", using: :btree
+
+  create_table "ckeditor_assets", force: true do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "comments", force: true do |t|
     t.string   "title",            limit: 50, default: ""
@@ -73,6 +86,14 @@ ActiveRecord::Schema.define(version: 20130723104157) do
   add_index "companies", ["sector"], name: "index_companies_on_sector", using: :btree
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
   add_index "companies", ["ticker"], name: "index_companies_on_ticker", using: :btree
+
+  create_table "pitches", force: true do |t|
+    t.string  "action"
+    t.text    "multimedia_content"
+    t.integer "user_id"
+    t.integer "company_id"
+    t.string  "title"
+  end
 
   create_table "quote_imports", force: true do |t|
     t.string   "filename"

@@ -1,7 +1,12 @@
 Rarian::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   resources :companies do
     collection { post :import }
     resources :blips, :only => [:index]
+    member {
+      get :new_pitch
+      post :create_pitch
+    }
   end
 
   resources :blips do
