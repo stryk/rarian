@@ -7,7 +7,12 @@
   <div class="modal-body" id="list_all_blip_comments">
     <% if !@blip.comments.blank? %>
       <% @blip.comments.each do |comment| %>
-        <p><%= comment.title %></p>
+        <div id="jTruncate_truncate-<%= comment.id %>"><%= comment.comment %></div>
+        <script type="text/javascript">
+          $('#jTruncate_truncate-<%= comment.id %>').jTruncate({
+            length: 50
+          });
+        </script>
       <% end %>
     <% else %>
       There are no comments for this Blip
@@ -19,14 +24,8 @@
     <%= button_tag 'Add Comment', id: 'add_comment', :class => 'btn-primary' %>
   </div>
 
-  <div class="modal-body" style="display:none" id="blip_comment_create" >
-    <%= form_for(Comment.new, :url => blip_comments_path(@blip),:html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
-      <div class="control-group">
-        <%= f.label :title, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :title %>
-        </div>
-      </div>
+  <div class="modal-body" style="display:none" id="blip_comment_create">
+    <%= form_for(Comment.new, :url => blip_comments_path(@blip), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
 
       <div class="control-group">
         <%= f.label :comment, :class => "control-label" %>

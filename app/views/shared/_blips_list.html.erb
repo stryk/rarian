@@ -1,10 +1,10 @@
 <% @blips.each do |blip| %>
   <div>
     <%= link_to vote_up_blip_path(blip), :remote => true, :method => :put, :id => "vote_up_#{blip.id}" do %>
-      <%= raw (current_user && current_user.up_voted?(blip)) ? '<i class="icon-thumbs-up"></i> Upvoted(undo)' : (current_user.voted?(blip) ? '' :'<i class="icon-thumbs-up"></i>Upvote') %>
+      <%= raw (current_user && current_user.up_voted?(blip)) ? '<i class="icon-thumbs-up"></i> Upvoted(undo)' : (current_user && current_user.voted?(blip) ? '' :'<i class="icon-thumbs-up"></i>Upvote') %>
     <% end %>
     <%= link_to vote_down_blip_path(blip), :remote => true, :method => :put, :id => "vote_down_#{blip.id}" do %>
-      <%= raw (current_user && current_user.down_voted?(blip)) ? '<i class="icon-thumbs-down"></i> Downvoted(undo)' : (current_user.voted?(blip) ? '' :'<i class="icon-thumbs-down"></i>') %>
+      <%= raw (current_user && current_user.down_voted?(blip)) ? '<i class="icon-thumbs-down"></i> Downvoted(undo)' : (current_user && current_user.voted?(blip) ? '' :'<i class="icon-thumbs-down"></i>') %>
     <% end %>
     <%= link_to(blip_show_title(blip), blip_comments_path(blip), "data-toggle" =>"modal", :remote => true) %>
   </div>

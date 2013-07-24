@@ -23,14 +23,14 @@
               </p>
 
 
-
               <div id="blips_list" class="scroll">
                 <%= render 'shared/blips_list' %>                                                        `
               </div>
-
-              <p>
-                <a href="#add_blip" role="button" class="btn btn-primary" data-toggle="modal">Write Blip</a>
-              </p>
+              <% if current_user %>
+                <p>
+                  <a href="#add_blip" role="button" class="btn btn-primary" data-toggle="modal">Write Blip</a>
+                </p>
+              <% end %>
 
             </div>
 

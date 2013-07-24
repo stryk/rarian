@@ -8,7 +8,7 @@ class Comment < ActiveRecord::Base
 
   attr_accessible :title, :comment, :user_id
 
-  validates :title, :comment, :user_id, presence: true
+  validates :comment, :user_id, presence: true
 
   belongs_to :commentable, :polymorphic => true
 
