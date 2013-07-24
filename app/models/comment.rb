@@ -2,10 +2,6 @@ class Comment < ActiveRecord::Base
 
   include ActsAsCommentable::Comment
 
-  extend FriendlyId
-
-  friendly_id :slug_candidates, use: :slugged
-
   attr_accessible :title, :comment, :user_id
 
   validates :comment, :user_id, presence: true
@@ -20,11 +16,5 @@ class Comment < ActiveRecord::Base
 
   # NOTE: Comments belong to a user
   belongs_to :user
-
-  def slug_candidates
-    [
-      :title
-    ]
-  end
 
 end

@@ -8,8 +8,7 @@ class CommentsController < ApplicationController
 
   def create
     blip = Blip.find(params[:blip_id])
-    @comment = blip.comments.create(:title => params[:comment][:title],
-                                    :comment => params[:comment][:comment],
+    @comment = blip.comments.create(:comment => params[:comment][:comment],
                                     :user_id => current_user.id)
     if !@comment.errors.full_messages.blank?
       flash[:error] = @comment.errors.full_messages
