@@ -39,6 +39,10 @@ gem 'make_voteable'
 
 gem 'client_side_validations', :git =>  'git@github.com:bcardarella/client_side_validations.git', :branch => '4-0-beta'
 
+gem "aws-ses"
+
+gem "figaro"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
