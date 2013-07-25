@@ -45,7 +45,7 @@ gem 'client_side_validations', :git =>  'git@github.com:bcardarella/client_side_
 
 gem "aws-ses"
 
-gem "figaro"
+gem "configatron"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

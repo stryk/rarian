@@ -3,10 +3,8 @@ Rarian::Application.routes.draw do
   resources :companies do
     collection { post :import }
     resources :blips, :only => [:index]
-    member {
-      get :new_pitch
-      post :create_pitch
-    }
+
+    resources :pitches
   end
 
   resources :blips do

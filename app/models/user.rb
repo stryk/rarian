@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   make_voter
 
-  ROLES = %w[admin moderator author banned]
+  ROLES = %w[admin moderator standard banned]
 
   has_many :pitches
 
