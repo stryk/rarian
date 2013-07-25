@@ -22,9 +22,7 @@ class PitchesController < ApplicationController
 
   end
 
-  def show
-    authorize! :show, @pitch
-  end
+  private
 
   def load_company
     @company= Company.find(params[:company_id])
