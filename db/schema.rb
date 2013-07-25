@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130724205155) do
+ActiveRecord::Schema.define(version: 20130725164405) do
 
   create_table "blips", force: true do |t|
     t.integer  "user_id"
@@ -88,11 +88,15 @@ ActiveRecord::Schema.define(version: 20130724205155) do
   add_index "companies", ["ticker"], name: "index_companies_on_ticker", using: :btree
 
   create_table "pitches", force: true do |t|
-    t.string  "action"
-    t.text    "multimedia_content"
-    t.integer "user_id"
-    t.integer "company_id"
-    t.string  "title"
+    t.string   "action"
+    t.text     "multimedia_content"
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "up_votes",           default: 0, null: false
+    t.integer  "down_votes",         default: 0, null: false
   end
 
   create_table "quote_imports", force: true do |t|

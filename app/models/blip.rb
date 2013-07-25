@@ -18,4 +18,8 @@ class Blip < ActiveRecord::Base
 
   acts_as_commentable
 
+  def get_full_title
+    company.ticker+": "+created_at.strftime("%m/%d/%Y")+": "+action+": "+content
+  end
+
 end

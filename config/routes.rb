@@ -4,17 +4,28 @@ Rarian::Application.routes.draw do
     collection { post :import }
     resources :blips, :only => [:index]
 
-    resources :pitches
-  end
-
-  resources :blips do
-    member do
-      put :vote_up
-      put :vote_down
+    resources :pitches do
+      resources :votes do
+        collection{
+          put :up
+          put :down
+        }
+      end
     end
 
-    resources :comments
+    resources :blips do
+      resources :votes do
+        collection{
+          put :up
+          put :down
+        }
+      end
+
+      resources :comments
+    end
+
   end
+
 
   #devise_scope :users do
   #  get "users/sign_up", :to => "users/registrations#new"

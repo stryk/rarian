@@ -23,7 +23,7 @@
 
 
               <div id="blips_list" class="scroll">
-                <%= render 'shared/blips_list' %>                                                        `
+                <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips} %>
               </div>
 
               <% if current_user %>
@@ -34,11 +34,19 @@
 
               <div class="span12">
                 <div class="span6">
-                  <%= render "top_reason_to_buy" %>
+                  <h4>Top Reason to Buy</h4>
+                  <%= render :partial => 'shared/blips_list', :locals =>  {:objs => @company.pitches.buy_pitch.all} %>
+                  <p>
+                    <%= link_to "Write Reason to Buy",  new_company_pitch_path(@company) %>
+                  </p>
                 </div>
 
                 <div class="span6">
-                  <%= render "top_reason_to_sell" %>
+                  <h4>Top Reason to Sell</h4>
+                  <%= render :partial => 'shared/blips_list', :locals =>  {:objs => @company.pitches.sell_pitch.all} %>
+                  <p>
+                    <%= link_to "Write Reason to Buy",  new_company_pitch_path(@company) %>
+                  </p>
                 </div>
 
 

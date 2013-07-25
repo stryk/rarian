@@ -1,0 +1,7 @@
+<% if current_user.down_voted?(@obj) %>
+$("#vote_up_"+'<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').hide();
+$("#vote_down_"+'<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').html('<i class="icon-thumbs-down"></i>Downvoted(undo)');
+<% else %>
+$("#vote_up_"+'<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').show();
+$("#vote_down_"+'<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').html('<i class="icon-thumbs-down"></i>');
+<% end %>

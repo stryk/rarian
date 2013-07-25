@@ -7,17 +7,21 @@ class Ability
 
     user ||= User.new # guest user (not logged in)
 
-    alias_action :create, :read, :update, :destroy, :to => :crud
-    alias_action :create, :read, :update, :to => :cru
+    alias_action :create, :update, :destroy, :to => :cud
+    alias_action :create, :update, :to => :cu
 
     if user.is? :admin
       can :manage, :all
     elsif user.is? :standard
       can :read, Company
       cannot :import, Company
-      can :cru, Blip, :user_id => user.id
-      can :cru, Pitch, :user_id => user.id
+      can [:up, :down], Pitch
+      can [:up, :down], Blip
+      can :read, Blip
+      can :read, Pitch
+      can :cu, Blip, :user_id => user.id
       can :crud, Comment, :user_id => user.id
+      can :read, Comment
     else
       can :read, :all
     end

@@ -1,11 +1,11 @@
-<% @blips.each do |blip| %>
+<% objs.each do |cobj| %>
   <div>
-    <%= link_to vote_up_blip_path(blip), :remote => true, :method => :put, :id => "vote_up_#{blip.id}" do %>
-      <%= raw (current_user && current_user.up_voted?(blip)) ? '<i class="icon-thumbs-up"></i> Upvoted(undo)' : (current_user && current_user.voted?(blip) ? '' :'<i class="icon-thumbs-up"></i>Upvote') %>
+    <%= link_to send("up_company_#{cobj.class.name.downcase}_votes_path", @company, cobj), :remote => true, :method => :put, :id => "vote_up_#{cobj.class.name.downcase+'_'+cobj.id.to_s}" do %>
+      <%= raw up_voted_by_current_user(cobj) %>
     <% end %>
-    <%= link_to vote_down_blip_path(blip), :remote => true, :method => :put, :id => "vote_down_#{blip.id}" do %>
-      <%= raw (current_user && current_user.down_voted?(blip)) ? '<i class="icon-thumbs-down"></i> Downvoted(undo)' : (current_user && current_user.voted?(blip) ? '' :'<i class="icon-thumbs-down"></i>') %>
+    <%= link_to send("down_company_#{cobj.class.name.downcase}_votes_path", @company, cobj), :remote => true, :method => :put, :id => "vote_down_#{cobj.class.name.downcase+'_'+cobj.id.to_s}" do %>
+      <%= raw down_voted_by_current_user(cobj) %>
     <% end %>
-    <%= link_to(blip_show_title(blip), blip_comments_path(blip), "data-toggle" =>"modal", :remote => true) %>
+    <%= link_to(send("show_title", cobj), company_blip_comments_path(@company, cobj), "data-toggle" =>"modal", :remote => true) %>
   </div>
 <% end %>
