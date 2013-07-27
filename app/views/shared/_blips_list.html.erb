@@ -6,6 +6,6 @@
     <%= link_to send("down_company_#{cobj.class.name.downcase}_votes_path", @company, cobj), :remote => true, :method => :put, :id => "vote_down_#{cobj.class.name.downcase+'_'+cobj.id.to_s}" do %>
       <%= raw down_voted_by_current_user(cobj) %>
     <% end %>
-    <%= link_to(send("show_title", cobj), company_blip_comments_path(@company, cobj), "data-toggle" =>"modal", :remote => true) %>
+    <%= link_to(send("show_title", cobj), send("company_#{cobj.class.name.downcase}_comments_path", @company, cobj), "data-toggle" =>"modal", :remote => true) %>
   </div>
 <% end %>

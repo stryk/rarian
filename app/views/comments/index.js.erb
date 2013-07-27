@@ -1,4 +1,4 @@
-$('#comments_list').html('<%= j render "shared/list_and_add_comment", :locals => {:blip => @bilp} %>');
+$('#comments_list').html('<%= j render "shared/list_and_add_comment", :locals => {:comment_obj => @comment_obj} %>');
 $('#list_comments').modal();
 $('#add_comment').on("click", function () {
   $('#blip_comment_create').show();

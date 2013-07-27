@@ -37,7 +37,7 @@
                   <h4>Top Reason to Buy</h4>
                   <%= render :partial => 'shared/blips_list', :locals =>  {:objs => @company.pitches.buy_pitch.all} %>
                   <p>
-                    <%= link_to "Write Reason to Buy",  new_company_pitch_path(@company) %>
+                    <%= link_to "Write Reason to Buy",  new_company_pitch_path(@company), :class => "btn btn-primary" %>
                   </p>
                 </div>
 
@@ -45,7 +45,7 @@
                   <h4>Top Reason to Sell</h4>
                   <%= render :partial => 'shared/blips_list', :locals =>  {:objs => @company.pitches.sell_pitch.all} %>
                   <p>
-                    <%= link_to "Write Reason to Buy",  new_company_pitch_path(@company) %>
+                    <%= link_to "Write Reason to Sell",  new_company_pitch_path(@company), :class => "btn btn-primary" %>
                   </p>
                 </div>
 

@@ -11,6 +11,7 @@ Rarian::Application.routes.draw do
           put :down
         }
       end
+      resources :comments
     end
 
     resources :blips do
