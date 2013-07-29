@@ -14,12 +14,8 @@ class PitchesController < ApplicationController
       redirect_to company_path(@company)
     else
       flash[:error] = pitch.errors.full_messages.join(",")
-      render :new_pitch
+      render :new, :action_type => params[:action]
     end
-  end
-
-  def edit
-
   end
 
   private

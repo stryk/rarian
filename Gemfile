@@ -72,6 +72,12 @@ group :development, :test do
 end
 
 group :test do
+  #gem 'capybara'
+  #gem 'selenium-webdriver'
+  #gem 'rest-client'
+  #gem 'database_cleaner'
+  #
+  #gem 'cucumber-rails'
   gem 'database_cleaner'
 end
 # Use ActiveModel has_secure_password

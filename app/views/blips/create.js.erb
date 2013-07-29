@@ -1,2 +1,2 @@
 $("#add_blip").modal("hide");
-$('#alpha_blips').prepend('<%= j @bilp.content %>');
+$('#blips_list').prepend('<%= j render :partial => "shared/blips_list", :locals  => {:objs => [@bilp], :company => @blip.company}%>');

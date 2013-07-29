@@ -15,8 +15,12 @@ class Ability
     elsif user.is? :standard
       can :read, Company
       cannot :import, Company
-      can [:up, :down], Pitch
-      can [:up, :down], Blip
+      can [:up, :down], Pitch do |pitch|
+        pitch.user_id != user.id
+      end
+      can [:up, :down], Blip do |blip|
+        blip.user_id != user.id
+      end
       can :read, Blip
       can :read, Pitch
       can :cu, Blip, :user_id => user.id

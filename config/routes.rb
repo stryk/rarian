@@ -2,7 +2,7 @@ Rarian::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   resources :companies do
     collection { post :import }
-    resources :blips, :only => [:index]
+    resources :blips
 
     resources :pitches do
       resources :votes do

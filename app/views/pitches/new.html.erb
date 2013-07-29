@@ -2,7 +2,7 @@
   <div class="control-group">
     <%= f.label :action, :class => "control-label" %>
     <div class="controls">
-      <%= f.select :action, Blip::ACTIONS %>
+      <%= f.select :action, Blip::ACTIONS, :selected => params[:action_type] %>
     </div>
   </div>
 
