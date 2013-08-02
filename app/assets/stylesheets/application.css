@@ -38,3 +38,7 @@
 .scroll{
     overflow:auto; height:150px;
 }
+
+.scroll300{
+    overflow:auto; height:300px;
+}

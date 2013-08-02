@@ -1,0 +1,16 @@
+<%= form_for(Answer.new, :url => company_question_answers_path(company, question), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
+  <div class="span12">
+    <%= f.text_area :content, :class => "ckeditor", :toolbar => "Mini" %>
+  </div>
+
+  <div class="span12">
+    <%= f.button 'Submit', id: "create_answer-#{question.id}", :class => 'btn btn-large btn-block btn-primary span4' %>
+  </div>
+
+<% end %>
+<script type="text/javascript">
+  $('#create_answer-'+<%= question.id %>).click(function(){
+     $('#accordion2-'+<%= question.id %>).collapse('hide');
+  });
+  ck_load();
+</script>

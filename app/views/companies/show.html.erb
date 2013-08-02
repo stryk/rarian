@@ -52,7 +52,7 @@
 
               </div>
 
-              <div class="span12" class="scroll">
+              <div class="span12 scroll300">
                 <h4>Burning QA's: <%= link_to "Add Question", '#add_question', "data-toggle" => "modal" %></h4>
                 <div class="list_questions">
                 <%= render :partial => 'questions/list', :locals => { :questions => @company.questions.all, :company => @company} %>
