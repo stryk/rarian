@@ -8,6 +8,7 @@ class Company < ActiveRecord::Base
   has_many :quotes
   has_many :blips
   has_many :pitches
+  has_many :questions
 
 	def self.import(file, exchange, date)
 		#  checking file signature to prevent duplicates from uploading

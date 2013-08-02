@@ -33,4 +33,9 @@ describe Blip do
     @blip.errors.messages[:company].should eq(nil)
     @blip.errors.messages[:user].should_not eq([])
   end
+
+  it "should return the full title" do
+    @blip = FactoryGirl.create(:blip)
+    @blip.get_full_title.should match(@blip.company.ticker+": "+@blip.created_at.strftime("%m/%d/%Y")+": "+@blip.action+": "+@blip.content)
+  end
 end

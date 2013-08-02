@@ -2,21 +2,53 @@ Rarian::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   resources :companies do
     collection { post :import }
-    resources :blips, :only => [:index]
-    member {
-      get :new_pitch
-      post :create_pitch
-    }
-  end
+    resources :blips
 
-  resources :blips do
-    member do
-      put :vote_up
-      put :vote_down
+    resources :pitches do
+      resources :votes do
+        collection{
+          put :up
+          put :down
+        }
+      end
+      resources :comments
+
     end
 
-    resources :comments
+    resources :questions do
+      resources :votes do
+        collection{
+          put :up
+          put :down
+        }
+      end
+      resources :answers
+      resources :comments
+    end
+
+    resources :answers do
+      resources :votes do
+        collection{
+          put :up
+          put :down
+        }
+      end
+      resources :comments
+    end
+
+    resources :blips do
+      resources :votes do
+        collection{
+          put :up
+          put :down
+        }
+      end
+
+      resources :comments
+    end
+
   end
+
 
   #devise_scope :users do
   #  get "users/sign_up", :to => "users/registrations#new"

@@ -13,6 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require ckeditor/ckeditor
 //= require_tree .
 //= require rails.validations
-//= require ckeditor/init

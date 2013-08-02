@@ -20,4 +20,15 @@ describe Company do
     company.save
     company.errors.full_messages.should_not eq([])
   end
+
+  it "Company should have many blips, quotes and pitches" do
+    @blip = FactoryGirl.create(:blip)
+    @company = @blip.company
+    @company.blips.should_not eq([])
+    @company.blips.should_not be_nil
+    @company.quotes.should_not be_nil
+    @company.quotes.should eq([])
+    @company.pitches.should eq([])
+    @company.pitches.should_not be_nil
+  end
 end

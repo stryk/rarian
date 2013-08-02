@@ -2,5 +2,10 @@
 
 FactoryGirl.define do
   factory :pitch do
+    title "title"
+    multimedia_content "<p>Hi</p>"
+    action "buy"
+    association :user
+    association :company
   end
 end

@@ -8,4 +8,12 @@ class Pitch < ActiveRecord::Base
 
   scope :buy_pitch, -> {where({:action => "buy"})}
   scope :sell_pitch, -> {where({:action => "sell"})}
+
+  make_voteable
+
+  acts_as_commentable
+
+  def get_full_title
+    created_at.strftime("%m/%d/%Y")+": "+action+": "+title
+  end
 end

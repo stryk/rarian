@@ -2,11 +2,11 @@
   <div id="flash_message"></div>
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel"><%= blip_show_title(@blip) %></h3>
+    <h3 id="myModalLabel"><%= @comment_obj.get_full_title.html_safe %></h3>
   </div>
   <div class="modal-body" id="list_all_blip_comments">
-    <% if !@blip.comments.blank? %>
-      <% @blip.comments.each do |comment| %>
+    <% if !@comment_obj.comments.blank? %>
+      <% @comment_obj.comments.each do |comment| %>
         <div id="jTruncate_truncate-<%= comment.id %>"><%= comment.comment %></div>
         <script type="text/javascript">
           $('#jTruncate_truncate-<%= comment.id %>').jTruncate({
@@ -25,8 +25,7 @@
   </div>
 
   <div class="modal-body" style="display:none" id="blip_comment_create">
-    <%= form_for(Comment.new, :url => blip_comments_path(@blip), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
-
+    <%= form_for(Comment.new, :url => send("company_#{@comment_obj.class.name.downcase}_comments_path", @comment_obj.company, @comment_obj), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
       <div class="control-group">
         <%= f.label :comment, :class => "control-label" %>
         <div class="controls">

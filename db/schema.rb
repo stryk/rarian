@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130724205155) do
+ActiveRecord::Schema.define(version: 20130730160738) do
+
+  create_table "answers", force: true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "up_votes",    default: 0, null: false
+    t.integer  "down_votes",  default: 0, null: false
+  end
+
+  add_index "answers", ["company_id"], name: "index_answers_on_company_id", using: :btree
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,12 +106,29 @@ ActiveRecord::Schema.define(version: 20130724205155) do
   add_index "companies", ["ticker"], name: "index_companies_on_ticker", using: :btree
 
   create_table "pitches", force: true do |t|
-    t.string  "action"
-    t.text    "multimedia_content"
-    t.integer "user_id"
-    t.integer "company_id"
-    t.string  "title"
+    t.string   "action"
+    t.text     "multimedia_content"
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "up_votes",           default: 0, null: false
+    t.integer  "down_votes",         default: 0, null: false
   end
+
+  create_table "questions", force: true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "up_votes",   default: 0, null: false
+    t.integer  "down_votes", default: 0, null: false
+  end
+
+  add_index "questions", ["company_id"], name: "index_questions_on_company_id", using: :btree
+  add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "quote_imports", force: true do |t|
     t.string   "filename"

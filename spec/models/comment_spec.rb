@@ -12,4 +12,9 @@ describe Comment do
     comment.save
     comment.errors.full_messages.should eq(["Comment can't be blank"])
   end
+
+  it "should have the relationship with user" do
+    comment = FactoryGirl.create(:comment)
+    comment.user.should_not be_nil
+  end
 end

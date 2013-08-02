@@ -23,7 +23,7 @@
 
 
               <div id="blips_list" class="scroll">
-                <%= render 'shared/blips_list' %>                                                        `
+                <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips, :company => @company, :child_objs => nil,:objs_text => nil, :child_objs_text => nil} %>
               </div>
 
               <% if current_user %>
@@ -34,16 +34,31 @@
 
               <div class="span12">
                 <div class="span6">
-                  <%= render "top_reason_to_buy" %>
+                  <h4>Top Reason to Buy</h4>
+                  <%= render :partial => 'shared/blips_list', :locals =>  {:objs => @company.pitches.buy_pitch.all, :company => @company, :child_objs => nil,:objs_text => nil, :child_objs_text => nil} %>
+                  <p>
+                    <%= link_to "Write Reason to Buy",  new_company_pitch_path(@company, :action_type => "buy"), :class => "btn btn-primary" %>
+                  </p>
                 </div>
 
                 <div class="span6">
-                  <%= render "top_reason_to_sell" %>
+                  <h4>Top Reason to Sell</h4>
+                  <%= render :partial => 'shared/blips_list', :locals =>  {:objs => @company.pitches.sell_pitch.all, :company => @company, :child_objs => nil,:objs_text => nil, :child_objs_text => nil} %>
+                  <p>
+                    <%= link_to "Write Reason to Sell",  new_company_pitch_path(@company, :action_type => "sell"), :class => "btn btn-primary" %>
+                  </p>
                 </div>
 
 
               </div>
 
+              <div class="span12" class="scroll">
+                <h4>Burning QA's: <%= link_to "Add Question", '#add_question', "data-toggle" => "modal" %></h4>
+                <div class="list_questions">
+                <%= render :partial => 'questions/list', :locals => { :questions => @company.questions.all, :company => @company} %>
+
+                </div>
+              </div>
             </div>
 
           </div>
@@ -57,6 +72,7 @@
 </div>
 
 <%= render 'shared/add_blip', :locals => {:company => @company} %>
+<%= render 'questions/add_question', :locals => {:company => @company} %>
 <div id="comments_list"></div>
 
 

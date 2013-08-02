@@ -1,8 +1,0 @@
-<% if current_user.up_voted?(@blip) %>
-$("#vote_down_"+<%= @blip.id %>).hide();
-$("#vote_up_"+<%= @blip.id %>).html('<i class="icon-thumbs-up"></i>Upvoted(undo)');
-<% else %>
-$("#vote_down_"+<%= @blip.id %>).show();
-$("#vote_up_"+<%= @blip.id %>).html('<i class="icon-thumbs-up"></i>Upvote');
-
-<% end %>

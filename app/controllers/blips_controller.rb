@@ -15,22 +15,4 @@ class BlipsController < ApplicationController
       format.js
     end
   end
-
-  def vote_up
-    begin
-      current_user.up_vote(@blip)
-    rescue MakeVoteable::Exceptions::AlreadyVotedError
-      # if the user clicks on the vote twice means user is unvoting
-      current_user.unvote(@blip)
-    end
-  end
-
-  def vote_down
-    begin
-      current_user.down_vote(@blip)
-    rescue MakeVoteable::Exceptions::AlreadyVotedError
-      # if the user clicks on the vote twice means user is unvoting
-      current_user.unvote(@blip)
-    end
-  end
 end

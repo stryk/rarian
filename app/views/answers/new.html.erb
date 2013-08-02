@@ -1,0 +1,15 @@
+<%= form_for(Answer.new, :url => company_question_answers_path(@company, @question), :html => {:class => 'form-horizontal'}, :validate => true) do |f| %>
+  <div class="control-group">
+    <%= f.label :content, "Content", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_area :content, :class => "ckeditor", :toolbar => "Mini"%>
+    </div>
+  </div>
+
+  <div class="span12">
+    <div class="span2"></div>
+    <div class="span4"><%= link_to "Close", company_path(@company), :class => "btn btn-large btn-block" %></div>
+    <div><%= f.button 'Submit', id: 'create_reason', :class => 'btn btn-large btn-block btn-primary span4' %></div>
+  </div>
+
+<% end %>

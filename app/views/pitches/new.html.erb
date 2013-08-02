@@ -1,8 +1,8 @@
-<%= form_for(Pitch.new, :url => create_pitch_company_path(@company), :html => {:class => 'form-horizontal'}, :validate => true) do |f| %>
+<%= form_for(Pitch.new, :url => company_pitches_path(@company), :html => {:class => 'form-horizontal'}, :validate => true) do |f| %>
   <div class="control-group">
     <%= f.label :action, :class => "control-label" %>
     <div class="controls">
-      <%= f.select :action, Blip::ACTIONS %>
+      <%= f.select :action, Blip::ACTIONS, :selected => params[:action_type] %>
     </div>
   </div>
 
@@ -16,7 +16,7 @@
   <div class="control-group">
     <%= f.label :multimedia_content, "Content", :class => "control-label" %>
     <div class="controls">
-      <%= f.text_area :multimedia_content, :class => "ckeditor", :toolbar => "basic"%>
+      <%= f.text_area :multimedia_content, :class => "ckeditor", :toolbar => "Mini"%>
     </div>
   </div>
 
