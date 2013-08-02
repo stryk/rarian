@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   ROLES = %w[admin moderator standard banned]
 
   has_many :pitches
+  has_many :questions
 
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)

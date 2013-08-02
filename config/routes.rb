@@ -12,6 +12,28 @@ Rarian::Application.routes.draw do
         }
       end
       resources :comments
+
+    end
+
+    resources :questions do
+      resources :votes do
+        collection{
+          put :up
+          put :down
+        }
+      end
+      resources :answers
+      resources :comments
+    end
+
+    resources :answers do
+      resources :votes do
+        collection{
+          put :up
+          put :down
+        }
+      end
+      resources :comments
     end
 
     resources :blips do
