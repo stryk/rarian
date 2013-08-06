@@ -13,7 +13,7 @@ class AnswersController < ApplicationController
                              :content => params[:answer][:content])
     if answer.errors.blank?
       flash[:notice] = "Successfully added the answer"
-      redirect_to company_path(@company)
+      #redirect_to company_path(@company)
     else
       flash[:error] = answer.errors.full_messages.join(",")
       render :new, :company_id => params[:company_id], :question_id => params[:question_id]
