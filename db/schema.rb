@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130730160738) do
+ActiveRecord::Schema.define(version: 20130815040226) do
+
+  create_table "alternate_phone_types", force: true do |t|
+    t.string   "phone_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "answers", force: true do |t|
     t.text     "content"
@@ -101,6 +107,16 @@ ActiveRecord::Schema.define(version: 20130730160738) do
   add_index "companies", ["sector"], name: "index_companies_on_sector", using: :btree
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
   add_index "companies", ["ticker"], name: "index_companies_on_ticker", using: :btree
+
+  create_table "most_active_tickers", force: true do |t|
+    t.integer  "company_id"
+    t.integer  "no_of_up_votes"
+    t.integer  "no_of_down_votes"
+    t.integer  "no_of_votes",      limit: 2
+    t.date     "active_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pitches", force: true do |t|
     t.string   "action"

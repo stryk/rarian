@@ -9,6 +9,7 @@ class Company < ActiveRecord::Base
   has_many :blips
   has_many :pitches
   has_many :questions
+  has_many :most_active_tickers
 
 	def self.import(file, exchange, date)
 		#  checking file signature to prevent duplicates from uploading
@@ -41,12 +42,19 @@ class Company < ActiveRecord::Base
 			new_file.filename = file.original_filename
 			new_file.save
 		end
-	end
+  end
+
+  def last_and_previous_closing_price
+    quotes.order("date_time DESC").limit(2)
+  end
+
 
 	def slug_candidates
 		[
 			:ticker,
 			[:ticker, :name]
 		]
-	end
+  end
+
+
 end
