@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130815040226) do
+ActiveRecord::Schema.define(version: 20130815145931) do
 
   create_table "alternate_phone_types", force: true do |t|
     t.string   "phone_type"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20130815040226) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.boolean  "delta",       default: true
   end
 
   add_index "companies", ["active"], name: "index_companies_on_active", using: :btree

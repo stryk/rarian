@@ -9,6 +9,7 @@ class Company < ActiveRecord::Base
   has_many :blips
   has_many :pitches
   has_many :questions
+  has_many :answers
   has_many :most_active_tickers
 
 	def self.import(file, exchange, date)

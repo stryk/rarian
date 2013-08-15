@@ -47,6 +47,10 @@ gem "aws-ses"
 
 gem "configatron"
 
+# Thinking-sphinx doc says require mysql2 even if you want to use postgres
+gem 'mysql2', '0.3.12b4'
+gem 'thinking-sphinx'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

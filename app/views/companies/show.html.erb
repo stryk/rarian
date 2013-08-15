@@ -9,24 +9,29 @@
             <%= image_tag "up.jpg", size: "16x10", alt: "Going up" %>
           <% elsif pricing_hash[:price_diff].to_i < 0 %>
             <%= image_tag "down.jpg", size: "16x10", alt: "Going down" %>
-          <% end %> <%= pricing_hash[:price_diff] %> (<%= pricing_hash[:percentage_diff] %>%)
+          <% end %>
+          <%= pricing_hash[:price_diff] %> (<%= pricing_hash[:percentage_diff] %>%)
           <a href="#follow" role="button" class="btn btn-primary" data-toggle="modal">Follow</a>
         </p>
-        <span style="font-size:18pt">
-          <%= @company.name %>, <%= @company.sector %> - <span id="jTruncate_truncate"><%= @company.industry %></span>
-          <script type="text/javascript">
-            $('#jTruncate_truncate').jTruncate({
-              length: 50
-            });
-          </script>
+
+        <p style="font-size:18pt">
+          <%= @company.name %>
+        </p>
+
+        <p style="font-size:18pt"><%= @company.sector %> - <span id="jTruncate_truncate"><%= @company.industry %></p>
+
+        <script type="text/javascript">
+          $('#jTruncate_truncate').jTruncate({
+            length: 50
+          });
+        </script>
         </span>
       </div>
       <div class="pull-right span6">
-        <form class="pull-right">
-          <input type="text" class="input-medium search-query">
-
-          <button type="submit" class="btn">Search</button>
-        </form>
+        <%= form_tag(searches_path, :class => 'pull-right', :remote => true) do %>
+          <%= text_field('q', 'search', :class => 'input-medium search-query') %>
+          <%= submit_tag('Search', :class => 'btn') %>
+        <% end %>
       </div>
     </div>
     <div class="span12">
@@ -102,6 +107,7 @@
 
 <%= render 'shared/add_blip', :locals => {:company => @company} %>
 <%= render 'questions/add_question', :locals => {:company => @company} %>
+<%= render 'searches/search_modal' %>
 <div id="comments_list"></div>
 
 
