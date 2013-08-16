@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130816045213) do
+ActiveRecord::Schema.define(version: 20130816061508) do
 
   create_table "alternate_phone_types", force: true do |t|
     t.string   "phone_type"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20130816045213) do
     t.integer  "no_of_votes",      limit: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "company_id"
   end
 
   create_table "users", force: true do |t|
@@ -198,6 +199,7 @@ ActiveRecord::Schema.define(version: 20130816045213) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

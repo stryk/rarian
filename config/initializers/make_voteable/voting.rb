@@ -22,17 +22,17 @@ module MakeVoteable
     end
 
     def update_top_users
-      if voteable.try(:user)
+      if voteable.try(:user) && voteable.try(:company)
         if self.up_vote?
-          TopUser.up_vote(voteable.user)
+          TopUser.up_vote(voteable.user, voteable.company)
         else
-          TopUser.down_vote(voteable.user)
+          TopUser.down_vote(voteable.user, voteable.company)
         end
       end
     end
 
     def undo_top_users
-      TopUser.undo_vote(voteable.user) if voteable.try(:user)
+      TopUser.undo_vote(voteable.user, voteable.company) if(voteable.try(:user) && voteable.try(:company))
     end
   end
 end
