@@ -9,7 +9,8 @@ class MostActiveTicker < ActiveRecord::Base
       create(:no_of_up_votes => 1, :no_of_down_votes => 0, :no_of_votes => 1 ,
              :active_date => Date.today, :company_id => company.id)
     else
-      most_active_on_date.update_attributes(:no_of_up_votes => most_active_on_date.no_of_up_votes+1)
+      most_active_on_date.update_attributes(:no_of_up_votes => most_active_on_date.no_of_up_votes+1,
+                                            :no_of_votes => most_active_on_date.no_of_votes+1)
     end
   end
 
@@ -20,7 +21,8 @@ class MostActiveTicker < ActiveRecord::Base
       create(:no_of_up_votes => 0, :no_of_down_votes => 1, :no_of_votes => -1 ,
              :active_date => Date.today, :company_id => company.id)
     else
-      most_active_on_date.update_attributes(:no_of_down_votes => most_active_on_date.no_of_up_votes-1)
+      most_active_on_date.update_attributes(:no_of_down_votes => most_active_on_date.no_of_down_votes+1,
+                                            :no_of_votes => most_active_on_date.no_of_votes-1)
     end
   end
 
