@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130730160738) do
+ActiveRecord::Schema.define(version: 20130816061508) do
+
+  create_table "alternate_phone_types", force: true do |t|
+    t.string   "phone_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +100,7 @@ ActiveRecord::Schema.define(version: 20130730160738) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.boolean  "delta",       default: true
   end
 
   add_index "companies", ["active"], name: "index_companies_on_active", using: :btree
@@ -104,6 +111,16 @@ ActiveRecord::Schema.define(version: 20130730160738) do
   add_index "companies", ["sector"], name: "index_companies_on_sector", using: :btree
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
   add_index "companies", ["ticker"], name: "index_companies_on_ticker", using: :btree
+
+  create_table "most_active_tickers", force: true do |t|
+    t.integer  "company_id"
+    t.integer  "no_of_up_votes"
+    t.integer  "no_of_down_votes"
+    t.integer  "no_of_votes",      limit: 2
+    t.date     "active_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pitches", force: true do |t|
     t.string   "action"
@@ -151,6 +168,16 @@ ActiveRecord::Schema.define(version: 20130730160738) do
   add_index "quotes", ["market_cap"], name: "index_quotes_on_market_cap", using: :btree
   add_index "quotes", ["price"], name: "index_quotes_on_price", using: :btree
 
+  create_table "top_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "no_of_up_votes"
+    t.integer  "no_of_down_votes"
+    t.integer  "no_of_votes",      limit: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "company_id"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -175,6 +202,7 @@ ActiveRecord::Schema.define(version: 20130730160738) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

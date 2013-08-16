@@ -1,5 +1,10 @@
 Rarian::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
+
+  resource :searches do
+    post :index
+  end
+
   resources :companies do
     collection { post :import }
     resources :blips

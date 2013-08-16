@@ -1,3 +1,13 @@
 // Place all the styles related to the Companies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#content{
+  border:2px solid #999;
+  padding:10px;
+}
+.titlebox{
+  float:left;
+  padding:0 5px;
+  margin:-20px 0 0 30px;
+  background:#fff;
+}
