@@ -3,7 +3,6 @@ class MostActiveTicker < ActiveRecord::Base
 
   belongs_to :company
 
-
   def self.up_vote(company)
     most_active_on_date = where(:active_date => Date.today, :company_id => company. id).last
     if most_active_on_date.blank?

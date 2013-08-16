@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130815145931) do
+ActiveRecord::Schema.define(version: 20130816045213) do
 
   create_table "alternate_phone_types", force: true do |t|
     t.string   "phone_type"
@@ -164,6 +164,15 @@ ActiveRecord::Schema.define(version: 20130815145931) do
   add_index "quotes", ["date_time"], name: "index_quotes_on_date_time", using: :btree
   add_index "quotes", ["market_cap"], name: "index_quotes_on_market_cap", using: :btree
   add_index "quotes", ["price"], name: "index_quotes_on_price", using: :btree
+
+  create_table "top_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "no_of_up_votes"
+    t.integer  "no_of_down_votes"
+    t.integer  "no_of_votes",      limit: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
