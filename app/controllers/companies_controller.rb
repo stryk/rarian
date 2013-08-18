@@ -30,5 +30,10 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def update
+    @company.description = params[:company][:description]
+    @company.save
+  end
+
 
 end

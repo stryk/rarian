@@ -8,6 +8,7 @@ Rarian::Application.routes.draw do
   resources :companies do
     collection { post :import }
     resources :blips
+    resources :target_prices
 
     resources :pitches do
       resources :votes do

@@ -18,6 +18,6 @@ module CompaniesHelper
   end
 
   def get_percent(latest_price, previous_price)
-    previous_price  > 0 ? (((latest_price- previous_price).to_f/previous_price)*100) : 100.0
+    latest_price.to_i == 0 ? -100.0 : (((latest_price.to_f - previous_price.to_f)/latest_price)*100).round(2)
   end
 end

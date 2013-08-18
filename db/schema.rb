@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130816061508) do
+ActiveRecord::Schema.define(version: 20130818111052) do
 
   create_table "alternate_phone_types", force: true do |t|
     t.string   "phone_type"
@@ -109,6 +109,14 @@ ActiveRecord::Schema.define(version: 20130816061508) do
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
   add_index "companies", ["ticker"], name: "index_companies_on_ticker", using: :btree
 
+  create_table "median_target_prices", force: true do |t|
+    t.integer  "company_id"
+    t.integer  "year"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "most_active_tickers", force: true do |t|
     t.integer  "company_id"
     t.integer  "no_of_up_votes"
@@ -164,6 +172,16 @@ ActiveRecord::Schema.define(version: 20130816061508) do
   add_index "quotes", ["date_time"], name: "index_quotes_on_date_time", using: :btree
   add_index "quotes", ["market_cap"], name: "index_quotes_on_market_cap", using: :btree
   add_index "quotes", ["price"], name: "index_quotes_on_price", using: :btree
+
+  create_table "target_prices", force: true do |t|
+    t.integer  "company_id"
+    t.integer  "user_id"
+    t.integer  "year"
+    t.float    "target_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "year_median",  default: false
+  end
 
   create_table "top_users", force: true do |t|
     t.integer  "user_id"

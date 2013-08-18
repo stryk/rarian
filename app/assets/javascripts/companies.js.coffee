@@ -1,3 +1,6 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+
+$(document).on "click", "#company_slide", ->
+  $("#description_slide_down").toggle "slideDown(1000)", ->
+
+$(document).on "click", "#company_target_slide", ->
+  $("#target_price_slide_down").toggle "slideDown(1000)", ->
