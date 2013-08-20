@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130818111052) do
+ActiveRecord::Schema.define(version: 20130820101442) do
 
   create_table "alternate_phone_types", force: true do |t|
     t.string   "phone_type"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20130818111052) do
   add_index "blips", ["company_id"], name: "index_blips_on_company_id", using: :btree
   add_index "blips", ["slug"], name: "index_blips_on_slug", unique: true, using: :btree
   add_index "blips", ["user_id"], name: "index_blips_on_user_id", using: :btree
+
+  create_table "catalysts", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.text     "content"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.maxlength
 //= require bootstrap
+//= require bootstrap-datepicker
 //= require ckeditor/ckeditor
 //= require_tree .
 //= require rails.validations

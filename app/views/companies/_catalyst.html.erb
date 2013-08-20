@@ -1,0 +1,13 @@
+<% #raise Catalyst.where(:company_id => @company_id).order("date ASC").group_by(&:date).inspect %>
+<% Catalyst.where(:company_id => @company.id).order("date ASC").group_by(&:date).each do |cat_date, catalyst| %>
+  <% catalyst.each do |cat| %>
+    <%= cat_date %> : <%= cat.content %> <%= link_to "Edit", "#", :id => "company_catalyst_slide#{cat.id}" %>
+    <%= link_to "Delete", company_catalyst_path(@company, cat), :method => 'delete', :remote => true %><br/>
+    <%= render :partial => 'catalysts/add_catalyst', :locals => {:catalyst => cat} %>
+  <% end %>
+<% end %>
+<br/>
+<% if current_user %>
+  <%= link_to "Add Catalyst", "#", :id => 'company_catalyst_slide' %>
+  <%= render :partial => 'catalysts/add_catalyst', :locals => {:catalyst => Catalyst.new, :date_value => ''} %>
+<% end %>
