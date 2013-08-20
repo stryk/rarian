@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 20130820101442) do
     t.datetime "updated_at"
   end
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "answers", force: true do |t|
     t.text     "content"
     t.integer  "user_id"
