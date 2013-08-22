@@ -13,7 +13,7 @@
 <% if current_user %>
   <%= link_to "Write/Edit Target Price", "#", :id => 'company_target_slide' %>
   <span style='display:none' class="span12" id='target_price_slide_down'>
-  <%= form_for(TargetPrice.new, :url => company_target_prices_path(@company), :remote => true) do |f| %>
+  <%= form_for(TargetPrice.new, :url => company_target_prices_path(@company), :remote => true, :validate => true) do |f| %>
     <%= f.label :year %>
       <%= f.select :year, get_target_price_year_select %>
 

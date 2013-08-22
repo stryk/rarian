@@ -2,6 +2,8 @@ class MedianTargetPrice < ActiveRecord::Base
 
   attr_accessible :price, :year, :company_id
 
+  validates :price, :year, :company_id, presence: true
+
   def self.two_year_price(company_id)
     where(:year => [Date.today.year, Date.today.year+1], :company_id => company_id).order("year ASC")
   end

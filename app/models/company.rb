@@ -11,6 +11,8 @@ class Company < ActiveRecord::Base
   has_many :questions
   has_many :answers
   has_many :most_active_tickers
+  has_many :competitors
+  has_many :risks
 
 	def self.import(file, exchange, date)
 		#  checking file signature to prevent duplicates from uploading

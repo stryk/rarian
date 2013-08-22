@@ -19,6 +19,18 @@ class CompaniesController < ApplicationController
 
   end
 
+  def search
+    company = Company.arel_table
+    companies = Company.where(company[:name].matches("%#{params[:q]}%").or(company[:ticker].matches("%#{params[:q]}%")))
+    options = []
+    show_options = []
+    companies.each do |company|
+      options << {:id => company.id, :name => company.name + "-" + company.ticker}
+      show_options << company.name + "-" + company.ticker
+    end
+    render :json => {:options => options, :show_options => show_options}
+  end
+
   def create_pitch
     pitch = @company.pitches.create(params[:pitch].merge!(:user_id => current_user.id))
     if pitch.errors.blank?

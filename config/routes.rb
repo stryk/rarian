@@ -6,14 +6,19 @@ Rarian::Application.routes.draw do
   end
 
   resources :companies do
-    collection { post :import }
+    collection {
+      post :import
+      post :search
+    }
     resources :blips
     resources :target_prices
     resources :catalysts
+    resources :competitors
+    resources :risks
 
     resources :pitches do
       resources :votes do
-        collection{
+        collection {
           put :up
           put :down
         }
@@ -24,7 +29,7 @@ Rarian::Application.routes.draw do
 
     resources :questions do
       resources :votes do
-        collection{
+        collection {
           put :up
           put :down
         }
@@ -35,7 +40,7 @@ Rarian::Application.routes.draw do
 
     resources :answers do
       resources :votes do
-        collection{
+        collection {
           put :up
           put :down
         }
@@ -45,7 +50,7 @@ Rarian::Application.routes.draw do
 
     resources :blips do
       resources :votes do
-        collection{
+        collection {
           put :up
           put :down
         }

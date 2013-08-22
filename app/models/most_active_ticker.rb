@@ -1,6 +1,8 @@
 class MostActiveTicker < ActiveRecord::Base
   attr_accessible :company_id, :no_of_up_votes, :no_of_down_votes, :no_of_votes, :active_date
 
+  validates :no_of_up_votes, :no_of_down_votes, :company_id, :no_of_votes, :active_date, presence: true
+
   belongs_to :company
 
   def self.up_vote(company)

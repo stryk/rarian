@@ -2,6 +2,8 @@ class TargetPrice < ActiveRecord::Base
 
   attr_accessible :year, :target_price, :company_id, :user_id
 
+  validates :year, :target_price, :company_id, :user_id, presence: true
+
   after_save :identify_median
   after_destroy :identify_median
 

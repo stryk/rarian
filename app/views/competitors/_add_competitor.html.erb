@@ -1,0 +1,30 @@
+<span style='display:none' class="span12" id='competitor_slide_down'>
+  <%= form_for(Competitor.new, :url => company_competitors_path(@company), :remote => true, :method => 'post', :validate => true) do |f| %>
+    <%= text_field_tag 'competitor[name]', "", {"data-provide" => "typeahead", :class => "typeahead"} %>
+    <%= f.hidden_field :competitor_id %>
+    <%= f.submit %>
+  <% end %>
+</span>
+
+<script type="text/javascript">
+  $('.typeahead').typeahead({
+    source: function (query, process) {
+      objects = [];
+      map = {};
+      return $.post('/companies/search.json', { query: query }, function (data) {
+        $.each(data.options, function (i, object) {
+          map[object.name] = object;
+          objects.push(object.name);
+        });
+        return process(data.show_options);
+      });
+    },
+    items: 5,
+    minLength: 3,
+    updater: function (item) {
+      $('#competitor_competitor_id').val(map[item].id);
+      return item;
+    }
+
+  });
+</script>

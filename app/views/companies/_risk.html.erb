@@ -1,0 +1,10 @@
+<% @company.risks.limit(5).each do |risk| %>
+  <%= risk.risk %> <%= link_to "Edit", "#", :id => "company_risk_slide#{risk.id}" %>
+  <%= link_to "Delete", company_risk_path(@company, risk), :method => 'delete', :remote => true %> <br/>
+  <%= render :partial => 'risks/add_risk', :locals => {:risk => risk} %>
+<% end %>
+<br/>
+<% if current_user %>
+  <%= link_to "Add Risk", "#", :id => 'company_risk_slide' %>
+  <%= render :partial => 'risks/add_risk', :locals => {:risk => Risk.new} %>
+<% end %>

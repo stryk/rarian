@@ -2,7 +2,7 @@
 <% if current_user %>
   <%= link_to "Write/Edit description", "#", :id => 'company_slide' %>
   <span style='display:none' class="span12" id='description_slide_down'>
-  <%= form_for(@company, :method => 'put', :remote => true) do |f| %>
+  <%= form_for(@company, :method => 'put', :remote => true, :validate => true) do |f| %>
     <%= f.label :description %>
       <%= f.text_area :description, :id => "limit_text_area" %>
       <%= f.submit %>

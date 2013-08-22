@@ -1,4 +1,3 @@
-<% #raise Catalyst.where(:company_id => @company_id).order("date ASC").group_by(&:date).inspect %>
 <% Catalyst.where(:company_id => @company.id).order("date ASC").group_by(&:date).each do |cat_date, catalyst| %>
   <% catalyst.each do |cat| %>
     <%= cat_date %> : <%= cat.content %> <%= link_to "Edit", "#", :id => "company_catalyst_slide#{cat.id}" %>

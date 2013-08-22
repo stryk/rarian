@@ -1,6 +1,6 @@
 
 <span style='display:none' class="span12" id='catalyst_slide_down<%= catalyst.id %>'>
-  <%= form_for(catalyst, :url => company_catalysts_path(@company), :remote => true, :method => 'post') do |f| %>
+  <%= form_for(catalyst, :url => company_catalysts_path(@company), :remote => true, :method => 'post', :validate => true) do |f| %>
       <div class="input-append date" id="dp3<%= catalyst.id %>" data-date-format="dd-mm-yyyy">
         <%= f.text_field :date, :class => 'span12', :size => 16, :readonly => true %>
         <span class="add-on"><i class="icon-th"></i></span>

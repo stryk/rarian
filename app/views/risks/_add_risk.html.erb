@@ -1,0 +1,15 @@
+<span style='display:none' class="span12" id='risk_slide_down<%= risk.id %>'>
+  <%= form_for(risk, :url => company_risks_path(@company), :remote => true, :method => 'post', :validate => true) do |f| %>
+    <%= f.text_area :risk, :class => "risk_text_area#{risk.id}" %>
+    <%= f.submit %>
+  <% end %>
+</span>
+
+<script type="text/javascript">
+  $(".risk_text_area<%= risk.id %>").maxlength({max: 30});
+  $("#company_risk_slide<%= risk.id %>").unbind();
+  $("#risk_slide_down<%= risk.id %>").unbind();
+  $("#company_risk_slide<%= risk.id %>").click(function(){
+    $("#risk_slide_down<%= risk.id %>").toggle("slideDown(1000)", function() {});
+  });
+</script>

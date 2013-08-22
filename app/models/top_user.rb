@@ -1,6 +1,6 @@
 class TopUser < ActiveRecord::Base
   attr_accessible :company_id, :user_id, :no_of_up_votes, :no_of_down_votes, :no_of_votes
-
+  validates :company_id, :user_id, :no_of_up_votes, :no_of_down_votes, :no_of_votes, presence: true
   belongs_to :user
   belongs_to :company
 

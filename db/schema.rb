@@ -11,16 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130820101442) do
+ActiveRecord::Schema.define(version: 20130822114214) do
 
   create_table "alternate_phone_types", force: true do |t|
     t.string   "phone_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
 
   create_table "answers", force: true do |t|
     t.text     "content"
@@ -121,6 +118,15 @@ ActiveRecord::Schema.define(version: 20130820101442) do
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
   add_index "companies", ["ticker"], name: "index_companies_on_ticker", using: :btree
 
+  create_table "competitors", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.integer  "competitor_id"
+    t.integer  "net_votes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "median_target_prices", force: true do |t|
     t.integer  "company_id"
     t.integer  "year"
@@ -184,6 +190,14 @@ ActiveRecord::Schema.define(version: 20130820101442) do
   add_index "quotes", ["date_time"], name: "index_quotes_on_date_time", using: :btree
   add_index "quotes", ["market_cap"], name: "index_quotes_on_market_cap", using: :btree
   add_index "quotes", ["price"], name: "index_quotes_on_price", using: :btree
+
+  create_table "risks", force: true do |t|
+    t.integer  "company_id"
+    t.integer  "user_id"
+    t.string   "risk"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "target_prices", force: true do |t|
     t.integer  "company_id"
