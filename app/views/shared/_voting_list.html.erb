@@ -5,24 +5,32 @@
   <%= link_to send("down_company_#{cobj.class.name.downcase}_votes_path", company, cobj), :remote => true, :method => :put, :id => "vote_down_#{cobj.class.name.downcase+'_'+cobj.id.to_s}" do %>
     <%= raw down_voted_by_current_user(cobj) %>
   <% end %>
-  <%= link_to(send("show_title", cobj).html_safe, send("company_#{cobj.class.name.downcase}_comments_path", company, cobj), "data-toggle" => "modal", :remote => true) %>
-  <% if child_objs_present %>
-    <div class="span12">
-      <div class="accordion" id="accordion2-<%= cobj.id %>">
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">
-              <%= ("<b>"+cobj.child_link_name+"</b>").html_safe %>
-            </a>
-          </div>
-          <div id="collapseOne-<%= cobj.id %>" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%= render :partial => 'answers/form', :locals => {:company => company, :question => cobj} %>
+  <% if comments %>
+    <%= link_to(send("show_title", cobj).html_safe, send("company_#{cobj.class.name.downcase}_comments_path", company, cobj), "data-toggle" => "modal", :remote => true) %>
+    <% if child_objs_present %>
+      <div class="span12">
+        <div class="accordion" id="accordion2-<%= cobj.id %>">
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">
+                <%= ("<b>"+cobj.child_link_name+"</b>").html_safe %>
+              </a>
+            </div>
+            <div id="collapseOne-<%= cobj.id %>" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <%= render :partial => 'answers/form', :locals => {:company => company, :question => cobj} %>
+              </div>
             </div>
           </div>
+          <%#= link_to ("<b>"+cobj.child_link_name+"</b>").html_safe, send(cobj.get_child_link, company, cobj) %>
         </div>
-        <%#= link_to ("<b>"+cobj.child_link_name+"</b>").html_safe, send(cobj.get_child_link, company, cobj) %>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+    <% if show_link %>
+      <%= link_to(send("show_title", cobj).html_safe, show_link(cobj)) %>
+    <% else %>
+      <%= send("show_title", cobj).html_safe %>
+    <% end %>
   <% end %>
 </div>

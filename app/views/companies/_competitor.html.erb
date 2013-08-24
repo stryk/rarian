@@ -1,8 +1,14 @@
-<% Competitor.get_competitors(@company, 5).each do |competitor| %>
-    (<%= competitor.no_of_votes %>) : <%= competitor.name %>
-<% end %>
-<br/>
-<% if current_user %>
-  <%= link_to "Add Competitor", "#", :id => 'company_competitor_slide' %>
-  <%= render :partial => 'competitors/add_competitor' %>
-<% end %>
+<div id="vote_competitor">
+  <% Competitor.get_competitors(@company).each do |competitor| %>
+    <%= render :partial => 'shared/voting_list', :locals => {:cobj => competitor,
+                                                             :company => @company,
+                                                             :text_val => nil,
+                                                             :child_objs_present => false,
+                                                             :comments => false, :show_link => true} %>
+  <% end %>
+  <br/>
+  <% if current_user %>
+    <%= link_to "Add Competitor", "#", :id => 'company_competitor_slide' %>
+    <%= render :partial => 'competitors/add_competitor' %>
+  <% end %>
+</div>

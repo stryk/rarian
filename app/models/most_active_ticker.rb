@@ -28,9 +28,9 @@ class MostActiveTicker < ActiveRecord::Base
     end
   end
 
-  def self.undo_vote(company)
+  def self.undo_vote(company, value)
     most_active_on_date = where(:active_date => Date.today, :company_id => company. id).last
-    most_active_on_date.update_attributes(:no_of_votes => most_active_on_date.no_of_votes-1)
+    most_active_on_date.update_attributes(:no_of_votes => most_active_on_date.no_of_votes-value)
   end
 
   def self.get_active_companies

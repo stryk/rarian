@@ -4,8 +4,8 @@ module MakeVoteable
 
     belongs_to :voteable, :polymorphic => true
     belongs_to :voter, :polymorphic => true
-    after_create :update_most_active_ticker, :update_top_users
-    after_destroy :undo_most_active_ticker, :undo_top_users
+    after_create :update_most_active_ticker, :update_top_users, :update_competitor
+    after_destroy :undo_most_active_ticker, :undo_top_users, :undo_update_competitor
 
     def update_most_active_ticker
       if voteable.try(:company)
@@ -18,10 +18,12 @@ module MakeVoteable
     end
 
     def undo_most_active_ticker
-      MostActiveTicker.undo_vote(voteable.company) if voteable.try(:company)
+      value = self.up_vote? ? 1 : -1
+      MostActiveTicker.undo_vote(voteable.company, value) if voteable.try(:company)
     end
 
     def update_top_users
+
       if voteable.try(:user) && voteable.try(:company)
         if self.up_vote?
           TopUser.up_vote(voteable.user, voteable.company)
@@ -32,7 +34,28 @@ module MakeVoteable
     end
 
     def undo_top_users
-      TopUser.undo_vote(voteable.user, voteable.company) if(voteable.try(:user) && voteable.try(:company))
+      value = self.up_vote? ? 1 : -1
+      TopUser.undo_vote(voteable.user, voteable.company, value) if(voteable.try(:user) && voteable.try(:company))
+    end
+
+    def update_competitor
+      if voteable.is_a?(Competitor)
+        if self.up_vote?
+          voteable.up_vote
+        else
+          voteable.down_vote
+        end
+      end
+    end
+
+    def undo_update_competitor
+      if voteable.is_a?(Competitor)
+        if self.up_vote?
+          voteable.undo_vote(1)
+        else
+          voteable.undo_vote(-1)
+        end
+      end
     end
   end
 end

@@ -27,9 +27,9 @@ class TopUser < ActiveRecord::Base
     end
   end
 
-  def self.undo_vote(user, company)
+  def self.undo_vote(user, company, value)
     most_active_user = where(:user_id => user.id, :company_id => company.id).last
-    most_active_user.update_attributes(:no_of_votes => most_active_user.no_of_votes-1)
+    most_active_user.update_attributes(:no_of_votes => most_active_user.no_of_votes-value)
   end
 
   def self.get_top_users(company, no_limit)

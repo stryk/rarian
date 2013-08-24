@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822114214) do
+ActiveRecord::Schema.define(version: 20130824100632) do
 
   create_table "alternate_phone_types", force: true do |t|
     t.string   "phone_type"
@@ -122,9 +122,11 @@ ActiveRecord::Schema.define(version: 20130822114214) do
     t.integer  "user_id"
     t.integer  "company_id"
     t.integer  "competitor_id"
-    t.integer  "net_votes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "net_votes",     limit: 2
+    t.integer  "up_votes",                default: 0, null: false
+    t.integer  "down_votes",              default: 0, null: false
   end
 
   create_table "median_target_prices", force: true do |t|
@@ -197,6 +199,9 @@ ActiveRecord::Schema.define(version: 20130822114214) do
     t.string   "risk"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "net_votes",  limit: 2
+    t.integer  "up_votes",             default: 0, null: false
+    t.integer  "down_votes",           default: 0, null: false
   end
 
   create_table "target_prices", force: true do |t|

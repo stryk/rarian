@@ -5,6 +5,7 @@ class VotesController < ApplicationController
   def up
     begin
       authorize! :up, @obj
+      @company =  Company.find(params[:company_id])
       current_user.up_vote(@obj)
     rescue MakeVoteable::Exceptions::AlreadyVotedError
       # if the user clicks on the vote twice means user is unvoting
@@ -15,6 +16,7 @@ class VotesController < ApplicationController
   def down
     begin
       authorize! :up, @obj
+      @company =  Company.find(params[:company_id])
       current_user.down_vote(@obj)
     rescue MakeVoteable::Exceptions::AlreadyVotedError
       # if the user clicks on the vote twice means user is unvoting
@@ -31,6 +33,10 @@ class VotesController < ApplicationController
              Answer.where(:id =>  params[:answer_id]).last
            elsif !params[:question_id].blank?
              Question.where(:id =>  params[:question_id]).last
+           elsif !params[:competitor_id].blank?
+             Competitor.where(:id =>  params[:competitor_id]).last
+           elsif !params[:risk_id].blank?
+             Risk.where(:id =>  params[:risk_id]).last
            end
   end
 

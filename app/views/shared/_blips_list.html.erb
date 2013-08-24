@@ -1,7 +1,12 @@
 <% objs.each do |cobj| %>
-  <%= render :partial => 'shared/voting_list', :locals =>  {:cobj => cobj, :company => company,:text_val => objs_text, :child_objs_present => !child_objs.blank?} %>
+  <%= render :partial => 'shared/voting_list', :locals =>  {:cobj => cobj, :company => company,:text_val => objs_text,
+                                                            :child_objs_present => !child_objs.blank?,
+                                                            :comments => true, :show_link => false} %>
   <% !child_objs.blank? && cobj.send(child_objs).each do |child_obj| %>
-    <%= render :partial => 'shared/voting_list', :locals =>  {:cobj => child_obj, :company => company, :text_val => child_objs_text, :child_objs_present => false} %>
+    <%= render :partial => 'shared/voting_list', :locals =>  {:cobj => child_obj, :company => company,
+                                                              :text_val => child_objs_text,
+                                                              :child_objs_present => false, :comments => true,
+                                                              :show_link => false} %>
     <script type="text/javascript">
       $('#jTruncate_truncate-<%= child_obj.id %>').jTruncate({
         length: 50

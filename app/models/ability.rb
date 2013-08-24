@@ -11,7 +11,6 @@ class Ability
     alias_action :create, :update, :to => :cu
 
     if user.is? :admin
-      #raise user.inspect
       can :manage, :all
     elsif user.is? :standard
       can :read, Company

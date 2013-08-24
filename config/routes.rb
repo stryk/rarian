@@ -13,8 +13,22 @@ Rarian::Application.routes.draw do
     resources :blips
     resources :target_prices
     resources :catalysts
-    resources :competitors
-    resources :risks
+    resources :competitors do
+      resources :votes do
+        collection {
+          put :up
+          put :down
+        }
+      end
+    end
+    resources :risks do
+      resources :votes do
+        collection {
+          put :up
+          put :down
+        }
+      end
+    end
 
     resources :pitches do
       resources :votes do
