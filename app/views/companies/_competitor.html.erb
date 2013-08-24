@@ -1,4 +1,4 @@
-<div id="vote_competitor">
+<div id="vote_competitor" class="scroll">
   <% Competitor.get_competitors(@company).each do |competitor| %>
     <%= render :partial => 'shared/voting_list', :locals => {:cobj => competitor,
                                                              :company => @company,
@@ -8,8 +8,8 @@
                                                              :refresh_div => true} %>
   <% end %>
   <br/>
-  <% if current_user %>
-    <%= link_to "Add Competitor", "#", :id => 'company_competitor_slide' %>
-    <%= render :partial => 'competitors/add_competitor' %>
-  <% end %>
 </div>
+<% if current_user %>
+  <%= link_to "Add Competitor", "#.", :id => 'company_competitor_slide' %>
+  <%= render :partial => 'competitors/add_competitor' %>
+<% end %>

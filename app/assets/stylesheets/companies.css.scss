@@ -8,6 +8,30 @@
 .titlebox{
   float:left;
   padding:0 5px;
-  margin:-20px 0 0 30px;
+  margin:-16px 0 0 30px;
   background:#fff;
 }
+
+.clear { clear: both; }
+
+.left_div {
+  overflow: auto;
+  float: left;
+
+}
+
+.left_div textarea{
+  width: 160px;
+}
+
+.left_div select{
+  width: 160px;
+}
+
+.left_div input{
+  width: 160px;
+}
+.div_size {overflow:auto;}
+
+.float_right {float:right}
+.float_left {float:left}

@@ -1,8 +1,8 @@
-<span style='display:none' class="span12" id='competitor_slide_down'>
+<span style='display:none' class="span12 float_right" id='competitor_slide_down'>
   <%= form_for(Competitor.new, :url => company_competitors_path(@company), :remote => true, :method => 'post', :validate => true) do |f| %>
     <%= text_field_tag 'competitor[name]', "", {"data-provide" => "typeahead", :class => "typeahead"} %>
     <%= f.hidden_field :competitor_id %>
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-primary" %>
   <% end %>
 </span>
 

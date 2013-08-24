@@ -1,7 +1,7 @@
-<span style='display:none' class="span12" id='risk_slide_down<%= risk.id %>'>
+<span style='display:none' class="span12 float_right" id='risk_slide_down<%= risk.id %>'>
   <%= form_for(risk, :url => company_risks_path(@company), :remote => true, :method => 'post', :validate => true) do |f| %>
-    <%= f.text_area :risk, :class => "risk_text_area#{risk.id}" %>
-    <%= f.submit %>
+    <%= f.text_area :risk, :class => "risk_text_area#{risk.id}", :rows => "4", :cols =>"10" %>
+    <%= f.submit :class => "btn btn-primary" %>
   <% end %>
 </span>
 
