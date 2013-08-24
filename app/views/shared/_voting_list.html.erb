@@ -1,8 +1,8 @@
 <div>
-  <%= text_val %><%= link_to send("up_company_#{cobj.class.name.downcase}_votes_path", company, cobj), :remote => true, :method => :put, :id => "vote_up_#{cobj.class.name.downcase+'_'+cobj.id.to_s}" do %>
+  <%= text_val %><%= link_to send("up_company_#{cobj.class.name.downcase}_votes_path", company, cobj, {:refresh_div=>refresh_div}), :remote => true, :method => :put, :id => "vote_up_#{cobj.class.name.downcase+'_'+cobj.id.to_s}" do %>
     <%= raw up_voted_by_current_user(cobj) %>
   <% end %>
-  <%= link_to send("down_company_#{cobj.class.name.downcase}_votes_path", company, cobj), :remote => true, :method => :put, :id => "vote_down_#{cobj.class.name.downcase+'_'+cobj.id.to_s}" do %>
+  <%= link_to send("down_company_#{cobj.class.name.downcase}_votes_path", company, cobj, {:refresh_div=>refresh_div}), :remote => true, :method => :put, :id => "vote_down_#{cobj.class.name.downcase+'_'+cobj.id.to_s}" do %>
     <%= raw down_voted_by_current_user(cobj) %>
   <% end %>
   <% if comments %>

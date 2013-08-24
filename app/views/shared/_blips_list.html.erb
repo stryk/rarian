@@ -1,21 +1,23 @@
-<% objs.each do |cobj| %>
-  <%= render :partial => 'shared/voting_list', :locals =>  {:cobj => cobj, :company => company,:text_val => objs_text,
-                                                            :child_objs_present => !child_objs.blank?,
-                                                            :comments => true, :show_link => false} %>
-  <% !child_objs.blank? && cobj.send(child_objs).each do |child_obj| %>
-    <%= render :partial => 'shared/voting_list', :locals =>  {:cobj => child_obj, :company => company,
-                                                              :text_val => child_objs_text,
-                                                              :child_objs_present => false, :comments => true,
-                                                              :show_link => false} %>
+<div id="vote_blip">
+  <% objs.each do |cobj| %>
+    <%= render :partial => 'shared/voting_list', :locals => {:cobj => cobj, :company => company, :text_val => objs_text,
+                                                             :child_objs_present => !child_objs.blank?,
+                                                             :comments => true, :show_link => false, :refresh_div => false} %>
+    <% !child_objs.blank? && cobj.send(child_objs).each do |child_obj| %>
+      <%= render :partial => 'shared/voting_list', :locals => {:cobj => child_obj, :company => company,
+                                                               :text_val => child_objs_text,
+                                                               :child_objs_present => false, :comments => true,
+                                                               :show_link => false, :refresh_div => false} %>
+      <script type="text/javascript">
+        $('#jTruncate_truncate-<%= child_obj.id %>').jTruncate({
+          length: 50
+        });
+      </script>
+    <% end %>
     <script type="text/javascript">
-      $('#jTruncate_truncate-<%= child_obj.id %>').jTruncate({
+      $('#jTruncate_truncate-<%= cobj.id %>').jTruncate({
         length: 50
       });
     </script>
   <% end %>
-  <script type="text/javascript">
-    $('#jTruncate_truncate-<%= cobj.id %>').jTruncate({
-      length: 50
-    });
-  </script>
-<% end %>
+</div>

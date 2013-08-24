@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20130824100632) do
     t.integer  "competitor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "net_votes",     limit: 2
+    t.integer  "net_votes",     limit: 2, default: 0
     t.integer  "up_votes",                default: 0, null: false
     t.integer  "down_votes",              default: 0, null: false
   end
@@ -199,7 +199,7 @@ ActiveRecord::Schema.define(version: 20130824100632) do
     t.string   "risk"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "net_votes",  limit: 2
+    t.integer  "net_votes",  limit: 2, default: 0
     t.integer  "up_votes",             default: 0, null: false
     t.integer  "down_votes",           default: 0, null: false
   end
