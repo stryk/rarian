@@ -4,6 +4,8 @@ class TargetPrice < ActiveRecord::Base
 
   validates :year, :target_price, :company_id, :user_id, presence: true
 
+  validates :target_price, :numericality => true
+
   after_save :identify_median
   after_destroy :identify_median
 

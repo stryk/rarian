@@ -1,4 +1,3 @@
-
 <span style='display:none' class="span12 float_right" id='catalyst_slide_down<%= catalyst.id %>'>
   <%= form_for(catalyst, :url => company_catalysts_path(@company), :remote => true, :method => 'post', :validate => true) do |f| %>
       <div class="input-append date" id="dp3<%= catalyst.id %>" data-date-format="dd-mm-yyyy">
@@ -9,17 +8,22 @@
 
     <%= f.label :content %>
     <%= f.text_area :content, :id => "catalyst_text_area#{catalyst.id}" %>
-    <%= f.submit  :class => "btn btn-primary" %>
+    <%= f.submit :class => "btn btn-primary" %>
   <% end %>
 </span>
 
 
 <script type="text/javascript">
-  $('#dp3<%= catalyst.id %>').datepicker({format: 'yyyy-mm-dd'});
+  var nowTemp = new Date();
+  var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+  $('#dp3<%= catalyst.id %>').datepicker({format: 'yyyy-mm-dd', onRender: function (date) {
+    return date.valueOf() < now.valueOf() ? 'disabled' : '';
+  }});
   $("#catalyst_text_area<%= catalyst.id %>").maxlength({max: 500});
   $("#company_catalyst_slide<%= catalyst.id %>").unbind();
   $("#catalyst_slide_down<%= catalyst.id %>").unbind();
-  $("#company_catalyst_slide<%= catalyst.id %>").click(function(){
-    $("#catalyst_slide_down<%= catalyst.id %>").toggle("slideDown(1000)", function() {});
+  $("#company_catalyst_slide<%= catalyst.id %>").click(function () {
+    $("#catalyst_slide_down<%= catalyst.id %>").toggle("slideDown(1000)", function () {
+    });
   });
 </script>

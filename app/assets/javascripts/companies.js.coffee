@@ -3,6 +3,7 @@ $(document).on "click", "#company_slide", ->
 
 $(document).on "click", "#company_target_slide", ->
   $("#target_price_slide_down").toggle "slideDown(1000)", ->
+  $("#new_target_price").enableClientSideValidations()
 
 $(document).on "click", "#company_competitor_slide", ->
   $("#competitor_slide_down").toggle "slideDown(1000)", ->
