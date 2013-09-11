@@ -1,3 +1,6 @@
-<%= render :partial => 'shared/blips_list', :locals =>  {:objs => questions,:company => @company,
-                                                         :child_objs => "answers",:objs_text => "Q: ",
-                                                         :child_objs_text => "A: "} %>
+<div class="qa-row">
+  <%= render :partial => 'shared/blips_list', :locals =>  {:objs => questions,:company => @company,
+                                                           :child_objs => "answers",:objs_text => "<strong>Q.</strong> ",
+                                                           :child_objs_text => "<p><strong>A.</strong> "} %>
+<!--wrap question and Answer with p tag-->
+</div>

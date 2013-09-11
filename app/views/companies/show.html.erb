@@ -1,59 +1,77 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-    <%= render 'company_banner' %>
-    <div class="span12">&nbsp;</div>
-    <div class="span12">
+<div class="top-stock-search">
+  <%= render 'company_banner' %>
+</div><!-- end of top-stock-search -->
+<div class="clr"></div>
 
-      <div class="row-fluid">
+    <%= render 'shared/companies_left' %>
 
-        <%= render 'shared/companies_left' %>
+<div class="middle-panel">
 
-        <div class="span6">
-          <div class="row-fluid">
+  <div class="box-col middle-margin">
+    <h3 class="middleh3">top reason to buy
+      <div class="small-follow-btn"><a href="#">&nbsp;</a></div>
+    </h3>
+    <div class="box-col-topreason">
 
-
-
-              <div class="span12">
-                <div class="scroll">
-                  <h4>Top Reason to Buy</h4>
-                  <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.buy_pitch.all, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
-                </div>
-                  <p>
-                    <%= link_to "Write Reason to Buy", new_company_pitch_path(@company, :action_type => "buy"), :class => "btn btn-primary" %>
-                  </p>
-
-               </div>
-                <div class="span12">
-                  <div class="scroll">
-                  <h4>Top Reason to Sell</h4>
-                  <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.sell_pitch.all, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
-                  </div>
-                    <p>
-                    <%= link_to "Write Reason to Sell", new_company_pitch_path(@company, :action_type => "sell"), :class => "btn btn-primary" %>
-                  </p>
-                </div>
-
-
-
-              <div class="span12">
-                <div class="scroll300">
-                <h4>Burning QA's: <%= link_to "Add Question", '#add_question', "data-toggle" => "modal" %></h4>
-
-                <div class="list_questions">
-                  <%= render :partial => 'questions/list', :locals => {:questions => @company.questions.all, :company => @company} %>
-
-                </div>
-              </div>
-            </div>
-
-          </div>
+      <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.buy_pitch.all, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
+      <div class="topreason-input-txt">
+        <div class="input-txt">
+          <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
+          <%= link_to "Be the first to add reason to buy...", new_company_pitch_path(@company, :action_type => "buy"), :class => "inputo-txt" %>
         </div>
-
-        <%= render 'shared/companies_right' %>
-
       </div>
     </div>
   </div>
+
+  <div class="box-col middle-margin">
+    <h3 class="middleh3">top reason to sell
+      <div class="small-follow-btn"><a href="#">&nbsp;</a></div>
+    </h3>
+
+    <div class="box-col-topreason">
+      <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.sell_pitch.all, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
+      <div class="topreason-input-txt">
+        <div class="input-txt">
+          <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
+          <%= link_to "Write Reason to Sell", new_company_pitch_path(@company, :action_type => "sell"), :class => "inputo-txt" %>
+        </div>
+      </div>
+
+    </div>
+    <div class="clr"></div>
+  </div>
+
+  <div class="box-col">
+    <h3>Buring QAs</h3>
+
+    <div class="qa-container">
+      <div class="list_questions">
+        <%= render :partial => 'questions/list', :locals => {:questions => @company.questions.all, :company => @company} %>
+
+      </div>
+
+      <div class="qa-input-txt">
+        <div class="input-txt">
+          <%= link_to "Add Question", '#add_question', "data-toggle" => "modal", :class => "readmore-link" %>
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+  <div class="clr"></div>
+    </div>
+
+<div class="right-panel">
+  <div class="box-col">
+    <%= render 'shared/companies_right' %>
+
+
+
+    <div class="clr"></div>
+  </div>
+  </div>
+<div class="clr"></div>
 </div>
 
 <%= render 'shared/add_blip', :locals => {:company => @company} %>

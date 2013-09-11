@@ -1,8 +1,9 @@
-<div id="description_div" class="scroll">
-<%= @company.description %>
-</div>
-<% if current_user %>
-  <%= link_to "Write/Edit description", "#.", :id => 'company_slide' %>
+<h3>Company Description</h3>
+<div class="box-col-div">
+  <p><%= @company.description %></p>
+  <% if current_user %>
+  <p><input type="text" value="Edit content here..." class="box-input"></p>
+  <p><%= link_to "Write/Edit Description", "#.", :id => 'company_slide', :class => "readmore-link" %></p>
   <span style='display:none' class="span12 float_right" id='description_slide_down'>
   <%= form_for(@company, :method => 'put', :remote => true, :validate => true) do |f| %>
     <%= f.label :description %>
@@ -10,7 +11,8 @@
       <%= f.submit :class => "btn btn-primary" %>
   <% end %>
 </span>
-<% end %>
+  <% end %>
+</div>
 
 <script type="text/javascript">
   $("#limit_text_area").maxlength({max: 500});

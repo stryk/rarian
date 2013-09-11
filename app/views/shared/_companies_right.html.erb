@@ -1,30 +1,19 @@
-<div class="span4">
-  <div class="row-fluid">
-    <div class="span12">
-      <ul class="thumbnails">
-        <li class="span12">
-          <h5>Alpha Blips (Limit 140 characters per blip)
-            <%= select_tag("sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "span3",
-                           data: {
-                             remote: true,
-                             url: company_blips_path(@company),
-                             update: "message_div_id"
-                           }
-                ) %>
-          </h5>
+<h3>Alph Blips (Limit 140 characters per blip) <%= select_tag("sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "span3",
+                                                              data: {
+                                                                remote: true,
+                                                                url: company_blips_path(@company),
+                                                                update: "message_div_id"
+                                                              }
+                                                   ) %></h3><!--<div class="small-follow-btn"><a href="#"></a></div>-->
 
-
-          <div id="blips_list" class="scroll">
-            <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
-          </div>
-
-          <% if current_user %>
-            <p>
-              <a href="#add_blip" role="button" class="btn btn-primary" data-toggle="modal">Write Blip</a>
-            </p>
-          <% end %>
-        </li>
-      </ul>
-    </div>
+<div class="box-col-div">
+  <div id="blips_list" class="scroll">
+    <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
   </div>
+  <% if current_user %>
+<p><input type="text" value="Edit content here..." class="box-input"></p>
+  <p><a href="#add_blip" role="button" class="readmore-link" data-toggle="modal">Write Blip</a>
+    </p>
+   <% end %>
+
 </div>

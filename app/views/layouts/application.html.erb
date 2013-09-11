@@ -1,44 +1,89 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Alpha Blip" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Alpha Blip" %>">
-    <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-    <%= yield(:head) %>
-  </head>
-  <body class="<%= controller_name %> <%= action_name %>">
-    <div class="navbar navbar-fixed-top">
-      <nav class="navbar-inner">
-        <div class="container">
-          <%= render 'layouts/navigation' %>
-        </div>
-      </nav>
-    </div>
-    <div id="main" role="main">
-      <div class="container">
-        <div class="content">
-           <div class="row">
-            <div class="span12">
-              <%= render 'layouts/messages' %>
-              <%= yield %>
-            </div>
-          </div>
-          <footer>
-          </footer>
-        </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]>
+<html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>AlphaPitch</title>
+  <meta name="apple-touch-fullscreen" content="yes"/>
 
-    <script type="text/javascript">
-      $("document").ready(
-        $("#add_blip").click(function () {
-          $(function () {
-            $('#new_blip').validate();
-          })
-        }));
-    </script>
-  </body>
+  <link rel="shortcut icon" href="assets/favicon.ico">
+
+  <link href="/assets/application.css" type="text/css" rel="stylesheet" media="all"/>
+  <%= javascript_include_tag "application" %>
+
+</head>
+
+
+<body>
+<div id="wrapper">
+  <header>
+    <div class="header-top">
+      <div class="row">
+        <div class="logodiv"><h1>
+          <%= link_to root_path do %>
+            <img src="/assets/logo.png" alt="AlphaPitch">
+          <% end %>
+        </h1></div>
+
+        <div class="top-tickers">
+          <div class="tickers-div">
+            <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrollamount=3>
+              <% MostActiveTicker.get_active_companies.all.each do |active_ticker| %>
+                <%= link_to active_ticker.company.ticker, '#' %> &nbsp;
+              <% end %>
+            </marquee>
+          </div>
+        </div>
+
+        <div class="top-login-space">
+          <p><a href="#">Register</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Sign In</a></p>
+        </div>
+        <div class="clr"></div>
+
+        <nav class="navdiv">
+          <ul class="navul">
+            <li><a href="#" class="active">Nav Link 1</a></li>
+            <li><a href="#">Nav Link 2</a></li>
+            <li><a href="#">Nav Link 3</a></li>
+            <li><a href="#">Nav Link 4</a></li>
+            <li><a href="#">Nav Link 5</a></li>
+            <li><a href="#">Nav Link 6</a></li>
+            <li><a href="#">Nav Link 7</a></li>
+            <li><a href="#">Nav Link 8</a></li>
+          </ul>
+        </nav>
+
+
+      </div>
+    </div>
+    <!-- end of header top -->
+  </header>
+  <!-- end of header -->
+
+  <div id="middle-container">
+    <div class="row">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </div>
+  </div>
+  <footer id="footer">
+    <div class="row">
+      <div class="footerlinks"><a href="#">Footer Link1</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Footer Link2</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Footer Link1</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Footer Link3</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Footer Link4</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Footer Lin5</a></div>
+      <div class="footer-copy"><p>Copyright&copy; 2013. All Rights AlphaPitch.</p></div>
+    </div>
+  </footer>
+
+  <script type="text/javascript">
+    $("document").ready(
+      $("#add_blip").click(function () {
+        $(function () {
+          $('#new_blip').validate();
+        })
+      }));
+  </script>
+</div>
+</body>
 </html>

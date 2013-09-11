@@ -1,4 +1,3 @@
-<div id="vote_blip">
   <% objs.each do |cobj| %>
     <%= render :partial => 'shared/voting_list', :locals => {:cobj => cobj, :company => company, :text_val => objs_text,
                                                              :child_objs_present => !child_objs.blank?,
@@ -20,4 +19,3 @@
       });
     </script>
   <% end %>
-</div>

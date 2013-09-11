@@ -1,29 +1,29 @@
-<div id="targetprice_div" class="scroll">
 <% MedianTargetPrice.two_year_price(@company.id).each do |median_price| %>
   <% if median_price.price.to_i > 0 %>
-    <%= median_price.year %> : $<%= median_price.price %> (<%= get_percent(median_price.price.to_f, @company.last_and_previous_closing_price.first.price) %> %)
-    <br/>
+    <p><%= median_price.year %> : $<%= median_price.price %> (<%= get_percent(median_price.price.to_f, @company.last_and_previous_closing_price.first.price) %> %)
+    </p>
   <% end %>
   <% target_price = TargetPrice.where(:year => median_price.year, :user_id => current_user.id).last %>
   <% if !target_price.blank? %>
-    Yours: <%= target_price.year %> : $<%= target_price.target_price %> (<%= get_percent(target_price.target_price.to_f, @company.last_and_previous_closing_price.first.price) %> %)
-    <%= link_to "delete", company_target_price_path(@company, target_price), :method => 'delete', :remote => true %><br/>
+    <p> Yours: <%= target_price.year %> : $<%= target_price.target_price %> (<%= get_percent(target_price.target_price.to_f, @company.last_and_previous_closing_price.first.price) %> %)
+    <%= link_to "delete", company_target_price_path(@company, target_price), :method => 'delete', :remote => true %></p>
   <% end %>
 <% end %>
-  </div>
-<br/>
+
 <% if current_user %>
-  <%= link_to "Write/Edit Target Price", "#.", :id => 'company_target_slide' %>
+<p><input type="text" value="Edit content here..." class="box-input"></p>
+<p><%= link_to "Write/Edit Target Price", "#.", :id => 'company_target_slide', :class => "readmore-link" %>
+  </p>
   <span style='display:none' class="span12 float_right" id='target_price_slide_down'>
     <%= form_for(TargetPrice.new, :url => company_target_prices_path(@company), :validate => true, :remote => true) do |f| %>
       <%= f.label :year %>
-        <%= f.select :year, get_target_price_year_select %>
+      <%= f.select :year, get_target_price_year_select %>
 
-        <%= f.label :target_price %>
-        <%= f.text_field :target_price %>
+      <%= f.label :target_price %>
+      <%= f.text_field :target_price %>
 
-        <%= f.submit :class => "btn btn-primary" %>
+      <%= f.submit :class => "btn btn-primary" %>
     <% end %>
   </span>
-
 <% end %>
+

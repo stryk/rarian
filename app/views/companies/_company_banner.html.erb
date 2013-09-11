@@ -1,34 +1,28 @@
-<div class="span12">
-  <div class="pull-left span6">
-    <p style="font-size:22pt">
-      <% pricing_hash = get_pricing_details(@company) %>
-      <%= @company.ticker %> $ <%= pricing_hash[:latest_price] %> &nbsp;
-      <% if pricing_hash[:price_diff].to_i > 0 %>
-        <%= image_tag "up.jpg", size: "16x10", alt: "Going up" %>
-      <% elsif pricing_hash[:price_diff].to_i < 0 %>
-        <%= image_tag "down.jpg", size: "16x10", alt: "Going down" %>
-      <% end %>
-      <%= pricing_hash[:price_diff] %> (<%= pricing_hash[:percentage_diff] %>%)
-      <a href="#follow" role="button" class="btn btn-primary" data-toggle="modal">Follow</a>
-    </p>
-
-    <p style="font-size:18pt">
-      <%= @company.name %>
-    </p>
-
-    <p style="font-size:18pt"><%= @company.sector %> - <span id="jTruncate_truncate"><%= @company.industry %></p>
-
-    <script type="text/javascript">
-      $('#jTruncate_truncate').jTruncate({
-        length: 50
-      });
-    </script>
-    </span>
-  </div>
-  <div class="pull-right span6">
+<div class="stock-div">
+  <% pricing_hash = get_pricing_details(@company) %>
+  <h2> <%= @company.ticker %> $ <%= pricing_hash[:latest_price] %>
+    <% if pricing_hash[:price_diff].to_i > 0 %>
+      <span class="arrow-up"></span>
+    <% elsif pricing_hash[:price_diff].to_i < 0 %>
+      <span class="arrow-down"></span>
+    <% end %>
+    <%= pricing_hash[:price_diff] %>  (<%= pricing_hash[:percentage_diff] %>%)</h2>
+  <div class="reg-follow-btn"><a href="#"></a></div>
+  <h3> <%= @company.name %>.</h3>
+  <p class="sub-title"><%= @company.sector %>: <span id="jTruncate_truncate"><%= @company.industry %></span></p>
+  <script type="text/javascript">
+    $('#jTruncate_truncate').jTruncate({
+      length: 50
+    });
+  </script>
+</div><!-- end of stock-div -->
+<div class="search-box">
+  <div class="search-div">
     <%= form_tag(searches_path, :class => 'pull-right', :remote => true) do %>
-      <%= text_field('q', 'search', :class => 'input-medium search-query') %>
-      <%= submit_tag('Search', :class => 'btn') %>
+      <%= text_field('q', 'search', :class => 'search-query search-input', :placeholder => "Search by Ticker, Name, Author and Keyword...") %>
+      <%= submit_tag('', :class => 'search-button') %>
+      <div class="clr"></div>
     <% end %>
   </div>
-</div>
+  <div class="clr"></div>
+</div><!-- end of search-box -->

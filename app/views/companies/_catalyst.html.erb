@@ -1,14 +1,16 @@
-<div id="vote_catalyst">
 <% Catalyst.where(:company_id => @company.id).order("date ASC").group_by(&:date).each do |cat_date, catalyst| %>
   <% catalyst.each do |cat| %>
-    <%= cat_date %> : <%= cat.content %> <%= link_to "Edit", "#.", :id => "company_catalyst_slide#{cat.id}" %>
-    <%= link_to "Delete", company_catalyst_path(@company, cat), :method => 'delete', :remote => true %><br/>
+
+    <p><%= cat_date %>: <%= cat.content %> <%= link_to "Edit", "#.", :id => "company_catalyst_slide#{cat.id}" %> |
+      <%= link_to "Delete", company_catalyst_path(@company, cat), :method => 'delete', :remote => true %>
+    </p>
     <%= render :partial => 'catalysts/add_catalyst', :locals => {:catalyst => cat} %>
   <% end %>
 <% end %>
-  </div>
-<br/>
 <% if current_user %>
-  <%= link_to "Add Catalyst", "#.", :id => 'company_catalyst_slide' %>
+
+<p><input type="text" value="Edit content here..." class="box-input"></p>
+<p><%= link_to "Add Catalyst", "#.", :id => 'company_catalyst_slide', :class => "readmore-link" %>
+  </p>
   <%= render :partial => 'catalysts/add_catalyst', :locals => {:catalyst => Catalyst.new, :date_value => ''} %>
 <% end %>

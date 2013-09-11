@@ -1,9 +1,15 @@
-  <% Competitor.get_competitors(@company).each do |competitor| %>
-    <%= render :partial => 'shared/voting_list', :locals => {:cobj => competitor,
-                                                             :company => @company,
-                                                             :text_val => nil,
-                                                             :child_objs_present => false,
-                                                             :comments => false, :show_link => true,
-                                                             :refresh_div => true} %>
-  <% end %>
-  <br/>
+<div class="rows-div">
+
+
+    <% Competitor.get_competitors(@company).each do |competitor| %>
+      <%= render :partial => 'shared/voting_list', :locals => {:cobj => competitor,
+                                                               :company => @company,
+                                                               :text_val => nil,
+                                                               :child_objs_present => false,
+                                                               :comments => false, :show_link => true,
+                                                               :refresh_div => true} %>
+    <% end %>
+
+
+  <div class="clr"></div>
+</div><!-- end of rows-div -->

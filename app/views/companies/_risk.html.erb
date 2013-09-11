@@ -1,18 +1,17 @@
-<div id="vote_competitor" class="scroll">
-  <% @company.risks.limit(5).each do |risk| %>
-    <%= render :partial => 'shared/voting_list', :locals => {:cobj => risk, :company => @company, :text_val => nil,
-                                                             :child_objs_present => false,
-                                                             :comments => false, :show_link => false,
-                                                             :refresh_div => false} %>
-    <%= link_to "Edit", "#.", :id => "company_risk_slide#{risk.id}" %>
-    <%= link_to "Delete", company_risk_path(@company, risk), :method => 'delete', :remote => true %> <br/>
-    <%= render :partial => 'risks/add_risk', :locals => {:risk => risk} %>
+<div class="box-col-div">
+      <% @company.risks.limit(5).each do |risk| %>
+        <%= render :partial => 'shared/voting_list', :locals => {:cobj => risk, :company => @company, :text_val => nil,
+                                                                 :child_objs_present => false,
+                                                                 :comments => false, :show_link => false,
+                                                                 :refresh_div => false} %>
+        <%= link_to "Edit", "#.", :id => "company_risk_slide#{risk.id}" %>
+        <%= link_to "Delete", company_risk_path(@company, risk), :method => 'delete', :remote => true %> <br/>
+        <%= render :partial => 'risks/add_risk', :locals => {:risk => risk} %>
+      <% end %>
+
+  <% if current_user %>
+  <p><input type="text" value="Edit content here..." class="box-input"></p>
+  <p><%= link_to "Add Risk", "#.", :id => 'company_risk_slide', :class => "readmore-link" %></p>
+    <%= render :partial => 'risks/add_risk', :locals => {:risk => Risk.new} %>
   <% end %>
-
-
 </div>
-<br/>
-<% if current_user %>
-  <%= link_to "Add Risk", "#.", :id => 'company_risk_slide' %>
-  <%= render :partial => 'risks/add_risk', :locals => {:risk => Risk.new} %>
-<% end %>
