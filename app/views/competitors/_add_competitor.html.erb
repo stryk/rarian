@@ -1,10 +1,10 @@
-<span style='display:none' class="span12 float_right" id='competitor_slide_down'>
+<div style='display:none' class="slide-div" id='competitor_slide_down'>
   <%= form_for(Competitor.new, :url => company_competitors_path(@company), :remote => true, :method => 'post', :validate => true) do |f| %>
-    <%= text_field_tag 'competitor[name]', "", {"data-provide" => "typeahead", :class => "typeahead"} %>
+    <%= text_field_tag 'competitor[name]', "", {"data-provide" => "typeahead", :class => "slide-input"} %>
     <%= f.hidden_field :competitor_id %>
-    <%= f.submit :class => "btn btn-primary" %>
+    <%= f.submit :class => "button medium brown" %>
   <% end %>
-</span>
+</div>
 
 <script type="text/javascript">
   $('.typeahead').typeahead({

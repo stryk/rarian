@@ -19,4 +19,8 @@ class Risk < ActiveRecord::Base
   def down_vote
     update_attributes(:net_votes => net_votes.to_i - 1)
   end
+
+  def undo_vote(value)
+    update_attributes(:net_votes => net_votes.to_i - value.to_i)
+  end
 end

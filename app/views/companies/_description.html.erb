@@ -2,15 +2,17 @@
 <div class="box-col-div">
   <p><%= @company.description %></p>
   <% if current_user %>
-  <p><input type="text" value="Edit content here..." class="box-input"></p>
-  <p><%= link_to "Write/Edit Description", "#.", :id => 'company_slide', :class => "readmore-link" %></p>
-  <span style='display:none' class="span12 float_right" id='description_slide_down'>
-  <%= form_for(@company, :method => 'put', :remote => true, :validate => true) do |f| %>
-    <%= f.label :description %>
-      <%= f.text_area :description, :id => "limit_text_area" %>
-      <%= f.submit :class => "btn btn-primary" %>
-  <% end %>
-</span>
+    <p><input type="text" value="Edit content here..." class="box-input"></p>
+
+    <p><%= link_to "Write/Edit Description", "#.", :id => 'company_slide', :class => "readmore-link" %></p>
+
+
+      <div class="slide-div" style='display:none' id='description_slide_down'>
+        <%= form_for(@company, :method => 'put', :remote => true, :validate => true) do |f| %>
+          <%= f.text_area :description, :id => "limit_text_area", :cols => "5", :rows => "5", :class => "slide-textarea" %>
+          <%= f.submit :class => "button medium brown" %>
+        <% end %>
+      </div>
   <% end %>
 </div>
 

@@ -7,8 +7,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    comment_obj = get_comment_on_obj
-    @comment = comment_obj.comments.create(:comment => params[:comment][:comment],
+    @comment_obj = get_comment_on_obj
+    @comment = @comment_obj.comments.create(:comment => params[:comment][:comment],
                                     :user_id => current_user.id)
     if !@comment.errors.full_messages.blank?
       flash[:error] = @comment.errors.full_messages

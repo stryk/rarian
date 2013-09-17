@@ -7,3 +7,6 @@ $(document).on "click", "#company_target_slide", ->
 
 $(document).on "click", "#company_competitor_slide", ->
   $("#competitor_slide_down").toggle "slideDown(1000)", ->
+
+$(document).on "click", "#add_question_link", ->
+  $("#add_question_form").toggle "slideDown(1000)", ->

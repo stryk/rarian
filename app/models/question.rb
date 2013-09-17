@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
 
-  attr_accessible :content, :user_id, :company_id
+  attr_accessible :content, :user_id, :company_id, :net_votes
 
   belongs_to :user
   belongs_to :company
@@ -24,6 +24,18 @@ class Question < ActiveRecord::Base
 
   def get_child_link
     "new_company_question_answer_path"
+  end
+
+  def up_vote
+    update_attributes(:net_votes => net_votes.to_i + 1)
+  end
+
+  def down_vote
+    update_attributes(:net_votes => net_votes.to_i - 1)
+  end
+
+  def undo_vote(value)
+    update_attributes(:net_votes => net_votes.to_i - value.to_i)
   end
 
 

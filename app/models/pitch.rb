@@ -1,5 +1,5 @@
 class Pitch < ActiveRecord::Base
-  attr_accessible :title, :multimedia_content, :action, :user_id, :company_id
+  attr_accessible :title, :multimedia_content, :action, :user_id, :company_id, :net_votes
 
   validates :title, :multimedia_content, :company_id, :user_id, presence: true
 
@@ -15,5 +15,17 @@ class Pitch < ActiveRecord::Base
 
   def get_full_title
     created_at.strftime("%m/%d/%Y")+": "+action+": "+title
+  end
+
+  def up_vote
+    update_attributes(:net_votes => net_votes.to_i + 1)
+  end
+
+  def down_vote
+    update_attributes(:net_votes => net_votes.to_i - 1)
+  end
+
+  def undo_vote(value)
+    update_attributes(:net_votes => net_votes.to_i - value.to_i)
   end
 end

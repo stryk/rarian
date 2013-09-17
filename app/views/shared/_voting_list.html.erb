@@ -1,42 +1,68 @@
 <div class="rows-div">
-<div class="voting-arrow">
-  <%= text_val.try(:html_safe) %><%= link_to "",send("up_company_#{cobj.class.name.downcase}_votes_path", company, cobj, {:refresh_div=>refresh_div}),
-                             :remote => true, :method => :put, :id => "vote_up_#{cobj.class.name.downcase+'_'+cobj.id.to_s}",
-                             :class => "voting-up-arrow" %>
-  <%= link_to "", send("down_company_#{cobj.class.name.downcase}_votes_path", company, cobj, {:refresh_div=>refresh_div}),
-              :remote => true, :method => :put, :id => "vote_down_#{cobj.class.name.downcase+'_'+cobj.id.to_s}",
-              :class => "voting-down-arrow"  %>
+
+  <div class="voting-arrow">
+    <div class="voting-with-number">
+      <%= text_val.try(:html_safe) %><%= link_to send("up_company_#{cobj.class.name.downcase}_votes_path", company, cobj, {:refresh_div => refresh_div}),
+                                                 :remote => true, :method => :put, :id => "vote_up_#{cobj.class.name.downcase+"_"+cobj.id.to_s}",
+                                                 :class => "voting-up-arrow" do %>
+        <span class="numbers" id="upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>"><%= cobj.try(:net_votes) %></span>
+      <% end %>
+      <%= link_to send("down_company_#{cobj.class.name.downcase}_votes_path", company, cobj, {:refresh_div => refresh_div}),
+                  :remote => true, :method => :put, :id => "vote_down_#{cobj.class.name.downcase+"_"+cobj.id.to_s}",
+                  :class => "voting-down-arrow" do %>
+        <span class="numbers" id="downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>">&nbsp;</span>
+    <% end %>
+    </div>
   </div>
-<div class="rows-txt">
-  <% if comments %>
-    <%= link_to(send("show_title", cobj).html_safe, send("company_#{cobj.class.name.downcase}_comments_path", company, cobj), "data-toggle" => "modal", :remote => true) %>
-    <% if child_objs_present %>
-      <div class="span12">
-        <div class="accordion" id="accordion2-<%= cobj.id %>">
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">
-                <%= ("<b>"+cobj.child_link_name+"</b>").html_safe %>
-              </a>
-            </div>
-            <div id="collapseOne-<%= cobj.id %>" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <%= render :partial => 'answers/form', :locals => {:company => company, :question => cobj} %>
-              </div>
-            </div>
-          </div>
-          <%#= link_to ("<b>"+cobj.child_link_name+"</b>").html_safe, send(cobj.get_child_link, company, cobj) %>
-        </div>
-      </div>
-    <% end %>
-  <% else %>
-    <% if show_link %>
-      <%= link_to(send("show_title", cobj).html_safe, show_link(cobj)) %>
-    <% else %>
+  <div class="rows-txt">
+    <% if comments %>
       <%= send("show_title", cobj).html_safe %>
+
+      <p><%= link_to("Comments", send("company_#{cobj.class.name.downcase}_comments_path", company, cobj), :remote => true) %></p>
+
+      <div id="comment_list_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>" style="display:none">
+
+      </div>
+      <% if child_objs_present %>
+        <div class="span12">
+
+          <a id="accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">
+            <%= ("<b>"+cobj.child_link_name+"</b>").html_safe %>
+          </a>
+
+          <%= render :partial => 'answers/form', :locals => {:company => company, :question => cobj,
+                                                             :child_objs => child_objs,
+                                                             :child_objs_text => child_objs_text} %>
+        </div>
+      <% end %>
+    <% else %>
+      <% if show_link %>
+        <%= link_to(send("show_title", cobj).html_safe, show_link(cobj)) %>
+      <% else %>
+        <%= send("show_title", cobj).html_safe %>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
   <div class="clr"></div>
 
 </div>
+
+<script type="text/javascript">
+
+  <% if current_user.up_voted?(cobj) %>
+  $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').hide();
+  $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+  $('#upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
+  <% elsif current_user.down_voted?(cobj) %>
+  $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+  $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').hide();
+  $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
+  <% else %>
+  $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+  $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+  $('#upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
+  $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('');
+  <% end %>
+
+
+</script>

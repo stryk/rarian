@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130824100632) do
+ActiveRecord::Schema.define(version: 20130917125020) do
 
   create_table "alternate_phone_types", force: true do |t|
     t.string   "phone_type"
@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(version: 20130824100632) do
     t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "up_votes",    default: 0, null: false
-    t.integer  "down_votes",  default: 0, null: false
+    t.integer  "up_votes",              default: 0, null: false
+    t.integer  "down_votes",            default: 0, null: false
+    t.integer  "net_votes",   limit: 2, default: 0
   end
 
   add_index "answers", ["company_id"], name: "index_answers_on_company_id", using: :btree
@@ -42,9 +43,10 @@ ActiveRecord::Schema.define(version: 20130824100632) do
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "up_votes",   default: 0, null: false
-    t.integer  "down_votes", default: 0, null: false
+    t.integer  "up_votes",             default: 0, null: false
+    t.integer  "down_votes",           default: 0, null: false
     t.string   "slug"
+    t.integer  "net_votes",  limit: 2, default: 0
   end
 
   add_index "blips", ["company_id"], name: "index_blips_on_company_id", using: :btree
@@ -155,8 +157,9 @@ ActiveRecord::Schema.define(version: 20130824100632) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "up_votes",           default: 0, null: false
-    t.integer  "down_votes",         default: 0, null: false
+    t.integer  "up_votes",                     default: 0, null: false
+    t.integer  "down_votes",                   default: 0, null: false
+    t.integer  "net_votes",          limit: 2, default: 0
   end
 
   create_table "questions", force: true do |t|
@@ -165,8 +168,9 @@ ActiveRecord::Schema.define(version: 20130824100632) do
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "up_votes",   default: 0, null: false
-    t.integer  "down_votes", default: 0, null: false
+    t.integer  "up_votes",             default: 0, null: false
+    t.integer  "down_votes",           default: 0, null: false
+    t.integer  "net_votes",  limit: 2, default: 0
   end
 
   add_index "questions", ["company_id"], name: "index_questions_on_company_id", using: :btree

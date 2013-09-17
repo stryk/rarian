@@ -1,24 +1,20 @@
-<span style='display:none' class="span12 float_right" id='catalyst_slide_down<%= catalyst.id %>'>
+<div style='display:none' class="slide-div" id='catalyst_slide_down<%= catalyst.id %>'>
   <%= form_for(catalyst, :url => company_catalysts_path(@company), :remote => true, :method => 'post', :validate => true) do |f| %>
-      <div class="input-append date" id="dp3<%= catalyst.id %>" data-date-format="dd-mm-yyyy">
-        <%= f.text_field :date, :class => 'span12', :size => 16, :readonly => true %>
-        <span class="add-on"><i class="icon-th"></i></span>
-      </div>
+        <%= f.text_field :date, :id => "catalyst_date_#{catalyst.id}", :class => 'slide-input-med', :size => 16, :readonly => true %>
 
-
-    <%= f.label :content %>
-    <%= f.text_area :content, :id => "catalyst_text_area#{catalyst.id}" %>
-    <%= f.submit :class => "btn btn-primary" %>
+    <span>Content</span>
+    <%= f.text_area :content, :id => "catalyst_text_area#{catalyst.id}", :cols => "5", :rows => "5", :class => "slide-textarea" %>
+    <%= f.submit :class => "button medium brown" %>
   <% end %>
-</span>
+</div>
 
 
 <script type="text/javascript">
-  var nowTemp = new Date();
-  var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-  $('#dp3<%= catalyst.id %>').datepicker({format: 'yyyy-mm-dd', onRender: function (date) {
-    return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  }});
+  $('#catalyst_date_<% catalyst.id %>').datepicker({
+    showOn: "button",
+    buttonImage: "/assets/cal-icon.png",
+    buttonImageOnly: true
+  });
   $("#catalyst_text_area<%= catalyst.id %>").maxlength({max: 500});
   $("#company_catalyst_slide<%= catalyst.id %>").unbind();
   $("#catalyst_slide_down<%= catalyst.id %>").unbind();

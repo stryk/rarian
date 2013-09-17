@@ -1,2 +1,2 @@
 $(".list_questions").prepend('<%= j render(:partial => 'questions/list', :locals => {:company => @company, :questions =>  [@question]}) %>');
-
+$("#add_question_form").toggle("slideDown(1000)");

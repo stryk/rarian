@@ -1,45 +1,47 @@
-<div id="list_comments" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div id="flash_message"></div>
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel"><%= @comment_obj.get_full_title.html_safe %></h3>
-  </div>
-  <div class="modal-body" id="list_all_blip_comments">
-    <% if !@comment_obj.comments.blank? %>
-      <% @comment_obj.comments.each do |comment| %>
-        <div id="jTruncate_truncate-<%= comment.id %>"><%= comment.comment %></div>
-        <script type="text/javascript">
-          $('#jTruncate_truncate-<%= comment.id %>').jTruncate({
-            length: 50
-          });
-        </script>
-      <% end %>
-    <% else %>
-      There are no comments for this Blip
-    <% end %>
-  </div>
+<div class="comments-container">
 
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <%= button_tag 'Add Comment', id: 'add_comment', :class => 'btn-primary' %>
-  </div>
+  <div class="comments-div">
 
-  <div class="modal-body" style="display:none" id="blip_comment_create">
-    <%= form_for(Comment.new, :url => send("company_#{@comment_obj.class.name.downcase}_comments_path", @comment_obj.company, @comment_obj), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
-      <div class="control-group">
-        <%= f.label :comment, :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :comment, :validate => true %>
+    <div class="comment-box">
+        <%= form_for(Comment.new, :url => send("company_#{@comment_obj.class.name.downcase}_comments_path", @comment_obj.company, @comment_obj), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
+          <div class="user-thumb"><img src="/assets/user-thumb.jpg" alt=""></div>
+          <div class="comment-input">
+              <%= f.text_area :comment, :class => "inputbox", :validate => true %>
+          </div>
+          <div class="comment-btn"> <%= f.button 'Comment', id: 'create_blip', :class => 'button medium brown' %></div>
+        <% end %>
+
+    </div><!-- end of comment-box -->
+
+    <div class="comment-box" id="list_all_blip_comments_<%= @comment_obj.class.name.downcase+'_'+@comment_obj.id.to_s %>">
+      <% if !@comment_obj.comments.blank? %>
+        <% @comment_obj.comments.each do |comment| %>
+          <div class="user-thumb"><img src="/assets/user-thumb.jpg" alt=""></div>
+          <div class="comment-text">
+            <p class="title">User Name</p>
+            <p class="normal-txt" id="jTruncate_truncate-<%= comment.id %>"><%= comment.comment %></p>
+          </div>
+          <script type="text/javascript">
+            $('#jTruncate_truncate-<%= comment.id %>').jTruncate({
+              length: 50
+            });
+          </script>
+        <% end %>
+      <% else %>
+        <div id="no_comments">
+        There are no comments for this Blip
         </div>
-      </div>
+      <% end %>
 
 
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <%= f.button 'Submit', id: 'create_blip', :class => 'btn-primary' %>
-      </div>
-    <% end %>
-  </div>
+    </div><!-- end of comment-box -->
+
+
+
+
+  </div><!-- end of comments-div -->
+
 </div>
+
 
 

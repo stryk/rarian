@@ -1,16 +1,35 @@
+<span style='display:none' id='create_answer-<%= question.id %>'>
 <%= form_for(Answer.new, :url => company_question_answers_path(company, question), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
   <div class="span12">
     <%= f.text_area :content, :class => "ckeditor", :toolbar => "Mini" %>
   </div>
 
   <div class="span12">
-    <%= f.button 'Submit', id: "create_answer-#{question.id}", :class => 'btn btn-large btn-block btn-primary span4' %>
+    <%= f.button 'Submit', id: "create_answer-#{question.id}" %>
   </div>
 
 <% end %>
-<script type="text/javascript">
-  $('#create_answer-'+<%= question.id %>).click(function(){
-     $('#accordion2-'+<%= question.id %>).collapse('hide');
-  });
-  ck_load();
-</script>
+
+<div id='<%= question.class.name.downcase+'-'+question.id.to_s %>'>
+  <% !child_objs.blank? && question.send(child_objs).each do |child_obj| %>
+
+    <%= render :partial => 'shared/voting_list', :locals => {:cobj => child_obj, :company => company,
+                                                             :text_val => child_objs_text,
+                                                             :child_objs_present => false, :comments => true,
+                                                             :show_link => false, :refresh_div => false} %>
+
+    <script type="text/javascript">
+      $('#jTruncate_truncate-<%= child_obj.id %>').jTruncate({
+        length: 50
+      });
+    </script>
+  <% end %>
+</div>
+  <script type="text/javascript">
+
+    $('#accordion2-<%= question.id %>').click(function () {
+      $('#create_answer-<%= question.id %>').toggle("slideDown(1000)");
+    });
+
+  </script>
+</span>

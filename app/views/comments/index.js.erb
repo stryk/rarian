@@ -1,8 +1,5 @@
-$('#comments_list').html('<%= j render "shared/list_and_add_comment", :locals => {:comment_obj => @comment_obj} %>');
-$('#list_comments').modal();
-$('#add_comment').on("click", function () {
-  $('#blip_comment_create').show();
-});
+$('#comment_list_<%= @comment_obj.class.name.downcase+'_'+@comment_obj.id.to_s %>').html('<%= j render "shared/list_and_add_comment", :locals => {:comment_obj => @comment_obj} %>');
+$('#comment_list_<%= @comment_obj.class.name.downcase+'_'+@comment_obj.id.to_s %>').toggle();
 
 
 

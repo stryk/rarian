@@ -14,7 +14,7 @@ class Competitor < ActiveRecord::Base
   end
 
   def get_full_title
-    "(" + "#{net_votes.to_i}" +")" + " : " + "#{competitor_company.try(:name)}"
+    "#{competitor_company.try(:name)}"
   end
 
   def up_vote

@@ -12,9 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require jquery.maxlength
+//= require jqueryui-editable
 //= require bootstrap
-//= require bootstrap-datepicker
 //= require bootstrap-typeahead
 //= require ckeditor/ckeditor
 //= require_tree .

@@ -12,7 +12,7 @@ class Blip < ActiveRecord::Base
 
   default_scope { order("created_at desc") }
 
-  attr_accessible :action, :content, :quantity, :company_id, :user_id
+  attr_accessible :action, :content, :quantity, :company_id, :user_id, :net_votes
 
   make_voteable
 
@@ -20,6 +20,18 @@ class Blip < ActiveRecord::Base
 
   def get_full_title
     company.ticker+": "+created_at.strftime("%m/%d/%Y")+": "+action+": "+content
+  end
+
+  def up_vote
+    update_attributes(:net_votes => net_votes.to_i + 1)
+  end
+
+  def down_vote
+    update_attributes(:net_votes => net_votes.to_i - 1)
+  end
+
+  def undo_vote(value)
+    update_attributes(:net_votes => net_votes.to_i - value.to_i)
   end
 
 end

@@ -13,7 +13,9 @@
     </h3>
     <div class="box-col-topreason">
 
-      <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.buy_pitch.all, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
+      <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.buy_pitch.all,
+                                                              :company => @company, :child_objs => nil,
+                                                              :objs_text => nil, :child_objs_text => nil} %>
       <div class="topreason-input-txt">
         <div class="input-txt">
           <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
@@ -52,7 +54,10 @@
 
       <div class="qa-input-txt">
         <div class="input-txt">
-          <%= link_to "Add Question", '#add_question', "data-toggle" => "modal", :class => "readmore-link" %>
+          <%= link_to "Add Question", '#.', :class => "readmore-link", :id => "add_question_link" %>
+          <div style="display: none" id='add_question_form'>
+            <%= render 'questions/add_question', :locals => {:company => @company} %>
+          </div>
         </div>
       </div>
 
@@ -74,8 +79,7 @@
 <div class="clr"></div>
 </div>
 
-<%= render 'shared/add_blip', :locals => {:company => @company} %>
-<%= render 'questions/add_question', :locals => {:company => @company} %>
+
 <%= render 'searches/search_modal' %>
 <div id="comments_list"></div>
 

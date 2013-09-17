@@ -1,11 +1,19 @@
-<% unless params[:refresh_div] %>
-<% if current_user.down_voted?(@obj) %>
-$("#vote_up_" + '<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').hide();
-$("#vote_down_" + '<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').html('<i class="icon-thumbs-down"></i>Downvoted(undo)');
-<% else %>
+<% if params[:refresh_div] == "false" %>
+<% if current_user.up_voted?(@obj) %>
+$("#vote_down_" + '<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').hide();
 $("#vote_up_" + '<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').show();
-$("#vote_down_" + '<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').html('<i class="icon-thumbs-down"></i>');
+$('#upvote_number_<%= @obj.class.name.downcase+"_"+@obj.id.to_s %>').html('<%= @obj.reload.net_votes %>');
+<% elsif current_user.down_voted?(@obj) %>
+$("#vote_down_" + '<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').show();
+$("#vote_up_" + '<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').hide();
+$('#downvote_number_<%= @obj.class.name.downcase+"_"+@obj.id.to_s %>').html('<%= @obj.reload.net_votes %>');
+<% else %>
+$("#vote_down_" + '<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').show();
+$("#vote_up_" + '<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').show();
+$('#upvote_number_<%= @obj.class.name.downcase+"_"+@obj.id.to_s %>').html('<%= @obj.reload.net_votes %>');
+$('#downvote_number_<%= @obj.class.name.downcase+"_"+@obj.id.to_s %>').html('');
 <% end %>
+
 <% else %>
 $("#vote_<%= @obj.class.name.downcase %>").html('<%= j render "companies/#{@obj.class.name.downcase}" %>');
 <% end %>

@@ -1,4 +1,5 @@
-$("#list_all_blip_comments").prepend('<div id="jTruncate_truncate-<%= @comment.id %>"><%= @comment.comment %></p></div>');
+$("#list_all_blip_comments_<%= @comment_obj.class.name.downcase+'_'+@comment_obj.id.to_s %>").prepend('<div id="jTruncate_truncate-<%= @comment.id %>"><%= @comment.comment %></p></div>');
 $('#jTruncate_truncate-<%= @comment.id %>').jTruncate({
   length: 50
 });
+$("#no_comments").hide();

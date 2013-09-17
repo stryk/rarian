@@ -39,23 +39,23 @@ module MakeVoteable
     end
 
     def update_competitor
-      if voteable.is_a?(Competitor)
+      #if voteable.is_a?(Competitor)
         if self.up_vote?
           voteable.up_vote
         else
           voteable.down_vote
         end
-      end
+      #end
     end
 
     def undo_update_competitor
-      if voteable.is_a?(Competitor)
+      #if voteable.is_a?(Competitor)
         if self.up_vote?
           voteable.undo_vote(1)
         else
           voteable.undo_vote(-1)
         end
-      end
+      #end
     end
   end
 end
