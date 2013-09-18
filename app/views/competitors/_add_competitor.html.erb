@@ -1,30 +1,49 @@
 <div style='display:none' class="slide-div" id='competitor_slide_down'>
   <%= form_for(Competitor.new, :url => company_competitors_path(@company), :remote => true, :method => 'post', :validate => true) do |f| %>
-    <%= text_field_tag 'competitor[name]', "", {"data-provide" => "typeahead", :class => "slide-input"} %>
+    <%= text_field_tag 'competitor[name]', "", {"id" => "typeahead", :class => "slide-input"} %>
     <%= f.hidden_field :competitor_id %>
     <%= f.submit :class => "button medium brown" %>
   <% end %>
 </div>
 
 <script type="text/javascript">
-  $('.typeahead').typeahead({
-    source: function (query, process) {
-      objects = [];
-      map = {};
-      return $.post('/companies/search.json', { query: query }, function (data) {
-        $.each(data.options, function (i, object) {
-          map[object.name] = object;
-          objects.push(object.name);
+  $(function () {
+    $('#typeahead').autocomplete({
+      source: function (request, response) {
+        $.ajax({
+          url: "/companies/search.json",
+          dataType: "json",
+          type: "POST",
+          data: {
+            featureClass: "P",
+            style: "full",
+            maxRows: 12,
+            name_startsWith: request.term
+          },
+          success: function (data) {
+            response($.map(data.options, function (item) {
+              return {
+                label: item.name,
+                value: item.name,
+                id: item.id
+              }
+            }));
+          }
         });
-        return process(data.show_options);
-      });
-    },
-    items: 5,
-    minLength: 3,
-    updater: function (item) {
-      $('#competitor_competitor_id').val(map[item].id);
-      return item;
-    }
+      },
+      select: function (event, ui) {
+        $('#competitor_competitor_id').val(ui.item.id);
+      },
+      items: 5,
+      minLength: 3,
+      open: function () {
+        $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+      },
+      close: function () {
+        $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+      }
 
+    });
   });
+
 </script>

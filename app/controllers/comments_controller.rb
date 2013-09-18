@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
 
   def index
     @comment_obj = get_comment_on_obj
+
   end
 
   def create
@@ -19,6 +20,7 @@ class CommentsController < ApplicationController
 
   def get_comment_on_obj
     if !params[:blip_id].blank?
+      @blip_div = 'comments-alphablip-container'
       Blip.where(:id => params[:blip_id]).last
     elsif !params[:pitch_id].blank?
       Pitch.where(:id =>  params[:pitch_id]).last
