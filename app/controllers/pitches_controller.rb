@@ -8,13 +8,16 @@ class PitchesController < ApplicationController
   end
 
   def create
-    pitch = @company.pitches.create(params[:pitch].merge!(:user_id => current_user.id))
-    if pitch.errors.blank?
+    @pitch = @company.pitches.create(params[:pitch].merge!(:user_id => current_user.id))
+    if @pitch.errors.blank?
       flash[:notice] = "Successfully added the reason"
-      redirect_to company_path(@company)
+      #redirect_to company_path(@company)
+      respond_to do |format|
+        format.js
+      end
     else
-      flash[:error] = pitch.errors.full_messages.join(",")
-      render :new, :action_type => params[:action]
+      #flash[:error] = pitch.errors.full_messages.join(",")
+      #render :new, :action_type => params[:action]
     end
   end
 

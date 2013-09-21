@@ -11,7 +11,9 @@
     <h3 class="middleh3">top reason to buy
       <div class="small-follow-btn"><a href="#">&nbsp;</a></div>
     </h3>
-    <div class="box-col-topreason">
+
+
+    <div class="box-col-topreason" id="top_reason_to_buy">
 
       <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.buy_pitch.all,
                                                               :company => @company, :child_objs => nil,
@@ -19,10 +21,16 @@
       <div class="topreason-input-txt">
         <div class="input-txt">
           <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
-          <%= link_to "Be the first to add reason to buy...", new_company_pitch_path(@company, :action_type => "buy"), :class => "inputo-txt" %>
+          <%= link_to "Be the first to add reason to buy...", "#.", :class => "inputo-txt" ,:id => "add_reason_to_buy_link"%>
         </div>
       </div>
     </div>
+
+
+    <div class="text-editor-container slide-div" id="add_reason_to_buy_link_slide_down" style="display: none">
+      <%= render :partial => 'pitch_form',:locals => {:option => "buy"} %>
+    </div>
+
   </div>
 
   <div class="box-col middle-margin">
@@ -30,16 +38,21 @@
       <div class="small-follow-btn"><a href="#">&nbsp;</a></div>
     </h3>
 
-    <div class="box-col-topreason">
+    <div class="box-col-topreason" id="top_reason_to_sell">
       <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.sell_pitch.all, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
       <div class="topreason-input-txt">
         <div class="input-txt">
           <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
-          <%= link_to " Be the first to add reason to sell...", new_company_pitch_path(@company, :action_type => "sell"), :class => "inputo-txt" %>
+          <%= link_to " Be the first to add reason to sell...", "#.", :class => "inputo-txt" ,:id => "add_reason_to_sell_link"%>
         </div>
       </div>
 
     </div>
+
+    <div class="text-editor-container slide-div" id="add_reason_to_sell_link_slide_down" style="display: none">
+      <%= render :partial => 'pitch_form' ,:locals => {:option => "sell"} %>
+    </div>
+
     <div class="clr"></div>
   </div>
 
@@ -82,5 +95,14 @@
 
 <%= render 'searches/search_modal' %>
 <div id="comments_list"></div>
+<script type="text/javascript">
+    $('#add_reason_to_buy_link').click(function () {
+        $("#add_reason_to_buy_link_slide_down").toggle("slideDown(1000)")
+    });
 
+    $('#add_reason_to_sell_link').click(function () {
+        $("#add_reason_to_sell_link_slide_down").toggle("slideDown(1000)")
+    });
+
+</script>
 
