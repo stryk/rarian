@@ -3,3 +3,4 @@ $('#jTruncate_truncate-<%= @comment.id %>').jTruncate({
   length: 50
 });
 $("#no_comments").hide();
+$("#comment_list_<%= @comment_obj.class.name.downcase+'_'+@comment_obj.id.to_s %> #comment_comment").val("");

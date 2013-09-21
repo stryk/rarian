@@ -492,3 +492,7 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
     url('../assets/fonts/matrixdit.ttf') format('truetype'),
     url('../assets/fonts/matrixdit.svg#MatrixditRegular') format('svg');
 }
+
+marquee a {
+  color: white !important;
+}

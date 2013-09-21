@@ -40,7 +40,7 @@
         <div class="top-tickers">
           <div class="tickers-div">
             <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrollamount=3>
-              <% MostActiveTicker.get_active_companies.all.each do |active_ticker| %>
+              <% MostActiveTicker.get_active_companies.each do |active_ticker| %>
                 <%= link_to active_ticker.company.ticker, '#' %> &nbsp;
               <% end %>
             </marquee>
