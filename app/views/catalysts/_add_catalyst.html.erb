@@ -13,7 +13,9 @@
   $('#catalyst_date_<%= catalyst.id %>').datepicker({
     showOn: "button",
     buttonImage: "/assets/cal-icon.png",
-    buttonImageOnly: true
+    buttonImageOnly: true,
+    dateFormat: "yy-mm-dd",
+    minDate: new Date(<%= Time.now.year %>, <%= Time.now.month %>, <%=  Time.now.day %>)
   });
   $("#catalyst_text_area<%= catalyst.id %>").maxlength({max: 500});
   $("#company_catalyst_slide<%= catalyst.id %>").unbind();

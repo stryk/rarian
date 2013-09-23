@@ -9,7 +9,7 @@
   </div>
 
 <% end %>
-
+</span>
 <div id='<%= question.class.name.downcase+'-'+question.id.to_s %>'>
   <% !child_objs.blank? && question.send(child_objs).each do |child_obj| %>
 
@@ -32,4 +32,3 @@
     });
 
   </script>
-</span>
