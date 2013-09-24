@@ -25,6 +25,11 @@
             | <a id="accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">
                 <%= ("<b>"+cobj.child_link_name+"</b>").html_safe %>
               </a>
+
+            <div id="comment_list_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>" style="display:none">
+
+            </div>
+
             <div class="span12">
 
             <%= render :partial => 'answers/form', :locals => {:company => company, :question => cobj,

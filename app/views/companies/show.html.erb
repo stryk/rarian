@@ -18,23 +18,28 @@
     <h3 class="middleh3">top reason to buy
       <div class="small-follow-btn"><a href="#">&nbsp;</a></div>
     </h3>
+    <div class="input-txt">
+        <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
+        <%= link_to "Be the first to add reason to buy...", "#.", :class => "inputo-txt" ,:id => "add_reason_to_buy_link"%>
+    </div>
+    <div class="text-editor-container " id="add_reason_to_buy_link_slide_down" style="display: none">
+      <%= render :partial => 'pitch_form',:locals => {:option => 'buy'} %>
+    </div>
 
-    <div class="scroll-pane" style="height:800px;">
+
+    <div class="scroll-pane" style="max-height:800px;">
         <div class="box-col-topreason" id="top_reason_to_buy">
 
           <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.buy_pitch.all,
                                                                   :company => @company, :child_objs => nil,
                                                                   :objs_text => nil, :child_objs_text => nil} %>
-          <div class="topreason-input-txt">
-            <div class="input-txt">
-              <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
-              <%= link_to "Be the first to add reason to buy...", "#.", :class => "inputo-txt" ,:id => "add_reason_to_buy_link"%>
-            </div>
-          </div>
+          <!--<div class="topreason-input-txt">-->
+            <!--<div class="input-txt">-->
+              <!--<span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>-->
+              <%#= link_to "Be the first to add reason to buy...", "#.", :class => "inputo-txt" ,:id => "add_reason_to_buy_link"%>
+            <!--</div>-->
+          <!--</div>-->
         </div>
-    </div>
-    <div class="text-editor-container " id="add_reason_to_buy_link_slide_down" style="display: none">
-      <%= render :partial => 'pitch_form',:locals => {:option => 'buy'} %>
     </div>
 
   </div>
@@ -43,21 +48,28 @@
     <h3 class="middleh3">top reason to sell
       <div class="small-follow-btn"><a href="#">&nbsp;</a></div>
     </h3>
-    <div class="scroll-pane" style="height:400px;">
-        <div class="box-col-topreason" id="top_reason_to_sell">
-          <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.sell_pitch.all, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
-          <div class="topreason-input-txt">
-            <div class="input-txt">
-              <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
-              <%= link_to " Be the first to add reason to sell...", "#.", :class => "inputo-txt" ,:id => "add_reason_to_sell_link"%>
-            </div>
-          </div>
-        </div>
+
+    <div class="input-txt">
+      <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
+      <%= link_to " Be the first to add reason to sell...", "#.", :class => "inputo-txt" ,:id => "add_reason_to_sell_link"%>
     </div>
 
     <div class="text-editor-container" id="add_reason_to_sell_link_slide_down" style="display: none">
       <%= render :partial => 'pitch_form' ,:locals => {:option => 'sell'} %>
     </div>
+
+    <div class="scroll-pane" style="max-height:400px;">
+        <div class="box-col-topreason" id="top_reason_to_sell">
+          <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.sell_pitch.all, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
+          <!--<div class="topreason-input-txt">-->
+            <!--<div class="input-txt">-->
+              <!--<span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>-->
+              <!--<%#= link_to " Be the first to add reason to sell...", "#.", :class => "inputo-txt" ,:id => "add_reason_to_sell_link"%>-->
+            <!--</div>-->
+          <!--</div>-->
+        </div>
+    </div>
+
 
     <div class="clr"></div>
   </div>
