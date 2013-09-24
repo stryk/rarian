@@ -32,10 +32,9 @@
             </div>
           </div>
         </div>
-
-        <div class="text-editor-container " id="add_reason_to_buy_link_slide_down" style="display: none">
-          <%= render :partial => 'pitch_form',:locals => {:option => "buy"} %>
-        </div>
+    </div>
+    <div class="text-editor-container " id="add_reason_to_buy_link_slide_down" style="display: none">
+      <%= render :partial => 'pitch_form',:locals => {:option => 'buy'} %>
     </div>
 
   </div>
@@ -45,7 +44,6 @@
       <div class="small-follow-btn"><a href="#">&nbsp;</a></div>
     </h3>
     <div class="scroll-pane" style="height:800px;">
-
         <div class="box-col-topreason" id="top_reason_to_sell">
           <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.sell_pitch.all, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
           <div class="topreason-input-txt">
@@ -55,10 +53,10 @@
             </div>
           </div>
         </div>
+    </div>
 
-        <div class="text-editor-container" id="add_reason_to_sell_link_slide_down" style="display: none">
-            <%= render :partial => 'pitch_form' ,:locals => {:option => "sell"} %>
-        </div>
+    <div class="text-editor-container" id="add_reason_to_sell_link_slide_down" style="display: none">
+      <%= render :partial => 'pitch_form' ,:locals => {:option => 'sell'} %>
     </div>
 
     <div class="clr"></div>
