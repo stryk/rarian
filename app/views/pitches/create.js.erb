@@ -1,0 +1,2 @@
+$("#top_reason_to_<%=params[:pitch][:action] %>").prepend('<%=j raw (render :partial => "shared/blips_list", :locals => {:objs => [@pitch], :company => @company, :child_objs => nil,:objs_text => nil, :child_objs_text => nil }).gsub!("\n", "") %>');
+$("#add_reason_to_<%=params[:pitch][:action]%>_link_slide_down").toggle("slideDown(1000)");
