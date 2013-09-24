@@ -1,5 +1,6 @@
-<script type="text/javascript">
-    $(function()
+<script type="text/javascript" >
+   $(document).ready(
+    function()
     {
         $('.scroll-pane').jScrollPane();
     });
@@ -27,7 +28,7 @@
     </div>
 
 
-    <div class="scroll-pane" style="max-height:800px;">
+    <div class="scroll-pane" >
         <div class="box-col-topreason" id="top_reason_to_buy">
 
           <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.buy_pitch.all,
@@ -58,7 +59,7 @@
       <%= render :partial => 'pitch_form' ,:locals => {:option => 'sell'} %>
     </div>
 
-    <div class="scroll-pane" style="max-height:400px;">
+    <div class="scroll-pane">
         <div class="box-col-topreason" id="top_reason_to_sell">
           <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.sell_pitch.all, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
           <!--<div class="topreason-input-txt">-->
@@ -122,14 +123,13 @@
 
     $('#add_reason_to_sell_link').click(function () {
         $("#add_reason_to_sell_link_slide_down").toggle("slideDown(1000)");
-        $("#pitch_title").val('');
+        $("#add_reason_to_sell_link_slide_down #pitch_title").val('');
         resetEditor();
     });
 
     function resetEditor(){
         var editor1 = CKEDITOR.currentInstance;
         editor1.setData('');
-
     }
 </script>
 
