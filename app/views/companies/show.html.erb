@@ -43,7 +43,7 @@
     <h3 class="middleh3">top reason to sell
       <div class="small-follow-btn"><a href="#">&nbsp;</a></div>
     </h3>
-    <div class="scroll-pane" style="height:800px;">
+    <div class="scroll-pane" style="height:400px;">
         <div class="box-col-topreason" id="top_reason_to_sell">
           <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.sell_pitch.all, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
           <div class="topreason-input-txt">
@@ -103,13 +103,22 @@
 <div id="comments_list"></div>
 <script type="text/javascript">
     $('#add_reason_to_buy_link').click(function () {
-        $("#add_reason_to_buy_link_slide_down").toggle("slideDown(1000)")
+        $("#add_reason_to_buy_link_slide_down").toggle("slideDown(1000)");
+        $("#pitch_title").val('');
+        resetEditor();
     });
 
     $('#add_reason_to_sell_link').click(function () {
-        $("#add_reason_to_sell_link_slide_down").toggle("slideDown(1000)")
+        $("#add_reason_to_sell_link_slide_down").toggle("slideDown(1000)");
+        $("#pitch_title").val('');
+        resetEditor();
     });
 
+    function resetEditor(){
+        var editor1 = CKEDITOR.currentInstance;
+        editor1.setData('');
+
+    }
 </script>
 
 

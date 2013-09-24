@@ -29,6 +29,13 @@
 
     $('#accordion2-<%= question.id %>').click(function () {
       $('#create_answer-<%= question.id %>').toggle("slideDown(1000)");
+      resetEditor2();
     });
+
+    function resetEditor2(){
+        var editor1 = CKEDITOR.currentInstance;
+        editor1.setData('');
+
+    }
 
   </script>
