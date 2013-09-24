@@ -14,27 +14,30 @@
     <% end %>
     </div>
   </div>
-  <div class="rows-txt">
+  <div class="comments-container">
     <% if comments %>
       <%= send("show_title", cobj).html_safe %>
 
-      <p><%= link_to("Comments", send("company_#{cobj.class.name.downcase}_comments_path", company, cobj), :remote => true ) %></p>
+      <p>
+        <%= link_to("Comments", send("company_#{cobj.class.name.downcase}_comments_path", company, cobj), :remote => true ) %>
+        <% if child_objs_present %>
+
+            | <a id="accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">
+                <%= ("<b>"+cobj.child_link_name+"</b>").html_safe %>
+              </a>
+            <div class="span12">
+
+            <%= render :partial => 'answers/form', :locals => {:company => company, :question => cobj,
+                                                                 :child_objs => child_objs,
+                                                                 :child_objs_text => child_objs_text} %>
+            </div>
+        <% end %>
+      </p>
 
       <div id="comment_list_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>" style="display:none">
 
       </div>
-      <% if child_objs_present %>
-        <div class="span12">
 
-          <a id="accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">
-            <%= ("<b>"+cobj.child_link_name+"</b>").html_safe %>
-          </a>
-
-          <%= render :partial => 'answers/form', :locals => {:company => company, :question => cobj,
-                                                             :child_objs => child_objs,
-                                                             :child_objs_text => child_objs_text} %>
-        </div>
-      <% end %>
     <% else %>
       <% if show_link %>
         <%= link_to(send("show_title", cobj).html_safe, show_link(cobj)) %>

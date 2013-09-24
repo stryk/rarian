@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>AlphaPitch</title>
+<meta name="apple-touch-fullscreen" content="yes"/>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<link href="css/style.css" type="text/css" rel="stylesheet" media="all" />
+
+<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.smooth-scroll.min.js"></script>
+<script type='text/javascript' src='js/jquery.easing.1.3.js'></script>
+<script type="text/javascript" src="js/custom.modernizr.js"></script>
+
+<link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="js/jquery.jscrollpane.js"></script>
+<script type="text/javascript" id="sourcecode">
+$(function()
+{
+	$('.scroll-pane').jScrollPane();
+});
+</script>
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+	<header>
+    	<div class="header-top">
+        	<div class="row">
+            	<div class="logodiv"><h1><a href="index.html"><img src="images/logo.png" alt="AlphaPitch"></a></h1></div>
+                
+                <div class="top-tickers">
+                	<div class="tickers-div">Most Active: Scrolling tickers</div>
+                </div>
+                
+                <div class="top-login-space">
+                	<p><a href="#">Register</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Sign In</a></p>
+                </div>
+                <div class="clr"></div>
+                
+                <nav class="navdiv">
+                	<ul class="navul">
+                    	<li><a href="#" class="active">Nav Link 1</a></li>
+                        <li><a href="#">Nav Link 2</a></li>
+                        <li><a href="#">Nav Link 3</a></li>
+                        <li><a href="#">Nav Link 4</a></li>
+                        <li><a href="#">Nav Link 5</a></li>
+                        <li><a href="#">Nav Link 6</a></li>
+                        <li><a href="#">Nav Link 7</a></li>
+                        <li><a href="#">Nav Link 8</a></li>
+                    </ul>
+                </nav>
+                
+                
+            </div>
+        </div><!-- end of header top -->
+    </header><!-- end of header -->
+    
+    <div id="middle-container">
+    	<div class="row">
+        
+        	<div class="top-stock-search">
+            	
+                <div class="stock-div">                	
+                    <h2>Google $ 900 <span class="arrow-down"></span> 0.11  (0.06%)</h2>
+                    <div class="reg-follow-btn"><a href="#"></a></div>
+                    <h3>Google Inc.</h3>                    
+                    <p class="sub-title">Tehcnology: Computer Software, Progromming...</p>                    
+                </div><!-- end of stock-div -->
+                <div class="search-box">
+                	<div class="search-div">           	
+                    <form id="searchbox" action="#" method="get">
+                        <input name="search-input" type="text" value="Search by Ticker, Name, Author and Keyword..." class="search-input">
+                        <input type="submit" name="submit-search" value="" class="search-button">
+                        <div class="clr"></div>
+                    </form>
+                    </div>
+                    <div class="clr"></div>
+                </div><!-- end of search-box -->
+            
+            </div><!-- end of top-stock-search -->
+             <div class="clr"></div>
+            
+            <div class="panels-box">
+            	
+                <div class="left-panel">
+                	<div class="box-col">
+                    	<h3>Google wizards</h3>
+                        <div class="box-col-div">
+                        	<ol>
+                            	<li>Dainel Kim (13)</li>
+                                <li>Jone Doe (2)</li>
+                                <li>Sam Kelly (5)</li>
+                                <li>John Porter (10)</li>
+                                <li>Dainel Kim (13)</li>
+                                <li>Jone Doe (2)</li>
+                                <li>Sam Kelly (5)</li>
+                                <li>John Porter (10)</li>
+                            </ol>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                	
+                    <div class="box-col">
+                    	<h3>Company Description</h3>
+                        <div class="box-col-div">
+                        	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at nibh quis dolor eleifend rhoncus sed id sapien. Curabitur congue, quam ac tempor faucibus, nibh sem fringilla risus, at tincidunt elit nisi nec mauris.</p>
+                            
+                            <p><input type="text" value="Edit content here..." class="box-input"></p>
+                            <p><a href="#" class="readmore-link">Write/Edit Description</a></p>
+                            
+                            <div class="slide-div">
+                            	<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at nibh quis dolor eleifend rhoncus sed id sapien.</span>
+                                <textarea name="slide-textarea" cols="5" rows="5" class="slide-textarea"></textarea>
+                                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                                <p><input type="button" class="button medium brown" value="Submit"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    
+                    <div class="box-col">
+                    	<h3>Target Pirce</h3>
+                        <div class="box-col-div">
+                        	<p>2013 : $20.00 (10.1%)</p>
+                            <p>2013 : $200.00 (0.1%)</p>
+                            <p>2013 : $40.00 (2.5%)</p>
+                            <p>2013 : $20.00 (10.1%)</p>
+                            <p>2013 : $200.00 (0.1%)</p>
+                            <p>2013 : $40.00 (2.5%)</p>
+                            
+                            <p><input type="text" value="Edit content here..." class="box-input"></p>
+                            <p><a href="#" class="readmore-link">Write/Edit Description</a></p>
+                            
+                            <div class="slide-div">
+                            	<span>Year:</span>
+                                <select name="yearlist" class="slide-select"><option>Select</option></select>
+                                <span>Content:</span>
+                                <input name="content" type="text" class="slide-input">
+                                <p><input type="button" class="button medium brown" value="Submit"></p>
+                            </div>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    
+                    <div class="box-col">
+                    	<h3>Stock Catalysis</h3>
+                        <div class="box-col-div">
+                        	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="#">Edit | Delete</a></p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="#">Edit | Delete</a></p>
+                            
+                            <p><input type="text" value="Edit content here..." class="box-input"></p>
+                            <p><a href="#" class="readmore-link">Write/Edit Description</a></p>
+                            
+                            <div class="slide-div">
+                            	<input name="content" type="text" class="slide-input-med">&nbsp;<a href="#" class="slide-icon"><img src="images/cal-icon.png" alt=""></a>
+                            	<span>Content</span>
+                                <textarea name="slide-textarea" cols="5" rows="5" class="slide-textarea"></textarea>
+                                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                                <p><input type="button" class="button medium brown" value="Submit"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    
+                    <div class="box-col">
+                    	<h3>Compititors</h3><!--<div class="small-follow-btn"><a href="#"></a></div>-->
+                        
+                        <div class="box-col-div">
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Yahoo (30)</p>
+                                 </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Google (28)</p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Microsoft (26)</p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Apple (25)</p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <p><input type="text" value="Edit content here..." class="box-input"></p>
+                            <p><a href="#" class="readmore-link">Add Compititors</a></p>
+                            
+                            <div class="slide-div">
+                            	<input name="content" type="text" class="slide-input">
+                                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                                <p><input type="button" class="button medium brown" value="Submit"></p>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                        <div class="clr"></div>
+                    </div>
+                    
+                    <div class="box-col">
+                    	<h3>Risks to company</h3><!--<div class="small-follow-btn"><a href="#"></a></div>-->
+                        
+                        <div class="box-col-div">
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Yahoo (30)</p>
+                                 </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Google (28)</p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Microsoft (26)</p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Apple (25)</p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <p><input type="text" value="Edit content here..." class="box-input"></p>
+                            <p><a href="#" class="readmore-link">Add Risks</a></p>
+                            
+                            <div class="slide-div">
+                            	<input name="content" type="text" class="slide-input">
+                                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                                <p><input type="button" class="button medium brown" value="Submit"></p>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                        <div class="clr"></div>
+                    </div>
+                    
+                    
+                </div><!-- end of left-panel -->
+                <div class="middle-panel">
+                	
+                    <div class="box-col middle-margin">
+                    	<h3 class="middleh3">top reason to buy <div class="small-follow-btn"><a href="#">&nbsp;</a></div></h3>
+                        
+                        <!--<div class="text-editor-container">
+                        	<form>
+                            	<p><label>Action</label></p>
+                                <p><select name="action" class="selectbox"><option>Buy</option></select></p>
+                                
+                            	<p><label>Title</label></p>
+                                <p><input name="title" type="text" class="inputbox"></p>
+                                
+                                <p><label>Content</label></p>
+                                <p><textarea name="content" cols="5" rows="5" class="textarea"></textarea></p>
+                                
+                                <p><input type="button" class="button medium brown" value="Submit"></p>
+                                
+                                <p><a href="#">Close</a></p>
+                                
+                            </form>
+                        </div>--><!-- end of text-editor-container -->
+                        
+                        <div class="scroll-pane" style="height:800px;">                        
+                        <div class="box-col-topreason">
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                               
+                                
+                                <div class="rows-txt">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at nibh quis dolor eleifend rhoncus sed id sapien. Curabitur congue, quam ac tempor faucibus, nibh sem fringilla risus, at tincidunt elit nisi nec mauris.</p>
+                                </div>
+                                <div class="clr"></div>
+                                
+                                
+                                
+                                <div class="comments-container">
+                                	<p><a href="#" class="comment-link">Comments</a> | <a href="#" class="share-link">Share (3)</a></p>
+                                    
+                                    <div class="comments-div">
+                                    	
+                                        <div class="comment-box">
+                                        	<div class="user-thumb"><img src="images/user-thumb.jpg" alt=""></div>
+                                            <div class="comment-input"><input name="commentinput" type="text" class="inputbox"></div>
+                                            <div class="comment-btn"><input type="button" value="Comment" class="button medium brown"></div>
+                                        </div><!-- end of comment-box -->
+                                        
+                                        <div class="comment-box">
+                                        	<div class="user-thumb"><img src="images/user-thumb.jpg" alt=""></div>
+                                            <div class="comment-text">
+                                            	<p class="title">User Name</p>
+                                                <p class="normal-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus lectus et dignissim blandit. Sed ut orci elit. Cras imperdiet accumsan risus, id pretium nulla sagittis nec.</p>                                                
+                                            </div>
+                                            
+                                            <div class="comment-reply-div">
+                                            	<p><a href="#" class="comment-link">Reply</a> | <span class="report-date">Report 22 Aug.</span></p>
+                                                
+                                                <div class="comment-reply-box">
+                                                	<div class="reply-input"><input name="commentinput" type="text" class="inputbox"></div>
+                                            		<div class="reply-btn"><input type="button" value="Reply" class="button medium brown"></div>
+                                                    <div class="reply-links">- or - <a href="#" class="comment-link">Cancel</a></div>
+                                                </div><!-- end of comment-reply-box -->
+                                                
+                                            </div><!-- end of comment-reply-div -->
+                                        </div><!-- end of comment-box -->
+                                        
+                                        
+                                        
+                                        <div class="comment-box">
+                                        	<div class="user-thumb"><img src="images/user-thumb.jpg" alt=""></div>
+                                            <div class="comment-input"><input name="commentinput" type="text" class="inputbox"></div>
+                                            <div class="comment-btn"><input type="button" value="Comment" class="button medium brown"></div>
+                                        </div><!-- end of comment-box -->
+                                        
+                                        <div class="comment-box">
+                                        	<div class="user-thumb"><img src="images/user-thumb.jpg" alt=""></div>
+                                            <div class="comment-text">
+                                            	<p class="title">User Name</p>
+                                                <p class="normal-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus lectus et dignissim blandit. Sed ut orci elit. Cras imperdiet accumsan risus, id pretium nulla sagittis nec.</p>                                                
+                                            </div>
+                                            
+                                            <div class="comment-reply-div">
+                                            	<p><a href="#" class="comment-link">Reply</a> | <span class="report-date">Report 22 Aug.</span></p>
+                                                
+                                                <div class="user-thumb"><img src="images/user-thumb.jpg" alt=""></div>
+                                                <div class="comment-text">
+                                                    <p class="title">User Name</p>
+                                                    <p class="normal-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus lectus et dignissim blandit. Sed ut orci elit. Cras imperdiet accumsan risus, id pretium nulla sagittis nec.</p>                                      
+                                                </div>
+                                                
+                                                <p class="reply-thid-level"><a href="#" class="comment-link">Reply</a> | <span class="report-date">Report 22 Aug.</span></p>
+                                                
+                                                
+                                            </div><!-- end of comment-reply-div -->
+                                        </div><!-- end of comment-box -->
+                                        
+                                    </div><!-- end of comments-div -->
+                                    
+                                </div><!-- end of comments-container -->
+                                
+                                
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at nibh quis dolor eleifend rhoncus sed id sapien.</p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at nibh quis dolor eleifend rhoncus sed id sapien. Curabitur congue, quam ac tempor faucibus, nibh sem fringilla risus, at tincidunt elit nisi nec mauris.</p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="topreason-input-txt">
+                            	<div class="input-txt">
+                                	<span class="user-icon"><img src="images/user-icon.png" alt=""></span>
+                                	<input name="" type="text" class="inputo-txt" value="Be the first to add reason to buy...">
+                                </div>
+                            </div>
+                            
+                        </div>
+                        </div><!-- end of scroll-pane -->
+                        
+                        
+                        <div class="clr"></div>
+                    </div>
+                    
+                    <div class="box-col middle-margin">
+                    	<h3 class="middleh3">top reason to sell <div class="small-follow-btn"><a href="#">&nbsp;</a></div></h3>
+                        
+                        <div class="scroll-pane" style="height:400px;">
+                        <div class="box-col-topreason">
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at nibh quis dolor eleifend rhoncus sed id sapien. Curabitur congue, quam ac tempor faucibus, nibh sem fringilla risus, at tincidunt elit nisi nec mauris. <a href="#" class="share-link">Share (3)</a></p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="#" class="share-link">Share (3)</a></p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at nibh quis dolor eleifend rhoncus sed id sapien. <a href="#" class="share-link">Share (3)</a></p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at nibh quis dolor eleifend rhoncus sed id sapien. Curabitur congue, quam ac tempor faucibus, nibh sem fringilla risus, at tincidunt elit nisi nec mauris. <a href="#" class="share-link">Share (3)</a></p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="topreason-input-txt">
+                            	<div class="input-txt">
+                                	<span class="user-icon"><img src="images/user-icon.png" alt=""></span>
+                                	<input name="" type="text" class="inputo-txt" value="Be the first to add reason to sell...">
+                                </div>
+                            </div>
+                            
+                        </div>
+                        </div><!-- end of scroll-pane -->
+                        
+                        <div class="clr"></div>
+                    </div>
+                    
+                    
+                    <div class="box-col">
+                    	<h3>Buring QAs</h3>
+                        
+                        <div class="qa-container">
+                        	<div class="qa-row">
+                            	
+                                <div class="left-box"><strong>Q.</strong></div>
+                                <div class="right-box">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at risus posuere, pharetra neque sit amet.</div>
+                                <div class="clr"></div>
+                                    
+                               	<div class="comments-container">
+                                	<p><a href="#" class="comment-link">Comments</a> | <a href="#" class="comment-link">Ask to Answer</a></p>
+                                    
+                                    <div class="comments-div">
+                                    	<div class="comment-box">
+                                        	<div class="user-thumb"><img src="images/user-thumb.jpg" alt=""></div>
+                                            <div class="comment-input"><input name="commentinput" type="text" class="inputbox"></div>
+                                            <div class="comment-btn"><input type="button" value="Comment" class="button medium brown"></div>
+                                        </div><!-- end of comment-box -->
+                                        
+                                        <div class="comment-box">
+                                        	<div class="user-thumb"><img src="images/user-thumb.jpg" alt=""></div>
+                                            <div class="comment-text">
+                                            	<p class="title">User Name</p>
+                                                <p class="normal-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus lectus et dignissim blandit. Sed ut orci elit. Cras imperdiet accumsan risus, id pretium nulla sagittis nec.</p>                                                
+                                            </div>                                            
+                                            
+                                        </div><!-- end of comment-box -->
+                                    </div><!-- end of comments-div -->
+                                
+                                </div><!-- end of comments-container -->
+                                
+                                                            
+                               	<div class="answer-container">
+                                	
+                                    
+                                    <div class="answer-div">                                    	
+                                        <div class="answer-box">
+                                            <div class="answer-textarea"><textarea name="answer" cols="5" rows="5" class="textarea"></textarea></div>
+                                            <div class="answer-btn"><input type="button" value="Answer" class="button medium brown"></div>
+                                        </div><!-- end of comment-box -->
+                                        <div class="clr"></div>
+                                        
+                                    </div><!-- end of comments-div -->
+                               </div><!-- end of answer-container -->
+                             
+                             
+                             	<div class="answer-div-container">
+                                 <div class="left-box">
+                                     <div class="voting-arrow">
+                                        <div class="voting-with-number">
+                                            <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                            <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                        </div>
+                                    </div>
+                                 </div>
+                                 <div class="right-box">
+                                 
+                                    <div class="answer-div-content">                                    	
+                                            <div class="user-thumb"><img src="images/user-thumb.jpg" alt=""></div>
+                                            <div class="answer-text">
+                                                <p class="title">Topics Content Here</p>
+                                                <p class="normal-txt">Back then, people were not very kind to his "seemingly impractical" claims. For instance, former U.S. Treasury Secretary and former Harvard President Lawrence Summers called the warnings “misguided” and Rajan himself a "luddite". However, following the 2008 economic crisis, his views came to be seen as prescient. In fact, he was extensively interviewed on the global crisis for the Academy Award winning documentary film Inside Job.</p>
+                                                <p><img src="images/main-qimg.jpg" alt=""></p>
+                                                <p class="normal-txt">Since November 2008, Rajan has been actively involved in Indian economy, playing a variety of important roles, including the honorary economic adviser to the Planning Commission, Chief Economic Adviser to the Ministry of Finance and now RBI Governor, for a period of three years.</p>
+                                                <p class="normal-txt">He is a suave, unflappable economist who took office at a time when Indian economy is facing a big crisis. Keen to lower unrealistic hopes of what he can achieve, Mr. Rajan has stressed that he has no "magic wand" to solve India's multiple economic ills. The country has the world's third-largest current account deficit of about $90 billion, high inflation and an economy projected by private economists to grow at about 4 per cent this fiscal year, half the rate it was in 2008. But it is acknowledged that like his predecessor, he would likely try to assert his independence. This can be evidenced from the fact that before becoming Mr. Chidambaram's adviser, it was reported that Mr. Rajan was sharply critical of the government for failing to drive ahead with economic reforms.</p>
+                                           </div>                                                            
+                                    </div><!-- end of comment-box -->
+                                    
+                                    <div class="answer-div-content">                                    	
+                                            <div class="user-thumb"><img src="images/user-thumb.jpg" alt=""></div>
+                                            <div class="answer-text">
+                                                <p class="title">Topics Content Here</p>
+                                                <p class="normal-txt">Back then, people were not very kind to his "seemingly impractical" claims. For instance, former U.S. Treasury Secretary and former Harvard President Lawrence Summers called the warnings “misguided” and Rajan himself a "luddite". However, following the 2008 economic crisis, his views came to be seen as prescient. In fact, he was extensively interviewed on the global crisis for the Academy Award winning documentary film Inside Job.</p>
+                                                <p class="normal-txt">Since November 2008, Rajan has been actively involved in Indian economy, playing a variety of important roles, including the honorary economic adviser to the Planning Commission, Chief Economic Adviser to the Ministry of Finance and now RBI Governor, for a period of three years.</p>
+                                                <p class="normal-txt">He is a suave, unflappable economist who took office at a time when Indian economy is facing a big crisis. Keen to lower unrealistic hopes of what he can achieve, Mr. Rajan has stressed that he has no "magic wand" to solve India's multiple economic ills. The country has the world's third-largest current account deficit of about $90 billion, high inflation and an economy projected by private economists to grow at about 4 per cent this fiscal year, half the rate it was in 2008. But it is acknowledged that like his predecessor, he would likely try to assert his independence. This can be evidenced from the fact that before becoming Mr. Chidambaram's adviser, it was reported that Mr. Rajan was sharply critical of the government for failing to drive ahead with economic reforms.</p>
+                                            </div>
+                                                            
+                                    </div><!-- end of comment-box -->
+                                
+                                    <div class="clr"></div>
+                                 </div><!-- end of right-box -->
+                                 <div class="clr"></div>
+                                 
+                                </div><!-- end of answer-div-container -->
+                                 
+                             <div class="clr"></div>
+                             
+                             </div><!-- end of qa-row -->
+                       
+                       <div class="clr"></div>
+                       </div><!-- end of qa-container -->
+                        
+                        
+                        <div class="clr"></div>
+                    </div><!-- end of box-col -->
+                    
+                </div><!-- end of middle-panel -->
+                <div class="right-panel">
+                	<div class="box-col">
+                    	<h3>Alph Blips <select name="action" class="selectbox-global"><option>Recent</option></select></h3>
+                        
+                        <div class="box-col-div">
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at nibh quis dolor eleifend rhoncus sed id sapien.</p>
+                                    
+                                    <div class="comments-alphablip-container">
+                                		<p><a href="#" class="comment-link">Comments</a> | <a href="#" class="share-link">Share (3)</a></p>
+                                    
+                                        <div class="comments-div">
+                                            
+                                            <div class="comment-box">
+                                                <div class="user-thumb"><img src="images/user-thumb.jpg" alt=""></div>
+                                                <div class="comment-input"><input name="commentinput" type="text" class="inputbox"></div>
+                                                <div class="comment-btn"><input type="button" value="Comment" class="button small brown"></div>
+                                            </div><!-- end of comment-box -->
+                                            
+                                             <p class="normal-txt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                       </div>
+                                   </div>
+                                    
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                                <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at nibh quis dolor eleifend rhoncus sed id sapien.</p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <div class="rows-div">
+                               <div class="voting-arrow">
+                                	<div class="voting-with-number">
+                                        <a href="#" class="voting-up-arrow"><span class="numbers">123</span></a>
+                                        <a href="#" class="voting-down-arrow">&nbsp;</a>
+                                    </div>
+                                </div>
+                                <div class="rows-txt">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at nibh quis dolor eleifend rhoncus sed id sapien. Curabitur congue, quam ac tempor faucibus, nibh sem fringilla risus, at tincidunt elit nisi nec mauris.</p>
+                                </div>
+                                <div class="clr"></div>
+                            </div><!-- end of rows-div -->
+                            
+                            <p><input type="text" value="Edit content here..." class="box-input"></p>
+                            <p><a href="#" class="readmore-link">Write/Edit Description</a></p>
+                            
+                        </div>
+                        
+                        
+                        <div class="clr"></div>
+                    </div>
+                </div><!-- end of right-panel -->
+                
+                <div class="clr"></div>
+            </div><!-- end of panels-box -->
+            
+        
+        </div>
+        <div class="clr"></div>
+    </div><!-- end of middle container -->
+    
+    <footer id="footer">
+    	<div class="row">
+            <div class="footerlinks"><a href="#">Footer Link1</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Footer Link2</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Footer Link1</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Footer Link3</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Footer Link4</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Footer Lin5</a></div>
+            <div class="footer-copy"><p>Copyright&copy; 2013. All Rights AlphaPitch.</p></div>
+    	</div>
+    </footer>
+	
+
+
+</div><!-- end of wrapper -->
+<script type="text/javascript" src="js/custom.js"></script>
+
+</body>
+</html>
