@@ -27,7 +27,7 @@
     </div>
 
 
-    <div class="text-editor-container slide-div" id="add_reason_to_buy_link_slide_down" style="display: none">
+    <div class="text-editor-container " id="add_reason_to_buy_link_slide_down" style="display: none">
       <%= render :partial => 'pitch_form',:locals => {:option => "buy"} %>
     </div>
 
@@ -46,11 +46,10 @@
           <%= link_to " Be the first to add reason to sell...", "#.", :class => "inputo-txt" ,:id => "add_reason_to_sell_link"%>
         </div>
       </div>
-
     </div>
 
-    <div class="text-editor-container slide-div" id="add_reason_to_sell_link_slide_down" style="display: none">
-      <%= render :partial => 'pitch_form' ,:locals => {:option => "sell"} %>
+    <div class="text-editor-container" id="add_reason_to_sell_link_slide_down" style="display: none">
+        <%= render :partial => 'pitch_form' ,:locals => {:option => "sell"} %>
     </div>
 
     <div class="clr"></div>

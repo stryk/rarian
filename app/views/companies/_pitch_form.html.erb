@@ -1,7 +1,7 @@
 <%= form_for(Pitch.new, :url => company_pitches_path(@company),:remote => true, :html => {:class => 'form-horizontal'}, :validate => true) do |f| %>
     <p><%= f.label :action %></p>
     <p>
-      <%= f.select :action, Blip::ACTIONS, {:selected => :option },:class => "slide-select" %>
+      <%= f.select :action, Blip::ACTIONS, {:selected => :option },:class => "selectbox" %>
     </p>
 
     <p><%= f.label :title %></p>

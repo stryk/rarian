@@ -1,8 +1,8 @@
 class Company < ActiveRecord::Base
 
-  extend FriendlyId
+  #extend FriendlyId
 
-  friendly_id :slug_candidates, use: :slugged
+  #friendly_id :slug_candidates, use: :slugged
 
   validates :ticker, :name, presence: true
   has_many :quotes

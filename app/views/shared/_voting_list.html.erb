@@ -18,7 +18,7 @@
     <% if comments %>
       <%= send("show_title", cobj).html_safe %>
 
-      <p><%= link_to("Comments", send("company_#{cobj.class.name.downcase}_comments_path", company, cobj), :remote => true) %></p>
+      <p><%= link_to("Comments", send("company_#{cobj.class.name.downcase}_comments_path", company, cobj), :remote => true ) %></p>
 
       <div id="comment_list_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>" style="display:none">
 

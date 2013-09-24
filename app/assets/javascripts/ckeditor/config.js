@@ -33,6 +33,8 @@ CKEDITOR.editorConfig = function (config) {
   //remove advanced tab from image properties
   config.removeDialogTabs = 'image:advanced';
 
+  config.removePlugins = 'elementspath';
+
 
   // Rails CSRF token
   config.filebrowserParams = function () {
@@ -76,9 +78,8 @@ CKEDITOR.editorConfig = function (config) {
   };
 
   config.toolbar = [
-    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Strike', '-', 'RemoveFormat' ] },
-    { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList' ] },
-    { name: 'insert', items: [ 'Image'] },
+    { name: '', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Strike', '-', 'RemoveFormat' ] },
+    { name: '', items: [ 'Image'] },
   ];
 
 //Toolbar groups configuration.
