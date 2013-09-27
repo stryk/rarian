@@ -2,7 +2,6 @@ class Pitch < ActiveRecord::Base
   attr_accessible :title, :multimedia_content, :action, :user_id, :company_id, :net_votes
 
   validates :title, :multimedia_content, :company_id, :user_id, presence: true
-
   belongs_to :user
   belongs_to :company
 
@@ -14,7 +13,7 @@ class Pitch < ActiveRecord::Base
   acts_as_commentable
 
   def get_full_title
-    created_at.strftime("%m/%d/%Y")+": "+action+": "+title
+    created_at.strftime("%m/%d/%Y")+": "+title
   end
 
   def up_vote

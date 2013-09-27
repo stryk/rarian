@@ -79,7 +79,7 @@ CKEDITOR.editorConfig = function (config) {
 
   config.toolbar = [
     { name: '', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Strike', '-', 'RemoveFormat' ] },
-    { name: '', items: [ 'Image'] },
+    { name: '', items: [ 'Image'] }
   ];
 
 //Toolbar groups configuration.
@@ -162,6 +162,7 @@ CKEDITOR.editorConfig = function (config) {
 //                this.disableButton('ok'); //not working so used following
         document.getElementById(dialog.getButton('ok').domId).style.display = "none";
 
+        $(".cke_dialog_ui_fileButton span").html("Upload");
         // optional:
         dialog.hidePage( 'Link' );
         dialog.hidePage( 'advanced' );

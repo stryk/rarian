@@ -1,11 +1,11 @@
-<%= form_for(Pitch.new, :url => company_pitches_path(@company),:remote => true, :html => {:class => 'form-horizontal'}, :validate => true) do |f| %>
-    <p><%= f.label :action %></p>
-    <p>
-      <%= f.select :action, Blip::ACTIONS, { :selected => option  },:class => "selectbox" %>
+<%= form_for(Pitch.new, :url => company_pitches_path(@company), :remote => true, :validate => true ,:html => {:class => 'form-horizontal'}) do |f| %>
+
+    <p><strong><%= 'Action:' + option.to_s %></strong>
+      <%= f.hidden_field :action ,:value => option %>
     </p>
 
     <p><%= f.label :title %></p>
-    <p><%= f.text_field :title ,:class => "inputbox"%>
+    <p><%= f.text_field :title,:class => "inputbox" ,:presence => true %>
     </p>
 
     <p><%= f.label :multimedia_content, "Content" %></p>
@@ -16,4 +16,5 @@
     <p>
       <%= f.button 'Submit', id: 'create_reason', :class => 'button medium brown' %>
     </p>
+
 <% end %>

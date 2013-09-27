@@ -7,6 +7,10 @@ class PitchesController < ApplicationController
 
   end
 
+  def show
+    @pitch = Pitch.where(:id => params[:id])
+  end
+
   def create
     @pitch = @company.pitches.create(params[:pitch].merge!(:user_id => current_user.id))
     if @pitch.errors.blank?

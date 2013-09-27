@@ -5,11 +5,25 @@
   <% end %>
 </div>
 
+
+<div style='display:none' class="slide-div" id='risk_slide_down_update<%= risk.id %>'>
+  <%= form_for(risk, :url => edit_company_risk_path(@company,risk), :remote => true, :method => 'get', :validate => true) do |f| %>
+    <%= f.text_area :risk, :class => "risk_text_area#{risk.id} slide-input", :rows => "4", :cols =>"10" %>
+    <p><%= f.submit :class => "button medium brown" %></p>
+  <% end %>
+</div>
+
 <script type="text/javascript">
   $(".risk_text_area<%= risk.id %>").maxlength({max: 30});
   $("#company_risk_slide<%= risk.id %>").unbind();
   $("#risk_slide_down<%= risk.id %>").unbind();
   $("#company_risk_slide<%= risk.id %>").click(function(){
     $("#risk_slide_down<%= risk.id %>").toggle("slideDown(1000)", function() {});
+  });
+
+  $("#company_risk_slide_update<%= risk.id %>").unbind();
+  $("#risk_slide_down_update<%= risk.id %>").unbind();
+  $("#company_risk_slide_update<%= risk.id %>").click(function(){
+    $("#risk_slide_down_update<%= risk.id %>").toggle("slideDown(1000)", function() {});
   });
 </script>

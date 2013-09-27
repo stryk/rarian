@@ -1,8 +1,10 @@
-<div class="rows-div">
-
-  <div class="voting-arrow">
+<div>
+  <%= hr_voting = hr_voting rescue nil %>
+  <div class="<%= hr_voting %>voting-arrow">
     <div class="voting-with-number">
-      <%= text_val.try(:html_safe) %><%= link_to send("up_company_#{cobj.class.name.downcase}_votes_path", company, cobj, {:refresh_div => refresh_div}),
+
+
+      <%= link_to send("up_company_#{cobj.class.name.downcase}_votes_path", company, cobj, {:refresh_div => refresh_div}),
                                                  :remote => true, :method => :put, :id => "vote_up_#{cobj.class.name.downcase+"_"+cobj.id.to_s}",
                                                  :class => "voting-up-arrow" do %>
         <span class="numbers" id="upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>"><%= cobj.try(:net_votes) %></span>
@@ -11,12 +13,21 @@
                   :remote => true, :method => :put, :id => "vote_down_#{cobj.class.name.downcase+"_"+cobj.id.to_s}",
                   :class => "voting-down-arrow" do %>
         <span class="numbers" id="downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>">&nbsp;</span>
+
     <% end %>
     </div>
   </div>
+</div>
+
+<!--<div class="clr"></div>-->
+<div >
   <div class="comments-container">
     <% if comments %>
-      <%= send("show_title", cobj).html_safe %>
+      <% if show_link %>
+        <%= link_to("#{text_val.try(:html_safe)}#{send("show_title", cobj)}".html_safe, show_link(cobj, company), :remote => true) %>
+      <% else %>
+        <%= text_val.try(:html_safe) %><%= send("show_title", cobj).html_safe %>
+      <% end %>
 
       <p>
         <%= link_to("Comments", send("company_#{cobj.class.name.downcase}_comments_path", company, cobj), :remote => true ) %>
@@ -45,15 +56,14 @@
 
     <% else %>
       <% if show_link %>
-        <%= link_to(send("show_title", cobj).html_safe, show_link(cobj)) %>
+        <%= link_to(send("show_title", cobj).html_safe, show_link(cobj, company)) %>
       <% else %>
         <%= send("show_title", cobj).html_safe %>
       <% end %>
     <% end %>
   </div>
-  <div class="clr"></div>
-
 </div>
+  <div class="clr"></div>
 
 <script type="text/javascript">
 

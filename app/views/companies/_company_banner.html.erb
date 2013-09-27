@@ -1,9 +1,9 @@
 <div class="stock-div">
   <% pricing_hash = get_pricing_details(@company) %>
   <h2> <%= @company.ticker %> $ <%= pricing_hash[:latest_price] %>
-    <% if pricing_hash[:price_diff].to_i > 0 %>
+    <% if pricing_hash[:percentage_diff].to_i > 0 %>
       <span class="arrow-up"></span>
-    <% elsif pricing_hash[:price_diff].to_i < 0 %>
+    <% elsif pricing_hash[:percentage_diff].to_i < 0 %>
       <span class="arrow-down"></span>
     <% end %>
     <%= pricing_hash[:price_diff] %>  (<%= pricing_hash[:percentage_diff] %>%)</h2>

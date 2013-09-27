@@ -301,8 +301,7 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
 .top-stock-search .stock-div h3{ margin:0; padding:0; font-family: 'vag_roundedbold'; color:#ff7201; font-size:28px; line-height:30px; display:block;}
 .top-stock-search .stock-div .sub-title { margin:0; padding:0; color:#3a3938; font-size:14px;}
 .top-stock-search .stock-div .arrow-down { margin:0; padding:0; background:url(/assets/stock-updown.png) no-repeat left -28px; height:28px; width:29px; display:inline-block;}
-.top-stock-search .stock-div .arrow-up { margin:0; padding:0; background:url(/assets/stock-updown.png) no-repeat left bottom; height:28px; width:29px; display:inline-block;}
-
+.top-stock-search .stock-div .arrow-up { margin:0; padding:0; background:url(../assets/stock-updown.png) no-repeat left top; height:28px; width:29px; display:inline-block;}
 
 .search-div{ margin:10px 0 0 0; padding:0; border:2px solid #a4acb2; -webkit-border-radius: 10px; border-radius: 10px; font-size:14px; color:#737373; font-weight:normal;
     background: #dee5e8; /* Old browsers */
@@ -449,6 +448,48 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
 
 .selectbox-global {margin:0 0 10px 0; padding:5px; border:1px solid #cfcfcf; background:#e7e7e7;}
 
+/*.scroll-pane {width: 100%;height: 200px;overflow: auto;}*/
+/*.horizontal-only{height: auto;max-height: 200px;}*/
+
+.qa-container .qa-row .left-box{ margin:0 5px 0 0; padding:0; float:left; width:5%;color:#222; font-size:12px; line-height:normal;}
+.qa-container .qa-row .right-box{ margin:0; padding:0; float:left; width:93%;color:#222; font-size:12px; line-height:normal;}
+
+.answer-container { margin:10px 0 0 22px; padding:0;}
+.answer-container .answer-div { margin:0;padding:10px; background:#fff; border:1px solid #ccc;}
+.answer-container .answer-box { clear:both; margin:5px 0; padding:0 0 15px 0;}
+.answer-container .answer-box:before, .answer-container .answer-box:after { display: table; line-height: 0; content: "";}
+.answer-container .answer-box:after { clear: both;}
+.answer-container .answer-box .answer-textarea{ margin:0; padding:0; float:left; display:inline-block; width:100%;}
+.answer-container .answer-box .answer-textarea .textarea{ margin:0; padding:5px; border:1px solid #ccc; background:#fff; width:100%;}
+.answer-container .answer-box .answer-btn{ margin:5px 0; padding:0; float:left; display:inline-block; width:27%;}
+
+.answer-container .answer-box .answer-text{ margin:0 0 5px 0; padding:0 0 5px 0; float:left; display:inline-block; width:100%; border-bottom:1px solid #ccc;}
+.answer-container .answer-box .answer-text .title { font-weight:bold; margin:0; padding:0;}
+.answer-container .answer-box .answer-text .normal-txt {margin:0; padding:0; }
+
+.answer-div-container { margin:10px 0; padding:0;}
+.answer-div-content .user-thumb{ margin:0; padding:0; float:left; display:inline-block; width:8%;}
+.answer-div-content .answer-text{ margin:0 0 5px 0; padding:0 0 5px 0; float:left; display:inline-block; width:85%; border-bottom:1px solid #ccc;}
+.answer-div-content .answer-text .title { font-weight:bold; margin:0; padding:0;}
+.answer-div-content .answer-text .normal-txt {margin:0; padding:0 0 10px 0; font-size:12px; color:#222; line-height:18px;}
+
+
+.hr-voting-arrow{ margin:0 5px 0 0; padding:0; float:left; position:relative; width:22%; text-align:center;}
+.hr-voting-arrow a.voting-up-arrow{ margin:0 0 0 0; padding:0  2px 0 2px; background:#d2d2d2 url(../assets/pre-arrow.png) no-repeat 3px center;  display:block; -webkit-border-radius:2px; border-radius: 2px; text-align:center; float:left; width:70%; display:inline-block;}
+.hr-voting-arrow a.voting-up-arrow:hover{ background:#672900 url(../assets/pre-arrow-over.png) no-repeat 3px center;}
+.hr-voting-arrow a.voting-down-arrow{ margin:0; padding:0  2px 0 2px; background:#f4f4f4 url(../assets/next-arrow.png) no-repeat right center; display:block; text-align:center; -webkit-border-radius:2px; border-radius: 2px; float:left;}
+.hr-voting-arrow a.voting-down-arrow:hover{ background: url(../assets/next-arrow-over.png) no-repeat right center;}
+.hr-voting-arrow .numbers { font-size:10px; font-weight:bold; text-align:center; padding:0 0 0 10px; margin-top:-3px; display:inline-block; letter-spacing: -1px;}
+.hr-voting-arrow .numbers:hover { color:#fff;}
+.left-row { width:77%!important;}
+
+.flash-msg-div { clear:both; margin:0; padding:0;}
+.flash-msg-div .success{ clear:both; margin:0; padding:10px; border:1px solid #872a22;}
+.flash-msg-div .success p{ font-size:14px; font-weight:bold; color:#222;}
+.flash-msg-div .close-btn { margin:0 5px 0 0; padding:0; display:inline-block; position:relative; top:2px;}
+
+.flash-msg-div .error{ clear:both; margin:0; padding:10px; border:1px solid #872a22;}
+.flash-msg-div .error p{ font-size:14px; font-weight:bold; color:red;}
 
 
 @font-face {
@@ -497,6 +538,3 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
 marquee a {
   color: white !important;
 }
-
-.scroll-pane {width: 100%;height: 200px;overflow: auto;}
-.horizontal-only{height: auto;max-height: 200px;}
