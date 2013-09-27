@@ -12,6 +12,10 @@ class Pitch < ActiveRecord::Base
 
   acts_as_commentable
 
+  def get_multimedia_content
+    multimedia_content
+  end
+
   def get_full_title
     created_at.strftime("%m/%d/%Y")+": "+title
   end

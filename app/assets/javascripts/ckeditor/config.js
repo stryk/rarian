@@ -100,6 +100,8 @@ CKEDITOR.editorConfig = function (config) {
     { name: 'about' }
   ];
 
+
+
   // Integrate Rails CSRF token into file upload dialogs (link, image, attachment and flash)
   CKEDITOR.on('dialogDefinition', function (ev) {
     // Take the dialog name and its definition from the event data.
@@ -107,7 +109,6 @@ CKEDITOR.editorConfig = function (config) {
     var dialogDefinition = ev.data.definition;
     var dialog = ev.data.definition.dialog;
     var content, upload;
-
 
     if(dialogName == 'link') {
 

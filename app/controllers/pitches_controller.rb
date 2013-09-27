@@ -9,12 +9,17 @@ class PitchesController < ApplicationController
 
   def show
     @pitch = Pitch.where(:id => params[:id])
+
+    respond_to do |format|
+      format.js {}
+    end
   end
 
   def create
     @pitch = @company.pitches.create(params[:pitch].merge!(:user_id => current_user.id))
     if @pitch.errors.blank?
-      flash[:notice] = "Successfully added the reason"
+      #flash[:notice] = "Successfully added the reason"
+      @msg = "Successfully added the reason"
       #redirect_to company_path(@company)
       respond_to do |format|
         format.js

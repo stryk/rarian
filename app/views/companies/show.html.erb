@@ -121,6 +121,7 @@
 <%= render 'searches/search_modal' %>
 <div id="comments_list"></div>
 <script type="text/javascript">
+
     $('#add_reason_to_buy_link').click(function () {
         $("#add_reason_to_buy_link_slide_down").toggle("slideDown(1000)");
         $("#add_reason_to_buy_link_slide_down #pitch_title").val('');
@@ -134,8 +135,10 @@
     });
 
     function resetEditor(){
-        var editor1 = CKEDITOR.currentInstance;
-        editor1.setData('');
+        $("#pitch_multimedia_content").val('');
+//        CKEDITOR.instances['pitch_multimedia_content'].element.$.value = "";
+//        CKEDITOR.instances.pitch_multimedia_content.setData('<p></p>');
+          CKEDITOR.currentInstance.setData('<p></p>');
     }
 </script>
 

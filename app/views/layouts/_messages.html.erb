@@ -1,20 +1,22 @@
-<div id="flash-message_custom" class="flash-msg-div">
+<div id="flash-message">
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
-    <div class="<%= name == :notice ? "success" : "error" %>">
-      <p>
-        <span class="close-btn">
-          <a href="#" ><%= image_tag 'close-btn.png' %></a>
-        </span>
-        <%= msg %>
-      </p>
+    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">&#215;</a>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
     </div>
   <% end %>
 <% end %>
 </div>
 
+<div id="flash-message-custom" class="flash-msg-div" style="display: none">
+
+</div>
+
 <script>
-  $(".close-btn").click(function(){
-    $("#flash-message_custom").hide();
+  $(document).ready(function(){
+      $(".close-btn").click(function(){
+          $("#flash-message-custom").hide();
+      });
   });
 </script>

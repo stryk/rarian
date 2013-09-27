@@ -7,4 +7,8 @@ module BlipsHelper
     obj.get_full_title
   end
 
+  def show_multimedia_content(obj)
+      obj.get_multimedia_content
+  end
+
 end

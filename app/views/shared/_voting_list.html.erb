@@ -1,6 +1,9 @@
 <div>
-  <%= hr_voting = hr_voting rescue nil %>
-  <div class="<%= hr_voting %>voting-arrow">
+  <div class="q-title">
+    <strong><%= text_val.try(:html_safe) %></strong>
+    </div>
+  <% hr_voting = hr_voting rescue nil %>
+  <div class="<%= hr_voting %>voting-arrow" style="top:0!important;">
     <div class="voting-with-number">
 
 
@@ -13,18 +16,24 @@
                   :remote => true, :method => :put, :id => "vote_down_#{cobj.class.name.downcase+"_"+cobj.id.to_s}",
                   :class => "voting-down-arrow" do %>
         <span class="numbers" id="downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>">&nbsp;</span>
-
     <% end %>
     </div>
   </div>
 </div>
 
-<!--<div class="clr"></div>-->
 <div >
   <div class="comments-container">
     <% if comments %>
       <% if show_link %>
-        <%= link_to("#{text_val.try(:html_safe)}#{send("show_title", cobj)}".html_safe, show_link(cobj, company), :remote => true) %>
+        <%#= link_to("#{text_val.try(:html_safe)}#{send("show_title", cobj)}".html_safe, show_link(cobj, company),
+                                                    :id => "show_title_link_"+cobj.id.to_s, :remote => true) %>
+
+        <%= link_to("#{text_val.try(:html_safe)}#{send("show_title", cobj)}".html_safe, "#.",
+                                                    :id => "show_title_link_"+cobj.id.to_s) %>
+
+        <div id="multimedia_content_for_title_<%= cobj.id %>" style="display: none">
+            <%= send("show_multimedia_content",cobj).html_safe %>
+        </div>
       <% else %>
         <%= text_val.try(:html_safe) %><%= send("show_title", cobj).html_safe %>
       <% end %>
@@ -63,9 +72,13 @@
     <% end %>
   </div>
 </div>
-  <div class="clr"></div>
+<div class="clr"></div>
 
 <script type="text/javascript">
+
+  $("#show_title_link_<%= cobj.id%>").click(function(){
+      $("#multimedia_content_for_title_<%= cobj.id %>").toggle();
+  });
 
   <% if current_user.up_voted?(cobj) %>
   $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').hide();
