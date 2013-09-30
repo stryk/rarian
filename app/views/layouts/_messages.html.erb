@@ -1,9 +1,15 @@
-<div id="flash-message">
+<div id="flash-message" class="flash-msg-div">
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
-    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-      <a class="close" data-dismiss="alert">&#215;</a>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <div class="<%= name == :notice ? "success" : "error" %>">
+      <p>
+        <span class="close-btn">
+            <a href="#" class="close-btn">
+              <img src="../assets/close-btn.png" class="close-btn" alt="">
+            </a>
+        </span>
+        <%= msg %>
+      </p>
     </div>
   <% end %>
 <% end %>

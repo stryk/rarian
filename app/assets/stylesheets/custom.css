@@ -480,13 +480,22 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
 .answer-div-content .answer-text .normal-txt {margin:0; padding:0 0 10px 0; font-size:12px; color:#222; line-height:18px;}
 
 
-.hr-voting-arrow{ margin:0 5px 0 0; padding:0; float:left; position:relative; width:25%; text-align:center;}
-.hr-voting-arrow a.voting-up-arrow{ margin:0 0 0 0; padding:0  2px 0 2px; background:#d2d2d2 url(../assets/pre-arrow.png) no-repeat 3px center;  display:block; -webkit-border-radius:2px; border-radius: 2px; text-align:center; float:left; width:70%; display:inline-block;}
-.hr-voting-arrow a.voting-up-arrow:hover{ background:#672900 url(../assets/pre-arrow-over.png) no-repeat 3px center;}
-.hr-voting-arrow a.voting-down-arrow{ margin:0; padding:0  2px 0 2px; background:#f4f4f4 url(../assets/next-arrow.png) no-repeat right center; display:block; text-align:center; -webkit-border-radius:2px; border-radius: 2px; float:left;}
-.hr-voting-arrow a.voting-down-arrow:hover{ background: url(../assets/next-arrow-over.png) no-repeat right center;}
-.hr-voting-arrow .numbers { font-size:10px; font-weight:bold; text-align:center; padding:0 0 0 10px; margin-top:-3px; display:inline-block; letter-spacing: -1px;}
-.hr-voting-arrow .numbers:hover { color:#fff;}
+.hr-voting-arrow { margin:0; padding:0;float:left; position:relative; width:25%; border:0px solid red;}
+.hr-voting-arrow .voting-with-number{ margin:0; padding:0;}
+.hr-voting-arrow .voting-with-number .numbers-bg { margin:0; padding:0;background:#d2d2d2; display:inline-block; -webkit-border-radius:2px; border-radius: 2px;}
+.hr-voting-arrow .voting-with-number .voting-up-arrow{ margin:0; padding:0; background: url(../assets/pre-arrow.png) no-repeat 2px 8px;display:inline-block;}
+.hr-voting-arrow .voting-with-number .voting-up-arrow:hover{ background: url(../assets/pre-arrow-over.png) no-repeat 2px 8px;}
+.hr-voting-arrow .voting-with-number .voting-down-arrow{ margin:0; padding:0; background: url(../assets/next-arrow.png) no-repeat right 8px;display:inline-block; width:8px; height:17px;}
+.hr-voting-arrow .voting-with-number .voting-down-arrow:hover{ background: url(../assets/next-arrow-over.png) no-repeat right 8px;}
+.hr-voting-arrow .voting-with-number .numbers { margin:0; padding:0 5px 0 10px;display:inline-block; font-size:10px; color:#222; font-weight:bold;letter-spacing: -1px;}
+.hr-voting-arrow .voting-with-number .numbers a{ margin:0; padding:0 5px 0 10px;display:inline-block; font-size:10px; color:#222; font-weight:bold;letter-spacing: -1px;}
+/*.hr-voting-arrow{ margin:0 5px 0 0; padding:0; float:left; position:relative; width:25%; text-align:center;}*/
+/*.hr-voting-arrow a.voting-up-arrow{ margin:0 0 0 0; padding:0  2px 0 2px; background:#d2d2d2 url(../assets/pre-arrow.png) no-repeat 3px center;  display:block; -webkit-border-radius:2px; border-radius: 2px; text-align:center; float:left; width:70%; display:inline-block;}*/
+/*.hr-voting-arrow a.voting-up-arrow:hover{ background:#672900 url(../assets/pre-arrow-over.png) no-repeat 3px center;}*/
+/*.hr-voting-arrow a.voting-down-arrow{ margin:0; padding:0  2px 0 2px; background:#f4f4f4 url(../assets/next-arrow.png) no-repeat right center; display:block; text-align:center; -webkit-border-radius:2px; border-radius: 2px; float:left;}*/
+/*.hr-voting-arrow a.voting-down-arrow:hover{ background: url(../assets/next-arrow-over.png) no-repeat right center;}*/
+/*.hr-voting-arrow .numbers { font-size:10px; font-weight:bold; text-align:center; padding:0 0 0 10px; margin-top:-3px; display:inline-block; letter-spacing: -1px;}*/
+/*.hr-voting-arrow .numbers:hover { color:#fff;}*/
 .left-row { width:77%!important;}
 
 .flash-msg-div { clear:both; margin:0; padding:0;}

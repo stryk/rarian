@@ -48,7 +48,7 @@
         </div>
 
         <div class="top-login-space">
-          <p><a href="#">Register</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Sign In</a></p>
+          <p><a href="#">Register</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Sign In</a>&nbsp;&nbsp;|&nbsp;&nbsp;<%=link_to 'Sign Out',destroy_user_session_path,:method => 'delete' %></a></p>
         </div>
         <div class="clr"></div>
 
@@ -105,7 +105,12 @@
 //      });
     });
 
+    $(".close-btn").click(function(){
+        $("#flash-message-custom").hide();
+        $("#flash-message").hide();
+    });
   </script>
+
 </div>
 </body>
 </html>

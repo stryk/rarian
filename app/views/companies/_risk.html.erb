@@ -3,7 +3,7 @@
         <%= render :partial => 'shared/voting_list', :locals => {:cobj => risk, :company => @company, :text_val => nil,
                                                                  :child_objs_present => false,
                                                                  :comments => false, :show_link => false,
-                                                                 :refresh_div => false} %>
+                                                                 :refresh_div => false,:hr_voting => "hr-"} %>
         <%= link_to "Edit", "#.",:id => "company_risk_slide_update#{risk.id}" %>
         <%= link_to "Delete", company_risk_path(@company, risk), :method => 'delete', :remote => true %> <br/>
         <%= render :partial => 'risks/add_risk', :locals => {:risk => risk} %>
