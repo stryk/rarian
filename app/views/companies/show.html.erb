@@ -122,23 +122,31 @@
 <div id="comments_list"></div>
 <script type="text/javascript">
 
+    var current_instance_id;
+
+    function set_current_instance() {
+        if (CKEDITOR.currentInstance) {
+            window.current_instance_id = CKEDITOR.currentInstance.name;
+        } else {
+            return false;
+        }
+    }
+
+
     $('#add_reason_to_buy_link').click(function () {
-      $("#add_reason_to_buy_link_slide_down").toggle("slideDown(1000)");
-      $('#new_pitch').validate();
-      resetEditor();
+        $("#add_reason_to_buy_link_slide_down").toggle("slideDown(1000)");
+        $("#pitch_title").val('');
+        resetEditor("editor_buy");
     });
 
     $('#add_reason_to_sell_link').click(function () {
-      $("#add_reason_to_sell_link_slide_down").toggle("slideDown(1000)");
-      $('#new_pitch').validate();
-      resetEditor();
+        $("#add_reason_to_sell_link_slide_down").toggle("slideDown(1000)");
+        $("#add_reason_to_sell_link_slide_down #pitch_title").val('');
+        resetEditor("editor_sell");
     });
 
-    function resetEditor(){
-        $("#pitch_multimedia_content").val('');
-//        CKEDITOR.instances['pitch_multimedia_content'].element.$.value = "";
-//        CKEDITOR.instances.pitch_multimedia_content.setData('<p></p>');
-          CKEDITOR.currentInstance.setData('<p></p>');
+    function resetEditor(name){
+        CKEDITOR.instances[name].setData("<p></p>");
     }
 </script>
 

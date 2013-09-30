@@ -3,4 +3,11 @@ $('#<%= @question.class.name.downcase+'-'+@question.id.to_s %>').prepend('<%= j 
                                                              :child_objs_present => false, :comments => true,
                                                              :show_link => false, :refresh_div => false} %>');
 
+$("#flash-message-custom").html('<div class="success"><p><span class="close-btn"><a href="#" class="close-btn" ><img src="../assets/close-btn.png" class="close-btn" alt=""></a></span><%= @msg %></p></div>');
+$("#flash-message-custom").show();
+
 $('#create_answer-<%= @question.id %>').toggle("slideDown(1000)");
+
+setTimeout(function(){
+    $("#flash-message-custom").hide();
+},5000)

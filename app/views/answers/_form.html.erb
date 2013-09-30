@@ -1,7 +1,7 @@
 <span style='display:none' id='create_answer-<%= question.id %>'>
 <%= form_for(Answer.new, :url => company_question_answers_path(company, question), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
   <div class="span12">
-    <%= f.text_area :content, :class => "ckeditor", :toolbar => "Mini" %>
+    <%= f.text_area :content, :class => "ckeditor", :toolbar => "Mini" ,:id => "editor_answer_"+question.id.to_s%>
   </div>
 
   <div class="span12">
@@ -29,13 +29,11 @@
 
     $('#accordion2-<%= question.id %>').click(function () {
       $('#create_answer-<%= question.id %>').toggle("slideDown(1000)");
-      resetEditor2();
+      resetEditor2(<%= question.id %>);
     });
 
-    function resetEditor2(){
-        var editor1 = CKEDITOR.currentInstance;
-        editor1.setData('');
-
+    function resetEditor2(question_id){
+        CKEDITOR.instances['editor_answer_'+question_id].setData('<p></p>');
     }
 
   </script>
