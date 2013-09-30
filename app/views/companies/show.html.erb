@@ -135,14 +135,17 @@
 
     $('#add_reason_to_buy_link').click(function () {
         $("#add_reason_to_buy_link_slide_down").toggle("slideDown(1000)");
-        $("#pitch_title").val('');
+      $("#add_reason_to_buy_link_slide_down #pitch_title").val('');
+
+        $('#add_reason_to_buy_link_slide_down #new_pitch').resetClientSideValidations();
         resetEditor("editor_buy");
     });
 
     $('#add_reason_to_sell_link').click(function () {
         $("#add_reason_to_sell_link_slide_down").toggle("slideDown(1000)");
         $("#add_reason_to_sell_link_slide_down #pitch_title").val('');
-        resetEditor("editor_sell");
+      $("#add_reason_to_sell_link_slide_down #new_pitch").resetClientSideValidations();
+      resetEditor("editor_sell");
     });
 
     function resetEditor(name){
