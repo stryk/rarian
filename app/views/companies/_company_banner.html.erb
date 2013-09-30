@@ -3,10 +3,12 @@
   <h2> <%= @company.ticker %> $ <%= pricing_hash[:latest_price] %>
     <% if pricing_hash[:percentage_diff].to_i > 0 %>
       <span class="arrow-up"></span>
+      <%= pricing_hash[:price_diff] %>  (<%= pricing_hash[:percentage_diff] %>%)
     <% elsif pricing_hash[:percentage_diff].to_i < 0 %>
       <span class="arrow-down"></span>
+      <%= pricing_hash[:price_diff] %>  (<%= pricing_hash[:percentage_diff] %>%)
     <% end %>
-    <%= pricing_hash[:price_diff] %>  (<%= pricing_hash[:percentage_diff] %>%)</h2>
+    </h2>
   <div class="reg-follow-btn"><a href="#"></a></div>
   <h3> <%= @company.name %>.</h3>
   <p class="sub-title"><%= @company.sector %>: <span id="jTruncate_truncate"><%= @company.industry %></span></p>
