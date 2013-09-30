@@ -54,7 +54,6 @@
       </div>
 
         <% if current_user %>
-        <p><input type="text" value="Edit content here..." class="box-input"></p>
         <p><%= link_to "Add Competitor", "#.", :id => 'company_competitor_slide', :class => "readmore-link" %>
           </p>
           <%= render :partial => 'competitors/add_competitor' %>

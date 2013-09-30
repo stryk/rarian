@@ -22,7 +22,7 @@ gem 'jquery-rails', '~>3.0.4'
 gem 'acts_as_commentable'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '~>1.3.0'
+#gem 'turbolinks', '~>1.3.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

@@ -1,11 +1,10 @@
-<div>
+<div class="left-box">
   <div class="q-title">
     <strong><%= text_val.try(:html_safe) %></strong>
-    </div>
+  </div>
   <% hr_voting = hr_voting rescue nil %>
   <div class="<%= hr_voting %>voting-arrow" style="top:0!important;">
     <div class="voting-with-number">
-
 
       <%= link_to send("up_company_#{cobj.class.name.downcase}_votes_path", company, cobj, {:refresh_div => refresh_div}),
                                                  :remote => true, :method => :put, :id => "vote_up_#{cobj.class.name.downcase+"_"+cobj.id.to_s}",
@@ -21,7 +20,7 @@
   </div>
 </div>
 
-<div >
+<div class="right-box">
   <div class="comments-container">
     <% if comments %>
       <% if show_link %>
@@ -35,9 +34,8 @@
             <%= send("show_multimedia_content",cobj).html_safe %>
         </div>
       <% else %>
-        <%= text_val.try(:html_safe) %><%= send("show_title", cobj).html_safe %>
+        <%#= text_val.try(:html_safe) %><%= send("show_title", cobj).html_safe %>
       <% end %>
-
       <p>
         <%= link_to("Comments", send("company_#{cobj.class.name.downcase}_comments_path", company, cobj), :remote => true ) %>
         <% if child_objs_present %>

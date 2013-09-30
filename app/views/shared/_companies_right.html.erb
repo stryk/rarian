@@ -12,7 +12,6 @@
     <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
   </div>
   <% if current_user %>
-    <p><input type="text" value="Edit content here..." class="box-input"></p>
 
     <p><a href="#." role="button" class="readmore-link" id="new_blip_<%= @company.id %>">Write Blip</a>
     </p>
