@@ -10,6 +10,7 @@ class Ability
     alias_action :create, :update, :destroy, :to => :cud
     alias_action :create, :update, :to => :cu
 
+
     if user.is? :admin
       can :manage, :all
     elsif user.is? :standard
@@ -26,6 +27,9 @@ class Ability
       can :cu, Blip, :user_id => user.id
       can :crud, Comment, :user_id => user.id
       can :read, Comment
+      can :read, User
+      can :cu, User, :user_id => user.id
+      can :setting, User, :user_id => user.id
     else
       can :read, :all
     end

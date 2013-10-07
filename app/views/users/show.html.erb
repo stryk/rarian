@@ -1,0 +1,105 @@
+<div class="top-stock-search">
+  <%= render 'user_banner' %>
+</div><!-- end of top-stock-search -->
+<div class="clr"></div>
+
+<%= render 'users_left' %>
+
+<div class="middle-panel">
+
+  <div class="box-col middle-margin">
+    <h3>Alph
+      Blips  <%= select_tag("sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global",
+                            data: {
+                              remote: true,
+                              url: "#.",
+                              update: "message_div_id"
+                            }
+                 ) %></h3><!--<div class="small-follow-btn"><a href="#"></a></div>-->
+    <% current_user.blips.each do |blip| %>
+      <%= blip.get_full_title %> </br>
+    <% end %>
+  </div>
+
+  <div class="box-col middle-margin">
+    <h3 class="middleh3">Buy Pitch
+    </h3>
+    <% current_user.pitches.buy_pitch.each do |pitch| %>
+      <%= pitch.get_full_title %> </br>
+    <% end %>
+  </div>
+
+  <div class="box-col middle-margin">
+    <h3 class="middleh3">Sell Pitch
+    </h3>
+    <% current_user.pitches.sell_pitch.each do |pitch| %>
+      <%= pitch.company.ticker %>: <%= pitch.get_full_title %> </br>
+    <% end %>
+  </div>
+
+  <div class="box-col middle-margin">
+    <h3 class="middleh3">Questions
+    </h3>
+    <% current_user.questions.each do |question| %>
+      <%= question.company.ticker %>: <%= question.get_full_title %> </br>
+    <% end %>
+  </div>
+
+  <div class="box-col middle-margin">
+    <h3 class="middleh3">Answers
+    </h3>
+    <% current_user.answers.each do |answer| %>
+      <%= answer.company.ticker %>: <%= answer.get_full_title.html_safe %> </br>
+    <% end %>
+  </div>
+
+
+  <div class="box-col middle-margin">
+    <h3 class="middleh3">Comments
+    </h3>
+    <% current_user.comments.each do |comment| %>
+      <%= comment.commentable.company.ticker %>: <%= comment.title %> </br>
+    <% end %>
+  </div>
+
+
+  <div class="clr"></div>
+</div>
+
+<div class="right-panel">
+
+  <div class="box-col">
+    <h3>About: <%= current_user.name %></h3>
+    <div class="box-col-div">
+
+    </div>
+    <div class="clr"></div>
+  </div>
+
+  <div class="box-col">
+    <h3>Interest/Expertise: </h3>
+    <div class="box-col-div">
+
+    </div>
+    <div class="clr"></div>
+  </div>
+
+  <div class="box-col">
+    <h3>Company: </h3>
+    <div class="box-col-div">
+
+    </div>
+    <div class="clr"></div>
+  </div>
+
+  <div class="box-col">
+    <h3>Blog: </h3>
+    <div class="box-col-div">
+
+    </div>
+    <div class="clr"></div>
+  </div>
+</div>
+
+
+
