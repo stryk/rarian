@@ -1,0 +1,42 @@
+<div class="panels-box">
+  <div class="left-panel">
+
+    <div class="box-col">
+      <h3><%= current_user.name %> wizards</h3>
+      <div class="box-col-div">
+        <ol>
+          <% TopUser.get_user_companies(current_user, 5).each do |top_user| %>
+            <li><%= link_to top_user.company.ticker, company_path(top_user.company) %> (<%= top_user.no_of_votes %>)</li>
+          <% end %>
+        </ol>
+      </div>
+      <div class="clr"></div>
+    </div>
+
+
+    <div class="box-col">
+      <h3><%= current_user.name %> Contributions</h3>
+      <div class="box-col-div">
+        <ol>
+          <% current_user.get_contributions.each do |key, value| %>
+            <li><%= key %> (<%= value %>)</li>
+          <% end %>
+        </ol>
+      </div>
+      <div class="clr"></div>
+    </div>
+
+    <div class="box-col">
+      <h3>Total Credits: <%= MakeVoteable::Voting.where(:voter_type => "User", :voter_id => current_user.id).count %></h3>
+      <div class="box-col-div">
+        <ol>
+
+        </ol>
+      </div>
+      <div class="clr"></div>
+    </div>
+
+
+  </div>
+
+</div>

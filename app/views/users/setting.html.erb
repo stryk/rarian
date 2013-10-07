@@ -1,0 +1,41 @@
+<div class="panels-box">
+  <div class="left-panel">
+    <div class="box-col">
+      <h3><%= current_user.name %></h3>
+
+      <div class="box-col-div">
+
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>
+
+<div class="middle-panel">
+  <div class="box-col middle-margin">
+    <h3>Account Settings</h3>
+    Primary Email <%= current_user.email %>  </br>
+    <%= link_to "Add Another Email Address", "#." %> </br>
+    Password <%= link_to "Change My Password", "#." %> </br>
+    Mobile Number <%= current_user.try(:mobile_number) %>  </br>
+  </div>
+
+  <div class="box-col middle-margin">
+    <h3>Email Preferences</h3>
+    Someone starts following me: <%= check_box_tag :email_follow_me %> </br>
+    Someone asks me to answer a question: <%= check_box_tag :email_answer_question %> </br>
+    Someone sends me a message <%= check_box_tag :email_follow_me %> </br>
+
+    <h3>Questions/Answers/Comments</h3>
+    Someone upvotes or downvotes my answer <%= check_box_tag :email_vote %> </br>
+    Someone writes a comment <%= check_box_tag :email_comment %> </br>
+    Someone adds on answer to my question <%= check_box_tag :email_question %> </br>
+    Someone adds a comment to my answer <%= check_box_tag :email_answer %> </br>
+    Marks as spam <%= check_box_tag :email_spam %> </br>
+
+    <h3>Newsletter for pages followed</h3>
+    Every <%= text_field_tag :no_day_newsletter, 7 %> days </br>
+
+  </div>
+
+</div>

@@ -77,11 +77,16 @@ Rarian::Application.routes.draw do
 
 
   #devise_scope :users do
-  #  get "users/sign_up", :to => "users/registrations#new"
+  #  get "users/sign_up", :to => "users1/registrations#new"
   #end
 
-  devise_for :users, :controllers => {:registrations => "users/registrations"}
+  devise_for :users, :controllers => {:registrations => "users1/registrations"}
 
+  resources :users do
+    collection {
+      get :setting
+    }
+  end
 
   resources :home
   # The priority is based upon order of creation: first created -> highest priority.
