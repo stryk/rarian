@@ -1,5 +1,6 @@
-<% Catalyst.where(:company_id => @company.id).order("date ASC").group_by(&:date).each do |cat_date, catalyst| %>
-  <% catalyst.each do |cat| %>
+<% @catalyst.each do |cat_date, catalyst| %>
+
+    <% catalyst.each do |cat| %>
 
     <p><%= cat_date %>: <%= cat.content %> <%= link_to "Edit", "#.", :id => "company_catalyst_slide#{cat.id}" %> |
       <%= link_to "Delete", company_catalyst_path(@company, cat), :method => 'delete', :remote => true %>

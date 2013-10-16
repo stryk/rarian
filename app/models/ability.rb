@@ -30,6 +30,7 @@ class Ability
       can :read, User
       can :cu, User, :user_id => user.id
       can :setting, User, :user_id => user.id
+      can :credits, User, :user_id => user.id
     else
       can :read, :all
     end

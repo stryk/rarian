@@ -80,22 +80,33 @@ Rarian::Application.routes.draw do
   #  get "users/sign_up", :to => "users1/registrations#new"
   #end
 
-  devise_for :users, :controllers => {:registrations => "users1/registrations"}
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
 
   resources :users do
     collection {
       get :setting
+      get :credits
     }
   end
 
-  resources :home
+  resources :home  do
+    collection {
+      get :landing
+    }
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'companies#index'
 
+
+
   put '/' => 'companies#index'
+
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
