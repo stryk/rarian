@@ -6,8 +6,22 @@ class UsersController < ApplicationController
 
   end
 
-  def setting
+  def new
 
   end
+
+  def setting
+    #raise User.new.no_day_newsletter.inspect
+  end
+
+  def credits
+
+  end
+
+  def update
+
+
+  end
+
 
 end

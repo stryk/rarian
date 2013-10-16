@@ -1,5 +1,5 @@
 <div class="top-stock-search">
-  <%= render 'user_banner' %>
+  <%#= render 'user_banner' %>
 </div><!-- end of top-stock-search -->
 <div class="clr"></div>
 
@@ -15,7 +15,10 @@
                               url: "#.",
                               update: "message_div_id"
                             }
-                 ) %></h3><!--<div class="small-follow-btn"><a href="#"></a></div>-->
+                 ) %></h3>
+
+    <!--<div class="small-follow-btn"><a href="#"></a></div>-->
+    <%#raise current_user.inspect%>
     <% current_user.blips.each do |blip| %>
       <%= blip.get_full_title %> </br>
     <% end %>

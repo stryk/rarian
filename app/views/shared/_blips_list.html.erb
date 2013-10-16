@@ -1,6 +1,6 @@
 <% objs.each do |cobj| %>
    <% show_link_boolean = (show_link rescue false)  %>
-  <%= render :partial => 'shared/voting_list', :locals => {:cobj => cobj, :company => company, :text_val => objs_text,
+  <%= render :partial => 'shared/voting_list', :locals => {:cobj => cobj, :text_val => objs_text,
                                                            :child_objs_present => !child_objs.blank?,
                                                            :child_objs => child_objs,
                                                            :child_objs_text => child_objs_text,

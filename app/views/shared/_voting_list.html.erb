@@ -6,14 +6,14 @@
   <div class="<%= hr_voting %>voting-arrow" style="top:0!important;">
     <div class="voting-with-number">
       <span class = "numbers-bg">
-          <%= link_to send("up_company_#{cobj.class.name.downcase}_votes_path", company, cobj, {:refresh_div => refresh_div}),
+          <%= link_to send("up_company_#{cobj.class.name.downcase}_votes_path", cobj.company, cobj, {:refresh_div => refresh_div}),
                                                      :remote => true, :method => :put, :id => "vote_up_#{cobj.class.name.downcase+"_"+cobj.id.to_s}",
                                                      :class => "voting-up-arrow" do %>
           <span class="numbers" id="upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>"><%= cobj.try(:net_votes) %></span>
           <% end %>
       </span>
       <span class="numbers-bg">
-          <%= link_to send("down_company_#{cobj.class.name.downcase}_votes_path", company, cobj, {:refresh_div => refresh_div}),
+          <%= link_to send("down_company_#{cobj.class.name.downcase}_votes_path", cobj.company, cobj, {:refresh_div => refresh_div}),
                       :remote => true, :method => :put, :id => "vote_down_#{cobj.class.name.downcase+"_"+cobj.id.to_s}",
                       :class => "voting-down-arrow" do %>
             <span class="numbers" id="downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>">&nbsp;</span>
@@ -40,7 +40,7 @@
         <%#= text_val.try(:html_safe) %><%= send("show_title", cobj).html_safe %>
       <% end %>
       <p>
-        <%= link_to("Comments", send("company_#{cobj.class.name.downcase}_comments_path", company, cobj), :remote => true ) %>
+        <%= link_to("Comments", send("company_#{cobj.class.name.downcase}_comments_path", cobj.company, cobj), :remote => true ) %>
         <% if child_objs_present %>
 
             | <a id="accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">
@@ -53,7 +53,7 @@
 
             <div class="span12">
 
-            <%= render :partial => 'answers/form', :locals => {:company => company, :question => cobj,
+            <%= render :partial => 'answers/form', :locals => {:company => cobj.company, :question => cobj,
                                                                  :child_objs => child_objs,
                                                                  :child_objs_text => child_objs_text} %>
             </div>
@@ -66,7 +66,7 @@
 
     <% else %>
       <% if show_link %>
-        <%= link_to(send("show_title", cobj).html_safe, show_link(cobj, company)) %>
+        <%= link_to(send("show_title", cobj).html_safe, show_link(cobj, obj.company)) %>
       <% else %>
         <%= send("show_title", cobj).html_safe %>
       <% end %>

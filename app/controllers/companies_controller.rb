@@ -5,10 +5,12 @@ class CompaniesController < ApplicationController
 
 	def index
 		@companies = Company.all.limit(50)
+
   end
 
   def show
     @blips = @company.blips
+    @catalyst = Catalyst.where(:company_id => @company.id).order("date ASC").group_by(&:date)
   end
 
 	def import
@@ -47,6 +49,7 @@ class CompaniesController < ApplicationController
     @company.description = params[:company][:description]
     @company.save
   end
+
 
 
 end
