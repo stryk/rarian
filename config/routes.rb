@@ -86,12 +86,21 @@ Rarian::Application.routes.draw do
     collection {
       get :setting
       get :credits
+      get :blips
+      get :buypitch
+      get :sellpitch
+      get :question
+      get :answer
+      get :comment
     }
   end
 
   resources :home  do
     collection {
       get :landing
+      get :blips
+      get :sellpitch
+      get :buypitch
     }
   end
 

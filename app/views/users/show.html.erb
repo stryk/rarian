@@ -12,60 +12,154 @@
       Blips  <%= select_tag("sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global",
                             data: {
                               remote: true,
-                              url: "#.",
+                              url: "/users/blips",
                               update: "message_div_id"
                             }
-                 ) %></h3>
+                 ) %> <%= select_tag("range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
+                                     data: {
+                                             remote: true,
+                                             url: "/users/blips",
+
+                                             update: "message_div_id"
+                                     }
+                                       ) %></h3>
 
     <!--<div class="small-follow-btn"><a href="#"></a></div>-->
     <%#raise current_user.inspect%>
-    <% current_user.blips.each do |blip| %>
-      <%= blip.get_full_title %> </br>
-    <% end %>
+    <div id="blips_list" class="scroll">
+      <%= render :partial => 'users/blips_list', :locals => {:objs => @blips,:child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
+      <%#raise @blips.inspect%>
+
+
+
+
+    </div>
+
+    <%# current_user.blips.each do |blip| %>
+      <%#= blip.get_full_title %> </br>
+    <%# end %>
   </div>
 
   <div class="box-col middle-margin">
     <h3 class="middleh3">Buy Pitch
-    </h3>
-    <% current_user.pitches.buy_pitch.each do |pitch| %>
-      <%= pitch.get_full_title %> </br>
-    <% end %>
-  </div>
+      <%= select_tag("buyrange", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global",
+                          data: {
+                                  remote: true,
+                                  url: "/users/buypitch",
+                                  update: "message_div_id"
+                          }
+               ) %> <%= select_tag("buy_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
+                                   data: {
+                                           remote: true,
+                                           url: "/users/buypitch",
 
+                                           update: "message_div_id"
+                                   }
+                              ) %> </h3>
+    <div id="buy_list" class="scroll">
+      <%= render :partial => 'users/buypitch', :locals => {:objs => @buypitchs,
+                                                              :company => @company, :child_objs => nil,
+                                                              :objs_text => nil,
+                                                              :child_objs_text => nil,
+                                                              :show_link => true} %>
+
+    <%# current_user.pitches.buy_pitch.each do |pitch| %>
+      <%#= pitch.get_full_title %> </br>
+    <%# end %>
+  </div>
+            </div>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Sell Pitch
-    </h3>
-    <% current_user.pitches.sell_pitch.each do |pitch| %>
-      <%= pitch.company.ticker %>: <%= pitch.get_full_title %> </br>
-    <% end %>
-  </div>
+      <%= select_tag("sellrange", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global",
+                     data: {
+                             remote: true,
+                             url: "/users/sellpitch",
+                             update: "message_div_id"
+                     }
+          ) %> <%= select_tag("sell_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
+                              data: {
+                                      remote: true,
+                                      url: "/users/sellpitch",
 
+                                      update: "message_div_id"
+                              }
+                   ) %></h3>
+    <div id="sell_list" class="scroll">
+      <%= render :partial => 'users/sellpitch', :locals => {:objs => @sellpitchs,
+                                                           :child_objs => nil,
+                                                           :objs_text => nil,
+                                                           :child_objs_text => nil,
+                                                           :show_link => true} %>
+    <%# current_user.pitches.sell_pitch.each do |pitch| %>
+      <%#= pitch.company.ticker %>: <%#= pitch.get_full_title %> </br>
+    <%# end %>
+  </div>
+            </div>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Questions
-    </h3>
-    <% current_user.questions.each do |question| %>
-      <%= question.company.ticker %>: <%= question.get_full_title %> </br>
-    <% end %>
-  </div>
+      <%= select_tag("question_range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
+                     data: {
+                             remote: true,
+                             url: "/users/question",
 
+                             update: "message_div_id"
+                     }
+          ) %></h3>
+    <div id="question_list" class="scroll">
+      <%= render :partial => 'users/question', :locals => {:objs => @question,
+                                                            :child_objs => nil,
+                                                            :objs_text => nil,
+                                                            :child_objs_text => nil,
+                                                            :show_link => true} %>
+    <%# current_user.questions.each do |question| %>
+      <%#= question.company.ticker %>: <%#= question.get_full_title %> </br>
+    <%# end %>
+  </div>
+    </div>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Answers
-    </h3>
-    <% current_user.answers.each do |answer| %>
-      <%= answer.company.ticker %>: <%= answer.get_full_title.html_safe %> </br>
-    <% end %>
+      <%= select_tag("answer_range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
+                     data: {
+                             remote: true,
+                             url: "/users/answer",
+
+                             update: "message_div_id"
+                     }
+          ) %></h3>
+    <div id="answer_list" class="scroll">
+      <%= render :partial => 'users/answer', :locals => {:objs => @answer,
+                                                           :child_objs => nil,
+                                                           :objs_text => nil,
+                                                           :child_objs_text => nil,
+                                                           :show_link => true} %>
+    <%# current_user.answers.each do |answer| %>
+      <%#= answer.company.ticker %>: <%#= answer.get_full_title.html_safe %> </br>
+    <%# end %>
   </div>
 
-
+          </div>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Comments
-    </h3>
-    <% current_user.comments.each do |comment| %>
-      <%= comment.commentable.company.ticker %>: <%= comment.title %> </br>
-    <% end %>
+      <%= select_tag("comment_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
+                     data: {
+                             remote: true,
+                             url: "/users/comment",
+
+                             update: "message_div_id"
+                     }
+          ) %></h3>
+    <div id="comment_list" class="scroll">
+      <%= render :partial => 'users/comment', :locals => {:objs => @comment,
+                                                         :child_objs => nil,
+                                                         :objs_text => nil,
+                                                         :child_objs_text => nil,
+                                                         :show_link => true} %>
+    <%# current_user.comments.each do |comment| %>
+      <%#= comment.commentable.company.ticker %>: <%#= comment.title %> </br>
+    <%# end %>
   </div>
 
-
+          </div>
   <div class="clr"></div>
 </div>
 

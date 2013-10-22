@@ -9,16 +9,25 @@
 
       <div class="box-col-topreason">
         <div class="rows-div">
+          <%= select_tag("buyrange", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
+                         data: {
+                                 remote: true,
+                                 url: "/home/buypitch",
+
+                                 update: "message_div_id"
+                         }
+              ) %>
 
 
           <div class="comments-container">
+            <div id="buy_list" class="scroll">
             <%= render :partial => 'shared/blips_list', :locals => {:objs => Pitch.buy_pitch.order("created_at DESC").all,
                                                                     :company => @company, :child_objs => nil,
                                                                     :objs_text => nil,
                                                                     :child_objs_text => nil,
                                                                     :show_link => true} %>
             <!-- end of comments-div -->
-
+                           </div>
           </div><!-- end of comments-container -->
 
 
@@ -38,6 +47,15 @@
 
       <div class="box-col-topreason">
         <div class="rows-div">
+          <%= select_tag("sellrange", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
+                         data: {
+                                 remote: true,
+                                 url: "/home/sellpitch",
+
+                                 update: "message_div_id"
+                         }
+              ) %>
+          <div id="sell_list" class="scroll">
           <%= render :partial => 'shared/blips_list', :locals => {:objs => Pitch.sell_pitch.order("created_at DESC").all,
                                                                   :company => @company, :child_objs => nil,
                                                                   :objs_text => nil,
@@ -45,19 +63,14 @@
                                                                   :show_link => true} %>
         </div><!-- end of rows-div -->
 
-
+           </div>
 
       </div>
 
       <div class="clr"></div>
     </div>
-
-
-
-
-  </div><!-- end of left-panel -->
-
-  <div class="landing-right-panel">
+          </div>
+    <div class="landing-right-panel">
 
 
       <div class="box-col">
@@ -65,18 +78,35 @@
           <h3>Alph Blips<%= select_tag("sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global",
                                        data: {
                                                remote: true,
-                                               url: "#.",
+                                               url: "/home/blips",
+
                                                update: "message_div_id"
                                        }
-                            ) %></h3>
-          <div id="blips_list" class="scroll">
-            <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %></div><!-- end of rows-div -->
+                            ) %>
 
+            <%= select_tag("range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
+                           data: {
+                                   remote: true,
+                                   url: "/home/blips",
+
+                                   update: "message_div_id"
+                           }
+                ) %>
+
+          </h3>
+          <div id="blips_list" class="scroll">
+            <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips,:child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
+              <%#raise @blips.inspect%>
 
 
 
 
         </div>
+
+
+
+
+   <!-- end of left-panel -->
 
 
         <div class="clr"></div>

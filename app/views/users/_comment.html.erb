@@ -1,0 +1,3 @@
+<% objs.each do |comment| %>
+<%= comment.commentable.company.ticker %>: <%= comment.title %> </br>
+<% end %>

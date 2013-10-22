@@ -1,0 +1,5 @@
+$("#comment_list").html('<%=j raw (render :partial => "users/comment", :locals => {:objs => @comments,
+                                                                  :company => @company, :child_objs => nil,
+                                                                  :objs_text => nil,
+                                                                  :child_objs_text => nil,
+                                                                  :show_link => true}).gsub!("\n", "") %>');

@@ -1,0 +1,1 @@
+$("#blips_list").html('<%=j raw (render :partial => "shared/blips_list", :locals => {:objs => @blips, :child_objs => nil,:objs_text => nil, :child_objs_text => nil }).gsub!("\n", "") %>');

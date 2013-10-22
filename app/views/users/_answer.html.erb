@@ -1,0 +1,3 @@
+<% objs.each do |answer| %>
+<%= answer.company.ticker %>: <%= answer.get_full_title.html_safe %> </br>
+<% end %>

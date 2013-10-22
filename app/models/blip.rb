@@ -2,6 +2,7 @@ class Blip < ActiveRecord::Base
   belongs_to :user
   belongs_to :company
 
+
   ACTIONS = %w(buy sell)
 
   validates :action, :inclusion => {:in => ["buy", "sell"]}
