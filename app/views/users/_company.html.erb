@@ -1,0 +1,16 @@
+<%= current_user.company%>
+<%= link_to "Edit", "#.",
+            :id => "company" ,
+            :onclick => "show_user_company()", :class => "readmore-link" %>
+<div class="slide-div" id="show_company_down" style="display: none">
+  <%= form_for(User.new, :remote => true, url: users_path(:id => current_user.id),
+               update: "message_div_id", :method => 'put') do |f| %>
+
+      <%=	 f.label :company %>
+      <%= f.text_area :company %>
+
+
+
+      <%= f.submit 'Save' ,:class => "button medium brown" %>
+  <% end %>
+</div>

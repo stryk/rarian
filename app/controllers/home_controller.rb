@@ -5,35 +5,52 @@ class HomeController < ApplicationController
   end
 
   def landing
-    @blips = Blip.order("created_at asc")
+    @buy_pitchs = get_records(Pitch.buy_pitch, params)
+    @sell_pitchs = get_records(Pitch.sell_pitch, params)
+    @blips = get_records(Blip.all, params)
     @catalyst = Catalyst.order("date DESC").group_by(&:date)
   end
 
   def blips
-    params[:sort_by] = 'asc' if params[:sort_by].blank?
-    params[:range] = 10 if params[:range].blank?
-    @blips = Blip.unscoped.order("created_at #{params[:sort_by]}").where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
+    @blips = get_records(Blip.all, params)
     respond_to do |format|
       format.js
     end
   end
 
   def sellpitch
-    params[:sellrange] = 10 if params[:sellrange].blank?
-
-    @pitchs = Pitch.unscoped.where("created_at between '#{Date.today - params[:sellrange].to_i}' and '#{Date.today}'").sell_pitch
+    @pitchs = get_records(Pitch.sell_pitch, params)
     respond_to do |format|
       format.js
     end
   end
 
   def buypitch
-    params[:buyrange] = 10 if params[:buyrange].blank?
-
-    @pitchs = Pitch.unscoped.where("created_at between '#{Date.today - params[:buyrange].to_i}' and '#{Date.today}'").buy_pitch
+    @pitchs = get_records(Pitch.buy_pitch, params)
     respond_to do |format|
       format.js
     end
   end
+
+  private
+
+  def get_records(class_name, params = {})
+    params[:sort_by] = 'asc' if params[:sort_by].blank?
+    params[:range] = 10 if params[:range].blank?
+    class_name.unscoped.order("created_at #{params[:sort_by]}").where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
+  end
+
+  #def buy_pitches(params = {})
+  #  params[:buyrange] = 10 if params[:buyrange].blank?
+  #
+  #  Pitch.unscoped.where("created_at between '#{Date.today - params[:buyrange].to_i}' and '#{Date.today}'").buy_pitch
+  #end
+  #
+  #def sell_pitches(params = {})
+  #  params[:sellrange] = 10 if params[:sellrange].blank?
+  #
+  #  Pitch.unscoped.where("created_at between '#{Date.today - params[:sellrange].to_i}' and '#{Date.today}'").sell_pitch
+  #
+  #end
 
 end

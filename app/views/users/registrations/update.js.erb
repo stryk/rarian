@@ -1,0 +1,21 @@
+<% if params[:user] && params[:user][:company] %>
+   $("#company_list").html('<%=j raw (render :partial => "users/company").gsub!("\n", "")%>');
+
+<% elsif params[:user] && params[:user][:blog] %>
+$("#blog_list").html('<%=j raw (render :partial => "users/blog").gsub!("\n", "")%>');
+
+<% elsif params[:user] && params[:user][:userinterest] %>
+$("#interest_list").html('<%=j raw (render :partial => "users/interest").gsub!("\n", "")%>');
+
+
+<% elsif params[:user] && params[:user][:aboutuser] %>
+$("#aboutuser_list").html('<%=j raw (render :partial => "users/aboutuser").gsub!("\n", "")%>');
+
+<% elsif params[:user] && params[:user][:mobilenumber] %>
+$("#changemymobilenumber_list").html('<%=j raw (render :partial => "users/change_my_mobile_number").gsub!("\n", "")%>');
+
+<% elsif params[:user] && params[:user][:password]  %>
+$("#changemypassword_list").html('<%=j raw (render :partial => "users/changemypassword").gsub!("\n", "")%>');
+
+
+<% end %>

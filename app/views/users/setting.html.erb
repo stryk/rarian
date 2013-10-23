@@ -1,9 +1,7 @@
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
 <div class="panels-box">
   <div class="left-panel">
     <div class="box-col">
-
 
 
       <div class="clr"></div>
@@ -11,9 +9,9 @@
   </div>
 </div>
 
-    <div id="middle-container">
-  <div class="row">
-    <div id="privacy"  >
+<div id="middle-container">
+<div class="row">
+  <div id="privacy">
     <div class="content-area">
 
       <h2 class="page-title">Account</h2>
@@ -24,243 +22,41 @@
             <div class="account-col1">Primary Email</div>
             <div class="account-col2"> <%= current_user.email %></p>
 
-              <p><a href="#">Add Another Email Address</a></p></div>
+              <p></p></div>
           </div>
           <div class="account-row">
             <div class="account-col1">Password</div>
-            <div class="account-col2">
-
-              <%= link_to "change my password", "#.",
-                          :id => "new_pwd" ,
-                          :onclick => "show_new_pwd()" %>
-              <div id="set_pwd" style="display: none">
-               <%= form_for(User.new, :remote => true, url: users_path(:id => current_user.id),
-                update: "message_div_id", :method => 'put') do |f| %>
-
-              <%=	 f.label :password %>
-                    <%= f.password_field :password %>
-
-                    <%=	 f.label :password_confirmation %>
-                    <%= f.password_field :password_confirmation %>
-                    <br/>
-
-                    <%= f.submit 'Save' ,:class => "btn btn-mini btn-primary" %>
-                <% end %>
-              </div>
-              </td>
-
-
+            <div id="changemypassword_list" class="account-col2">
+              <%= render :partial => 'users/changemypassword' %>
             </div>
 
           </div>
           <div class="account-row">
             <div class="account-col1">Mobile Number</div>
-            <div class="account-col2"> <%= link_to "change my mobile number", "#.",
-                                                   :id => "new_pwd1" ,
-                                                   :onclick => "show_new_pwd1()" %>
-              <div id="set_pwd1" style="display: none">
-                <%= form_for(User.new, :remote => true, url: users_path(:id => current_user.id),
-                             update: "message_div_id", :method => 'put') do |f| %>
 
-                    <%=	 f.label :mobilenumber %>
-                    <%= f.text_field :mobilenumber %>
+            <!--this div id is use for ajac call -->
 
+            <div id="changemymobilenumber_list" class="account-col2">
 
-
-                    <%= f.submit 'Save' ,:class => "btn btn-mini btn-primary" %>
-                <% end %>
-              </div>
-              </td>
-
-
+              <%= render :partial => 'users/change_my_mobile_number' %>
             </div>
-
-          </div> </div>
+            <!-- end of ajax call div id -->
+          </div>
+        </div>
         <div class="acount-right">
-          <ul class="accountul">
-            <li><a href="#">Privacy</a></li>
-            <li><%= link_to "Email Preferences", "#.",
-                        :id => "email_lnk"
-                         %> </li>
-
-            <li><a href="#">Credits</a></li>
-          </ul>
+          <%= render :partial => 'users/settings_right' %>
         </div>
         <div class="clr"></div>
 
-      </div><!-- end of edit-account-container -->
-                         </div>
+      </div>
+      <!-- end of edit-account-container -->
+    </div>
   </div>
-</div><!-- end of middle contaienr -->
-      <div id="email"  style="display: none">
-
-      <div id="middle-container">
-        <div class="row">
-          <div class="content-area">
-            <h2 class="page-title">E-mail</h2>
-
-            <div class="edit-account-container">
-              <div class="acount-left">
-                <div class="account-row">
-                  <div class="account-col1">Someone starts following me</div>
-                  <%  options = current_user.email_follow_me ? {:checked => true} : {}  %>
-                  <div class="account-col2"><%= check_box :email_follow_me, 0, {data:{remote:true, url: users_path(:id => current_user.id, :check_type => "email_follow_me"),
-                                                                                   update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
-
-                  <div class="account-col1">Someone asks me to answer a question:</div>
-                  <%  options = current_user.email_answer_question ? {:checked => true} : {}  %>
-                  <div class="account-col2"><%= check_box :email_answer_question, 0, {data:{remote:true, url: users_path(:id => current_user.id, :check_type => "email_answer_question"),
-                                                                                      update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
-
-                  <div class="account-col1">Someone sends me a message</div>
-                  <%  options = current_user.email_sends_message ? {:checked => true} : {}  %>
-                  <div class="account-col2"><%= check_box :email_sends_message, 0, {data:{remote:true, url: users_path(:id => current_user.id, :check_type => "email_sends_message"),
-                                                                                            update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
-
-
-                </div></div><!-- end of edit-account-container -->
-                <div class="acount-right">
-                  <ul class="accountul">
-                    <li><%= link_to "Privacy", "#.",
-                                    :id => "privacy_lnk"
-                    %></li>
-
-                  </ul>
-                </div>
-
-        </div><!-- end of middle contaienr -->
-              </div>
-            <div id="middle-container">
-              <div class="row">
-                <div class="content-area">
-                  <h2 class="page-title">Questions/Answers/Comments</h2>
-
-                  <div class="edit-account-container">
-                    <div class="acount-left">
-                      <div class="account-row">
-                        <div class="account-col1">Someone starts following me</div>
-                        <%  options = current_user.email_vote ? {:checked => true} : {}  %>
-                        <div class="account-col2"><%= check_box :email_vote, 0, {data:{remote:true, url: users_path(:id => current_user.id, :check_type => "email_vote"),
-                                                                                      update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
-
-                        <div class="account-col1">Someone writes a comment</div>
-                        <%  options = current_user.email_comment ? {:checked => true} : {}  %>
-                        <div class="account-col2"><%= check_box :email_comment, 0, {data:{remote:true, url: users_path(:id => current_user.id, :check_type => "email_comment"),
-                                                                                       update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
-                        <div class="account-col1">Someone adds on answer to my question</div>
-                        <%  options = current_user.email_question ? {:checked => true} : {}  %>
-                        <div class="account-col2"><%= check_box :email_question, 0, {data:{remote:true, url: users_path(:id => current_user.id, :check_type => "email_question"),
-                                                                                          update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
-                        <div class="account-col1"> Someone adds a comment to my answer</div>
-                        <%  options = current_user.email_answer ? {:checked => true} : {}  %>
-                        <div class="account-col2"><%= check_box :email_answer, 0, {data:{remote:true, url: users_path(:id => current_user.id, :check_type => "email_answer"),
-                                                                                           update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
-
-                        <div class="account-col1"> Marks as spam </div>
-                        <%  options = current_user.email_spam ? {:checked => true} : {}  %>
-                        <div class="account-col2"><%= check_box :email_spam, 0, {data:{remote:true, url: users_path(:id => current_user.id, :check_type => "email_spam"),
-                                                                                         update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
-
-
-                      </div><!-- end of edit-account-container -->
-
-                    </div>
-                  </div><!-- end of middle contaienr -->
-                  <div id="middle-container">
-                    <div class="row">
-                      <div class="content-area">
-                        <h2 class="page-title">Newsletter for pages followed</h2>
-
-                        <div class="edit-account-container">
-                          <div class="acount-left">
-                            <div class="account-row">
-                              <div class="account-col1">  Every</div>
-                              <%= form_for(User.new, :remote => true, url: users_path(:id => current_user.id),
-                                           update: "message_div_id", :method => 'put') do |f| %>
-
-                              <div class="account-col2"><%=f.text_field :no_day_newsletter %> days<%= button_tag 'Update',:class => "btn btn-warning",:id => "news"
-                                                                                                                            %> </p>
-                              </div>
-                                 <%end%>
-                              <div class="account-col1"> Name</div>
-                              <%= form_for(User.new, :remote => true, url: users_path(:id => current_user.id),
-                                           update: "message_div_id", :method => 'put') do |f| %>
-
-                                  <div class="account-col2"><%=f.text_field :name %> days<%= button_tag 'Update',:class => "btn btn-warning",:id => "name"
-                                  %> </p>
-                                  </div>
-                              <%end%>
-                            </div><!-- end of edit-account-container -->
-
-                          </div>
-                        </div><!-- end of middle contaienr -->
- </div>
-
-
 </div>
+</div>
+<!-- end of middle contaienr -->
+<div id="email" style="display: none">
 
-                    <script>
-                        function show_new_pwd(){
-                            $("#set_pwd").slideDown();
-                            return false;
-                        }
-                    </script>
-                    <script>
-                        function show_new_pwd1(){
-                            $("#set_pwd1").slideDown();
-                            return false;
-                        }
-                    </script>
-                    <script>
-                        function show_new_pwd2(){
-                            $("#set_pwd2").slideDown();
-
-                            return false;
-                            $("#set_pwd2").hide();
-
-                        }
-                    </script>
-
-
-                    <script>
-                        $(function() {
-                            // run the currently selected effect
-                            function runEffect() {
-                                // get effect type from
-                                var selectedEffect = $( "#effectTypes" ).val();
-
-                                // most effect types need no options passed by default
-                                var options = {};
-
-                                $( "#email" ).toggle( selectedEffect, options, 500 );
-                            };
-
-                            // set effect from select menu value
-                            $( "#email_lnk" ).click(function() {
-                                $("#email").show()
-                                $("#privacy").hide()
-                            });
-                        });
-                    </script>
-
-                    <script>
-                        $(function() {
-                            // run the currently selected effect
-                            function runEffect() {
-                                // get effect type from
-                                var selectedEffect = $( "#effectTypes" ).val();
-
-                                // most effect types need no options passed by default
-                                var options = {};
-
-                                $( "#privacy" ).toggle( selectedEffect, options, 500 );
-                            };
-
-                            // set effect from select menu value
-                            $( "#privacy_lnk" ).click(function() {
-                                $("#privacy").show()
-                                $("#email").hide()
-                            });
-                        });
-                    </script>
+  <%= render :partial => 'users/email_preference' %>
+</div>
 

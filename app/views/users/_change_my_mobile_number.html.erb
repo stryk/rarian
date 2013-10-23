@@ -1,0 +1,13 @@
+<%= current_user.mobilenumber %> </br>
+<%= link_to "change my mobile number", "#.", :id => "mobile_number_edit" %>
+
+<div id="show_mobile_number_div" style="display: none">
+  <%= form_for(User.new, :url => users_path(:id => current_user.id), :validate => true, :remote => true,
+               update: "message_div_id", :method => 'put', :html => {:id => "user_mobile_form"}) do |f| %>
+
+    <%= f.label :mobilenumber %>
+    <%= f.text_field :mobilenumber %>
+    <%= f.submit 'Save', :class => "btn btn-mini btn-primary" %>
+  <% end %>
+</div>
+

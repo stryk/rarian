@@ -1,1 +1,2 @@
+$('#blip_range').attr('data-url', $('#blip_range').attr('data-url')+'?sort_by='+$('#blip_sort_by').val());
 $("#blips_list").html('<%=j raw (render :partial => "users/blips_list", :locals => {:objs => @blips, :child_objs => nil,:objs_text => nil, :child_objs_text => nil }).gsub!("\n", "") %>');

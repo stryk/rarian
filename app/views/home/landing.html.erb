@@ -5,18 +5,13 @@
   <div class="landing-left-panel">
 
     <div class="box-col">
-      <h3 class="middleh3">reason buy pitch</h3>
-
+      <h3 class="middleh3">Reason buy pitch
+        <%= select_tag("home_buy_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
+        <%= select_tag("home_buy_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
+      </h3>
       <div class="box-col-topreason">
         <div class="rows-div">
-          <%= select_tag("buyrange", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
-                         data: {
-                                 remote: true,
-                                 url: "/home/buypitch",
 
-                                 update: "message_div_id"
-                         }
-              ) %>
 
 
           <div class="comments-container">
@@ -31,10 +26,8 @@
           </div><!-- end of comments-container -->
 
 
-        </div><!-- end of rows-div -->
-
-
-
+        </div>
+        <!-- end of rows-div -->
 
 
       </div>
@@ -43,77 +36,70 @@
     </div>
 
     <div class="box-col">
-      <h3 class="middleh3">reason sell pitch</h3>
+      <h3 class="middleh3">Reason sell pitch
+        <%= select_tag("home_sell_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
+        <%= select_tag("home_sell_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
+
+      </h3>
 
       <div class="box-col-topreason">
         <div class="rows-div">
-          <%= select_tag("sellrange", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
-                         data: {
-                                 remote: true,
-                                 url: "/home/sellpitch",
 
-                                 update: "message_div_id"
-                         }
-              ) %>
           <div id="sell_list" class="scroll">
-          <%= render :partial => 'shared/blips_list', :locals => {:objs => Pitch.sell_pitch.order("created_at DESC").all,
-                                                                  :company => @company, :child_objs => nil,
-                                                                  :objs_text => nil,
-                                                                  :child_objs_text => nil,
-                                                                  :show_link => true} %>
-        </div><!-- end of rows-div -->
+            <%= render :partial => 'shared/blips_list', :locals => {:objs => @sell_pitchs,
+                                                                    :company => @company, :child_objs => nil,
+                                                                    :objs_text => nil,
+                                                                    :child_objs_text => nil,
+                                                                    :show_link => true} %>
+          </div>
+          <!-- end of rows-div -->
 
-           </div>
+        </div>
 
       </div>
 
       <div class="clr"></div>
     </div>
-          </div>
-    <div class="landing-right-panel">
+  </div>
+  <div class="landing-right-panel">
 
 
-      <div class="box-col">
-        <div class="rows-div">
-          <h3>Alph Blips<%= select_tag("sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global",
-                                       data: {
-                                               remote: true,
-                                               url: "/home/blips",
-
-                                               update: "message_div_id"
-                                       }
-                            ) %>
-
-            <%= select_tag("range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
-                           data: {
-                                   remote: true,
-                                   url: "/home/blips",
-
-                                   update: "message_div_id"
-                           }
-                ) %>
-
-          </h3>
-          <div id="blips_list" class="scroll">
-            <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips,:child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
-              <%#raise @blips.inspect%>
+    <div class="box-col">
+      <div class="rows-div">
+        <h3>Alph
+          Blips<%= select_tag("home_blip_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
+          <%= select_tag("home_blip_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
 
 
+        <%#= select_tag("range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
+                         data: {
+                           remote: true,
+                           url: "/home/blips",
+
+                           update: "message_div_id"
+                         }
+              ) %>
+
+        </h3>
+
+        <div id="blips_list" class="scroll">
+          <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
+          <%#raise @blips.inspect%>
 
 
         </div>
 
 
-
-
-   <!-- end of left-panel -->
+        <!-- end of left-panel -->
 
 
         <div class="clr"></div>
-      </div><!-- end of box div -->
+      </div>
+      <!-- end of box div -->
 
       <div class="box-col">
         <h3>Stock Catalysis</h3>
+
         <div class="box-col-div">
           <%= render 'companies/catalyst' %>
         </div>
@@ -124,7 +110,8 @@
       <div class="clr"></div>
     </div>
 
-  </div><!-- end of right-panel -->
+  </div>
+  <!-- end of right-panel -->
 
   <div class="clr"></div>
 </div><!-- end of panels-box -->

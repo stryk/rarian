@@ -21,6 +21,8 @@ gem 'jquery-rails', '~>3.0.4'
 
 gem 'acts_as_commentable'
 
+gem "rmagick"
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 #gem 'turbolinks', '~>1.3.0'
 
@@ -46,6 +48,8 @@ gem 'client_side_validations', :git =>  'git@github.com:bcardarella/client_side_
 gem "aws-ses"
 
 gem "configatron"
+
+gem "carrierwave"
 
 # Thinking-sphinx doc says require mysql2 even if you want to use postgres
 gem 'mysql2', '0.3.12b4'

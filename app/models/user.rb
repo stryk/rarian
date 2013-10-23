@@ -6,11 +6,19 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :token_authenticatable, :confirmable, :lockable, :timeoutable and :omniauthable
 
+  mount_uploader :image, ImageUploader
+
+  #validates :mobilenumber, presence: true
+  validates :mobilenumber, :numericality => true, :allow_blank => true
+
   # Setup accessible (or protected) attributes for your model
   #attr_accessible :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :email_vote,:email_follow_me,
-                  :email_answer_question, :email_sends_message, :email_comment, :email_question, :email_answer, :email_spam, :no_day_newsletter, :mobilenumber
+                  :email_answer_question, :email_sends_message, :email_comment, :email_question, :email_answer,
+                  :email_spam, :no_day_newsletter, :mobilenumber, :image, :aboutuser, :company, :blog
   attr_accessor :roles
+
+
 
   make_voter
 
@@ -21,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
   has_many :comments
+  has_many :catalysts
 
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)

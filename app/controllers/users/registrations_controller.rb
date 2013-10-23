@@ -66,17 +66,36 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.password_confirmation = params[:user][:password_confirmation] if params[:user] && params[:user][:password_confirmation]
     resource.mobilenumber = params[:user][:mobilenumber] if params[:user] && params[:user][:mobilenumber]
     resource.name = params[:user][:name] if params[:user] && params[:user][:name]
+    resource.aboutuser = params[:user][:aboutuser] if params[:user] && params[:user][:aboutuser]
+    resource.userinterest = params[:user][:userinterest] if params[:user] && params[:user][:userinterest]
+    resource.company = params[:user][:company] if params[:user] && params[:user][:company]
+    resource.blog = params[:user][:blog] if params[:user] && params[:user][:blog]
+
+
+
 
      if resource.save
-       flash[:notice] = "sucess"
+       flash[:notice] = "sucessfuly updated"
+       redirect_to root_path if params[:user] && params[:user][:password]
      else
        #raise resource.errors.full_messages.inspect
        flash[:notice] = "Failed to update"
        #return redirect_to '/users/setting'
      end
-    render :text => "ok"
+    respond_to do |format|
+      format.html { render :text => "ok"  }
+      format.js {}
+    end
+   end
 
 
-  end
+
+   def blips
+     @blips = current_user.blips
+   end
+
+   def aboutuser
+
+   end
 
 end

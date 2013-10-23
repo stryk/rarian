@@ -92,6 +92,9 @@ Rarian::Application.routes.draw do
       get :question
       get :answer
       get :comment
+      post :imageuploader
+
+
     }
   end
 

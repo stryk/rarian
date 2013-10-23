@@ -2,9 +2,14 @@ class Risk < ActiveRecord::Base
   belongs_to :company
   belongs_to :user
 
+  module Point
+    UP = 1
+    DOWN = -1
+  end
+
   make_voteable
 
-  attr_accessible :company_id, :user_id, :risk, :net_votes
+  attr_accessible :company_id, :user_id, :risk, :net_votes, :points
 
   validates :risk, :company_id, :user_id, presence: true
 
@@ -13,14 +18,15 @@ class Risk < ActiveRecord::Base
   end
 
   def up_vote
-    update_attributes(:net_votes => net_votes.to_i + 1)
+    update_attributes(:net_votes => net_votes.to_i + 1, :points => points.to_i+Point::UP)
   end
 
   def down_vote
-    update_attributes(:net_votes => net_votes.to_i - 1)
+    update_attributes(:net_votes => net_votes.to_i - 1, :points => points.to_i+Point::DOWN)
   end
 
   def undo_vote(value)
-    update_attributes(:net_votes => net_votes.to_i - value.to_i)
+    undo_point = value > 0 ? Point::DOWN : Point::UP
+    update_attributes(:net_votes => net_votes.to_i - value.to_i, :points => points.to_i+undo_point)
   end
 end

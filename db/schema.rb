@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017124142) do
+ActiveRecord::Schema.define(version: 20131026114108) do
+
+  create_table "alternate_phone_types", force: true do |t|
+    t.string   "phone_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "answers", force: true do |t|
     t.text     "content"
@@ -23,6 +29,7 @@ ActiveRecord::Schema.define(version: 20131017124142) do
     t.integer  "up_votes",              default: 0, null: false
     t.integer  "down_votes",            default: 0, null: false
     t.integer  "net_votes",   limit: 2, default: 0
+    t.integer  "points",                default: 0
   end
 
   add_index "answers", ["company_id"], name: "index_answers_on_company_id", using: :btree
@@ -41,6 +48,7 @@ ActiveRecord::Schema.define(version: 20131017124142) do
     t.integer  "down_votes",           default: 0, null: false
     t.string   "slug"
     t.integer  "net_votes",  limit: 2, default: 0
+    t.integer  "points",               default: 0
   end
 
   add_index "blips", ["company_id"], name: "index_blips_on_company_id", using: :btree
@@ -54,6 +62,7 @@ ActiveRecord::Schema.define(version: 20131017124142) do
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "points",     default: 0
   end
 
   create_table "ckeditor_assets", force: true do |t|
@@ -154,6 +163,7 @@ ActiveRecord::Schema.define(version: 20131017124142) do
     t.integer  "up_votes",                     default: 0, null: false
     t.integer  "down_votes",                   default: 0, null: false
     t.integer  "net_votes",          limit: 2, default: 0
+    t.integer  "points",                       default: 0
   end
 
   create_table "questions", force: true do |t|
@@ -165,6 +175,7 @@ ActiveRecord::Schema.define(version: 20131017124142) do
     t.integer  "up_votes",             default: 0, null: false
     t.integer  "down_votes",           default: 0, null: false
     t.integer  "net_votes",  limit: 2, default: 0
+    t.integer  "points",               default: 0
   end
 
   add_index "questions", ["company_id"], name: "index_questions_on_company_id", using: :btree
@@ -200,6 +211,7 @@ ActiveRecord::Schema.define(version: 20131017124142) do
     t.integer  "net_votes",  limit: 2, default: 0
     t.integer  "up_votes",             default: 0, null: false
     t.integer  "down_votes",           default: 0, null: false
+    t.integer  "points",               default: 0
   end
 
   create_table "target_prices", force: true do |t|
@@ -209,6 +221,7 @@ ActiveRecord::Schema.define(version: 20131017124142) do
     t.float    "target_price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "year_median",  default: false
   end
 
   create_table "top_users", force: true do |t|
@@ -222,12 +235,12 @@ ActiveRecord::Schema.define(version: 20131017124142) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                     default: "", null: false
-    t.string   "encrypted_password",        default: "", null: false
+    t.string   "email",                               default: "", null: false
+    t.string   "encrypted_password",                  default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",             default: 0
+    t.integer  "sign_in_count",                       default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -235,13 +248,13 @@ ActiveRecord::Schema.define(version: 20131017124142) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "roles_mask"
-    t.integer  "up_votes",                  default: 0,  null: false
-    t.integer  "down_votes",                default: 0,  null: false
+    t.integer  "up_votes",                            default: 0,  null: false
+    t.integer  "down_votes",                          default: 0,  null: false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",           default: 0
+    t.integer  "failed_attempts",                     default: 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
@@ -249,15 +262,15 @@ ActiveRecord::Schema.define(version: 20131017124142) do
     t.string   "profile_image"
     t.string   "alternative_email"
     t.integer  "mobile_number"
-    t.integer  "email_starts_following_me", default: 0,  null: false
-    t.integer  "email_ask_me_to_answer",    default: 0,  null: false
-    t.integer  "email_send_me_message",     default: 0,  null: false
-    t.integer  "email_vote_my_answer",      default: 0,  null: false
-    t.integer  "email_write_comment",       default: 0,  null: false
-    t.integer  "email_adds_answer",         default:N 0,  null: false
-    t.integer  "email_adds_comment",        default: 0,  null: false
-    t.integer  "email_spam",                default: 0,  null: false
-    t.integer  "email_newsletter",          default: 0,  null: false
+    t.integer  "email_starts_following_me",           default: 0,  null: false
+    t.integer  "email_ask_me_to_answer",              default: 0,  null: false
+    t.integer  "email_send_me_message",               default: 0,  null: false
+    t.integer  "email_vote_my_answer",                default: 0,  null: false
+    t.integer  "email_write_comment",                 default: 0,  null: false
+    t.integer  "email_adds_answer",                   default: 0,  null: false
+    t.integer  "email_adds_comment",                  default: 0,  null: false
+    t.integer  "email_spam",                          default: 0,  null: false
+    t.integer  "email_newsletter",                    default: 0,  null: false
     t.boolean  "email_vote"
     t.boolean  "email_follow_me"
     t.boolean  "email_answer_question"
@@ -268,7 +281,12 @@ ActiveRecord::Schema.define(version: 20131017124142) do
     t.integer  "no_day_newsletter"
     t.integer  "password"
     t.integer  "password_confirmation"
-    t.integer  "mobilenumber"
+    t.integer  "mobilenumber",              limit: 8
+    t.string   "image"
+    t.string   "aboutuser"
+    t.string   "userinterest"
+    t.string   "company"
+    t.string   "blog"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

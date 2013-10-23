@@ -10,7 +10,6 @@ class Ability
     alias_action :create, :update, :destroy, :to => :cud
     alias_action :create, :update, :to => :cu
 
-
     if user.is? :admin
       can :manage, :all
     elsif user.is? :standard

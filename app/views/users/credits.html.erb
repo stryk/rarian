@@ -1,9 +1,6 @@
 <div class="panels-box">
   <div class="left-panel">
     <div class="box-col">
-
-
-
       <div class="clr"></div>
     </div>
   </div>
@@ -22,18 +19,37 @@
           <div class="credit-left">
             <div class="credit-head-row">
               <div class="credit-col1"><strong>Your Credits</strong></div>
-              <div class="credit-col2"><strong>500</strong></div>
+              <div class="credit-col2"><strong><%= @credit_sum %></strong></div>
             </div>
             <div class="credit-row">
-              <div class="credit-col1 lefttxt">Budget refresh from Quora. <span>October 14</span></div>
-              <div class="credit-col2"><strong>+500</strong></div>
+              <% @buy_pitches.each do |pitch| %>
+                <div class="credit-col1 lefttxt"><%= pitch.net_votes %> Vote on your pitch to <%= pitch.title %></div>
+                <div class="credit-col2"><strong><%= pitch.points %></strong></div>
+              <% end %>
+              <% @sell_pitches.each do |pitch| %>
+                <div class="credit-col1 lefttxt"><%= pitch.net_votes %> Vote on your pitch to <%= pitch.title %></div>
+                <div class="credit-col2"><strong><%= pitch.points %></strong></div>
+              <% end %>
+              <% @blips.each do |blip| %>
+                <div class="credit-col1 lefttxt"><%= blip.net_votes %> Vote on your blip to <%= blip.content.truncate(27, :separator => ' ') %></div>
+                <div class="credit-col2"><strong><%= blip.points %></strong></div>
+              <% end %>
+              <% @questions.each do |question| %>
+                <div class="credit-col1 lefttxt"><%= question.net_votes %> Vote on your blip to <%= question.content.truncate(27, :separator => ' ') %></div>
+                <div class="credit-col2"><strong><%= question.points %></strong></div>
+              <% end %>
+              <% @answers.each do |answer| %>
+                <div class="credit-col1 lefttxt"><%= answer.net_votes %> Vote on your blip to <%= answer.content.truncate(27, :separator => ' ') %></div>
+                <div class="credit-col2"><strong><%= answer.points %></strong></div>
+              <% end %>
+              <% @catalysts.each do |catalyst| %>
+                <div class="credit-col1 lefttxt"><%= catalyst.net_votes %> Vote on your blip to <%= catalyst.content.truncate(27, :separator => ' ') %></div>
+                <div class="credit-col2"><strong><%= catalyst.points %></strong></div>
+              <% end %>
             </div>
 
           </div>
-          <div class="credit-right">
-            <p><strong>Change Ask to Answer Price</strong><br>Asking you costs <a href="#">50 credits</a>.</p>
-          </div>
-          <div class="clr"></div>
+
         </div>
         <p style="height:200px;">&nbsp;</p>
 
