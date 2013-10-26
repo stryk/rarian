@@ -1,5 +1,4 @@
 <div class="top-stock-search">
-  <%#= render 'user_banner' %>
 </div><!-- end of top-stock-search -->
 <div class="clr"></div>
 
@@ -94,7 +93,7 @@
 <div class="right-panel">
 
   <div class="box-col">
-    <h3>About: <%= current_user.name %></h3>
+    <h3>About: <%= @user.name %></h3>
     <div id="aboutuser_list" class="box-col-div">
       <%= render :partial => 'users/aboutuser' %>
 

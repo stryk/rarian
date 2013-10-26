@@ -39,18 +39,27 @@
 
         <div class="top-tickers">
 
-          <div class="tickers-div">Most Active: Scrolling tickers
-            <!--<marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrollamount=3>-->
-              <!--<% MostActiveTicker.get_active_companies.each do |active_ticker| %>-->
+          <div class="tickers-div">
+            <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrollamount=3>
+              <% MostActiveTicker.get_active_companies.each do |active_ticker| %>
                 <%= link_to active_ticker.company.ticker, '#' %> &nbsp;
-              <!--<% end %>-->
-            <!--</marquee>-->
+              <% end %>
+            </marquee>
           </div>
         </div>
-
         <div class="top-login-space">
-          <p> <%= link_to 'Register', new_user_registration_path, :id => "signup" %>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<%=link_to 'Sign Out',destroy_user_session_path,:method => 'delete' %></a></p>
+          <ul class="top-link">
+            <li><a href="#"><%=  current_user.name %></a>
+              <ul>
+                <li><%= link_to "View Profile", user_path(current_user) %></li>
+                <li><%= link_to "Credit", credits_users_path %></li>
+                <li><%= link_to "Setting", setting_users_path %></li>
+                <li class="last"><%=link_to 'Logout',destroy_user_session_path,:method => 'delete' %></li>
+              </ul>
+            </li>
+          </ul>
         </div>
+
         <div class="clr"></div>
 
         <nav class="navdiv">

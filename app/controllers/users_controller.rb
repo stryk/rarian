@@ -3,13 +3,12 @@ class UsersController < ApplicationController
   skip_authorize_resource :only => :show
 
   def show
-     @blips = get_objects(current_user.blips, params)
-     @buypitchs =  get_objects(current_user.pitches.buy_pitch, params)
-     @sellpitchs =  get_objects(current_user.pitches.sell_pitch, params)
-     @question = get_objects(current_user.questions, params)
-     @answer = get_objects(current_user.answers, params)
-     @comment = get_objects(current_user.comments, params)
-
+    @blips = get_objects(@user.blips, params)
+    @buypitchs = get_objects(@user.pitches.buy_pitch, params)
+    @sellpitchs = get_objects(@user.pitches.sell_pitch, params)
+    @question = get_objects(@user.questions, params)
+    @answer = get_objects(@user.answers, params)
+    @comment = get_objects(@user.comments, params)
   end
 
   def new

@@ -1,9 +1,10 @@
-<%= current_user.blog%>
+<%= @user.blog%>
+<% if @user.id == current_user.id %>
 <%= link_to "Edit", "#.",
             :id => "blog" ,
             :onclick => "show_user_blog()", :class => "readmore-link" %>
 <div class="slide-div" id="show_blog_down" style="display: none">
-  <%= form_for(User.new, :remote => true, url: users_path(:id => current_user.id),
+  <%= form_for(current_user, :remote => true, url: users_path(:id => current_user.id),
                update: "message_div_id", :method => 'put') do |f| %>
 
       <%=	 f.label :blog %>
@@ -14,3 +15,4 @@
       <%= f.submit 'Save' ,:class => "button medium brown" %>
   <% end %>
 </div>
+<% end %>
