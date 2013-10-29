@@ -40,6 +40,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     acts_as_commentable (4.0.0)
+    acts_as_follower (0.2.0)
     arel (4.0.0)
     atomic (1.1.13)
     aws-ses (0.5.0)
@@ -196,6 +197,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_commentable
+  acts_as_follower
   aws-ses
   bootstrap-sass
   cancan

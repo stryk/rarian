@@ -7,6 +7,16 @@ class ApplicationController < ActionController::Base
 
   #protect_from_forgery with: :null_session
 
+  layout :layout_by_resource
+
+  def layout_by_resource
+    if devise_controller? && resource_name == :user && action_name == 'new'
+      false
+    else
+      "application"
+    end
+  end
+
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       flash[:error] = exception.message

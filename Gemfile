@@ -21,6 +21,8 @@ gem 'jquery-rails', '~>3.0.4'
 
 gem 'acts_as_commentable'
 
+gem "acts_as_follower"
+
 gem "rmagick"
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

@@ -80,7 +80,7 @@ Rarian::Application.routes.draw do
   #  get "users/sign_up", :to => "users1/registrations#new"
   #end
 
-  devise_for :users, :controllers => {:registrations => "users/registrations"}
+  devise_for :users, :controllers => {:registrations => "users/registrations", :sessions => "users/sessions"}
 
   resources :users do
     collection {

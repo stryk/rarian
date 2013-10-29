@@ -2,22 +2,27 @@
   <div class="left-panel">
 
     <div class="box-col">
-      <h3>About : <%= @user.name %></h3>
-      <div class="box-col-div">
-        <%= image_tag @user.image_url(:thumb).to_s %>
-        <% if @user.id == current_user.id %>
-        <%= form_for @user, :method => 'post', :url => { :action => "imageuploader" }, :html => {:multipart => true} do |f| %>
+      <h3><%= @user.name %></h3>
+      <div class="profile-pic-box">
+        <div class="pic-div"><%= image_tag @user.image_url(:thumb).to_s %>
+          <% if @user.id == current_user.id %>
+            <%= form_for @user, :method => 'post', :url => { :action => "imageuploader" }, :html => {:multipart => true} do |f| %>
 
-            <%= f.file_field :image %>
-            <%= f.submit 'save'%>
-        <%end%>
-        <%end%>
+              <%= f.file_field :image %>
+              <%= f.submit 'save'%>
+            <%end%>
+            <%end%>
+        </div>
+        <div class="profile-txt-div">
+          <p><strong><%= @user.name %></strong></p>
+          <p><a href="#">234 Followers</a>,<br><a href="#">100 Following</a></p>
 
-        <%#    TopUser.get_user_companies(current_user, 5).each do |top_user| %>
-              <%#= link_to top_user.company.ticker, company_path(top_user.company) %> <!--(<%#= top_user.no_of_votes %>)-->
-          <%# end %>
-
+          <div class="small-follow-btn" style="margin-left:0!important"><a href="#">&nbsp;</a></div>
+          <div class="small-unfollow-btn" style="margin-left:0!important"><a href="#">&nbsp;</a></div>
+        </div>
+        <div class="clr"></div>
       </div>
+
       <div class="clr"></div>
     </div>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131026114108) do
+ActiveRecord::Schema.define(version: 20131029140252) do
 
   create_table "alternate_phone_types", force: true do |t|
     t.string   "phone_type"
@@ -133,6 +133,19 @@ ActiveRecord::Schema.define(version: 20131026114108) do
     t.integer  "up_votes",                default: 0, null: false
     t.integer  "down_votes",              default: 0, null: false
   end
+
+  create_table "follows", force: true do |t|
+    t.integer  "followable_id",                   null: false
+    t.string   "followable_type",                 null: false
+    t.integer  "follower_id",                     null: false
+    t.string   "follower_type",                   null: false
+    t.boolean  "blocked",         default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
+  add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
 
   create_table "median_target_prices", force: true do |t|
     t.integer  "company_id"

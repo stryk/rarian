@@ -1,90 +1,111 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Landing page ::: AlphaPitch</title>
+  <title>AlphaPitch</title>
   <meta name="apple-touch-fullscreen" content="yes"/>
 
-  <link rel="shortcut icon" href="images/favicon.ico">
+  <link rel="shortcut icon" href="assets/favicon.ico">
+
+  <%= stylesheet_link_tag "application" %>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+
+  <%= javascript_include_tag "application" %>
 
 
+  <script>
+    $(function () {
+      $("#datepicker").datepicker();
+      $("#format").change(function () {
+        $("#datepicker").datepicker("option", "dateFormat", $(this).val());
+      });
+    });
+  </script>
+</head>
 
-</head> <body>
+<body>
 
+<div id="wrapper">
 
-<!--<div class="login-banner-container">-->
-  <!--<div class="row">-->
-    <!--<div class="login-banner-txt">-->
-      <!--<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at aliquam massa.</h2>-->
-      <!--<h3>Praesent aliquet ipsum nec mattis cursus. Integer sit amet pulvinar dolor. Pellentesque gravida massa lectus, vel porttitor diam laoreet eget. Etiam dapibus nisl in iaculis dictum. Sed id convallis risus.</h3>-->
+  <header>
+    <div class="header-top">
+      <div class="row">
+        <div class="logodiv"><h1><a href="index.html"><img src="/assets/logo.png" alt="AlphaPitch"></a></h1></div>
 
-      <!--<div class="register-btn"><a href="/assets/login-btm-bg.jpg" class="reg-btn-link">Register Today!!!</a></div>-->
+        <div class="top-tickers">
 
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-<!--<div class="clr"></div>-->
+          <div class="tickers-div">
+            <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrollamount=3>
+              <% MostActiveTicker.get_active_companies.each do |active_ticker| %>
+                <%= link_to active_ticker.company.ticker, '#' %> &nbsp;
+              <% end %>
+            </marquee>
+          </div>
+        </div>
 
-<!--<div class="login-btm-container">-->
-  <!--<div class="row"> </div>-->
-
-  <!--<div class="clr"></div>-->
-
-  <!--<div class="login-box">-->
-
-
-  <!--<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>-->
-     <!--<center>-->
-      <!--<div>-->
- <!--<%= f.email_field :email, :placeholder => "E-Mail",:autofocus => true %>-->
- <!-- <%= f.password_field :password,:placeholder => "**********" %> --><!--nput name="submit" type="submit" class="button medium  brown" value="Submit">-->
-      <!--</div>  </center>-->
-
-    <!--<% end %>-->
-<!--<p><span class="remember-span"> <input type="checkbox" > Remember Me</span>-->
-    <!--<span class="forgot-span"><a href="devise/shared/links">Forgot Password?</a></span></p> </center>-->
-
-  <!--</div>-->
-
-  <!--<div class="clr"></div>-->
-<!--</div>-->
-
-<!--</div>-->
-  <%#= render "devise/shared/links" %> </div> </center>
-<!--</div>-->
-
-<div class="login-banner-container">
-  <div class="row">
-    <div class="login-banner-txt">
-      <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at aliquam massa.</h2>
-      <h3>Praesent aliquet ipsum nec mattis cursus. Integer sit amet pulvinar dolor. Pellentesque gravida massa lectus, vel porttitor diam laoreet eget. Etiam dapibus nisl in iaculis dictum. Sed id convallis risus.</h3>
-
-      <div class="register-btn"><%= link_to 'Register Today!!!!', new_user_registration_path,:class => "reg-btn-link", :id => "signup" %>
-
-       </div>
-
-    </div>
-  </div>
-</div><!-- end of login-banner-container -->
-<div class="clr"></div>
-
-<div class="login-btm-container">
-  <div class="row">
-
-    <div class="login-box">
-      <p>
-        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
-            <center>
-            <div>
-            <%= f.email_field :email, :placeholder => "E-Mail",:autofocus => true %>
-            <%= f.password_field :password,:placeholder => "**********" %> <input name="submit" type="submit" class="button medium  brown" value="Submit">
-            </div>  </center>
-
-            <% end %>
-        <p><span class="remember-span"> <input type="checkbox" > Remember Me</span>
-        <span class="forgot-span"><a href="devise/shared/links">Forgot Password?</a></span></p> </center>
 
         <div class="clr"></div>
+
+        <nav class="navdiv" style="margin: 27px 0 0 0;">
+          <ul class="navul">
+            <li><a href="#" class="active">Nav Link 1</a></li>
+            <li><a href="#">Nav Link 2</a></li>
+            <li><a href="#">Nav Link 3</a></li>
+            <li><a href="#">Nav Link 4</a></li>
+            <li><a href="#">Nav Link 5</a></li>
+            <li><a href="#">Nav Link 6</a></li>
+            <li><a href="#">Nav Link 7</a></li>
+            <li><a href="#">Nav Link 8</a></li>
+          </ul>
+        </nav>
+
+
+      </div>
+    </div>
+    <!-- end of header top -->
+  </header>
+  <!-- end of header -->
+
+
+  <div class="login-banner-container">
+    <div class="row">
+      <div class="login-banner-txt">
+        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at aliquam massa.</h2>
+
+        <h3>Praesent aliquet ipsum nec mattis cursus. Integer sit amet pulvinar dolor. Pellentesque gravida massa
+          lectus, vel porttitor diam laoreet eget. Etiam dapibus nisl in iaculis dictum. Sed id convallis risus.</h3>
+
+        <div class="register-btn"><%= link_to 'Register Today!!!!', new_user_registration_path, :class => "reg-btn-link", :id => "signup" %>
+
+        </div>
+
+      </div>
+    </div>
   </div>
+  <!-- end of login-banner-container -->
+  <div class="clr"></div>
 
-</div><!-- end of login-btm-container -->
+  <div class="login-btm-container">
+    <div class="row">
 
+      <div class="login-box">
+        <p>
+          <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical'}) do |f| %>
+          <center>
+            <div>
+              <%= f.email_field :email, :placeholder => "E-Mail", :autofocus => true %>
+              <%= f.password_field :password, :placeholder => "**********" %>
+              <input name="submit" type="submit" class="button medium  brown" value="Submit">
+            </div>
+          </center>
+
+        <% end %>
+        <p><span class="remember-span"> <input type="checkbox"> Remember Me</span>
+          <span class="forgot-span"><a href="devise/shared/links">Forgot Password?</a></span></p> </center>
+
+        <div class="clr"></div>
+      </div>
+
+    </div>
+    <!-- end of login-btm-container -->
+  </div>
+</div>
 
