@@ -19,7 +19,8 @@ class User < ActiveRecord::Base
   attr_accessor :roles
 
 
-
+  acts_as_followable
+  acts_as_follower
   make_voter
 
   ROLES = %w[admin moderator standard banned]

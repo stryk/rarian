@@ -13,12 +13,8 @@
             <%end%>
             <%end%>
         </div>
-        <div class="profile-txt-div">
-          <p><strong><%= @user.name %></strong></p>
-          <p><a href="#">234 Followers</a>,<br><a href="#">100 Following</a></p>
-
-          <div class="small-follow-btn" style="margin-left:0!important"><a href="#">&nbsp;</a></div>
-          <div class="small-unfollow-btn" style="margin-left:0!important"><a href="#">&nbsp;</a></div>
+        <div id="follow_detail" >
+        <%= render :partial => 'follow_details' %>
         </div>
         <div class="clr"></div>
       </div>

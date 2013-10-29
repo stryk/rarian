@@ -96,6 +96,13 @@ Rarian::Application.routes.draw do
 
 
     }
+
+    member {
+
+      put :follow
+      put :unfollow
+
+    }
   end
 
   resources :home  do

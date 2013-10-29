@@ -19,6 +19,15 @@ class UsersController < ApplicationController
 
   end
 
+  def follow
+    current_user.follow(@user)
+  end
+
+  def unfollow
+    current_user.stop_following(@user)
+    render 'follow.js.erb'
+  end
+
   def credits
     @credit_sum = 0
     @buy_pitches = current_user.pitches.buy_pitch.where("points > 0")
