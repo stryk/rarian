@@ -40,10 +40,18 @@ class ApplicationController < ActionController::Base
     params[:sort_by] = 'asc' if params[:sort_by].blank?
     params[:range] = 10 if params[:range].blank?
     if options[:date_option]
-      objs = class_name.order("created_at #{params[:sort_by]}").where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
+      objs = class_name.where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
     else
-      objs.where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
+      objs = class_name.where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
     end
+
+    if params[:sort_by] == "following"
+      companies = current_user.follows_by_type('Company').map(&:followable)
+      objs = objs.where(:company_id => companies.map(&:id)).order("created_at desc")
+    else
+      objs = objs.order("created_at #{params[:sort_by]}")
+    end
+    objs
   end
 
   def flash_to_headers

@@ -6,7 +6,7 @@
 
     <div class="box-col">
       <h3 class="middleh3">Reason buy pitch
-        <%= select_tag("home_buy_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
+        <%= select_tag("home_buy_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %>
         <%= select_tag("home_buy_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
       </h3>
       <div class="box-col-topreason">
@@ -37,7 +37,7 @@
 
     <div class="box-col">
       <h3 class="middleh3">Reason sell pitch
-        <%= select_tag("home_sell_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
+        <%= select_tag("home_sell_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %>
         <%= select_tag("home_sell_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
 
       </h3>
@@ -67,7 +67,7 @@
     <div class="box-col">
       <div class="rows-div">
         <h3>Alph
-          Blips<%= select_tag("home_blip_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
+          Blips<%= select_tag("home_blip_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %>
           <%= select_tag("home_blip_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
 
 
