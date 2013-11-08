@@ -2,6 +2,9 @@
   <p><strong><%= @user.name %></strong></p>
   <p><a href="#"><%= @user.followers_count %> Followers</a>,<br><a href="#"><%= @user.follow_count %> Following</a></p>
   <% unless @user.id == current_user.id %>
-    <%= render :partial => 'follow_buttons', :locals => {:obj => @user} %>
-  <% end %>
+    <%= render :partial => 'shared/follow_buttons', :locals => {:obj => @user, :follow_link => follow_user_path(:id => @user.id),
+                                                                :unfollow_link => unfollow_user_path(:id => @user.id),
+                                                                :big_small => 'small'} %>
+
+<% end %>
 </div>
