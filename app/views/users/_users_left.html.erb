@@ -48,8 +48,29 @@
       <div class="clr"></div>
     </div>
 
+    <div class="box-col">
+      <h3><%= @user.name %> Following Users</h3>
+      <div class="box-col-div">
+        <ol>
+          <% @user.follows_by_type('User').each do |follow| %>
+            <li><%= link_to follow.followable.name, user_path(follow.followable) %></li>
+          <% end %>
+        </ol>
+      </div>
+      <div class="clr"></div>
+    </div>
 
-
+    <div class="box-col">
+      <h3><%= @user.name %> Following Company</h3>
+      <div class="box-col-div">
+        <ol>
+          <% @user.follows_by_type('Company').each do |follow| %>
+            <li><%= link_to follow.followable.name, company_path(follow.followable) %></li>
+          <% end %>
+        </ol>
+      </div>
+      <div class="clr"></div>
+    </div>
 
   </div>
 

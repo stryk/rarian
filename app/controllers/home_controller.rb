@@ -34,11 +34,7 @@ class HomeController < ApplicationController
 
   private
 
-  def get_records(class_name, params = {})
-    params[:sort_by] = 'asc' if params[:sort_by].blank?
-    params[:range] = 10 if params[:range].blank?
-    class_name.unscoped.order("created_at #{params[:sort_by]}").where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
-  end
+
 
   #def buy_pitches(params = {})
   #  params[:buyrange] = 10 if params[:buyrange].blank?

@@ -16,7 +16,7 @@
 
           <div class="comments-container">
             <div id="buy_list" class="scroll">
-            <%= render :partial => 'shared/blips_list', :locals => {:objs => Pitch.buy_pitch.order("created_at DESC").all,
+            <%= render :partial => 'shared/blips_list', :locals => {:objs => @buy_pitchs,
                                                                     :company => @company, :child_objs => nil,
                                                                     :objs_text => nil,
                                                                     :child_objs_text => nil,

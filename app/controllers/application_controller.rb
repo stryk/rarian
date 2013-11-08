@@ -36,6 +36,16 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def get_records(class_name, params = {}, options = {:date_option => true})
+    params[:sort_by] = 'asc' if params[:sort_by].blank?
+    params[:range] = 10 if params[:range].blank?
+    if options[:date_option]
+      objs = class_name.order("created_at #{params[:sort_by]}").where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
+    else
+      objs.where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
+    end
+  end
+
   def flash_to_headers
     return unless request.xhr?
     response.headers['X-Message'] = flash_message

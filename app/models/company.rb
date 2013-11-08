@@ -13,6 +13,7 @@ class Company < ActiveRecord::Base
   has_many :most_active_tickers
   has_many :competitors
   has_many :risks
+  acts_as_followable
 
 	def self.import(file, exchange, date)
 		#  checking file signature to prevent duplicates from uploading
