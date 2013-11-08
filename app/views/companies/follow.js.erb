@@ -1,0 +1,3 @@
+$('#company_follow').html("<%= j render :partial => 'shared/follow_buttons', :locals => {:obj => @company,
+                                                                                          :follow_link => follow_company_path(:id => @company.id),
+                                                                                          :unfollow_link => unfollow_company_path(:id => @company.id)} %>");

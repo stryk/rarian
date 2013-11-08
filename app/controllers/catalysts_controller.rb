@@ -7,7 +7,7 @@ class CatalystsController < ApplicationController
                                       :user_id => current_user.id).first_or_initialize(:content => params[:catalyst][:content])
     @catalyst.new_record? ? @catalyst.save :
       @catalyst.update_attributes(:content => params[:catalyst][:content])
-
+    @catalyst = Catalyst.where(:company_id => @company.id).order("date ASC").group_by(&:date)
   end
 
   def destroy

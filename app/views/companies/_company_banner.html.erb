@@ -9,8 +9,13 @@
       <%= pricing_hash[:price_diff] %>  (<%= pricing_hash[:percentage_diff] %>%)
     <% end %>
     </h2>
-  <div class="reg-follow-btn"><a href="#"></a></div>
-  <h3> <%= @company.name %>.</h3>
+  <div class="reg-follow-btn" id="company_follow">
+    <%= render :partial => 'shared/follow_buttons', :locals => {:obj => @company,
+                                                                :follow_link => follow_company_path(:id => @company.id),
+                                                                :unfollow_link => unfollow_company_path(:id => @company.id),
+                                                                :big_small => 'big'} %>
+  </div>
+  <h3> <%= @company.name %></h3>
   <p class="sub-title"><%= @company.sector %>: <span id="jTruncate_truncate"><%= @company.industry %></span></p>
   <script type="text/javascript">
     $('#jTruncate_truncate').jTruncate({

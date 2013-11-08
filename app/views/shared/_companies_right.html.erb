@@ -1,12 +1,14 @@
-<h3>Alph Blips (Limit 140 characters per
-  blip) <%= select_tag("sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global",
-                       data: {
-                         remote: true,
-                         url: company_blips_path(@company),
-                         update: "message_div_id"
-                       }
-            ) %>
-</h3><!--<div class="small-follow-btn"><a href="#"></a></div>-->
+<h3>Alpha Blips <%= select_tag("sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global",
+                              data: {
+                                remote: true,
+                                url: company_blips_path(@company),
+                                update: "message_div_id"
+                              }
+                   ) %>
+  <br><span class="small-txt">(Limit 140 characters per blip)</span></h3>
+</h3>
+
+<!--<div class="small-follow-btn"><a href="#"></a></div>-->
 
 <div class="box-col-div">
   <div id="blips_list" class="scroll">
@@ -23,9 +25,10 @@
     </div>
     <script type="text/javascript">
       $('#new_blip_<%= @company.id %>').click(function () {
-        $("#new_blip_slide_down_<%= @company.id %>").toggle("slideDown(1000)")
+        $("#new_blip_slide_down_<%= @company.id %>").toggle("slideDown(1000)");
         $('#add_blip #new_blip').validate();
       });
+      $("#blip_content").maxlength({max: 140});
     </script>
 
   <% end %>

@@ -14,7 +14,9 @@
             <%end%>
         </div>
         <div id="follow_detail" >
-        <%= render :partial => 'follow_details' %>
+        <%= render :partial => 'shared/follow_buttons', :locals => {:obj => @user, :follow_link => follow_user_path(:id => @user.id),
+                                                                    :unfollow_link => unfollow_user_path(:id => @user.id),
+                                                                    :big_small => 'small'} %>
         </div>
         <div class="clr"></div>
       </div>

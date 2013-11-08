@@ -217,7 +217,7 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
 .top-login-space .top-link:before,.top-login-space .top-link:after {content: "";display: table;}
 .top-login-space .top-link:after {clear: both;}
 .top-login-space .top-link {zoom:1;}
-.top-login-space .top-link li {float: left;position: relative;margin-right:1px;z-index:100; color: #ff7201; font-size:12px;}
+.top-login-space .top-link li {float: left;position: relative;margin-right:1px;z-index:1000; color: #ff7201; font-size:12px;}
 .top-login-space .top-link li:first-child { background:none;}
 .top-login-space .top-link a {
     float: left;
@@ -679,3 +679,5 @@ h2.page-title { margin:0 0 10px 0; padding:0 0 2px 0; font-size:20px; border-bot
     url('../assets/fonts/matrixdit.ttf') format('truetype'),
     url('../assets/fonts/matrixdit.svg#MatrixditRegular') format('svg');
 }
+
+.small-txt { font-family: 'pt_sansregular'; font-size:14px; text-transform:none;}

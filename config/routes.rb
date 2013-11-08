@@ -10,6 +10,10 @@ Rarian::Application.routes.draw do
       post :import
       post :search
     }
+    member {
+      put :follow
+      put :unfollow
+    }
     resources :blips
     resources :target_prices
     resources :catalysts
@@ -118,7 +122,7 @@ Rarian::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'companies#index'
+  root 'home#landing'
 
 
 

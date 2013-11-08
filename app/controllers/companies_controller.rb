@@ -13,6 +13,15 @@ class CompaniesController < ApplicationController
     @catalyst = Catalyst.where(:company_id => @company.id).order("date ASC").group_by(&:date)
   end
 
+  def follow
+    current_user.follow(@company)
+  end
+
+  def unfollow
+    current_user.stop_following(@company)
+    render 'follow.js.erb'
+  end
+
 	def import
 		Company.import(params[:file], params[:exchange], params[:date])
 		redirect_to companies_path, notice: "Company quotes imported."

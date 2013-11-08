@@ -2,15 +2,6 @@
   <p><strong><%= @user.name %></strong></p>
   <p><a href="#"><%= @user.followers_count %> Followers</a>,<br><a href="#"><%= @user.follow_count %> Following</a></p>
   <% unless @user.id == current_user.id %>
-    <% unless current_user.following?(@user) %>
-      <div class="small-follow-btn" style="margin-left:0!important">
-
-        <%= link_to '&nbsp'.html_safe, follow_user_path(:id => @user.id),:method => 'put', :remote => true %>
-      </div>
-    <% else %>
-      <div class="small-unfollow-btn" style="margin-left:0!important">
-        <%= link_to '&nbsp'.html_safe, unfollow_user_path(:id => @user.id),:method => 'put', :remote => true %>
-      </div>
-    <% end %>
+    <%= render :partial => 'follow_buttons', :locals => {:obj => @user} %>
   <% end %>
 </div>
