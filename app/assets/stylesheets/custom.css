@@ -681,3 +681,13 @@ h2.page-title { margin:0 0 10px 0; padding:0 0 2px 0; font-size:20px; border-bot
 }
 
 .small-txt { font-family: 'pt_sansregular'; font-size:14px; text-transform:none;}
+
+.sign-container { margin:0; padding:20px 0;}
+.sign-container p{ margin:0; padding:0 0 15px 0;}
+.sign-container label{ margin:0; padding:0;}
+.sign-container label.lbltxt{ margin:0; padding:0;}
+.sign-container label.input-box{ margin:0; padding:0;}
+.sign-container .inputbox{ margin:0; padding:5px; border:1px solid #ccc; color:#8c8b8b; font-size:14px; background:#fff; width:50%; }
+
+
+
