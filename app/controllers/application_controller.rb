@@ -10,11 +10,11 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   def layout_by_resource
-    #if devise_controller? && resource_name == :user && action_name == 'new'
-    #  false
-    #else
+    if devise_controller? && resource_name == :user && action_name == 'new'
+      'devise/layouts/signout'
+    else
       "application"
-    #end
+    end
   end
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -40,9 +40,9 @@ class ApplicationController < ActionController::Base
     params[:sort_by] = 'asc' if params[:sort_by].blank?
     params[:range] = 10 if params[:range].blank?
     if options[:date_option]
-      objs = class_name.where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
+      objs = class_name.where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today} 23:59:59'")
     else
-      objs = class_name.where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
+      objs = class_name.where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today} 23:59:59'")
     end
 
     if params[:sort_by] == "following"

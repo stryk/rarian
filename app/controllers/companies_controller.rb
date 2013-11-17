@@ -1,11 +1,10 @@
 class CompaniesController < ApplicationController
 
-  load_and_authorize_resource
   skip_authorize_resource :only => :index
+  load_and_authorize_resource
 
 	def index
 		@companies = Company.all.limit(50)
-
   end
 
   def show
@@ -33,7 +32,7 @@ class CompaniesController < ApplicationController
 
   def search
     company = Company.arel_table
-    companies = Company.where(company[:name].matches("%#{params[:q]}%").or(company[:ticker].matches("%#{params[:q]}%")))
+    companies = Company.where(company[:name].matches("%#{params[:name_startsWith]}%").or(company[:ticker].matches("%#{params[:name_startsWith]}%")))
     options = []
     show_options = []
     companies.each do |company|

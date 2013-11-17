@@ -8,21 +8,23 @@
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true, :html => {:class => 'form-vertical'}) do |f| %>
 
           <p><label class="lbltxt">Name</label><br>
-            <label class="input-box"><%= f.text_field :name, :autofocus => true, :class => "inputbox" %></label></p>
+            <label class="input-box">
+              <%= f.text_field :name, :autofocus => true, :class => "inputbox", :validate => { :presence => true } %>
+            </label></p>
 
           <p><label class="lbltxt">Email</label><br>
             <label class="input-box">
-              <%= f.email_field :email, :autofocus => true, :class => "inputbox" %>
+              <%= f.email_field :email, :autofocus => true, :class => "inputbox", :validate => { :presence => true } %>
             </label>
           </p>
 
           <p><label class="lbltxt">Password</label><br>
             <label class="input-box">
-              <%= f.password_field :password, :class => "inputbox" %>
+              <%= f.password_field :password, :class => "inputbox", :validate => { :presence => true } %>
             </label></p>
 
           <p><label class="lbltxt">Password Confirmation</label><br>
-            <label class="input-box"><%= f.password_field :password_confirmation, :class => "inputbox" %></label></p>
+            <label class="input-box"><%= f.password_field :password_confirmation, :class => "inputbox", :validate => { :presence => true } %></label></p>
 
           <p><label class="lbltxt">Mobile Number</label><br>
             <label class="input-box"><%= f.text_field :mobilenumber, :class => "inputbox" %></label></p>

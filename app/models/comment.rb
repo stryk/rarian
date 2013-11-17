@@ -17,4 +17,8 @@ class Comment < ActiveRecord::Base
   # NOTE: Comments belong to a user
   belongs_to :user
 
+  def get_full_title
+    title
+  end
+
 end

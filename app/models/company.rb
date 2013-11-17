@@ -13,6 +13,7 @@ class Company < ActiveRecord::Base
   has_many :most_active_tickers
   has_many :competitors
   has_many :risks
+  attr_accessible :ticker, :name, :slug
   acts_as_followable
 
 	def self.import(file, exchange, date)
@@ -55,7 +56,6 @@ class Company < ActiveRecord::Base
 
 	def slug_candidates
 		[
-			:ticker,
 			[:ticker, :name]
 		]
   end

@@ -78,7 +78,8 @@
 <script type="text/javascript">
 
   $("#show_title_link_<%= cobj.id%>").click(function(){
-      $("#multimedia_content_for_title_<%= cobj.id %>").toggle();
+      $("#multimedia_content_for_title_<%= cobj.id %>").toggle("slideDown(1000)", function () {
+      });
   });
 
   <% if current_user.up_voted?(cobj) %>

@@ -2,11 +2,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    resource.roles = params[:user][:roles]
-    resource.name = params[:user][:name]
-    resource.mobilenumber = params[:user][:mobilenumber]
-    resource.save
-
+    #resource.roles = params[:user][:roles] || "standard"
+    #resource.name = params[:user][:name]
+    #resource.mobilenumber = params[:user][:mobilenumber]
+    #resource.save
   end
 
   def update

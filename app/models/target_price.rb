@@ -16,7 +16,7 @@ class TargetPrice < ActiveRecord::Base
     if len > 0
       median_value = (sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0
     else
-      0
+      median_value = 0
     end
 
     MedianTargetPrice.new_median(median_value, company_id, year)

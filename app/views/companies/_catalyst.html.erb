@@ -2,13 +2,16 @@
 
     <% catalyst.each do |cat| %>
 
-    <p><%= cat_date %>: <%= cat.content %> <%= link_to "Edit", "#.", :id => "company_catalyst_slide#{cat.id}" %> |
-      <%= link_to "Delete", company_catalyst_path(@company, cat), :method => 'delete', :remote => true %>
+    <p><%= link_to(cat.company.ticker, company_path(cat.company)) %> <%= cat_date %>: <%= cat.content %>
+      <% if cat.edit?(current_user) && action_name != 'landing' %>
+        <%= link_to "Edit", "#.", :id => "company_catalyst_slide#{cat.id}" %> |
+        <%= link_to "Delete", company_catalyst_path(cat.company.id, cat), :method => 'delete', :remote => true %>
+      <% end %>
     </p>
     <%= render :partial => 'catalysts/add_catalyst', :locals => {:catalyst => cat} %>
   <% end %>
 <% end %>
-<% if current_user %>
+<% if current_user && action_name != 'landing' %>
 
 <p><%= link_to "Add Catalyst", "#.", :id => 'company_catalyst_slide', :class => "readmore-link" %>
   </p>

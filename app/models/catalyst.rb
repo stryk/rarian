@@ -2,6 +2,7 @@ class Catalyst < ActiveRecord::Base
   attr_accessible :user_id, :company_id, :content, :date, :points
 
   belongs_to :user
+  belongs_to :company
 
   module Point
     UP = 1
@@ -9,6 +10,10 @@ class Catalyst < ActiveRecord::Base
   end
 
   validates :content, :date, :company_id, :user_id, presence: true
+
+  def edit?(user)
+    user_id == user.id
+  end
 
   def up_vote
     update_attributes(:net_votes => net_votes.to_i + 1, :points => points.to_i+Point::UP)
