@@ -20,4 +20,9 @@ class TargetPricesController < ApplicationController
   end
 
 
+  def get_company
+    @company = Company.friendly.find(params[:id])
+  end
+
+
 end

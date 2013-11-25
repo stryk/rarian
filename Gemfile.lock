@@ -1,4 +1,11 @@
 GIT
+  remote: git@github.com:FriendlyId/friendly_id.git
+  revision: 0c2ff236ff0137d4130d64863b22babc488add2c
+  specs:
+    friendly_id (5.0.1)
+      activerecord (~> 4.0.0)
+
+GIT
   remote: git@github.com:bcardarella/client_side_validations.git
   revision: 9461cb92e1dfb64895d590c6d435cdf48fcede45
   branch: 4-0-beta
@@ -84,8 +91,6 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
-    friendly_id (5.0.1)
-      activerecord (~> 4.0.0)
     hike (1.2.3)
     i18n (0.6.5)
     innertube (1.1.0)
@@ -205,7 +210,7 @@ DEPENDENCIES
   debugger
   devise (~> 3.0.0)
   factory_girl_rails (~> 4.0)
-  friendly_id (~> 5.0.1)
+  friendly_id!
   jbuilder (~> 1.2)
   jquery-rails (~> 3.0.4)
   make_voteable

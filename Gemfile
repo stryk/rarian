@@ -74,7 +74,7 @@ end
 
 gem 'cancan'
 gem "devise", "~> 3.0.0"
-gem "friendly_id", "~> 5.0.1"
+gem 'friendly_id', :git => 'git@github.com:FriendlyId/friendly_id.git'
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem "factory_girl_rails", "~> 4.0"
