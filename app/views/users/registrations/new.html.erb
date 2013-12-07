@@ -7,27 +7,27 @@
 
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true, :html => {:class => 'form-vertical'}) do |f| %>
 
-          <p><label class="lbltxt">Name</label><br>
+          <p><label class="lbltxt">Name</label><em>*</em><br>
             <label class="input-box">
-              <%= f.text_field :name, :autofocus => true, :class => "inputbox", :validate => { :presence => true } %>
+              <%= f.text_field :name, :autofocus => true, :class => "inputbox input-required", :validate => { :presence => true } %>
             </label></p>
 
-          <p><label class="lbltxt">Email</label><br>
+          <p><label class="lbltxt">Email</label><em>*</em><br>
             <label class="input-box">
-              <%= f.email_field :email, :autofocus => true, :class => "inputbox", :validate => { :presence => true } %>
+              <%= f.email_field :email, :autofocus => true, :class => "inputbox input-required", :validate => { :presence => true } %>
             </label>
           </p>
 
-          <p><label class="lbltxt">Password</label><br>
+          <p><label class="lbltxt">Password</label><em>*</em><br>
             <label class="input-box">
-              <%= f.password_field :password, :class => "inputbox", :validate => { :presence => true } %>
+              <%= f.password_field :password, :class => "inputbox  input-required", :validate => { :presence => true } %>
             </label></p>
 
-          <p><label class="lbltxt">Password Confirmation</label><br>
-            <label class="input-box"><%= f.password_field :password_confirmation, :class => "inputbox", :validate => { :presence => true } %></label></p>
+          <p><label class="lbltxt">Password Confirmation</label><em>*</em><br>
+            <label class="input-box"><%= f.password_field :password_confirmation, :class => "inputbox input-required", :validate => { :presence => true } %></label></p>
 
-          <p><label class="lbltxt">Mobile Number</label><br>
-            <label class="input-box"><%= f.text_field :mobilenumber, :class => "inputbox" %></label></p>
+          <p><label class="lbltxt">Mobile Number</label><em>*</em><br>
+            <label class="input-box"><%= f.text_field :mobilenumber, :class => "inputbox input-required" %></label></p>
 
           <% if Rails.env == "development" %>
             <% for role in User::ROLES %>

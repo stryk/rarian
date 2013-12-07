@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   validates :mobilenumber, :numericality => true, :allow_blank => true
   validates :email, uniqueness: true, if: -> { self.email.present? }
   validates_confirmation_of :password
+  validates :name , :presence => true
 
   # Setup accessible (or protected) attributes for your model
   #attr_accessible :role_ids, :as => :admin

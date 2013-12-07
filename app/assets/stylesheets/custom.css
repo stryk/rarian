@@ -689,5 +689,6 @@ h2.page-title { margin:0 0 10px 0; padding:0 0 2px 0; font-size:20px; border-bot
 .sign-container label.input-box{ margin:0; padding:0;}
 .sign-container .inputbox{ margin:0; padding:5px; border:1px solid #ccc; color:#8c8b8b; font-size:14px; background:#fff; width:50%; }
 
-
+.message { color:red;}
+em { color:red}
 

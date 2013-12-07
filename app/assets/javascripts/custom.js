@@ -29,6 +29,12 @@
 			$('#btop').fadeOut('slow');
 		}
 	});
-	
-	
+
+
+//$(document).ready(function(){
+//  $('.input-required').each(function(){
+//    $(this).closest('label').after("<em>*</em>");
+//  });
+//})
+
 })( jQuery );
