@@ -18,7 +18,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
 
   def get_full_title
-    title
+    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+title
   end
 
 end

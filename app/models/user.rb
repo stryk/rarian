@@ -10,13 +10,12 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :email_vote,:email_follow_me,
                   :email_answer_question, :email_sends_message, :email_comment, :email_question, :email_answer,
-                  :email_spam, :no_day_newsletter, :mobilenumber, :image, :aboutuser, :company, :blog
+                  :email_spam, :no_day_newsletter, :mobilenumber, :image, :aboutuser, :company, :blog, :roles
   attr_accessor :roles
 
   validates :mobilenumber, :numericality => true, :allow_blank => true
   validates :email, uniqueness: true, if: -> { self.email.present? }
   validates_confirmation_of :password
-  validates :name , :presence => true
 
   # Setup accessible (or protected) attributes for your model
   #attr_accessible :role_ids, :as => :admin

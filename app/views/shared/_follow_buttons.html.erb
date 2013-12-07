@@ -1,10 +1,14 @@
 <% unless current_user.following?(obj) %>
+  <div class="reg-follow-btn" >
   <div class="<%= big_small %>-follow-btn" style="margin-left:0!important">
 
     <%= link_to '&nbsp'.html_safe, follow_link,:method => 'put', :remote => true %>
   </div>
+  </div>
 <% else %>
+  <div class="reg-unfollow-btn" >
   <div class="<%= big_small %>-unfollow-btn" style="margin-left:0!important">
     <%= link_to '&nbsp'.html_safe, unfollow_link,:method => 'put', :remote => true %>
+  </div>
   </div>
 <% end %>

@@ -40,7 +40,7 @@
         <%#= text_val.try(:html_safe) %><%= send("show_title", cobj).html_safe %>
       <% end %>
       <p>
-        <%= link_to("Comments", send("company_#{cobj.class.name.downcase}_comments_path", cobj.company, cobj), :remote => true ) %>
+        <%= link_to("Comments (#{comments_count})", send("company_#{cobj.class.name.downcase}_comments_path", cobj.company, cobj), :remote => true ) %>
         <% if child_objs_present %>
 
             | <a id="accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">

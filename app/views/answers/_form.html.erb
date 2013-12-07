@@ -15,7 +15,9 @@
 
     <%= render :partial => 'shared/voting_list', :locals => {:cobj => child_obj, :company => company,
                                                              :text_val => child_objs_text,
-                                                             :child_objs_present => false, :comments => true,
+                                                             :child_objs_present => false,
+                                                             :comments_count => child_obj.comments.count,
+                                                             :comments => true,
                                                              :show_link => false, :refresh_div => false} %>
 
     <script type="text/javascript">

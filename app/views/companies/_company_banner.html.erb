@@ -9,10 +9,10 @@
       <%= pricing_hash[:price_diff] %>  (<%= pricing_hash[:percentage_diff] %>%)
     <% end %>
     </h2>
-  <div class="reg-follow-btn" id="company_follow">
+  <div id="company_follow">
     <%= render :partial => 'shared/follow_buttons', :locals => {:obj => @company,
-                                                                :follow_link => follow_company_path(:id => @company),
-                                                                :unfollow_link => unfollow_company_path(:id => @company),
+                                                                :follow_link => follow_company_path(@company),
+                                                                :unfollow_link => unfollow_company_path(@company),
                                                                 :big_small => 'big'} %>
   </div>
   <h3> <%= @company.name %></h3>

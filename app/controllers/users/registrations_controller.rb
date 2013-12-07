@@ -2,10 +2,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    #resource.roles = params[:user][:roles] || "standard"
+    resource.roles = params[:user][:roles] || ["standard"]
     #resource.name = params[:user][:name]
     #resource.mobilenumber = params[:user][:mobilenumber]
-    #resource.save
+    resource.save
   end
 
   def update
@@ -69,6 +69,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.userinterest = params[:user][:userinterest] if params[:user] && params[:user][:userinterest]
     resource.company = params[:user][:company] if params[:user] && params[:user][:company]
     resource.blog = params[:user][:blog] if params[:user] && params[:user][:blog]
+
 
 
 

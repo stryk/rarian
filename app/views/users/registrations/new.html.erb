@@ -29,13 +29,6 @@
           <p><label class="lbltxt">Mobile Number</label><em>*</em><br>
             <label class="input-box"><%= f.text_field :mobilenumber, :class => "inputbox input-required" %></label></p>
 
-          <% if Rails.env == "development" %>
-            <% for role in User::ROLES %>
-              <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"} %>
-              <%= label_tag "user_roles_#{role}", role.humanize %><br />
-            <% end %>
-            <%= hidden_field_tag "user[roles][]", "" %>
-          <% end %>
 
           <p>
             <%= f.submit "Sign up", :class => 'button medium  brown' %>

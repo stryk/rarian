@@ -14,7 +14,7 @@ class Competitor < ActiveRecord::Base
   end
 
   def get_full_title
-    "#{competitor_company.try(:name)}"
+    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+"#{competitor_company.try(:name)}"
   end
 
   def up_vote

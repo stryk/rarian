@@ -1,4 +1,4 @@
-$("#list_all_blip_comments_<%= @comment_obj.class.name.downcase+'_'+@comment_obj.id.to_s %>").prepend('<div class="user-thumb"><img src="/assets/user-thumb.jpg" alt=""></div><div class="comment-text"><p class="title">User Name</p><p class="normal-txt" id="jTruncate_truncate-<%= @comment.id %>"><%= @comment.comment %></p></div>');
+$("#list_all_blip_comments_<%= @comment_obj.class.name.downcase+'_'+@comment_obj.id.to_s %>").prepend('<div class="user-thumb"><img src="/assets/user-thumb.jpg" alt=""></div><div class="comment-text"><p class="title"><%= link_to @comment.user.name, user_path(@comment.user) %></p><p class="normal-txt" id="jTruncate_truncate-<%= @comment.id %>"><%= @comment.comment %></p></div>');
 $('#jTruncate_truncate-<%= @comment.id %>').jTruncate({
   length: 50
 });

@@ -2,5 +2,7 @@ $('#comment_list_<%= @comment_obj.class.name.downcase+'_'+@comment_obj.id.to_s %
 $('#comment_list_<%= @comment_obj.class.name.downcase+'_'+@comment_obj.id.to_s %>').toggle("slideDown(1000)", function () {
 });
 
+$("#new_comment").enableClientSideValidations();
+
 
 

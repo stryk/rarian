@@ -20,7 +20,7 @@ class Question < ActiveRecord::Base
   acts_as_commentable
 
   def get_full_title
-    content
+    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+content
   end
 
   def child_link_name

@@ -6,7 +6,7 @@
         <%= form_for(Comment.new, :url => send("company_#{@comment_obj.class.name.downcase}_comments_path", @comment_obj.company, @comment_obj), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
           <div class="user-thumb"><img src="/assets/user-thumb.jpg" alt=""></div>
           <div class="comment-input">
-              <%= f.text_area :comment, :class => "inputbox", :validate => true %>
+              <%= f.text_area :comment, :class => "inputbox" %>
           </div>
         <div class="clear"></div>
           <div class="comment-btn"> <%= f.button 'Comment', id: 'create_blip', :class => 'button medium brown' %></div>
@@ -19,7 +19,7 @@
         <% @comment_obj.comments.each do |comment| %>
           <div class="user-thumb"><img src="/assets/user-thumb.jpg" alt=""></div>
           <div class="comment-text">
-            <p class="title">User Name</p>
+            <p class="title"><%= link_to comment.user.name, user_path(comment.user) %></p>
             <p class="normal-txt" id="jTruncate_truncate-<%= comment.id %>"><%= comment.comment %></p>
           </div>
           <script type="text/javascript">

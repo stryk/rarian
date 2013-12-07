@@ -25,7 +25,7 @@ class Blip < ActiveRecord::Base
   acts_as_commentable
 
   def get_full_title
-    "<a href='/companies/#{company.friendly_id}'>"+company.ticker+'</a>'+": "+created_at.strftime("%m/%d/%Y")+": "+action+": "+content
+    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+"<a href='/companies/#{company.friendly_id}'>"+company.ticker+'</a>'+": "+created_at.strftime("%m/%d/%Y")+": "+action+": "+content
   end
 
   def up_vote
