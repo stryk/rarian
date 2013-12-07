@@ -37,9 +37,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     if params[:check_type] == 'email_spam' && !params[:email_spam].blank?
-      resource.email_spam = true
+      resource.email_spam = 't'
     elsif params[:check_type] == 'email_spam'
-      resource.email_spam = false
+      resource.email_spam = 'f'
     end
 
     if params[:check_type] == 'email_follow_me' && !params[:email_follow_me].blank?
@@ -69,7 +69,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.userinterest = params[:user][:userinterest] if params[:user] && params[:user][:userinterest]
     resource.company = params[:user][:company] if params[:user] && params[:user][:company]
     resource.blog = params[:user][:blog] if params[:user] && params[:user][:blog]
-
 
 
 

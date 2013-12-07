@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:FriendlyId/friendly_id.git
-  revision: 0732bdf36557945186c088656b160155858fa87f
+  revision: 0c2ff236ff0137d4130d64863b22babc488add2c
   specs:
     friendly_id (5.0.1)
       activerecord (~> 4.0.0)
