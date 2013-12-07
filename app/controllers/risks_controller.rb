@@ -1,4 +1,5 @@
 class RisksController < ApplicationController
+  before_filter :find_company
   load_and_authorize_resource :company
 
   def create
@@ -38,4 +39,11 @@ class RisksController < ApplicationController
       format.js {render 'create'}
     end
   end
+
+  private
+
+  def find_company
+    @company = Company.friendly.find(params[:company_id])
+  end
+  
 end

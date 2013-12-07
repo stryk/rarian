@@ -1,5 +1,6 @@
 class CatalystsController < ApplicationController
-  load_and_authorize_resource :company
+  prepend_before_filter :find_company
+  load_and_authorize_resource
 
   def create
     @catalyst = Catalyst.find(params[:catalyst_id]) rescue Catalyst.new
@@ -18,5 +19,12 @@ class CatalystsController < ApplicationController
     respond_to do |format|
       format.js { render 'create' }
     end
+  end
+
+  private
+
+  def find_company
+    @company = Company.friendly.find(params[:company_id])
+
   end
 end

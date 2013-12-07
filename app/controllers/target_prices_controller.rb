@@ -1,4 +1,5 @@
 class TargetPricesController < ApplicationController
+  before_filter :find_company
   load_and_authorize_resource :company
 
   def create
@@ -22,6 +23,10 @@ class TargetPricesController < ApplicationController
 
   def get_company
     @company = Company.friendly.find(params[:id])
+  end
+
+  def find_company
+    @company = Company.friendly.find(params[:company_id])
   end
 
 

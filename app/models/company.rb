@@ -56,9 +56,11 @@ class Company < ActiveRecord::Base
 
 	def slug_candidates
 		[
-			[:ticker, :name]
+			:ticker,
+			[:ticker, :exchange],
+			[:ticker, :exchange, :id]
 		]
-  end
+    end
 
 
 end

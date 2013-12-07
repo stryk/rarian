@@ -1,7 +1,8 @@
 class CompaniesController < ApplicationController
 
   skip_authorize_resource :only => :index
-  load_and_authorize_resource
+  load_resource :find_by => :slug
+  authorize_resource
 
 	def index
 		@companies = Company.all.limit(50)
