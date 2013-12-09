@@ -1,5 +1,5 @@
 <% @company_lists.each do |company_list| %>
   <p>
-    <%= company_list.name %> (<%= company_list.ticker %>)
+    <%= link_to company_list.name, company_path(company_list) %> (<%= company_list.ticker %>)
   </p>
 <% end %>
