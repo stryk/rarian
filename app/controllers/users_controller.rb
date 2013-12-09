@@ -108,7 +108,7 @@ class UsersController < ApplicationController
     params[:sort_by] = 'asc' if params[:sort_by].blank?
     params[:range] = 10 if params[:range].blank?
 
-    @blips = obj_relationship.unscoped.order("created_at #{params[:sort_by]}").where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
+    obj_relationship.unscoped.order("created_at #{params[:sort_by]}").where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
 
   end
 

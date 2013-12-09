@@ -8,7 +8,7 @@ module BlipsHelper
   end
 
   def show_multimedia_content(obj)
-      obj.get_multimedia_content
+    obj.get_multimedia_content
   end
 
 end
