@@ -228,7 +228,7 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
 }
 .top-login-space .top-link a.active {float: left;padding:0;color: #fff; text-decoration: none; padding: 0;}
 .top-login-space .top-link li:hover > a {color: #fff; }
-*html .top-login-space .top-link li a:hover { /* IE6 only */color: #fff;}
+* html .top-login-space .top-link li a:hover { /* IE6 only */color: #fff;}
 .top-login-space .top-link ul {	margin: 0px 0 0 0;_margin: 0; /*IE6 only*/
     opacity: 0;
     visibility: hidden;
@@ -303,7 +303,7 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
 }
 .navul a.active {float: left;padding:0;color: #fff; background:#ff7201; text-decoration: none; padding: 0 10px 0 10px;}
 .navul li:hover > a {color: #fff; background:#ff7201; }
-*html .navul li a:hover { /* IE6 only */color: #fff; background:#ff7201;}
+* html .navul li a:hover { /* IE6 only */color: #fff; background:#ff7201;}
 .navul ul {	margin: 0px 0 0 0;_margin: 0; /*IE6 only*/
     opacity: 0;
     visibility: hidden;
