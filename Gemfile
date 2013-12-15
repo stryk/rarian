@@ -66,6 +66,7 @@ group :development do
 	# Use postgres as the database for Active Record
 	gem 'pg'
 	gem 'debugger'
+  gem 'capistrano'
 end
 
 group :production do

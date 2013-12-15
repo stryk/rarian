@@ -1,5 +1,5 @@
 class TestMailer < ActionMailer::Base
-  default from: "dev@example.com"
+  default from: "support@dejed.com"
 
   def test_email(user)
   	@user = user

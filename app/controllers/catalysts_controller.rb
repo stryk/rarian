@@ -24,7 +24,7 @@ class CatalystsController < ApplicationController
   private
 
   def find_company
-    @company = Company.friendly.find(params[:company_id])
+    @company = Company.friendly.find((params[:company_id]).downcase)
 
   end
 end

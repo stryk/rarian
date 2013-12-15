@@ -24,7 +24,7 @@ class AnswersController < ApplicationController
 
   private
   def load_company_and_question
-    @company= Company.friendly.find(params[:company_id])
+    @company= Company.friendly.find((params[:company_id]).downcase)
     @question= Question.find(params[:question_id])
   end
 end

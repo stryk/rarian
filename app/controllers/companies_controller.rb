@@ -1,8 +1,8 @@
 class CompaniesController < ApplicationController
 
+  before_filter :load_company
   skip_authorize_resource :only => :index
-  load_resource :find_by => :slug
-  authorize_resource
+  load_and_authorize_resource
 
 	def index
 		@companies = Company.all.limit(50)
@@ -59,6 +59,11 @@ class CompaniesController < ApplicationController
     @company.save
   end
 
+  private
+
+  def load_company
+    @company= Company.friendly.find(params[:id].downcase)
+  end
 
 
 end

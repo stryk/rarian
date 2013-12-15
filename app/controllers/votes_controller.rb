@@ -5,7 +5,7 @@ class VotesController < ApplicationController
   def up
     begin
       authorize! :up, @obj
-      @company =  Company.friendly.find(params[:company_id])
+      @company =  Company.friendly.find(params[:company_id].downcase)
       current_user.up_vote(@obj)
     rescue MakeVoteable::Exceptions::AlreadyVotedError
       # if the user clicks on the vote twice means user is unvoting
@@ -16,7 +16,7 @@ class VotesController < ApplicationController
   def down
     begin
       authorize! :up, @obj
-      @company =  Company.friendly.find(params[:company_id])
+      @company =  Company.friendly.find(params[:company_id].downcase)
       current_user.down_vote(@obj)
     rescue MakeVoteable::Exceptions::AlreadyVotedError
       # if the user clicks on the vote twice means user is unvoting

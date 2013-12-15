@@ -22,11 +22,11 @@ class TargetPricesController < ApplicationController
 
 
   def get_company
-    @company = Company.friendly.find(params[:id])
+    @company = Company.friendly.find((params[:id]).downcase)
   end
 
   def find_company
-    @company = Company.friendly.find(params[:company_id])
+    @company = Company.friendly.find(params[:company_id].downcase)
   end
 
 
