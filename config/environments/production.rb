@@ -28,6 +28,7 @@ Rarian::Application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
+  config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif]
   config.assets.compile = false
   config.assets.compress = true
   # Generate digests for assets URLs.
