@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
 
+  skip_before_filter :load_company, :only => :index
   before_filter :load_company
   skip_authorize_resource :only => :index
   load_and_authorize_resource
@@ -62,7 +63,11 @@ class CompaniesController < ApplicationController
   private
 
   def load_company
-    @company= Company.friendly.find(params[:id].downcase)
+    if params[:id] = nil
+      @company = nil
+    else
+      @company= Company.friendly.find(params[:id].downcase)
+    end
   end
 
 
