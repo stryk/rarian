@@ -1,7 +1,8 @@
 class CompaniesController < ApplicationController
 
-  skip_before_filter :load_company, :only => :index
+  
   before_filter :load_company
+  skip_before_filter :load_company, :only => :index
   skip_authorize_resource :only => :index
   load_and_authorize_resource
 
