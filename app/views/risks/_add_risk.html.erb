@@ -1,7 +1,7 @@
 <div style='display:none' class="slide-div" id='risk_slide_down<%= risk.id %>'>
   <%= form_for(risk, :url => company_risks_path(@company), :remote => true, :method => 'post', :validate => true) do |f| %>
     <%= f.text_area :risk, :class => "risk_text_area#{risk.id} slide-input", :rows => "4", :cols =>"10" %>
-    <p><%= f.submit :class => "button medium brown" %></p>
+    <p><%= f.submit :class => "button small brown" %></p>
   <% end %>
 </div>
 
@@ -9,12 +9,12 @@
 <div style='display:none' class="slide-div" id='risk_slide_down_update<%= risk.id %>'>
   <%= form_for(risk, :url => edit_company_risk_path(@company,risk), :remote => true, :method => 'get', :validate => true) do |f| %>
     <%= f.text_area :risk, :class => "risk_text_area#{risk.id} slide-input", :rows => "4", :cols =>"10" %>
-    <p><%= f.submit :class => "button medium brown" %></p>
+    <p><%= f.submit :class => "button small brown" %></p>
   <% end %>
 </div>
 
 <script type="text/javascript">
-  $(".risk_text_area<%= risk.id %>").maxlength({max: 30});
+  $(".risk_text_area<%= risk.id %>").maxlength({max: 140});
   $("#company_risk_slide<%= risk.id %>").unbind();
   $("#risk_slide_down<%= risk.id %>").unbind();
   $("#company_risk_slide<%= risk.id %>").click(function(){

@@ -2,7 +2,7 @@
   <%= form_for(Competitor.new, :url => company_competitors_path(@company), :remote => true, :method => 'post', :validate => true) do |f| %>
     <%= text_field_tag 'competitor[name]', "", {"id" => "typeahead", :class => "slide-input"} %>
     <%= f.hidden_field :competitor_id %>
-    <%= f.submit :class => "button medium brown" %>
+    <%= f.submit :class => "button small brown" %>
   <% end %>
 </div>
 

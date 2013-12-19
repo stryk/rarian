@@ -7,14 +7,14 @@
 
         <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true, :html => {:class => 'form-vertical'}) do |f| %>
 
-          <p><label class="lbltxt">Name</label><em>*</em><br>
+          <p><label class="lbltxt">Username</label><em>*</em><br>
             <label class="input-box">
               <%= f.text_field :name, :autofocus => true, :class => "inputbox input-required", :validate => { :presence => true } %>
             </label></p>
 
           <p><label class="lbltxt">Email</label><em>*</em><br>
             <label class="input-box">
-              <%= f.email_field :email, :autofocus => true, :class => "inputbox input-required", :validate => { :presence => true } %>
+              <%= f.email_field :email, :autofocus => false, :class => "inputbox input-required", :validate => { :presence => true } %>
             </label>
           </p>
 
@@ -26,9 +26,6 @@
           <p><label class="lbltxt">Password Confirmation</label><em>*</em><br>
             <label class="input-box"><%= f.password_field :password_confirmation, :class => "inputbox input-required", :validate => { :presence => true } %></label></p>
 
-          <p><label class="lbltxt">Mobile Number</label><em>*</em><br>
-            <label class="input-box"><%= f.text_field :mobilenumber, :class => "inputbox input-required" %></label></p>
-
 
           <p>
             <%= f.submit "Sign up", :class => 'button medium  brown' %>
@@ -37,6 +34,7 @@
           <p>
             <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
               <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+              <%= link_to "Didn't receive confirmation email?", new_confirmation_path(resource_name) %><br />
             <% end -%>
             </p>
 

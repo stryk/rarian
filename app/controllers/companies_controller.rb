@@ -3,6 +3,7 @@ class CompaniesController < ApplicationController
   
   before_filter :load_company
   skip_before_filter :load_company, :only => :index
+  skip_before_filter :load_company, :only => :import
   skip_authorize_resource :only => :index
   load_and_authorize_resource
 
@@ -64,10 +65,10 @@ class CompaniesController < ApplicationController
   private
 
   def load_company
-    if params[:id] = nil
+    if params[:id] == nil
       @company = nil
     else
-      @company= Company.friendly.find(params[:id].downcase)
+      @company= Company.friendly.find(params[:id])
     end
   end
 

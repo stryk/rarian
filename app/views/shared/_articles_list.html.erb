@@ -1,0 +1,101 @@
+<div class="left-box">
+  <div class="q-title">
+    <strong><%= text_val.try(:html_safe) %></strong>
+  </div>
+  <% hr_voting = hr_voting rescue nil %>
+  <div class="<%= hr_voting %>voting-arrow" style="top:0!important;">
+    <div class="voting-with-number">
+      <span class = "numbers-bg">
+          <%= link_to send("up_company_#{cobj.class.name.downcase}_votes_path", cobj.company, cobj, {:refresh_div => refresh_div}),
+                                                     :remote => true, :method => :put, :id => "vote_up_#{cobj.class.name.downcase+"_"+cobj.id.to_s}",
+                                                     :class => "voting-up-arrow" do %>
+          <span class="numbers" id="upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>"><%= cobj.try(:net_votes) %></span>
+          <% end %>
+      </span>
+      <span class="numbers-bg">
+          <%= link_to send("down_company_#{cobj.class.name.downcase}_votes_path", cobj.company, cobj, {:refresh_div => refresh_div}),
+                      :remote => true, :method => :put, :id => "vote_down_#{cobj.class.name.downcase+"_"+cobj.id.to_s}",
+                      :class => "voting-down-arrow" do %>
+            <span class="numbers" id="downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>">&nbsp;</span>
+          <% end %>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="right-box">
+  <div class="comments-container">
+    <% if comments %>
+      <% if show_link %>
+        <%#= link_to("#{text_val.try(:html_safe)}#{send("show_title", cobj)}".html_safe, show_link(cobj, company),
+                                                    :id => "show_title_link_"+cobj.id.to_s, :remote => true) %>
+
+        <%= link_to("#{text_val.try(:html_safe)}#{send("show_title", cobj)}".html_safe, "#.",
+                                                    :id => "show_title_link_"+cobj.id.to_s) %>
+
+        <div id="multimedia_content_for_title_<%= cobj.id %>" style="display: none">
+            <%= send("show_multimedia_content",cobj).html_safe %>
+        </div>
+      <% else %>
+        <%#= text_val.try(:html_safe) %><%= send("show_title", cobj).html_safe %>
+      <% end %>
+      <p>
+        <%= link_to("Comments (#{comments_count})", send("company_#{cobj.class.name.downcase}_comments_path", cobj.company, cobj), :remote => true ) %>
+        <% if child_objs_present %>
+
+            | <a id="accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">
+                <%= ("<b>"+cobj.child_link_name+"</b>").html_safe %>
+              </a>
+
+            <div id="comment_list_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>" style="display:none">
+
+            </div>
+
+            <div class="span12">
+
+            <%= render :partial => 'answers/form', :locals => {:company => cobj.company, :question => cobj,
+                                                                 :child_objs => child_objs,
+                                                                 :child_objs_text => child_objs_text} %>
+            </div>
+        <% end %>
+      </p>
+
+      <div id="comment_list_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>" style="display:none">
+
+      </div>
+
+    <% else %>
+      <% if show_link %>
+        <%= link_to(send("show_title", cobj).html_safe, show_link(cobj, cobj.company)) %>
+      <% else %>
+        <%= send("show_title", cobj).html_safe %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="clr"></div>
+
+<script type="text/javascript">
+
+  $("#show_title_link_<%= cobj.id%>").click(function(){
+      $("#multimedia_content_for_title_<%= cobj.id %>").toggle("slideDown(1000)", function () {
+      });
+  });
+
+  <% if current_user.up_voted?(cobj) %>
+  $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').hide();
+  $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+  $('#upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
+  <% elsif current_user.down_voted?(cobj) %>
+  $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+  $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').hide();
+  $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
+  <% else %>
+  $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+  $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+  $('#upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
+  $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('');
+  <% end %>
+
+
+</script>

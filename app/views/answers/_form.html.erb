@@ -1,13 +1,15 @@
+
 <span style='display:none' id='create_answer-<%= question.id %>'>
+<div class="text-editor-container">
 <%= form_for(Answer.new, :url => company_question_answers_path(company, question), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
   <div class="span12">
     <%= f.text_area :content, :class => "ckeditor", :toolbar => "Mini" ,:id => "editor_answer_"+question.id.to_s%>
   </div>
 
   <div class="span12">
-    <%= f.button 'Submit', id: "create_answer-#{question.id}" %>
+    <%= f.button 'Submit', class: "button small brown", id: "create_answer-#{question.id}" %>
   </div>
-
+</div>
 <% end %>
 </span>
 <div id='<%= question.class.name.downcase+'-'+question.id.to_s %>'>

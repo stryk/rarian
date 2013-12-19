@@ -9,12 +9,12 @@
       <div class="slide-div" style='display:none' id='description_slide_down'>
         <%= form_for(@company, :method => 'put', :remote => true, :validate => true) do |f| %>
           <%= f.text_area :description, :id => "limit_text_area", :cols => "5", :rows => "5", :class => "slide-textarea" %>
-          <%= f.submit :class => "button medium brown" %>
+          <%= f.submit :class => "button small brown" %>
         <% end %>
       </div>
   <% end %>
 </div>
 
 <script type="text/javascript">
-  $("#limit_text_area").maxlength({max: 500});
+  $("#limit_text_area").maxlength({max: 200});
 </script>

@@ -1,1 +1,0 @@
-!function(o){o("a.home.menu").unbind().click(function(){return 0==o("#access:visible").length?o("#access").slideDown():o("#access").slideUp(),!1}),o("#btop").click(function(){return o.smoothScroll({scrollTarget:".logo",speed:1e3}),!1}),o(window).scroll(function(){o(this).scrollTop()>400?o("#btop").fadeIn("slow"):o("#btop").fadeOut("slow")})}(jQuery);

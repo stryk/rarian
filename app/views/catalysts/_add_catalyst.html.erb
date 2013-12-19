@@ -4,7 +4,7 @@
 
     <span>Content</span>
     <%= f.text_area :content, :id => "catalyst_text_area#{catalyst.id}", :cols => "5", :rows => "5", :class => "slide-textarea" %>
-    <%= f.submit :class => "button medium brown" %>
+    <%= f.submit :class => "button small brown" %>
   <% end %>
 </div>
 
@@ -17,7 +17,7 @@
     dateFormat: "yy-mm-dd",
     minDate: new Date(<%= Time.now.year %>, <%= Time.now.month-1 %>, <%=  Time.now.day %>)
   });
-  $("#catalyst_text_area<%= catalyst.id %>").maxlength({max: 500});
+  $("#catalyst_text_area<%= catalyst.id %>").maxlength({max: 140});
   $("#company_catalyst_slide<%= catalyst.id %>").unbind();
   $("#catalyst_slide_down<%= catalyst.id %>").unbind();
   $("#company_catalyst_slide<%= catalyst.id %>").click(function () {

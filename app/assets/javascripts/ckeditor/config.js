@@ -78,27 +78,27 @@ CKEDITOR.editorConfig = function (config) {
   };
 
   config.toolbar = [
-    { name: '', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Strike', '-', 'RemoveFormat' ] },
-    { name: '', items: [ 'Image'] }
+    { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', '/', 'TextColor', '-', 'HorizontalRule' ] },
+    { name: 'insert', items: [ 'Image'] }
   ];
 
-//Toolbar groups configuration.
-  config.toolbarGroups = [
-    { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-    { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ] },
-    { name: 'links' },
-    { name: 'insert' },
-    { name: 'forms' },
-    { name: 'tools' },
-    { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-    { name: 'others' },
-    '/',
-    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-    { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
-    { name: 'styles' },
-    { name: 'colors' },
-    { name: 'about' }
-  ];
+// //Toolbar groups configuration.
+//   config.toolbarGroups = [
+//     { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+//     { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ] },
+//     { name: 'links' },
+//     { name: 'insert' },
+//     { name: 'forms' },
+//     { name: 'tools' },
+//     { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+//     { name: 'others' },
+//     '/',
+//     { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+//     { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+//     { name: 'styles' },
+//     { name: 'colors' },
+//     { name: 'about' }
+//   ];
 
 
 
