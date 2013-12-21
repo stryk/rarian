@@ -1,6 +1,6 @@
 class RisksController < ApplicationController
   before_filter :find_company
-  load_and_authorize_resource :company
+  load_and_authorize_resource
 
   def create
     @risk = @company.risks.create(:user_id => current_user.id,:company_id => @company.id ,
@@ -26,8 +26,6 @@ class RisksController < ApplicationController
     respond_to do |format|
       if @risk.update_attributes(:risk => params[:risk][:risk])
         format.js {}
-      else
-
       end
 
     end

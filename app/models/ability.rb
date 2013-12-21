@@ -13,7 +13,7 @@ class Ability
     if user.is? :admin
       can :manage, :all
     elsif user.is? :standard
-      can :read, Company
+      can [:read, :follow, :unfollow], Company
       cannot :import, Company
       can :imageuploader, User, :user_id => user.id
       can [:up, :down], Pitch do |pitch|
@@ -22,12 +22,25 @@ class Ability
       can [:up, :down], Blip do |blip|
         blip.user_id != user.id
       end
-      can :read, Blip
-      can :read, Pitch
-      can :crud, Blip, :user_id => user.id
-      can :create, [Comment, Pitch, Blip]
+      can [:up, :down], Competitor do |comp|
+        comp.user_id != user.id
+      end
+      can [:up, :down], Risk do |risk|
+        risk.user_id != user.id
+      end
+      can [:up, :down], Question do |q|
+        q.user_id != user.id
+      end
+      can [:up, :down], Question do |a|
+        a.user_id != user.id
+      end
+      can :read, [Blip, Pitch, Catalyst, Question, Answer, Competitor, Risk]
+      can :update, [Catalyst, Question, Answer, Competitor, Risk], :user_id => user.id
+      can :destroy, [Catalyst, Answer, Competitor, Risk], :user_id => user.id
+      can :cu, Blip, :user_id => user.id
+      can :create, [Comment, Pitch, Blip, Catalyst, Question, Answer, Competitor, Risk]
       can [:update, :destroy], Comment, :user_id => user.id
-      can [:update, :destroy], Pitch, :user_id => user.id
+      can [:update], Pitch, :user_id => user.id
       can :read, Comment
       can :read, User
       can :cu, User, :user_id => user.id

@@ -16,25 +16,25 @@
 <div class="middle-panel">
 
   <div class="box-col middle-margin">
-    <h3 class="middleh3">top reason to buy
+    <h3 class="middleh3">Long Pitch: Reasons to Buy
     </h3>
     <div class="input-txt">
       <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
       <%= link_to "Add reason to buy...", "#.", :class => "inputo-txt", :id => "add_reason_to_buy_link" %>
     </div>
     <div class="text-editor-container" id="add_reason_to_buy_link_slide_down" style="display: none">
-      <%= render :partial => 'pitch_form', :locals => {:option => 'buy'} %>
+      <%= render :partial => 'shared/pitch_form', :locals => {:pitch => nil, :option => 'buy'} %>
     </div>
-
 
     <!--<div class="scroll-pane" >-->
     <div class="box-col-topreason" id="top_reason_to_buy">
 
-      <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.buy_pitch.all,
+      <%= render :partial => 'shared/pitches_list', :locals => {:objs => @buy_pitches,
                                                               :company => @company, :child_objs => nil,
                                                               :objs_text => nil,
                                                               :child_objs_text => nil,
-                                                              :show_link => true} %>
+                                                              :show_link => true, :show_ticker => false
+                                                              } %>
       <!--<div class="topreason-input-txt">-->
       <!--<div class="input-txt">-->
       <!--<span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>-->
@@ -47,7 +47,7 @@
   </div>
 
   <div class="box-col middle-margin">
-    <h3 class="middleh3">top reason to sell
+    <h3 class="middleh3">Sell Pitch: Reasons to Sell
     </h3>
 
     <div class="input-txt">
@@ -56,17 +56,18 @@
     </div>
 
     <div class="text-editor-container" id="add_reason_to_sell_link_slide_down" style="display: none">
-      <%= render :partial => 'pitch_form', :locals => {:option => 'sell'} %>
+      <%= render :partial => 'shared/pitch_form', :locals => {:pitch => nil, :option => 'sell'} %>
     </div>
 
     <!--<div class="scroll-pane">-->
     <div class="box-col-topreason" id="top_reason_to_sell">
-      <%= render :partial => 'shared/blips_list', :locals => {:objs => @company.pitches.sell_pitch.all,
+      <%= render :partial => 'shared/pitches_list', :locals => {:objs => @sell_pitches,
                                                               :company => @company,
                                                               :child_objs => nil,
                                                               :objs_text => nil,
                                                               :child_objs_text => nil,
-                                                              :show_link => true} %>
+                                                              :show_link => true, :show_ticker => false
+                                                              } %>
       <!--<div class="topreason-input-txt">-->
       <!--<div class="input-txt">-->
       <!--<span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>-->
@@ -81,7 +82,7 @@
   </div>
 
   <div class="box-col">
-    <h3>Buring QAs</h3>
+    <h3>Burning Q&A</h3>
 
     <div class="qa-container">
       <div class="list_questions">

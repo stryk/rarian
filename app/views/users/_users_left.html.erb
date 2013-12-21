@@ -23,7 +23,7 @@
     </div>
 
     <div class="box-col">
-      <h3><%= @user.name %> wizards</h3>
+      <h3>Top Contributor of...</h3>
       <div class="box-col-div">
         <ol>
           <% TopUser.get_user_companies(@user, 5).each do |top_user| %>
@@ -37,7 +37,7 @@
 
 
     <div class="box-col">
-      <h3><%= @user.name %> Contributions</h3>
+      <h3>My Contributions</h3>
       <div class="box-col-div">
         <ol>
           <% @user.get_contributions.each do |key, value| %>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="box-col">
-      <h3><%= @user.name %> Following Users</h3>
+      <h3>Users I Follow</h3>
       <div class="box-col-div">
         <ol>
           <% @user.follows_by_type('User').each do |follow| %>
@@ -61,7 +61,7 @@
     </div>
 
     <div class="box-col">
-      <h3><%= @user.name %> Following Company</h3>
+      <h3>Companies I Follow</h3>
       <div class="box-col-div">
         <ol>
           <% @user.follows_by_type('Company').each do |follow| %>
@@ -71,6 +71,19 @@
       </div>
       <div class="clr"></div>
     </div>
+
+        <div class="box-col">
+      <h3>My Followers</h3>
+      <div class="box-col-div">
+        <ol>
+          <% @user.followers.each do |follower| %>
+            <li><%= link_to follower.name, user_path(follower) %></li>
+          <% end %>
+        </ol>
+      </div>
+      <div class="clr"></div>
+    </div>
+
 
   </div>
 

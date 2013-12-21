@@ -38,3 +38,19 @@
 //})
 
 })( jQuery );
+
+function toggle_visibility_from_hidden(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+};
+
+function toggle_visibility_from_visible(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'none')
+          e.style.display = 'block';
+       else
+          e.style.display = 'none';
+};

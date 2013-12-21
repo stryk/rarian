@@ -1,0 +1,44 @@
+
+<% if pitch %>
+  <%= form_for(pitch, :url => company_pitch_path(@company, pitch), :remote => true, :validate => true ,:html => {:class => 'form-horizontal'}) do |f| %>
+
+      <p><strong><%= 'Action:' + option.to_s %></strong>
+        <%= f.hidden_field :action ,:value => option %>
+      </p>
+
+      <p><%= f.label :title %></p>
+      <p><%= f.text_field :title,:class => "inputbox" ,:presence => true %>
+      </p>
+
+      <p><%= f.label :multimedia_content, "Content" %></p>
+      <p>
+        <%= f.cktext_area :multimedia_content, :class => "ckeditor", :toolbar => "Mini", :id => "editor_"+ pitch.id.to_s %>
+      </p>
+
+      <p>
+        <%= f.button 'Submit', id: 'create_reason', :class => 'button small brown' %>
+      </p>
+
+  <% end %>
+<% else %>
+  <%= form_for(Pitch.new, :url => company_pitches_path(@company), :remote => true, :validate => true ,:html => {:class => 'form-horizontal'}) do |f| %>
+
+      <p><strong><%= 'Action:' + option.to_s %></strong>
+        <%= f.hidden_field :action ,:value => option %>
+      </p>
+
+      <p><%= f.label :title %></p>
+      <p><%= f.text_field :title,:class => "inputbox" ,:presence => true %>
+      </p>
+
+      <p><%= f.label :multimedia_content, "Content" %></p>
+      <p>
+        <%= f.cktext_area :multimedia_content, :class => "ckeditor", :toolbar => "Mini", :id => "editor_"+option %>
+      </p>
+
+      <p>
+        <%= f.button 'Submit', id: 'create_reason', :class => 'button small brown' %>
+      </p>
+
+  <% end %>
+<% end %>

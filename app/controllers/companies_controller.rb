@@ -4,7 +4,8 @@ class CompaniesController < ApplicationController
   before_filter :load_company
   skip_before_filter :load_company, :only => :index
   skip_before_filter :load_company, :only => :import
-  skip_authorize_resource :only => :index
+  skip_before_filter :load_company, :only => :search
+  skip_authorize_resource :only => [:index, :search]
   load_and_authorize_resource
 
 	def index
@@ -12,7 +13,9 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @blips = @company.blips
+    @blips = @company.blips.order("created_at DESC")
+    @buy_pitches = @company.pitches.buy_pitch.order("created_at DESC").limit(10)
+    @sell_pitches = @company.pitches.sell_pitch.order("created_at DESC").limit(10)
     @catalyst = Catalyst.where(:company_id => @company.id).order("date ASC").group_by(&:date)
   end
 
@@ -68,7 +71,7 @@ class CompaniesController < ApplicationController
     if params[:id] == nil
       @company = nil
     else
-      @company= Company.friendly.find(params[:id])
+      @company= Company.friendly.find(params[:id].to_s.downcase)
     end
   end
 

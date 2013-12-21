@@ -692,3 +692,8 @@ h2.page-title { margin:0 0 10px 0; padding:0 0 2px 0; font-size:20px; border-bot
 .message { color:red;}
 em { color:red}
 
+
+.item_reference {
+    font-size: 80%;
+    color: gray;
+}

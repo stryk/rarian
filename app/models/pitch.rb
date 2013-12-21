@@ -22,7 +22,11 @@ class Pitch < ActiveRecord::Base
   end
 
   def get_full_title
-    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+"<a href='/companies/#{company.friendly_id}'>"+company.ticker+'</a>'+' '+created_at.strftime("%m/%d/%Y")+": "+title
+    title
+  end
+
+  def get_reference
+    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' | '
   end
 
   def up_vote

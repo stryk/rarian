@@ -5,24 +5,22 @@
   <div class="landing-left-panel">
 
     <div class="box-col">
-      <h3 class="middleh3">Reason buy pitch
+      <h3 class="middleh3">Long Pitch: Reasons to Buy
         <%= select_tag("home_buy_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %>
         <%= select_tag("home_buy_range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
       </h3>
       <div class="box-col-topreason">
         <div class="rows-div">
-
-
-
-          <div class="comments-container">
             <div id="buy_list" class="scroll">
-            <%= render :partial => 'shared/blips_list', :locals => {:objs => @buy_pitchs,
+            <%= render :partial => 'shared/pitches_list', :locals => {:objs => @buy_pitchs,
                                                                     :company => @company, :child_objs => nil,
                                                                     :objs_text => nil,
                                                                     :child_objs_text => nil,
-                                                                    :show_link => true} %>
+                                                                    :show_link => true,
+                                                                     :show_ticker => true
+                                                                  } %>
             <!-- end of comments-div -->
-                           </div>
+            
           </div><!-- end of comments-container -->
 
 
@@ -36,7 +34,7 @@
     </div>
 
     <div class="box-col">
-      <h3 class="middleh3">Reason sell pitch
+      <h3 class="middleh3">Short Pitch: Reasons to Sell
         <%= select_tag("home_sell_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %>
         <%= select_tag("home_sell_range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
 
@@ -46,11 +44,12 @@
         <div class="rows-div">
 
           <div id="sell_list" class="scroll">
-            <%= render :partial => 'shared/blips_list', :locals => {:objs => @sell_pitchs,
+            <%= render :partial => 'shared/pitches_list', :locals => {:objs => @sell_pitchs,
                                                                     :company => @company, :child_objs => nil,
                                                                     :objs_text => nil,
                                                                     :child_objs_text => nil,
-                                                                    :show_link => true} %>
+                                                                    :show_link => true,
+                                                                    :show_ticker => true} %>
           </div>
           <!-- end of rows-div -->
 
@@ -97,7 +96,7 @@
       <!-- end of box div -->
 
       <div class="box-col">
-        <h3>Stock Catalysis</h3>
+        <h3>Stock Catalysts</h3>
 
         <div class="box-col-div" id="catalyst">
           <%= render 'companies/catalyst' %>

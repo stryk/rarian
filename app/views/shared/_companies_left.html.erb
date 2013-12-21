@@ -2,7 +2,7 @@
   <div class="left-panel">
 
     <div class="box-col">
-      <h3><%= @company.ticker %> wizards</h3>
+      <h3>Top Contributors</h3>
       <div class="box-col-div">
         <ol>
           <% TopUser.get_top_users(@company, 5).each do |top_user| %>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="box-col">
-      <h3>Target Pirce</h3>
+      <h3>Target Price</h3>
       <div class="box-col-div">
         <div id="target_price">
           <%= render 'companies/target_price' %>
@@ -45,7 +45,7 @@
     </div>
 
     <div class="box-col">
-      <h3>Compititors</h3><!--<div class="small-follow-btn"><a href="#"></a></div>-->
+      <h3>Competitors</h3><!--<div class="small-follow-btn"><a href="#"></a></div>-->
       <div class="box-col-div">
       <div id="competitor">
         <div id="vote_competitor" class="scroll">

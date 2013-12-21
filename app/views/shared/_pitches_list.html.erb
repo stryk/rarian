@@ -1,0 +1,18 @@
+<% objs.each do |cobj| %>
+
+   <% show_link_boolean = (show_link rescue false)  %>
+   <div class="pitch-item" id="pitch_item_<%= cobj.id %>">
+    <%= render :partial => 'shared/pitch_item', :locals => {:cobj => cobj, :text_val => objs_text,
+                                                           :child_objs_present => !child_objs.blank?,
+                                                           :child_objs => child_objs,
+                                                           :child_objs_text => child_objs_text,
+                                                           :comments_count => cobj.comments.count,
+                                                           :comments => true, :show_link => show_link_boolean, :refresh_div => false,
+                                                           :show_ticker => show_ticker} %>
+  </div>
+  <script type="text/javascript">
+    $("#jTruncate_truncate-<%= cobj.id %>").jTruncate({
+      length: 50
+    });
+  </script>
+<% end %>
