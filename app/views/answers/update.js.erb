@@ -1,0 +1,15 @@
+$("#answer-<%= @answer.id %>").hide('slow').html('<%=j render :partial => 'shared/voting_list', :locals => {:cobj => @answer, :company => @answer.company,
+                                                             :text_val => "<p><strong>A.</strong> ",
+                                                             :child_objs_present => false,
+                                                             :comments_count => @answer.comments.count,
+                                                             :comments => true,
+                                                             :show_link => false, :refresh_div => false} %>').fadeIn('slow');
+
+
+//$('.scroll-pane').jScrollPane();
+$("#flash-message-custom").html('<div class="success"><p><span class="close-btn"><a href="#" class="close-btn" ><img src="/assets/close-btn.png" class="close-btn" alt=""></a></span><%= @msg %></p></div>');
+$("#flash-message-custom").show();
+
+setTimeout(function(){
+    $("#flash-message-custom").hide();
+},1000);

@@ -439,8 +439,8 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
 .qa-container p{ margin:0; padding:0; color:#222; font-size:12px; line-height:normal;}
 
 
-.qa-input-txt { margin:20px 0 0 0; padding:0;}
-.qa-input-txt .input-txt{ margin:0; padding:5px; background:#f4f4f4; float:left; width:100%;}
+.qa-input-txt { margin:5px 0 0px 0; padding:0;}
+.qa-input-txt .input-txt{ margin:0 0 20px 0; padding:5px; background:#f4f4f4; float:left; width:100%;}
 .qa-input-txt .input-txt .user-icon { margin:0 10px 0 0; padding:0 0 0 5px; border-right:1px solid #c1c1c1;}
 .qa-input-txt .input-txt input{ margin:0; padding:0; width:90%; border:0; color:#222222; font-size:12px; background:none;}
 
@@ -459,7 +459,7 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
 .slide-div { clear:both; margin:0; padding:5px; width:100%; position:relative; border:1px solid #ccc;}
 .slide-div span { margin:0; display:inline-block; font-size:12px; line-height:normal; padding-bottom:3px;}
 .slide-div .slide-input {margin:0 0 5px 0; padding:5px; background:#fff; border:1px solid #ccc; width:96%; }
-.slide-div .slide-textarea {margin:0 0 5px 0; padding:5px; background:#fff; border:1px solid #ccc; height:50px; width:96%;}
+.slide-div .slide-textarea {margin:0 0 5px 0; padding:5px; background:#fff; border:1px solid #ccc; height:100px; width:96%;}
 .slide-div .slide-select {margin:0 0 5px 0; padding:5px; background:#fff; border:1px solid #ccc; width:96%;}
 .slide-div .slide-select1 {margin:0 0 5px 0; padding:5px; background:#fff; border:1px solid #ccc; width:96%;}
 
@@ -521,7 +521,7 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
 .horizontal-only{height: auto;max-height: 200px;}
 */
 
-.qa-container .qa-row .left-box{ margin:0 5px 0 0; padding:0; float:left; width:10%;color:#222; font-size:12px; line-height:normal;}
+.qa-container .qa-row .left-box{ margin:0 0 0 0; padding:0; float:left; width:10%;color:#222; font-size:12px; line-height:normal;}
 .qa-container .qa-row .right-box{ margin:0; padding:0; float:left; width:88%;color:#222; font-size:12px; line-height:normal;}
 
 .qa-container .qa-row .left-box .q-title { margin:0; padding:0; width:40%; float:left;}
@@ -697,3 +697,15 @@ em { color:red}
     font-size: 80%;
     color: gray;
 }
+
+.multimedia_content p{ margin: 0px; padding: 0px; font-size: 100%}
+.multimedia_content ul{ color: black;}
+.multimedia_content ol{ color: black;}
+.multimedia_content img{ 
+    padding-left: 0px; 
+    padding-top: 10px; 
+    padding-right: 0px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+

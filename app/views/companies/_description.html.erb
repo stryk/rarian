@@ -2,9 +2,9 @@
 <div class="box-col-div">
   <p><%= @company.description %></p>
   <% if current_user %>
-
-    <p><%= link_to "Write/Edit Description", "#.", :id => 'company_slide', :class => "readmore-link" %></p>
-
+    <% if can? :update, Company %>
+      <p><%= link_to "Write/Edit Description", "#.", :id => 'company_slide', :class => "readmore-link" %></p>
+    <% end %>
 
       <div class="slide-div" style='display:none' id='description_slide_down'>
         <%= form_for(@company, :method => 'put', :remote => true, :validate => true) do |f| %>

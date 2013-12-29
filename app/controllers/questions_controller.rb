@@ -13,6 +13,25 @@ class QuestionsController < ApplicationController
     end
   end
 
+   def update
+    @question.update_attributes(params[:question])
+    if @question.errors.blank?
+      respond_to do |format|
+        format.js
+      end
+    end
+
+  end
+
+  def destroy
+    deleted_question = Question.where(:id => params[:id]).last
+    @deleted_question_id = deleted_question.id
+    deleted_question.destroy
+    respond_to do |format|
+      format.js {render 'destroy'}
+    end
+  end
+
   private
 
   def load_company

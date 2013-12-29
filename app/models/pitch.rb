@@ -1,4 +1,5 @@
 class Pitch < ActiveRecord::Base
+  before_save :sanitize_content
   attr_accessible :title, :multimedia_content, :action, :user_id, :company_id, :net_votes, :points
 
   module Point
@@ -40,5 +41,11 @@ class Pitch < ActiveRecord::Base
   def undo_vote(value)
     undo_point = value > 0 ? Point::DOWN : Point::UP
     update_attributes(:net_votes => net_votes.to_i - value.to_i, :points => points.to_i+undo_point)
+  end
+
+  def sanitize_content
+    if multimedia_content
+      ActionController::Base.helpers.sanitize multimedia_content, tags: %w{p strong em u span ol li ul img}, attributes: %w{style color src alt}
+    end
   end
 end

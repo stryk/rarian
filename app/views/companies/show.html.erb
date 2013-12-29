@@ -47,7 +47,7 @@
   </div>
 
   <div class="box-col middle-margin">
-    <h3 class="middleh3">Sell Pitch: Reasons to Sell
+    <h3 class="middleh3">Short Pitch: Reasons to Sell
     </h3>
 
     <div class="input-txt">
@@ -83,12 +83,7 @@
 
   <div class="box-col">
     <h3>Burning Q&A</h3>
-
     <div class="qa-container">
-      <div class="list_questions">
-        <%= render :partial => 'questions/list', :locals => {:questions => @company.questions.all, :company => @company} %>
-      </div>
-
       <div class="qa-input-txt">
         <div class="input-txt">
           <%= link_to "Add Question", '#.', :class => "readmore-link", :id => "add_question_link" %>
@@ -97,6 +92,11 @@
           </div>
         </div>
       </div>
+      <div class="list_questions">
+        <%= render :partial => 'questions/list', :locals => {:questions => @company.questions.all, :company => @company} %>
+      </div>
+
+      
 
     </div>
   </div>
@@ -107,9 +107,6 @@
 <div class="right-panel">
   <div class="box-col">
     <%= render 'shared/companies_right' %>
-
-
-
     <div class="clr"></div>
   </div>
 </div>

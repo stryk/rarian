@@ -59,8 +59,10 @@
         <div class="text-editor-container" id="update_pitch_slide_down_<%= cobj.id %>" style="display: none">
           <%= render :partial => 'shared/pitch_form', :locals => {:pitch => cobj, :option => cobj.action} %>
         </div>
-        <div id="multimedia_content_for_title_<%= cobj.id %>" style="display: none">
+        <div class="multimedia_content" id="multimedia_content_for_title_<%= cobj.id %>" style="display: none">
             <%= send("show_multimedia_content",cobj).html_safe %>
+        </div>
+        <div class='clr'>
         </div>
       <% else %>
         <%#= text_val.try(:html_safe) %><%= send("show_title", cobj).html_safe %>
@@ -131,6 +133,10 @@
   $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
   $('#upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
   $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('');
+  <% end %>
+
+  <% if(position >= 0 && position < 3) %>
+    $("#show_title_link_<%= cobj.id%>").trigger('click');
   <% end %>
 
 </script>

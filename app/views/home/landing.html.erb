@@ -82,7 +82,8 @@
         </h3>
 
         <div id="blips_list" class="scroll">
-          <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
+          <%= render :partial => 'shared/blips_list', 
+          :locals => {:objs => @blips, :child_objs => nil, :objs_text => nil, :child_objs_text => nil, :show_ticker => true} %>
 
 
         </div>

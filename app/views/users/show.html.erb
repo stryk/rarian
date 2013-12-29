@@ -7,7 +7,7 @@
 <div class="middle-panel">
 
   <div class="box-col middle-margin">
-    <h3>Alph
+    <h3>Alpha
       Blips  <%= select_tag("blip_sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
       <%= select_tag("blip_range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %></h3>
 
@@ -24,27 +24,31 @@
   </div>
 
   <div class="box-col middle-margin">
-    <h3 class="middleh3">Buy Pitch
+    <h3 class="middleh3">Long Pitches
       <%= select_tag("buy_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
       <%= select_tag("buy_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
     <div id="buy_list" class="scroll">
-      <%= render :partial => 'users/buypitch', :locals => {:objs => @buypitchs,
-                                                              :company => @company, :child_objs => nil,
-                                                              :objs_text => nil,
-                                                              :child_objs_text => nil,
-                                                              :show_link => true} %>
+      <%= render :partial => 'shared/pitches_list', :locals => {:objs => @buypitchs,
+                                                                    :company => @company, :child_objs => nil,
+                                                                    :objs_text => nil,
+                                                                    :child_objs_text => nil,
+                                                                    :show_link => true,
+                                                                     :show_ticker => true
+                                                                  } %>
   </div>
             </div>
   <div class="box-col middle-margin">
-    <h3 class="middleh3">Sell Pitch
+    <h3 class="middleh3">Short Pitches
       <%= select_tag("sell_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
       <%= select_tag("sell_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %></h3>
     <div id="sell_list" class="scroll">
-      <%= render :partial => 'users/sellpitch', :locals => {:objs => @sellpitchs,
-                                                           :child_objs => nil,
-                                                           :objs_text => nil,
-                                                           :child_objs_text => nil,
-                                                           :show_link => true} %>
+      <%= render :partial => 'shared/pitches_list', :locals => {:objs => @sellpitchs,
+                                                                    :company => @company, :child_objs => nil,
+                                                                    :objs_text => nil,
+                                                                    :child_objs_text => nil,
+                                                                    :show_link => true,
+                                                                     :show_ticker => true
+                                                                  } %>
 
   </div>
             </div>
@@ -94,7 +98,7 @@
 <div class="right-panel">
 
   <div class="box-col">
-    <h3>About: <%= @user.name %></h3>
+    <h3>About Me</h3>
     <div id="aboutuser_list" class="box-col-div">
       <%= render :partial => 'users/aboutuser' %>
 

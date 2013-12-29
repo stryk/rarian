@@ -22,9 +22,29 @@ class AnswersController < ApplicationController
     end
   end
 
+  def update
+    @answer.update_attributes(:content => params[:answer][:content])
+    if @answer.errors.blank?
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+
+  def destroy
+    deleted_answer = Answer.where(:id => params[:id]).last
+    @deleted_answer_id = deleted_answer.id
+    deleted_answer.destroy
+    respond_to do |format|
+      format.js {render 'destroy'}
+    end
+  end
+
   private
   def load_company_and_question
     @company= Company.friendly.find((params[:company_id]).downcase)
-    @question= Question.find(params[:question_id])
+    @question= Question.find_by_id(params[:question_id])
   end
+
+
 end

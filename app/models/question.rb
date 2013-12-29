@@ -9,7 +9,7 @@ class Question < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :company
-  has_many :answers
+  has_many :answers, :dependent => :destroy
 
   validates :content, :company_id, :user_id, presence: true
 
@@ -18,6 +18,10 @@ class Question < ActiveRecord::Base
   make_voteable
 
   acts_as_commentable
+
+  def get_reference
+    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' | '
+  end
 
   def get_full_title
     "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+content

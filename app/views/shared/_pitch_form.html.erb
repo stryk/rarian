@@ -1,6 +1,6 @@
 
 <% if pitch %>
-  <%= form_for(pitch, :url => company_pitch_path(@company, pitch), :remote => true, :validate => true ,:html => {:class => 'form-horizontal'}) do |f| %>
+  <%= form_for(pitch, :url => company_pitch_path(pitch.company, pitch), :remote => true, :validate => true ,:html => {:class => 'form-horizontal'}) do |f| %>
 
       <p><strong><%= 'Action:' + option.to_s %></strong>
         <%= f.hidden_field :action ,:value => option %>

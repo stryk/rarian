@@ -3,7 +3,7 @@
 <div class="text-editor-container">
 <%= form_for(Answer.new, :url => company_question_answers_path(company, question), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
   <div class="span12">
-    <%= f.text_area :content, :class => "ckeditor", :toolbar => "Mini" ,:id => "editor_answer_"+question.id.to_s%>
+    <%= f.cktext_area :content, :class => "ckeditor", :toolbar => "Mini" ,:id => "editor_answer_"+question.id.to_s%>
   </div>
 
   <div class="span12">
@@ -12,23 +12,22 @@
 </div>
 <% end %>
 </span>
-<div id='<%= question.class.name.downcase+'-'+question.id.to_s %>'>
   <% !child_objs.blank? && question.send(child_objs).each do |child_obj| %>
-
+    <div id="answer-<%= child_obj.id.to_s %>">
     <%= render :partial => 'shared/voting_list', :locals => {:cobj => child_obj, :company => company,
                                                              :text_val => child_objs_text,
                                                              :child_objs_present => false,
                                                              :comments_count => child_obj.comments.count,
                                                              :comments => true,
                                                              :show_link => false, :refresh_div => false} %>
-
+    </div>
     <script type="text/javascript">
       $('#jTruncate_truncate-<%= child_obj.id %>').jTruncate({
         length: 50
       });
     </script>
   <% end %>
-</div>
+
   <script type="text/javascript">
 
     $('#accordion2-<%= question.id %>').click(function () {

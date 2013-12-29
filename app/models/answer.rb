@@ -1,5 +1,6 @@
 class Answer < ActiveRecord::Base
 
+  before_save :sanitize_content
   attr_accessible :content, :user_id, :company_id, :question_id, :net_votes, :points
 
   module Point
@@ -21,6 +22,10 @@ class Answer < ActiveRecord::Base
     "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+content
   end
 
+  def get_reference
+    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' | '
+  end
+
   def up_vote
     update_attributes(:net_votes => net_votes.to_i + 1, :points => points.to_i+Point::UP)
   end
@@ -34,4 +39,9 @@ class Answer < ActiveRecord::Base
     update_attributes(:net_votes => net_votes.to_i - value.to_i, :points => points.to_i+undo_point)
   end
 
+  def sanitize_content
+    if content
+      ActionController::Base.helpers.sanitize content, tags: %w{p strong em u span ol li ul img}, attributes: %w{style color src alt}
+    end
+  end
 end

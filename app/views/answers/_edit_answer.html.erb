@@ -1,0 +1,9 @@
+<div id="edit_answer" class="slide-div">
+  <%= form_for(answer, :url => company_answer_path(@company,answer), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
+    <%= f.label :content, :class => "control-label" %>
+    <%= f.cktext_area :content, :class => "slide-input", :validate => true %>
+
+    <%= f.button 'Submit', id: 'create_question', :class => 'button small brown' %>
+  <% end %>
+</div>
+

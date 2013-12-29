@@ -1,0 +1,18 @@
+$("#blip_item_<%= @blip.id %>").hide('slow').html('<%=j render :partial => 'shared/voting_list', :locals => {:cobj => @blip, :text_val => nil,
+
+                                                           :child_objs_present => false,
+                                                           :child_objs => nil,
+                                                           :child_objs_text => nil,
+                                                           :comments_count => @blip.comments.count,
+                                                           :comments => true, :show_link => false, 
+                                                           :show_ticker => false,
+                                                           :refresh_div => false} %>').fadeIn('slow');
+
+
+//$('.scroll-pane').jScrollPane();
+$("#flash-message-custom").html('<div class="success"><p><span class="close-btn"><a href="#" class="close-btn" ><img src="/assets/close-btn.png" class="close-btn" alt=""></a></span><%= @msg %></p></div>');
+$("#flash-message-custom").show();
+
+setTimeout(function(){
+    $("#flash-message-custom").hide();
+},1000);

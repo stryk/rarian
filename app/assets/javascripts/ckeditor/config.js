@@ -78,7 +78,7 @@ CKEDITOR.editorConfig = function (config) {
   };
 
   config.toolbar = [
-    { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', '/', 'TextColor', '-', 'HorizontalRule' ] },
+    { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', '-', 'TextColor','NumberedList', 'BulletedList'] },
     { name: 'insert', items: [ 'Image'] }
   ];
 
@@ -154,7 +154,8 @@ CKEDITOR.editorConfig = function (config) {
         var elem = dialog.getContentElement('info','htmlPreview');
         elem.getElement().hide();
 
-        dialog.hidePage( 'Link' );
+
+
         dialog.hidePage( 'advanced' );
         dialog.hidePage( 'info' );
 
@@ -164,9 +165,10 @@ CKEDITOR.editorConfig = function (config) {
         document.getElementById(dialog.getButton('ok').domId).style.display = "none";
 
         $(".cke_dialog_ui_fileButton span").html("Upload");
+        $(".cke_dialog_title").html("Image Upload");
+        $(".cke_dialog_footer").hide();
         // optional:
-        dialog.hidePage( 'Link' );
-        dialog.hidePage( 'advanced' );
+
 
         var uploadTab = dialogDefinition.getContents('Upload');
         var uploadButton = uploadTab.get('uploadButton');

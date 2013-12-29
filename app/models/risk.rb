@@ -14,7 +14,7 @@ class Risk < ActiveRecord::Base
   validates :risk, :company_id, :user_id, presence: true
 
   def get_full_title
-    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+risk
+    risk
   end
 
   def up_vote

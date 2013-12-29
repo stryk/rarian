@@ -15,4 +15,23 @@ class BlipsController < ApplicationController
       format.js
     end
   end
+
+  def update
+    @blip.update_attributes(:content => params[:blip][:content])
+    if @blip.errors.blank?
+      respond_to do |format|
+        format.js
+      end
+    else
+    end
+  end
+
+  def destroy
+    deleted_blip = Blip.where(:id => params[:id]).last
+    @deleted_blip_id = deleted_blip.id
+    deleted_blip.destroy
+    respond_to do |format|
+      format.js {render 'destroy'}
+    end
+  end
 end

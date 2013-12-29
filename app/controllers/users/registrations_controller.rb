@@ -5,6 +5,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.roles = params[:user][:roles] || ["standard"]
     #resource.name = params[:user][:name]
     #resource.mobilenumber = params[:user][:mobilenumber]
+    resource.email_vote = true
+    resource.email_comment = true
+    resource.email_question = true
+    resource.email_answer = true
+    resource.email_spam = true
+    resource.email_follow_me = true
+    resource.email_answer_question = true
+    resource.email_sends_message = true
+    resource.no_day_newsletter = 7
+
     resource.save
   end
 
@@ -37,9 +47,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     if params[:check_type] == 'email_spam' && !params[:email_spam].blank?
-      resource.email_spam = 't'
+      resource.email_spam = true
     elsif params[:check_type] == 'email_spam'
-      resource.email_spam = 'f'
+      resource.email_spam = false
     end
 
     if params[:check_type] == 'email_follow_me' && !params[:email_follow_me].blank?

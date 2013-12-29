@@ -36,7 +36,7 @@ class Ability
       end
       can :read, [Blip, Pitch, Catalyst, Question, Answer, Competitor, Risk]
       can :update, [Catalyst, Question, Answer, Competitor, Risk], :user_id => user.id
-      can :destroy, [Catalyst, Answer, Competitor, Risk], :user_id => user.id
+      can :destroy, [Catalyst, Answer, Competitor, Risk, Blip], :user_id => user.id
       can :cu, Blip, :user_id => user.id
       can :create, [Comment, Pitch, Blip, Catalyst, Question, Answer, Competitor, Risk]
       can [:update, :destroy], Comment, :user_id => user.id

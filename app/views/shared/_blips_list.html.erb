@@ -1,13 +1,16 @@
+<% show_ticker = show_ticker rescue nil %>
 <% objs.each do |cobj| %>
-
+  <div class="<%=cobj.class.to_s.downcase%>-item" id="<%=cobj.class.to_s.downcase%>_item_<%= cobj.id %>">
    <% show_link_boolean = (show_link rescue false)  %>
   <%= render :partial => 'shared/voting_list', :locals => {:cobj => cobj, :text_val => objs_text,
                                                            :child_objs_present => !child_objs.blank?,
                                                            :child_objs => child_objs,
                                                            :child_objs_text => child_objs_text,
                                                            :comments_count => cobj.comments.count,
-                                                           :comments => true, :show_link => show_link_boolean, :refresh_div => false} %>
-
+                                                           :comments => true, :show_link => show_link_boolean, 
+                                                           :show_ticker => show_ticker,
+                                                           :refresh_div => false} %>
+  </div>                                                
 
 
   <script type="text/javascript">

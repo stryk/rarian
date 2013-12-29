@@ -1,0 +1,18 @@
+$("#question_item_<%= @question.id %>").hide('slow').html('<%=j render :partial => 'shared/voting_list', :locals => {:cobj => @question, :text_val => "<strong>Q.</strong> ",
+
+                                                           :child_objs_present => true,
+                                                           :child_objs => "answers",
+                                                           :child_objs_text => "<strong>A.</strong> ",
+                                                           :comments_count => @question.comments.count,
+                                                           :comments => true, :show_link => false, 
+                                                           :show_ticker => false,
+                                                           :refresh_div => false} %>').fadeIn('slow');
+
+
+//$('.scroll-pane').jScrollPane();
+$("#flash-message-custom").html('<div class="success"><p><span class="close-btn"><a href="#" class="close-btn" ><img src="/assets/close-btn.png" class="close-btn" alt=""></a></span><%= @msg %></p></div>');
+$("#flash-message-custom").show();
+
+setTimeout(function(){
+    $("#flash-message-custom").hide();
+},1000);

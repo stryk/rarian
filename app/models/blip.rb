@@ -41,4 +41,7 @@ class Blip < ActiveRecord::Base
     update_attributes(:net_votes => net_votes.to_i - value.to_i, :points => points.to_i+undo_point)
   end
 
+  def get_reference
+    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' | '
+  end
 end

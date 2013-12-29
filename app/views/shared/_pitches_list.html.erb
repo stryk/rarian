@@ -8,7 +8,8 @@
                                                            :child_objs_text => child_objs_text,
                                                            :comments_count => cobj.comments.count,
                                                            :comments => true, :show_link => show_link_boolean, :refresh_div => false,
-                                                           :show_ticker => show_ticker} %>
+                                                           :show_ticker => show_ticker,
+                                                            :position => objs.index(cobj).to_i} %>
   </div>
   <script type="text/javascript">
     $("#jTruncate_truncate-<%= cobj.id %>").jTruncate({

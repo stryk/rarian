@@ -9,7 +9,7 @@
               <%= f.text_area :comment, :class => "inputbox" %>
           </div>
         <div class="clear"></div>
-          <div class="comment-btn"> <%= f.button 'Comment', id: 'create_blip', :class => 'button medium brown' %></div>
+          <div class="comment-btn"> <%= f.button 'Comment', id: 'create_blip', :class => 'button small brown' %></div>
         <% end %>
 
     </div><!-- end of comment-box -->
@@ -30,7 +30,9 @@
         <% end %>
       <% else %>
         <div id="no_comments">
-        There are no comments for this Blip
+          <font color="black">
+            Be the first to write a comment.
+          </font>
         </div>
       <% end %>
 

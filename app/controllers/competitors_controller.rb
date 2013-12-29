@@ -7,4 +7,12 @@ class CompetitorsController < ApplicationController
     end
 
   end
+
+  def destroy
+  	@deleted_id = params[:id]
+    Competitor.find_by_id(@deleted_id).destroy
+    respond_to do |format|
+      format.js { render 'delete' }
+    end
+  end
 end
