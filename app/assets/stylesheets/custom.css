@@ -206,8 +206,15 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
 .header-top { margin:0; padding:0; background:url(/assets/header-top.png) repeat-x left top; height:124px;}
 .logodiv { margin:20px 0 0 0; padding:0; float:left; width:29%; }
 .top-tickers { margin:25px 0 0 0; padding:0; float:left; width:40%; }
-.top-tickers .tickers-div {background:#542100; padding:5px; font-size:12px; color:#5eb340; font-family: 'MatrixditRegular';}
-
+.top-tickers .tickers-div {background:#151515; padding:5px; font-size:18px; color:#40FF00; font-family: 'MatrixditRegular'; -webkit-box-shadow: 3px 3px 20px -150px rgba(5,5,5,1);
+-moz-box-shadow: 3px 3px 20px -150px rgba(5,5,5,1);
+box-shadow: 3px 3px 20px -150px rgba(5,5,5,1);
+}
+.top-tickers .tickers-div a:link {color:#40FF00;}      /* unvisited link */
+.top-tickers .tickers-div a:visited {color:#40FF00;}  /* visited link */
+.top-tickers .tickers-div a:hover {color:#40FF00;}  /* mouse over link */
+.top-tickers .tickers-div a:active {color:#40FF00;}  /* selected link */
+.top-tickers .tickers-div a {vertical-align: middle;}
 .top-login-space { margin:25px 0 0 0; padding:0; float:left; width:30%; text-align:right;}
 /*
 .top-login-space p { text-align:right;color:#ff7201; font-size:12px;}
@@ -475,7 +482,7 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
 .comments-container .comment-box:before, .comments-container .comment-box:after { display: table; line-height: 0; content: "";}
 .comments-container .comment-box:after { clear: both;}
 .comments-container .comment-box .user-thumb{ margin:0; padding:0; float:left; display:inline-block; width:8%;}
-.comments-container .comment-box .comment-input{ margin:0; padding:0; float:left; display:inline-block; width:65%;}
+.comments-container .comment-box .comment-input{ margin:0; padding:0; float:left; display:inline-block; width:100%;}
 .comments-container .comment-box .comment-input .inputbox{ margin:0; padding:5px; border:1px solid #ccc; background:#fff; width:100%;}
 .comments-container .comment-box .comment-btn{ margin:0; padding:0; float:left; display:inline-block; width:27%;}
 
@@ -502,7 +509,7 @@ input.button, input[type="submit"], input[type="button"] { overflow: visible; /*
 .comments-alphablip-container .comment-box:before, .comments-alphablip-container .comment-box:after { display: table; line-height: 0; content: "";}
 .comments-alphablip-container .comment-box:after { clear: both;}
 .comments-alphablip-container .comment-box .user-thumb{ margin:0; padding:0; float:left; display:inline-block; width:20%;}
-.comments-alphablip-container .comment-box .comment-input{ margin:0; padding:0; float:left; display:inline-block; width:79%;}
+.comments-alphablip-container .comment-box .comment-input{ margin:0; padding:0; float:left; display:inline-block; width:100%;}
 .comments-alphablip-container .comment-box .comment-input .inputbox{ margin:0; padding:5px; border:1px solid #ccc; background:#fff; width:100%;}
 .comments-alphablip-container .comment-box .comment-btn{ clear:both; margin:5px 0 0 20%; padding:0; float:left; display:inline-block; width:100%;}
 
@@ -707,5 +714,14 @@ em { color:red}
     padding-right: 0px;
     padding-bottom: 10px;
     margin-bottom: 10px;
+}
+
+.pitch-title {
+    color: darkblue;
+}
+
+.maxlength-feedback {
+    font-size: 80%;
+    color: gray;
 }
 

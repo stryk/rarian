@@ -1,10 +1,13 @@
 <div id="add_question" class="slide-div">
   <%= form_for(Question.new, :url => company_questions_path(@company), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
-    <%= f.label :content, :class => "control-label" %>
-    <%= f.text_area :content, :class => "slide-input", :validate => true %>
+    <%= f.label "Your Question", :class => "control-label" %>
+    <%= f.text_area :content, :rows => 5, :class => "slide-input", :validate => true %>
 
     <%= f.button 'Submit', id: 'create_question', :class => 'button small brown' %>
   <% end %>
 </div>
 
 
+<script type="text/javascript">
+    $("#question_content").maxlength({max: 500});
+</script>

@@ -1,0 +1,19 @@
+<div class="comment-box" style="display: none" id="comment_update_<%=comment_obj.class.name.downcase + comment_obj.id.to_s + comment.id.to_s%>">
+    <%= form_for(comment, :url => send("company_comment_path", comment_obj.company, comment), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
+
+        <div class="comment-input">
+            <%= f.text_area :comment, :rows=> 5, :id => "#{comment_obj.class.name.downcase + comment_obj.id.to_s}_comment_textbox", :class => "inputbox" %>
+        </div>
+        <div class="clear"></div>
+          <div class="comment-btn"> <%= f.button 'Comment', id: 'create_blip', :class => 'button small brown' %></div>
+        <% end %>
+</div><!-- end of comment-box -->
+
+<script type="text/javascript">
+  $("#<%= comment_obj.class.name.downcase + comment_obj.id.to_s%>_comment_textbox").maxlength({max: 400});
+  $("#edit_comment_update_<%= comment_obj.class.name.downcase + comment_obj.id.to_s + comment.id.to_s%>").click(function (){
+    $("#comment_update_<%=comment_obj.class.name.downcase + comment_obj.id.to_s + comment.id.to_s%>").toggle("slideDown(1000)", function () {
+      });
+    $("#comment_update_<%=comment_obj.class.name.downcase + comment_obj.id.to_s + comment.id.to_s%>").resetClientSideValidations();
+  });
+</script>

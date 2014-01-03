@@ -1,0 +1,1 @@
+$("#comment_item_<%= @commentable_obj.class.name.downcase + @commentable_obj.id.to_s + @deleted_comment_id.to_s %>").hide('slow', function(){ $target.remove(); });

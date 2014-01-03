@@ -14,7 +14,33 @@ class CommentsController < ApplicationController
     if !@comment.errors.full_messages.blank?
       flash[:error] = @comment.errors.full_messages
     else
-      flash[:notice] = "Comment Created Successfully"
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+
+  def update
+    @comment.update_attributes(:comment => params[:comment][:comment])
+    @commentable_obj = @comment.commentable
+    if @comment.errors.blank?
+      #flash[:notice] = "Successfully added the reason"
+      @msg = "Update complete."
+      #redirect_to company_path(@company)
+      respond_to do |format|
+        format.js
+      end
+    end
+
+  end
+
+  def destroy
+    deleted_comment = Comment.where(:id => params[:id]).last
+    @deleted_comment_id = deleted_comment.id
+    @commentable_obj = deleted_comment.commentable
+    deleted_comment.destroy
+    respond_to do |format|
+      format.js {render 'destroy'}
     end
   end
 

@@ -1,0 +1,27 @@
+<% jresponse = jresponse rescue nil %>
+<% if jresponse == true %>
+  <div class='comment-item' id='comment_item_<%= comment_obj.class.name.downcase + comment_obj.id.to_s + comment.id.to_s %>'>
+<% end %>
+<div class="comment-text">
+  <p class="title"><%= link_to comment.user.name, user_path(comment.user) %></p>
+  <p class="normal-txt" id="jTruncate_truncate-<%= comment.id %>"><%= comment.comment %></p>
+  <div class="item_reference">                                              
+  <%= time_ago_in_words(comment.created_at) + " ago. "%> 
+    <% if can? :edit, comment %>
+       | <%= link_to "Edit", "#.",:id => "edit_comment_update_#{comment_obj.class.name.downcase + comment_obj.id.to_s + comment.id.to_s}" %>
+    <% end %>
+    <% if can? :destroy, comment %>
+       | <%= link_to "Delete", company_comment_path(comment_obj.company, comment), :method => 'delete', data: {:confirm => 'Are you sure you want to delete this comment?'}, :remote => true %>
+    <% end %>
+  </div>
+  <%= render :partial => 'shared/edit_comment_form', :locals => {:comment => comment, :comment_obj => comment_obj} %>
+</div>
+<% if jresponse == true %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $('#jTruncate_truncate-<%= comment.id %>').jTruncate({
+      length: 200
+    });
+</script>

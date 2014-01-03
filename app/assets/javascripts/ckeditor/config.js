@@ -7,7 +7,7 @@ CKEDITOR.editorConfig = function (config) {
   // Define changes to default configuration here. For example:
   // config.language = 'fr';
   // config.uiColor = '#AADC6E';
-
+  config.defaultLanguage = 'en';
   /* Filebrowser routes */
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed.
   config.filebrowserBrowseUrl = "/ckeditor/attachment_files";
@@ -35,6 +35,7 @@ CKEDITOR.editorConfig = function (config) {
 
   config.removePlugins = 'elementspath';
 
+  config.extraPlugins = 'wordcount';
 
   // Rails CSRF token
   config.filebrowserParams = function () {
@@ -194,4 +195,5 @@ CKEDITOR.editorConfig = function (config) {
       }
     }
   });
+
 };

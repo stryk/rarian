@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
   attr_accessible :title, :comment, :user_id
 
   validates :comment, :user_id, presence: true
-
+  validates_length_of :comment, :maximum => 500, :allow_blank => true
   belongs_to :commentable, :polymorphic => true
 
   default_scope -> { order('created_at ASC') }

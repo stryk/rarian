@@ -12,6 +12,7 @@ class Question < ActiveRecord::Base
   has_many :answers, :dependent => :destroy
 
   validates :content, :company_id, :user_id, presence: true
+  validates_length_of :content, :maximum => 600, :allow_blank => false
 
   default_scope -> { order('created_at DESC') }
 

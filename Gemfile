@@ -37,8 +37,6 @@ gem 'bootstrap-sass'
 
 gem "ckeditor"
 
-gem "ckeditor_rails"
-
 gem "carrierwave"
 
 gem "mini_magick"

@@ -27,6 +27,7 @@
 <div class="right-box">
   <div class="comments-container">
     <% if comments %>
+    <p>
       <% if show_link %>
         <%#= link_to("#{text_val.try(:html_safe)}#{send("show_title", cobj)}".html_safe, show_link(cobj, company),
                                                     :id => "show_title_link_"+cobj.id.to_s, :remote => true) %>
@@ -37,13 +38,14 @@
             <%= send("show_multimedia_content",cobj).html_safe %>
         </div>
       <% else %>
-        <p>
+        
           <% if show_ticker %>
                 <a href='/companies/<%= cobj.company.ticker %>'><%= cobj.company.ticker %>:</a>
           <% end %>
           <%= cobj.content.html_safe %>
-        </p>
+        
       <% end %>
+    </p>
       <div class="item_reference">                                              
           <%= send("show_ref", cobj).html_safe + time_ago_in_words(cobj.created_at) + " ago. "%> 
             <% if can? :edit, cobj %>

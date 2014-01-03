@@ -1,12 +1,14 @@
 <div class="comments-container <%= content_div %>">
 
   <div class="comments-div">
-
-    <div class="comment-box">
+    <div class="comment-box" id="click_comment_form_<%=@comment_obj.class.name.downcase + @comment_obj.id.to_s %>">
+      <%= link_to "Add a new comment", "#" %>
+    </div>
+    <div class="comment-box" id="comment_form_<%=@comment_obj.class.name.downcase + @comment_obj.id.to_s %>" style="display: none">
         <%= form_for(Comment.new, :url => send("company_#{@comment_obj.class.name.downcase}_comments_path", @comment_obj.company, @comment_obj), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
-          <div class="user-thumb"><img src="/assets/user-thumb.jpg" alt=""></div>
+
           <div class="comment-input">
-              <%= f.text_area :comment, :class => "inputbox" %>
+              <%= f.text_area :comment, :rows=> 5, :id => "#{comment_obj.class.name.downcase + @comment_obj.id.to_s}_comment_textbox", :class => "inputbox" %>
           </div>
         <div class="clear"></div>
           <div class="comment-btn"> <%= f.button 'Comment', id: 'create_blip', :class => 'button small brown' %></div>
@@ -14,19 +16,12 @@
 
     </div><!-- end of comment-box -->
 
-    <div class="comment-box" id="list_all_blip_comments_<%= @comment_obj.class.name.downcase+'_'+@comment_obj.id.to_s %>">
+    <div class="comment-box" id="list_all_comments_<%= @comment_obj.class.name.downcase+'_'+@comment_obj.id.to_s %>">
       <% if !@comment_obj.comments.blank? %>
-        <% @comment_obj.comments.each do |comment| %>
-          <div class="user-thumb"><img src="/assets/user-thumb.jpg" alt=""></div>
-          <div class="comment-text">
-            <p class="title"><%= link_to comment.user.name, user_path(comment.user) %></p>
-            <p class="normal-txt" id="jTruncate_truncate-<%= comment.id %>"><%= comment.comment %></p>
+        <% @comment_obj.comments.order('created_at DESC').each do |comment| %>
+          <div class="comment-item" id="comment_item_<%= @comment_obj.class.name.downcase + @comment_obj.id.to_s + comment.id.to_s %>">
+            <%= render :partial => 'shared/comment_item', :locals => {:comment => comment, :comment_obj => @comment_obj} %>
           </div>
-          <script type="text/javascript">
-            $('#jTruncate_truncate-<%= comment.id %>').jTruncate({
-              length: 50
-            });
-          </script>
         <% end %>
       <% else %>
         <div id="no_comments">
@@ -45,6 +40,16 @@
   </div><!-- end of comments-div -->
 
 </div>
+
+<script type="text/javascript">
+  $("#click_comment_form_<%=@comment_obj.class.name.downcase + @comment_obj.id.to_s %>").click(function () {
+    $("#comment_form_<%=@comment_obj.class.name.downcase + @comment_obj.id.to_s %>").toggle("slideDown(1000)", function () {
+    });
+  });
+  $("#<%= comment_obj.class.name.downcase + @comment_obj.id.to_s%>_comment_textbox").maxlength({max: 400});
+</script>
+
+
 
 
 

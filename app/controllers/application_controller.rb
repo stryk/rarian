@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
   private
 
   def get_records(class_name, params = {}, options = {:date_option => true})
-    params[:sort_by] = 'asc' if params[:sort_by].blank?
+    params[:sort_by] = 'desc' if params[:sort_by].blank?
     params[:range] = 10 if params[:range].blank?
     if options[:date_option]
       objs = class_name.where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today} 23:59:59'")

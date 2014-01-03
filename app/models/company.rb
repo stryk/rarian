@@ -5,6 +5,7 @@ class Company < ActiveRecord::Base
   friendly_id :slug_candidates, use: :slugged
 
   validates :ticker, :name, presence: true
+  validates_length_of :description, :maximum => 500, :allow_blank => true
   has_many :quotes
   has_many :blips
   has_many :pitches

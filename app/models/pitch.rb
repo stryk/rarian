@@ -8,6 +8,8 @@ class Pitch < ActiveRecord::Base
   end
 
   validates :title, :multimedia_content, :company_id, :user_id, presence: true
+  validates_length_of :multimedia_content, :maximum => 10000, :allow_blank => false
+  validates_length_of :title, :maximum => 200, :allow_blank => false
   belongs_to :user
   belongs_to :company
 

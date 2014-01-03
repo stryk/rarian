@@ -13,7 +13,7 @@ class Answer < ActiveRecord::Base
   belongs_to :question
 
   validates :content, :company_id, :user_id, :question_id, presence: true
-
+  validates_length_of :content, :maximum => 10000, :allow_blank => false
   make_voteable
 
   acts_as_commentable

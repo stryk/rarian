@@ -5,7 +5,8 @@ $("#pitch_item_<%= @pitch.id %>").html('<%=j render :partial => 'shared/pitch_it
                                                            :child_objs_text => nil,
                                                            :comments_count => @pitch.comments.count,
                                                            :comments => true, :show_link => true, :refresh_div => false,
-                                                           :show_ticker => false} %>');
+                                                           :show_ticker => false,
+                                                       		:position => 0} %>').show('slow');
 
 //$('.scroll-pane').jScrollPane();
 $("#flash-message-custom").html('<div class="success"><p><span class="close-btn"><a href="#" class="close-btn" ><img src="/assets/close-btn.png" class="close-btn" alt=""></a></span><%= @msg %></p></div>');

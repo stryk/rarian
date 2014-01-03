@@ -11,10 +11,10 @@
 function MaxLength() {
 	this.regional = []; // Available regional settings, indexed by language code
 	this.regional[''] = { // Default regional settings
-		feedbackText: '{r} characters remaining ({m} maximum)',
+		feedbackText: '{r} char remaining / {m} max',
 			// Display text for feedback message, use {r} for remaining characters,
 			// {c} for characters entered, {m} for maximum
-		overflowText: '{o} characters too many ({m} maximum)'
+		overflowText: '{o} too many char ({m} max)'
 			// Display text when past maximum, use substitutions above
 			// and {o} for characters past maximum
 	};

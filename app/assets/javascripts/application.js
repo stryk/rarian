@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require ckeditor-jquery
 //= require jquery-ui
 //= require jquery.maxlength
 //= require jqueryui-editable

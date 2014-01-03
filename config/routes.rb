@@ -17,6 +17,7 @@ Rarian::Application.routes.draw do
     resources :blips
     resources :target_prices
     resources :catalysts
+    resources :comments
     resources :competitors do
       resources :votes do
         collection {
