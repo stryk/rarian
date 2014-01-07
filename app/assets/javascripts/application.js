@@ -17,5 +17,6 @@
 //= require jqueryui-editable
 //= require bootstrap
 //= require ckeditor/ckeditor
+//= require jquery.nyroModal.custom.min
 //= require_tree .
 //= require rails.validations

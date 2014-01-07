@@ -13,7 +13,6 @@
 
   <%= stylesheet_link_tag "application" %>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-
   <%= javascript_include_tag "application" %>
 
 
@@ -47,23 +46,27 @@
             </marquee>
           </div>
         </div>
-        <% if current_user %>
+
         <div class="top-login-space">
           <ul class="top-link">
             <li>
-              <div class="pic-div">
-                <a href="#"><%= image_tag current_user.image_url(:tiny_thumb).to_s %><%= '  ' + current_user.name %></a>
-              </div>
-              <ul>
-                <li><%= link_to "View Profile", user_path(current_user) %></li>
-                <li><%= link_to "Credit", credits_users_path %></li>
-                <li><%= link_to "Setting", setting_users_path %></li>
-                <li class="last"><%=link_to 'Logout',destroy_user_session_path,:method => 'delete' %></li>
-              </ul>
+              <% if user_signed_in? && current_user%>
+                <div class="pic-div">
+                  <a href="#"><%= image_tag current_user.image_url(:tiny_thumb).to_s %><%= '  ' + current_user.name %></a>
+                </div>
+                <ul>
+                  <li><%= link_to "View Profile", user_path(current_user) %></li>
+                  <li><%= link_to "Credit", credits_users_path %></li>
+                  <li><%= link_to "Setting", setting_users_path %></li>
+                  <li class="last"><%=link_to 'Logout',destroy_user_session_path,:method => 'delete' %></li>
+                </ul>
+              <% else %>
+                <%= link_to 'Sign In', new_user_session_path %>
+              <% end %>
             </li>
           </ul>
         </div>
-          <% end %>
+
 
         <div class="clr"></div>
 

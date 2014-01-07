@@ -79,10 +79,11 @@
       <p>
         <%= link_to("Comments (#{comments_count})", send("company_#{cobj.class.name.downcase}_comments_path", cobj.company, cobj), :remote => true ) %>
         <% if child_objs_present %>
-
+            <% if user_signed_in? && can?(:create, Answer) %>
             | <a id="accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">
                 <%= ("<b>"+cobj.child_link_name+"</b>").html_safe %>
               </a>
+            <% end %>
 
             <div id="comment_list_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>" style="display:none">
 
@@ -118,6 +119,7 @@
   $("#show_pitch_link_<%= cobj.id%>").click(function(){
       $("#multimedia_content_for_title_<%= cobj.id %>").toggle("slideDown(1000)", function () {
       });
+      return false;
   });
 
   <% if cobj.class.to_s == 'Question' %>
@@ -125,6 +127,7 @@
       $("#update_question_slide_down_<%= cobj.id%>").toggle("slideDown(1000)", function () {
         });
       $("#update_question_slide_down_<%= cobj.id%> #edit_question_<%= cobj.id%>").resetClientSideValidations();
+      return false;
     });
   <% end %>
 
@@ -133,6 +136,7 @@
       $("#update_answer_slide_down_<%= cobj.id%>").toggle("slideDown(1000)", function () {
         });
       $("#update_answer_slide_down_<%= cobj.id%> #edit_answer_<%= cobj.id%>").resetClientSideValidations();
+      return false;
     });
   <% end %>
 
@@ -141,22 +145,24 @@
       $("#update_blip_slide_down_<%= cobj.id%>").toggle("slideDown(1000)", function () {
         });
       $("#update_blip_slide_down_<%= cobj.id%> #edit_blip_<%= cobj.id%>").resetClientSideValidations();
+      return false;
     });
   <% end %>
-
-  <% if current_user.up_voted?(cobj) %>
-  $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').hide();
-  $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
-  $('#upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
-  <% elsif current_user.down_voted?(cobj) %>
-  $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
-  $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').hide();
-  $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
-  <% else %>
-  $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
-  $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
-  $('#upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
-  $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('');
+  <% if user_signed_in? %>
+    <% if current_user.up_voted?(cobj) %>
+    $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').hide();
+    $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+    $('#upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
+    <% elsif current_user.down_voted?(cobj) %>
+    $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+    $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').hide();
+    $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
+    <% else %>
+    $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+    $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+    $('#upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
+    $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('');
+    <% end %>
   <% end %>
 
 

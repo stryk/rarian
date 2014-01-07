@@ -3,30 +3,27 @@
 <div class="clr"></div>
 
 <%= render 'users_left' %>
+<span id="uid" data-uid="<%= @user.id %>"></span>
 
 <div class="middle-panel">
+  <% if true %>
+    <div class="box-col middle-margin">
+    
+      <h3>Alpha
+        Blips  <%= select_tag("blip_sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
+        <%= select_tag("blip_range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %></h3>
 
-  <div class="box-col middle-margin">
-    <h3>Alpha
-      Blips  <%= select_tag("blip_sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
-      <%= select_tag("blip_range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %></h3>
-
-    <!--<div class="small-follow-btn"><a href="#"></a></div>-->
-    <div id="blips_list" class="scroll">
-
-      <%= render :partial => 'users/blips_list', :locals => {:objs => @blips,:child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
-
-
-
+      <!--<div class="small-follow-btn"><a href="#"></a></div>-->
+      <div id="blips_list" class="scroll">
+        <%= render :partial => 'users/blips_list', :locals => {:objs => @blips,:child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
+      </div>
 
     </div>
-
-  </div>
-
+  <% end %>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Long Pitches
       <%= select_tag("buy_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
-      <%= select_tag("buy_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
+      <%= select_tag("buy_range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
     <div id="buy_list" class="scroll">
       <%= render :partial => 'shared/pitches_list', :locals => {:objs => @buypitchs,
                                                                     :company => @company, :child_objs => nil,
@@ -40,7 +37,7 @@
   <div class="box-col middle-margin">
     <h3 class="middleh3">Short Pitches
       <%= select_tag("sell_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
-      <%= select_tag("sell_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %></h3>
+      <%= select_tag("sell_range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %></h3>
     <div id="sell_list" class="scroll">
       <%= render :partial => 'shared/pitches_list', :locals => {:objs => @sellpitchs,
                                                                     :company => @company, :child_objs => nil,
@@ -82,7 +79,7 @@
   <div class="box-col middle-margin">
     <h3 class="middleh3">Comments
       <%= select_tag("comment_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
-      <%= select_tag("comment_range", "<option value='5'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %></h3>
+      <%= select_tag("comment_range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %></h3>
     <div id="comment_list" class="scroll">
       <%= render :partial => 'users/comment', :locals => {:objs => @comment,
                                                          :child_objs => nil,
@@ -155,6 +152,9 @@
         $("#show_blog_down").toggle("slideDown(1000)");
         return false;
     }
+
+
+
 </script>
 
 

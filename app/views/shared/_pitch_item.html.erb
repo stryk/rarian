@@ -116,20 +116,21 @@
     $("#update_pitch_slide_down_<%= cobj.id%> #edit_pitch_<%= cobj.id%>").resetClientSideValidations();
   });
 
-
-  <% if current_user.up_voted?(cobj) %>
-  $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').hide();
-  $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
-  $('#upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
-  <% elsif current_user.down_voted?(cobj) %>
-  $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
-  $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').hide();
-  $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
-  <% else %>
-  $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
-  $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
-  $('#upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
-  $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('');
+  <% if user_signed_in? %>
+    <% if current_user.up_voted?(cobj) %>
+    $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').hide();
+    $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+    $('#upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
+    <% elsif current_user.down_voted?(cobj) %>
+    $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+    $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').hide();
+    $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
+    <% else %>
+    $("#vote_down_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+    $("#vote_up_" + '<%= cobj.class.name.downcase+'_'+cobj.id.to_s %>').show();
+    $('#upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('<%= cobj.reload.net_votes %>');
+    $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('');
+    <% end %>
   <% end %>
   <% if(position >= 0 && position < 3) %>
     $("#show_title_link_<%= cobj.id%>").trigger('click');

@@ -14,6 +14,7 @@ class Company < ActiveRecord::Base
   has_many :most_active_tickers
   has_many :competitors
   has_many :risks
+  has_many :target_prices
   attr_accessible :ticker, :name, :slug
   acts_as_followable
 

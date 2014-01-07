@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!, except: [:show]
   load_and_authorize_resource
   skip_authorize_resource :only => :show
 
@@ -50,45 +51,62 @@ class UsersController < ApplicationController
   end
 
  def blips
-   @blips = get_objects(current_user.blips, params)
+    @user = User.find_by_id(params[:uid])
+    if @user.present?
+      @blips = get_objects(@user.blips, params)
+    end
    respond_to do |format|
      format.js
      end
  end
 
   def buypitch
-    @buypitchs = get_objects(current_user.pitches.buy_pitch, params)
+    @user = User.find_by_id(params[:uid])
+    if @user.present?
+      @buypitchs = get_objects(@user.pitches.buy_pitch, params)
+    else
+      @buypitchs = nil
+    end
     respond_to do |format|
       format.js
     end
   end
 
   def sellpitch
-    @sellpitchs = get_objects(current_user.pitches.sell_pitch, params)
+    @user = User.find_by_id(params[:uid])
+    if @user.present?
+      @sellpitchs = get_objects(@user.pitches.sell_pitch, params)
+    end
     respond_to do |format|
       format.js
     end
   end
 
   def question
-    @questions = get_objects(current_user.questions, params)
-
+    @user = User.find_by_id(params[:uid])
+    if @user.present?
+      @questions = get_objects(@user.questions, params)
+    end
     respond_to do |format|
       format.js
     end
   end
 
   def answer
-    @answers = get_objects(current_user.answers, params)
-
+    @user = User.find_by_id(params[:uid])
+    if @user.present?
+      @answers = get_objects(@user.answers, params)
+    end
     respond_to do |format|
       format.js
     end
   end
 
   def comment
-    @comments = get_objects(current_user.comments, params)
-
+    @user = User.find_by_id(params[:uid])
+    if @user.present?
+      @comments = get_objects(@user.comments, params)
+    end
     respond_to do |format|
       format.js
     end

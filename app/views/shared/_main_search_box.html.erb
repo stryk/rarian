@@ -1,0 +1,61 @@
+<div class="search-box">
+  <div class="search-div">
+    <%= form_tag(searches_path, :class => 'pull-right', :remote => true) do %>
+      <%= text_field('q', 'search', :class => 'search-query search-input', :placeholder => "Search by Ticker, Company name") %>
+      <%= submit_tag('', :id => "search_submit_button", :class => 'search-button') %>
+      <div class="clr"></div>
+    <% end %>
+  </div>
+  <div class="clr"></div>
+</div><!-- end of search-box -->
+
+<div style='display:none' class="slide-div" id='competitor_slide_down'>
+  <%= form_for(Competitor.new, :url => company_competitors_path(@company), :remote => true, :method => 'post', :validate => true) do |f| %>
+    <%= text_field_tag 'competitor[name]', "", {"id" => "typeahead", :class => "slide-input"} %>
+    <%= f.hidden_field :competitor_id %>
+    <%= f.submit :class => "button small brown" %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $(function () {
+    $('#q_search').autocomplete({
+      source: function (request, response) {
+        $.ajax({
+          url: "/searches/main.json",
+          dataType: "json",
+          type: "POST",
+          data: {
+            featureClass: "P",
+            style: "full",
+            maxRows: 12,
+            name_startsWith: request.term
+          },
+          success: function (data) {
+            response($.map(data.options, function (item) {
+              return {
+                label: item.name,
+                value: item.name,
+                id: item.id
+              }
+            }));
+          }
+        });
+      },
+      select: function (event, ui) {
+        console.log(ui.item.id);
+        $('#competitor_competitor_id').val(ui.item.id);
+      },
+      items: 5,
+      minLength: 3,
+      open: function () {
+        $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+      },
+      close: function () {
+        $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+      }
+
+    });
+  });
+
+</script>

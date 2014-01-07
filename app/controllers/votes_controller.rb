@@ -4,7 +4,7 @@ class VotesController < ApplicationController
 
   def up
     begin
-      authorize! :up, @obj
+      authorize! :up, @obj, :message => "You must sign-in to vote."
       @company =  Company.friendly.find(params[:company_id].downcase)
       current_user.up_vote(@obj)
     rescue MakeVoteable::Exceptions::AlreadyVotedError
@@ -15,7 +15,7 @@ class VotesController < ApplicationController
 
   def down
     begin
-      authorize! :up, @obj
+      authorize! :up, @obj, :message => "You must sign-in to vote."
       @company =  Company.friendly.find(params[:company_id].downcase)
       current_user.down_vote(@obj)
     rescue MakeVoteable::Exceptions::AlreadyVotedError

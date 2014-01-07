@@ -6,9 +6,11 @@ class TargetPricesController < ApplicationController
     @target_price = TargetPrice.where(:year => params[:target_price][:year],
                                       :company_id => @company.id,
                                       :user_id => current_user.id).first_or_initialize(:target_price => params[:target_price][:target_price])
-    @target_price.new_record? ? @target_price.save :
+    if @target_price.new_record?
+      @target_price.save 
+    else
       @target_price.update_attributes(:target_price => params[:target_price][:target_price])
-
+    end
   end
 
 

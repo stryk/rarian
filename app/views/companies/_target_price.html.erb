@@ -4,16 +4,18 @@
       (<%= get_percent(median_price.price.to_f, @company.last_and_previous_closing_price.first.price) %> %)
     </p>
   <% end %>
-  <% target_price = TargetPrice.where(:year => median_price.year, :user_id => current_user.id).last %>
-  <% if !target_price.blank? %>
-    <p> Your <%= target_price.year %>: <%= number_to_currency(target_price.target_price) %>
-      (<%= get_percent(target_price.target_price.to_f, @company.last_and_previous_closing_price.first.price) %> %)
-       | <%= link_to "delete", company_target_price_path(@company, target_price), :method => 'delete', :remote => true %></p>
+  <% if user_signed_in? %>
+    <% target_price = TargetPrice.where(:year => median_price.year, :company_id => @company.id, :user_id => current_user.id).last %>
+    <% if !target_price.blank? %>
+      <p> Your <%= target_price.year %>: <%= number_to_currency(target_price.target_price) %>
+        (<%= get_percent(target_price.target_price.to_f, @company.last_and_previous_closing_price.first.price) %> %)
+         | <%= link_to "delete", company_target_price_path(@company, target_price), :method => 'delete', :remote => true %></p>
+    <% end %>
   <% end %>
 <% end %>
 
 <% if current_user %>
-  <p><%= link_to "Write/Edit Target Price", "#.", :id => 'company_target_slide', :class => "readmore-link" %>
+  <p><%= link_to "Add or Edit Target Price", "#.", :id => 'company_target_slide', :class => "readmore-link" %>
   </p>
   <div class="slide-div" style="display: none" id='target_price_slide_down'>
     <%= form_for(TargetPrice.new, :url => company_target_prices_path(@company), :validate => true, :remote => true) do |f| %>

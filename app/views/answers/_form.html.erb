@@ -12,6 +12,7 @@
 </div>
 <% end %>
 </span>
+<div id="answer_to_<%= question.class.name.downcase+'-'+question.id.to_s %>">
   <% !child_objs.blank? && question.send(child_objs).each do |child_obj| %>
     <div id="answer-<%= child_obj.id.to_s %>">
     <%= render :partial => 'shared/voting_list', :locals => {:cobj => child_obj, :company => company,
@@ -27,7 +28,7 @@
       });
     </script>
   <% end %>
-
+</div>
   <script type="text/javascript">
 
     $('#accordion2-<%= question.id %>').click(function () {

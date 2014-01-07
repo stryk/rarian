@@ -1,5 +1,7 @@
 class Pitch < ActiveRecord::Base
+
   before_save :sanitize_content
+  after_save :process_tags
   attr_accessible :title, :multimedia_content, :action, :user_id, :company_id, :net_votes, :points
 
   module Point
@@ -20,9 +22,6 @@ class Pitch < ActiveRecord::Base
 
   acts_as_commentable
 
-  def get_multimedia_content
-    multimedia_content
-  end
 
   def get_full_title
     title
@@ -50,4 +49,39 @@ class Pitch < ActiveRecord::Base
       ActionController::Base.helpers.sanitize multimedia_content, tags: %w{p strong em u span ol li ul img}, attributes: %w{style color src alt}
     end
   end
+
+  def get_multimedia_content
+    multimedia_content
+  end
+
+private
+
+  def process_tags
+    parse_content = Nokogiri::HTML.fragment(multimedia_content)
+    parse_content.css("img").each do |image_tag|
+      content_img_link = image_tag["src"]
+      # changing the file_name in the path
+      image_filename = File.basename(content_img_link)
+      image_pathname = File.dirname(content_img_link)
+      new_filename = image_filename[8..-1]
+      new_img_link = image_pathname + '/' + new_filename
+
+      # creating a new <a href> tag
+      image_tag.name = "a"
+      image_tag['href'] = new_img_link
+      image_tag['class'] = "nModal"
+      image_tag['title'] = ""
+      image_tag.remove_attribute("src")
+      image_tag.remove_attribute("alt")
+
+
+      child_tag = Nokogiri::XML::Node.new "img", parse_content
+      child_tag['src'] = content_img_link
+      child_tag['alt'] = "Missing Image"
+      child_tag.parent = image_tag
+    end
+    update_attributes(:multimedia_content => parse_content.to_html)
+  end
 end
+
+

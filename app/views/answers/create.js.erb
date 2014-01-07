@@ -1,12 +1,10 @@
-$('#<%= @question.class.name.downcase+'-'+@question.id.to_s %>').prepend('<%= j render :partial => 'shared/voting_list', :locals => {:cobj => @answer, :company => @company,
+$('#answer_to_<%= @question.class.name.downcase+'-'+@question.id.to_s %>').prepend('<%= j render :partial => 'shared/voting_list', :locals => {:cobj => @answer, :company => @company,
                                                              :text_val => "<p><strong>A.</strong> ",
                                                              :child_objs_present => false,
                                                              :comments_count => @question.comments.count,
                                                              :comments => true,
-                                                             :show_link => false, :refresh_div => false} %>');
+                                                             :show_link => false, :refresh_div => false} %>').hide().fadeIn('slow');
 
-$("#flash-message-custom").html('<div class="success"><p><span class="close-btn"><a href="#" class="close-btn" ><img src="/assets/close-btn.png" class="close-btn" alt=""></a></span><%= @msg %></p></div>');
-$("#flash-message-custom").show();
 
 $('#create_answer-<%= @question.id %>').toggle("slideDown(1000)");
 

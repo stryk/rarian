@@ -22,7 +22,7 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  # process :scale => [200, 300]
+  process :resize_to_limit => [1366, 768]
   #
   # def scale(width, height)
   #   # do something
@@ -31,9 +31,6 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   process :read_dimensions
 
   # Create different versions of your uploaded files:
-  version :thumb do
-    process :resize_to_fill => [134, 100]
-  end
 
   version :content do
     process :resize_to_limit => [320, 240]

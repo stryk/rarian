@@ -34,6 +34,7 @@ class Ability
       can [:up, :down], Question do |a|
         a.user_id != user.id
       end
+      can [:blips, :buypitch, :sellpitch, :question, :answer, :comment], User
       can :read, [Blip, Pitch, Catalyst, Question, Answer, Competitor, Risk]
       can :update, [Catalyst, Question, Answer, Competitor, Risk], :user_id => user.id
       can :destroy, [Catalyst, Answer, Competitor, Risk, Blip], :user_id => user.id
@@ -48,6 +49,7 @@ class Ability
       can :credits, User, :user_id => user.id
     else
       can :read, :all
+      can [:blips, :buypitch, :sellpitch, :question, :answer, :comment], User
     end
     #
     # The first argument to `can` is the action you are giving the user 
@@ -69,3 +71,5 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end
 end
+
+

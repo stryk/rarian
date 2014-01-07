@@ -6,7 +6,7 @@
       <%if action_name == 'landing'%>
         <%= link_to(cat.company.ticker, company_path(cat.company)) %>
       <% end %> <%= cat_date.strftime("%m/%d/%y") %>: <%= cat.content %>
-      <% if cat.edit?(current_user) && action_name != 'landing' %>
+      <% if can?(:edit, cat) && action_name != 'landing' %>
         <%= link_to "Edit", "#.", :id => "company_catalyst_slide#{cat.id}" %> |
         <%= link_to "Delete", company_catalyst_path(cat.company.id, cat), :method => 'delete', :remote => true %>
       <% end %>

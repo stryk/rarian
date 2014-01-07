@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require jqueryui-editable
+ *= require nyroModal
  *= require_tree .
  */
  

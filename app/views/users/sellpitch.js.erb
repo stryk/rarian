@@ -1,5 +1,5 @@
-$("#sell_list").html('<%=j raw (render :partial => "users/sellpitch", :locals => {:objs => @sellpitchs,
+$("#sell_list").html('<%=j raw (render :partial => "shared/pitches_list", :locals => {:objs => @sellpitchs,
                                                                   :company => @company, :child_objs => nil,
                                                                   :objs_text => nil,
                                                                   :child_objs_text => nil,
-                                                                  :show_link => true}).gsub!("\n", "") %>');
+                                                                  :show_link => true, :show_ticker => true}) %>');

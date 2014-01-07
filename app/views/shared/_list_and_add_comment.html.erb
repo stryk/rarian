@@ -1,9 +1,14 @@
 <div class="comments-container <%= content_div %>">
 
   <div class="comments-div">
-    <div class="comment-box" id="click_comment_form_<%=@comment_obj.class.name.downcase + @comment_obj.id.to_s %>">
-      <%= link_to "Add a new comment", "#" %>
-    </div>
+    <% if user_signed_in? && can?(:create, Comment) %>
+      <div class="comment-box" id="click_comment_form_<%=@comment_obj.class.name.downcase + @comment_obj.id.to_s %>">
+        
+          <%= link_to "Add a new comment", "#" %>     
+      </div>
+    <% else %>
+        <%= link_to 'Login to comment', new_user_session_path %>
+    <% end %>
     <div class="comment-box" id="comment_form_<%=@comment_obj.class.name.downcase + @comment_obj.id.to_s %>" style="display: none">
         <%= form_for(Comment.new, :url => send("company_#{@comment_obj.class.name.downcase}_comments_path", @comment_obj.company, @comment_obj), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
 
@@ -43,8 +48,8 @@
 
 <script type="text/javascript">
   $("#click_comment_form_<%=@comment_obj.class.name.downcase + @comment_obj.id.to_s %>").click(function () {
-    $("#comment_form_<%=@comment_obj.class.name.downcase + @comment_obj.id.to_s %>").toggle("slideDown(1000)", function () {
-    });
+    $("#comment_form_<%=@comment_obj.class.name.downcase + @comment_obj.id.to_s %>").toggle("slideDown(1000)", function () {});
+    return false;
   });
   $("#<%= comment_obj.class.name.downcase + @comment_obj.id.to_s%>_comment_textbox").maxlength({max: 400});
 </script>
