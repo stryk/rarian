@@ -37,6 +37,8 @@ gem 'bootstrap-sass'
 
 gem "ckeditor"
 
+gem "ckeditor_rails"
+
 gem "carrierwave"
 
 gem "mini_magick"
@@ -54,6 +56,8 @@ gem "configatron"
 gem "carrierwave"
 
 gem "nokogiri"
+
+gem 'spinjs-rails'
 
 # Thinking-sphinx doc says require mysql2 even if you want to use postgres
 gem 'mysql2', '0.3.12b4'

@@ -1,6 +1,6 @@
 
-<% if pitch %>
-  <%= form_for(pitch, :url => company_pitch_path(pitch.company, pitch), :remote => true, :validate => true ,:html => {:class => 'form-horizontal'}) do |f| %>
+<% if pitch.present? %>
+  <%= form_for(pitch, :url => company_pitch_path(pitch.company, pitch), :remote => true, :validate => true ,:html => {:id => "edit_pitch_" + pitch.id.to_s + "_form", :class => 'form-horizontal'}) do |f| %>
 
       <p><strong><%= 'Action:' + option.to_s %></strong>
         <%= f.hidden_field :action ,:value => option %>
@@ -16,13 +16,13 @@
       </p>
 
       <p>
-        <%= f.button 'Submit', id: 'create_reason', :class => 'button small brown' %>
+        <%= f.button 'Submit', id: "edit_reason_"+pitch.id.to_s+"_submit", :class => 'button small brown' %>
       </p>
 
   <% end %>
 
 <% else %>
-  <%= form_for(Pitch.new, :url => company_pitches_path(@company), :remote => true, :validate => true ,:html => {:class => 'form-horizontal'}) do |f| %>
+  <%= form_for(Pitch.new, :url => company_pitches_path(@company), :remote => true, :validate => true ,:html => {:id => "new_pitch_"+option.to_s+"_form",:class => 'form-horizontal'}) do |f| %>
 
       <p><strong><%= 'Action:' + option.to_s %></strong>
         <%= f.hidden_field :action ,:value => option %>
@@ -34,16 +34,28 @@
 
       <p><%= f.label :multimedia_content, "Content" %></p>
       <p>
-        <%= f.cktext_area :multimedia_content, :class => "ckeditor", :toolbar => "Mini", :id => "editor_"+option %>
+        <%= f.cktext_area :multimedia_content, :class => "ckeditor", :toolbar => "Mini", :id => "editor_"+option.to_s %>
       </p>
 
       <p>
-        <%= f.button 'Submit', id: 'create_reason', :class => 'button small brown' %>
+        <%= f.button 'Submit', id: "create_reason_"+option.to_s+"_submit", :class => 'button small brown' %>
       </p>
 
   <% end %>
+
   <script type="text/javascript">
     $("#editor_buy").maxlength({max: 5000});
     $("#editor_sell").maxlength({max: 5000});
+    <% if pitch.blank? %>
+      <% if option.to_s == "buy" %>
+        $('#create_reason_buy_submit').click(function() {
+          $('#new_pitch_buy_form').spin();
+        });
+      <% else %> 
+        $('#create_reason_sell_submit').click(function() {
+          $('#new_pitch_sell_form').spin();
+        });
+      <% end %>
+    <% end %>
   </script>
 <% end %>

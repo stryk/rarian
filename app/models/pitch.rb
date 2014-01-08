@@ -1,7 +1,6 @@
 class Pitch < ActiveRecord::Base
 
-  before_save :sanitize_content
-  after_save :process_tags
+  before_save :sanitize_content, :process_tags
   attr_accessible :title, :multimedia_content, :action, :user_id, :company_id, :net_votes, :points
 
   module Point
@@ -57,7 +56,7 @@ class Pitch < ActiveRecord::Base
 private
 
   def process_tags
-    parse_content = Nokogiri::HTML.fragment(multimedia_content)
+    parse_content = Nokogiri::HTML.fragment(self.multimedia_content)
     parse_content.css("img").each do |image_tag|
       content_img_link = image_tag["src"]
       # changing the file_name in the path
@@ -80,7 +79,7 @@ private
       child_tag['alt'] = "Missing Image"
       child_tag.parent = image_tag
     end
-    update_attributes(:multimedia_content => parse_content.to_html)
+    self.multimedia_content = parse_content.to_html
   end
 end
 

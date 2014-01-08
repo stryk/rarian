@@ -12,11 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ckeditor-jquery
 //= require jquery-ui
 //= require jquery.maxlength
 //= require jqueryui-editable
 //= require bootstrap
 //= require ckeditor/ckeditor
 //= require jquery.nyroModal.custom.min
+//= require jquery.spin
 //= require_tree .
 //= require rails.validations

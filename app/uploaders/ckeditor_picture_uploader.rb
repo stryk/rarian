@@ -10,6 +10,7 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   storage :file
 
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -33,7 +34,7 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
 
   version :content do
-    process :resize_to_limit => [320, 240]
+    process :resize_to_limit => [320, 400]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -41,4 +42,5 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   def extension_white_list
     Ckeditor.image_file_types
   end
+
 end

@@ -33,8 +33,8 @@ CKEDITOR.editorConfig = function (config) {
   config.removeDialogTabs = 'image:advanced';
 
   config.removePlugins = 'elementspath';
-
-  config.extraPlugins = 'wordcount';
+  
+  config.extraPlugins = 'wordcount,autogrow,imagepaste';
 
   // Rails CSRF token
   config.filebrowserParams = function () {
