@@ -11,26 +11,27 @@
 <!--<div class="small-follow-btn"><a href="#"></a></div>-->
 
 <div class="box-col-div">
-  <div id="blips_list" class="scroll">
-    <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips, :company => @company, :child_objs => nil, :objs_text => nil, :child_objs_text => nil} %>
-  </div>
-  <% if current_user %>
+    <% if current_user %>
 
-    <p><a href="#." role="button" class="readmore-link new_blip" id="new_blip_<%= @company.id %>">Write Blip</a>
+    <p><a href="#." role="button" class="readmore-link new_blip" id="new_blip_<%= @company.id %>">Write a Blip</a>
     </p>
-
     <div style="display: none" id='new_blip_slide_down_<%= @company.id %>'>
-
       <%= render :partial => 'shared/add_blip', :locals => {:company => @company} %>
     </div>
-    <script type="text/javascript">
-      $('#new_blip_<%= @company.id %>').click(function () {
-        $("#new_blip_slide_down_<%= @company.id %>").toggle("slideDown(1000)");
-        $('#add_blip #new_blip').validate();
-      });
-      $("#blip_content").maxlength({max: 140});
-    </script>
+  </br>
 
   <% end %>
+  <div id="blips_list" class="scroll">
+    <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips, :company => @company, :child_objs => nil, :objs_text => nil,
+      :child_objs_text => nil, :show_ticker => false} %>
+  </div>
+
 </div>
 
+<script type="text/javascript">
+  $('#new_blip_<%= @company.id %>').click(function () {
+    $("#new_blip_slide_down_<%= @company.id %>").toggle("slideDown(1000)");
+    $('#add_blip #new_blip').validate();
+  });
+  $("#blip_content").maxlength({max: 140});
+</script>

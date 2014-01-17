@@ -1,5 +1,5 @@
 <% objs.each do |cobj| %>
-
+  
    <% show_link_boolean = (show_link rescue false)  %>
    <div class="pitch-item" id="pitch_item_<%= cobj.id %>">
     <%= render :partial => 'shared/pitch_item', :locals => {:cobj => cobj, :text_val => objs_text,
@@ -11,9 +11,4 @@
                                                            :show_ticker => show_ticker,
                                                             :position => objs.index(cobj).to_i} %>
   </div>
-  <script type="text/javascript">
-    $("#jTruncate_truncate-<%= cobj.id %>").jTruncate({
-      length: 50
-    });
-  </script>
 <% end %>

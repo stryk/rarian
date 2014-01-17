@@ -47,9 +47,11 @@ class Ability
       can :cu, User, :user_id => user.id
       can :setting, User, :user_id => user.id
       can :credits, User, :user_id => user.id
+      can [:blips, :buypitch, :sellpitch], Company
     else
       can :read, :all
       can [:blips, :buypitch, :sellpitch, :question, :answer, :comment], User
+      can [:blips, :buypitch, :sellpitch], Company
     end
     #
     # The first argument to `can` is the action you are giving the user 

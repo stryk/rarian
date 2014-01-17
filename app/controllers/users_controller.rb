@@ -124,9 +124,10 @@ class UsersController < ApplicationController
   private
   def get_objects(obj_relationship, params={})
     params[:sort_by] = 'desc' if params[:sort_by].blank?
-    params[:range] = 10 if params[:range].blank?
-
-    obj_relationship.order("created_at #{params[:sort_by]}").where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
+    # Below code is for range option, no longer used
+    # params[:range] = 10 if params[:range].blank?
+    # obj_relationship.order("created_at #{params[:sort_by]}").where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
+    obj_relationship.order("created_at #{params[:sort_by]}")
 
   end
 

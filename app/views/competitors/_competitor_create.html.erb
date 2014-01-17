@@ -1,0 +1,13 @@
+<div id="competitor_<%= competitor.id.to_s %>">
+<%= render :partial => 'shared/voting_list', :locals => {:cobj => competitor,
+                                                         :company => company,
+                                                         :text_val => nil,
+                                                         :child_objs_present => false,
+                                                         :comments_count => 0,
+                                                         :comments => false, :show_link => true,
+                                                         :refresh_div => true, :hr_voting => "hr-"} %>
+
+<% if can? :destroy, competitor %>
+    | <%= link_to "Delete", company_competitor_path(company, competitor), :method => 'delete', :remote => true %>
+<% end %>
+</div>

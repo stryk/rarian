@@ -45,22 +45,44 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def get_records(class_name, params = {}, options = {:date_option => true})
-    params[:sort_by] = 'desc' if params[:sort_by].blank?
-    params[:range] = 10 if params[:range].blank?
-    if options[:date_option]
-      objs = class_name.where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today} 23:59:59'")
-    else
-      objs = class_name.where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today} 23:59:59'")
-    end
+  def get_records(class_name, params = {}, options = {})
+    params[:sort_by] = 'default' if params[:sort_by].blank?
+    if params[:sort_by] == "default"
+      order_by_sql = <<-SQL
+      CASE WHEN created_at between '#{Date.today - 7}' and '#{Date.today}' THEN 1
+           WHEN created_at between '#{Date.today - 30}' and '#{Date.today - 7}' THEN 2
+           WHEN created_at between '#{Date.today - 90}' and '#{Date.today - 30}' THEN 3
+           ELSE 4
+      END
+      SQL
+      if options[:type] == 'longpitchs'
+        objs = class_name.where('net_votes > 0').order(order_by_sql).paginate(:page => params[:lp_page])
+      elsif options[:type] == 'shortpitchs'
+        objs = class_name.where('net_votes > 0').order(order_by_sql).paginate(:page => params[:sp_page])
+      else
+        objs = class_name.where('net_votes > 0').order(order_by_sql).paginate(:page => params[:blp_page])
+      end
 
-    if params[:sort_by] == "following"
+    elsif params[:sort_by] == "following"
       companies = current_user.follows_by_type('Company').map(&:followable)
-      objs = objs.where(:company_id => companies.map(&:id)).order("created_at desc")
+      if options[:type] == 'longpitchs'
+        objs = class_name.where(:company_id => companies.map(&:id)).order("created_at desc").paginate(:page => params[:lp_page])
+      elsif options[:type] == 'shortpitchs'
+        objs = class_name.where(:company_id => companies.map(&:id)).order("created_at desc").paginate(:page => params[:sp_page])
+      else
+        objs = class_name.where(:company_id => companies.map(&:id)).order("created_at desc").paginate(:page => params[:blp_page])
+      end
     else
-      objs = objs.order("created_at #{params[:sort_by]}")
+      if options[:type] == 'longpitchs'
+        objs = class_name.order("created_at #{params[:sort_by]}").paginate(:page => params[:lp_page])
+      elsif options[:type] == 'shortpitchs'
+        objs = class_name.order("created_at #{params[:sort_by]}").paginate(:page => params[:sp_page])
+      else
+        objs = class_name.order("created_at #{params[:sort_by]}").paginate(:page => params[:blp_page])
+      end      
     end
-    objs
+    return objs
+
   end
 
   def flash_to_headers

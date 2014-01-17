@@ -1,18 +1,19 @@
 <% @catalyst.each do |cat_date, catalyst| %>
 
     <% catalyst.each do |cat| %>
-
-    <p>
+    <div id="catalyst_<%=cat.id%>">
+      <p>
       <%if action_name == 'landing'%>
         <%= link_to(cat.company.ticker, company_path(cat.company)) %>
-      <% end %> <%= cat_date.strftime("%m/%d/%y") %>: <%= cat.content %>
-      <% if can?(:edit, cat) && action_name != 'landing' %>
-        <%= link_to "Edit", "#.", :id => "company_catalyst_slide#{cat.id}" %> |
-        <%= link_to "Delete", company_catalyst_path(cat.company.id, cat), :method => 'delete', :remote => true %>
+        <% end %> <%= cat_date.strftime("%m/%d/%y") %>: <%= cat.content %>
+          <% if can?(:edit, cat) && action_name != 'landing' %>
+            <%= link_to "Edit", "#.", :id => "company_catalyst_slide#{cat.id}" %> |
+            <%= link_to "Delete", company_catalyst_path(cat.company.id, cat), :method => 'delete', :remote => true %>
+          <% end %>
+        </p>
+        <%= render :partial => 'catalysts/add_catalyst', :locals => {:catalyst => cat} %>
       <% end %>
-    </p>
-    <%= render :partial => 'catalysts/add_catalyst', :locals => {:catalyst => cat} %>
-  <% end %>
+    </div>
 <% end %>
 <% if can?(:create, Catalyst) && action_name != 'landing' %>
 

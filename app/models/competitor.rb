@@ -8,6 +8,8 @@ class Competitor < ActiveRecord::Base
   attr_accessible :company_id, :user_id, :competitor_id, :net_votes
 
   validates :competitor_id, :company_id, :user_id, presence: true
+  validate :not_duplicative_competitor
+  self.per_page = 2
 
   def self.get_competitors(company)
     where(:company_id => company.id).select("id, company_id, competitor_id, user_id, net_votes").order("net_votes DESC")
@@ -27,5 +29,11 @@ class Competitor < ActiveRecord::Base
 
   def undo_vote(value)
     update_attributes(:net_votes => net_votes.to_i - value.to_i)
+  end
+
+  def not_duplicative_competitor
+    if company.competitors.where(:competitor_id => competitor_id).present?
+      errors.add(:competition_exists, "Already in the competitor list.")
+    end
   end
 end

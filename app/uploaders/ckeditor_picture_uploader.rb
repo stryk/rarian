@@ -14,7 +14,7 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/ckeditor/pictures/#{model.id}"
+    "uploads/ckeditor/pictures/#{model.class.to_s + model.id.to_s}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -42,5 +42,16 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   def extension_white_list
     Ckeditor.image_file_types
   end
+
+  # def filename
+  #    "#{secure_token}.#{file.extension}" if original_filename.present?
+  # end
+
+  # protected
+  # def secure_token
+  #   var = :"@#{mounted_as}_secure_token"
+  #   model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+  # end
+
 
 end

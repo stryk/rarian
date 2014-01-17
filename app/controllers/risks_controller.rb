@@ -33,8 +33,9 @@ class RisksController < ApplicationController
 
   def destroy
     Risk.where(:id => params[:id]).last.destroy
+    @deleted_risk_id = params[:id]
     respond_to do |format|
-      format.js {render 'create'}
+      format.js
     end
   end
 

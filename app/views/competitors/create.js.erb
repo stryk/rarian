@@ -1,1 +1,2 @@
-$("#vote_competitor").html('<%= j render 'companies/competitor' %>');
+$("#vote_competitor").prepend('<%= j render :partial => 'competitors/competitor_create', :locals => {:competitor => @competitor, :company => @company} %>').hide().show('slow');
+$("#competitor_slide_down").hide('slow')

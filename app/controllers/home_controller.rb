@@ -5,28 +5,49 @@ class HomeController < ApplicationController
   end
 
   def landing
-    @buy_pitchs = get_records(Pitch.buy_pitch, params)
-    @sell_pitchs = get_records(Pitch.sell_pitch, params)
-    @blips = get_records(Blip.all, params)
-    @catalyst = Catalyst.order("date DESC").group_by(&:date)
+    params[:sort_by] = "default"
+    @buy_pitchs = get_records(Pitch.buy_pitch, params, {:type => 'longpitchs'})
+    @sell_pitchs = get_records(Pitch.sell_pitch, params, {:type => 'shortpitchs'})
+    @blips = get_records(Blip.all, params, {:type => 'blips'})
+    @catalyst = Catalyst.where(['date >= ?', Date.today]).order("date asc").paginate(:page => params[:cat_page])
+    respond_to do |format|
+      format.js {
+        @append = true
+        if params[:lp_page].present?
+          @pitchs = @buy_pitchs
+          render 'buypitch.js.erb'
+        elsif params[:sp_page].present?
+          @pitchs = @sell_pitchs
+          render 'sellpitch.js.erb'
+        elsif params[:blp_page].present?
+          render 'blips.js.erb'
+        elsif params[:cat_page].present?
+          render 'catalysts.js.erb'
+        end
+      }
+      format.html
+    end
   end
 
   def blips
-    @blips = get_records(Blip.all, params)
+    @append = true if params[:blp_page].present?
+    @blips = get_records(Blip.all, params,{:type => 'blips'})
     respond_to do |format|
       format.js
     end
   end
 
   def sellpitch
-    @pitchs = get_records(Pitch.sell_pitch, params)
+    @append = true if params[:sp_page].present?
+    @pitchs = get_records(Pitch.sell_pitch, params, {:type => 'shortpitchs'})
     respond_to do |format|
       format.js
     end
   end
 
   def buypitch
-    @pitchs = get_records(Pitch.buy_pitch, params)
+    @append = true if params[:lp_page].present?
+    @pitchs = get_records(Pitch.buy_pitch, params, {:type => 'longpitchs'})
     respond_to do |format|
       format.js
     end

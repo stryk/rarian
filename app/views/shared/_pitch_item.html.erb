@@ -136,7 +136,7 @@
     $("#show_title_link_<%= cobj.id%>").trigger('click');
   <% end %>
 
-  $("#edit_reason_<%= cobj.id.to_s %>_submit").click(function() {
+  $("#edit_reason_<%= cobj.id.to_s %>_submit").on("click",function() {
     $("#edit_pitch_<%= cobj.id.to_s %>_form").spin();
   });
 

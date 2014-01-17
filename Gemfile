@@ -59,6 +59,8 @@ gem "nokogiri"
 
 gem 'spinjs-rails'
 
+gem 'will_paginate', '~> 3.0'
+
 # Thinking-sphinx doc says require mysql2 even if you want to use postgres
 gem 'mysql2', '0.3.12b4'
 gem 'thinking-sphinx'

@@ -1,19 +1,10 @@
-<div class="box-col-div">
-      <% @company.risks.limit(5).each do |risk| %>
-        <%= render :partial => 'shared/voting_list', :locals => {:cobj => risk, :company => @company, :text_val => nil,
-                                                                 :child_objs_present => false,
-                                                                 :comments_count => 0,
-                                                                 :comments => false, :show_link => false,
-                                                                 :refresh_div => false,:hr_voting => "hr-"} %>
-        <% if can? :edit, risk %>
-          <%= link_to "Edit", "#.",:id => "company_risk_slide_update#{risk.id}" %>
-           | <%= link_to "Delete", company_risk_path(@company, risk), :method => 'delete', :remote => true %> <br/>
-          <%= render :partial => 'risks/add_risk', :locals => {:risk => risk} %>
-        <% end %>
-      <% end %>
-
-  <% if current_user %>
-  <p><%= link_to "Add Risk", "#.", :id => 'company_risk_slide', :class => "readmore-link" %></p>
+<% if can?(:create, Risk) %>
+  <div class="form-box">
+  	<p><%= link_to "Add Risk", "#.", :id => 'company_risk_slide', :class => "readmore-link" %></p>
     <%= render :partial => 'risks/add_risk', :locals => {:risk => Risk.new} %>
-  <% end %>
+  </div>
+<% end %>
+
+<div id="risks_list">
+  <%= render :partial => 'companies/risks_list', :locals => {:risks => risks, :company => @company} %>
 </div>

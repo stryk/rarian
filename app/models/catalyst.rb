@@ -10,6 +10,7 @@ class Catalyst < ActiveRecord::Base
   end
 
   validates :content, :date, :company_id, :user_id, presence: true
+  self.per_page = 2
 
   def edit?(user)
     user_id == user.id

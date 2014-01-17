@@ -10,7 +10,7 @@ class Blip < ActiveRecord::Base
 
   ACTIONS = %w(buy sell)
 
-  validates :action, :inclusion => {:in => ["buy", "sell"]}
+  # validates :action, :inclusion => {:in => ["buy", "sell"]}
 
   validates :content, :company_id, :user_id, presence: true
 
@@ -24,8 +24,10 @@ class Blip < ActiveRecord::Base
 
   acts_as_commentable
 
+  self.per_page = 2
+
   def get_full_title
-    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+"<a href='/companies/#{company.friendly_id}'>"+company.ticker+'</a>'+": "+created_at.strftime("%m/%d/%Y")+": "+action+": "+content
+    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+"<a href='/companies/#{company.friendly_id}'>"+company.ticker+'</a>'+": "+created_at.strftime("%m/%d/%Y")+": "+content
   end
 
   def up_vote

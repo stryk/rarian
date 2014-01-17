@@ -1,10 +1,8 @@
 <div id="add_blip" class="slide-div">
   <div id="flash_message"></div>
   <%= form_for(Blip.new, :url => company_blips_path(company), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
-    <%= f.label :action, :class => "control-label" %>
-    <%= f.select :action, Blip::ACTIONS, {:include_blank => false}, :class => "slide-select" %>
 
-    <%= f.label :content, :class => "control-label" %>
+    <%= f.label "Your blip", :class => "control-label" %>
     <%= f.text_area :content, :class => "slide-input", :rows => 5, :validate => true %>
 
 

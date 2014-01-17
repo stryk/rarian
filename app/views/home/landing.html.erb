@@ -6,28 +6,26 @@
 
     <div class="box-col">
       <h3 class="middleh3">Long Pitch: Reasons to Buy
-        <%= select_tag("home_buy_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %>
-        <%= select_tag("home_buy_range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
+        <% if user_signed_in? %>
+          <%= select_tag("home_buy_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %> </h3>
+        <% else %>
+          <%= select_tag("home_buy_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %> </h3>
+        <% end %>  
       </h3>
       <div class="box-col-topreason">
         <div class="rows-div">
-            <div id="buy_list" class="scroll">
+          <div id="buy_list" class="scroll">
             <%= render :partial => 'shared/pitches_list', :locals => {:objs => @buy_pitchs,
                                                                     :company => @company, :child_objs => nil,
                                                                     :objs_text => nil,
                                                                     :child_objs_text => nil,
                                                                     :show_link => true,
-                                                                     :show_ticker => true
+                                                                    :show_ticker => true
                                                                   } %>
-            <!-- end of comments-div -->
-            
-          </div><!-- end of comments-container -->
-
-
+          </div>
+          <a href="#" class="more-content" id="more-lp">More...</a>
+          <%= will_paginate @buy_pitchs, :param_name => 'lp_page', :id => "lp-pagination"  %>
         </div>
-        <!-- end of rows-div -->
-
-
       </div>
 
       <div class="clr"></div>
@@ -35,9 +33,11 @@
 
     <div class="box-col">
       <h3 class="middleh3">Short Pitch: Reasons to Sell
-        <%= select_tag("home_sell_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %>
-        <%= select_tag("home_sell_range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
-
+        <% if user_signed_in? %>
+          <%= select_tag("home_sell_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %></h3>
+        <% else %>
+          <%= select_tag("home_sell_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %></h3>
+        <% end %>
       </h3>
 
       <div class="box-col-topreason">
@@ -51,6 +51,8 @@
                                                                     :show_link => true,
                                                                     :show_ticker => true} %>
           </div>
+          <a href="#" class="more-content" id="more-sp">More...</a>
+          <%= will_paginate @sell_pitchs, :param_name => 'sp_page', :id => "sp-pagination" %>
           <!-- end of rows-div -->
 
         </div>
@@ -77,8 +79,12 @@
     <div class="box-col">
       <div class="rows-div">
         <h3>Alpha
-          Blips<%= select_tag("home_blip_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %>
-          <%= select_tag("home_blip_range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global") %> </h3>
+          Blips
+          <% if user_signed_in? %>
+            <%= select_tag("home_blip_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %></h3>
+          <% else %>
+            <%= select_tag("home_blip_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %></h3>
+          <% end %>
 
 
         <%#= select_tag("range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
@@ -95,9 +101,10 @@
         <div id="blips_list" class="scroll">
           <%= render :partial => 'shared/blips_list', 
           :locals => {:objs => @blips, :child_objs => nil, :objs_text => nil, :child_objs_text => nil, :show_ticker => true} %>
-
-
         </div>
+        <a href="#" class="more-content" id="more-blp">More...</a>
+        <%= will_paginate @blips, :param_name => 'blp_page', :id => "blp-pagination"  %>
+
 
 
         <!-- end of left-panel -->
@@ -109,10 +116,13 @@
 
       <div class="box-col">
         <h3>Stock Catalysts</h3>
-
-        <div class="box-col-div" id="catalyst">
-          <%= render 'companies/catalyst' %>
+        <div class="box-col-div">
+        <div id="catalyst">
+          <%= render :partial =>'shared/catalysts', :locals => {:catalyst => @catalyst} %>
         </div>
+        <a href="#" class="more-content" id="more-cat">More...</a>
+      </div>
+        <%= will_paginate @catalyst, :param_name => 'cat_page', :id => "cat-pagination" %>
         <div class="clr"></div>
       </div>
 

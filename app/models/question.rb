@@ -19,6 +19,7 @@ class Question < ActiveRecord::Base
   make_voteable
 
   acts_as_commentable
+  self.per_page = 10
 
   def get_reference
     "<a href='/users/#{user.id}'>"+user.name+'</a>'+' | '

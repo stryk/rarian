@@ -35,7 +35,6 @@ CKEDITOR.editorConfig = function (config) {
   config.removePlugins = 'elementspath';
   
   config.extraPlugins = 'wordcount,autogrow,imagepaste';
-
   config.scayt_autoStartup = true;
 
   // Rails CSRF token

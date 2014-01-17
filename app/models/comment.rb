@@ -16,6 +16,7 @@ class Comment < ActiveRecord::Base
 
   # NOTE: Comments belong to a user
   belongs_to :user
+  self.per_page = 10
 
   def get_full_title
     "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+title

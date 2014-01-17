@@ -1,4 +1,4 @@
-
+<div id = "company-slug" data-slug = "<%= @company.slug.to_s %>"></div>
 <div class="top-stock-search">
   <%= render 'company_banner' %>
 </div><!-- end of top-stock-search -->
@@ -10,6 +10,7 @@
 
   <div class="box-col middle-margin">
     <h3 class="middleh3">Long Pitch: Reasons to Buy
+      <div style="float:right"><%= select_tag("company_buy_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %></div>
     </h3>
     <div class="input-txt">
       <% if can?(:create, Pitch) %>

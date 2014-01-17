@@ -17,6 +17,7 @@ class Company < ActiveRecord::Base
   has_many :target_prices
   attr_accessible :ticker, :name, :slug
   acts_as_followable
+  self.per_page = 30
 
 	def self.import(file, exchange, date)
 		#  checking file signature to prevent duplicates from uploading

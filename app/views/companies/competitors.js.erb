@@ -1,0 +1,9 @@
+$("#vote_competitor").append('<%= j render :partial => 'companies/competitor', :locals => {:competitors => @competitors}%>');
+$("#more-comp").spin(false);
+$("#more-comp").html('More...');
+$('#comp-pagination').replaceWith("<%= j will_paginate @competitors, :param_name => 'comp_page', :id => 'comp-pagination'  %>");
+$('#comp-pagination').hide();
+url = $('#comp-pagination .next_page').attr('href');
+if (!url) {
+  $("#more-comp").html('');
+}

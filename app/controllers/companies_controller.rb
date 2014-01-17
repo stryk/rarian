@@ -9,14 +9,37 @@ class CompaniesController < ApplicationController
   load_and_authorize_resource
 
 	def index
-		@companies = Company.all.limit(50)
+		
+
   end
 
   def show
     @blips = @company.blips.order("created_at DESC")
     @buy_pitches = @company.pitches.buy_pitch.order("created_at DESC").limit(10)
     @sell_pitches = @company.pitches.sell_pitch.order("created_at DESC").limit(10)
-    @catalyst = Catalyst.where(:company_id => @company.id).order("date ASC").group_by(&:date)
+    @catalyst = Catalyst.where(['company_id = ? and date >= ?', @company.id, Date.today]).order("date asc").paginate(:page => params[:cat_page])
+    @competitors = Competitor.where(:company_id => @company.id).select("id, company_id, competitor_id, user_id, net_votes").order("net_votes DESC").paginate(:page => params[:comp_page])
+    @risks = @company.risks.order("net_votes DESC").paginate(:page => params[:risk_page])
+    respond_to do |format|
+      format.js {
+        if params[:lp_page].present?
+          @pitchs = @buy_pitchs
+          render 'buypitch.js.erb'
+        elsif params[:sp_page].present?
+          @pitchs = @sell_pitchs
+          render 'sellpitch.js.erb'
+        elsif params[:blp_page].present?
+          render 'blips.js.erb'
+        elsif params[:cat_page].present?
+          render 'catalysts.js.erb'
+        elsif params[:comp_page].present?
+          render 'competitors.js.erb'
+        elsif params[:risk_page].present?
+          render 'risks.js.erb'
+        end
+      }
+      format.html
+    end
   end
 
   def follow
@@ -63,6 +86,30 @@ class CompaniesController < ApplicationController
   def update
     @company.description = params[:company][:description]
     @company.save
+  end
+
+  def blips
+    @append = true if params[:blp_page].present?
+    @blips = get_records(@company.blips, params,{:type => 'blips'})
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def sellpitch
+    @append = true if params[:sp_page].present?
+    @pitchs = get_records(@company.pitches.sell_pitch, params, {:type => 'shortpitchs'})
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def buypitch
+    @append = true if params[:lp_page].present?
+    @pitchs = get_records(@company.pitches.buy_pitch, params, {:type => 'longpitchs'})
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

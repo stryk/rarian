@@ -6,7 +6,7 @@
       <div class="box-col-div">
         <ol>
           <% TopUser.get_top_users(@company, 5).each do |top_user| %>
-            <li><%= link_to top_user.user.name, "#" %> (<%= top_user.no_of_votes %>)</li>
+            <li><%= link_to top_user.user.name, user_path(top_user.user) %> (<%= top_user.no_of_votes %>)</li>
           <% end %>
         </ol>
       </div>
@@ -37,9 +37,19 @@
       <h3>Stock Catalysts</h3>
       <div class="box-col-div">
         <div id="catalyst">
-          <%= render 'companies/catalyst' %>
+          <div class="form-box">
+            <% if can?(:create, Catalyst) && action_name != 'landing' %>
+            <p>
+              <%= link_to "Add Catalyst", "#.", :id => 'company_catalyst_slide', :class => "readmore-link" %>
+            </p>
+            <%= render :partial => 'catalysts/add_catalyst', :locals => {:catalyst => Catalyst.new, :date_value => ''} %>
+          <% end %>
+          </div>
+            <%= render :partial =>'shared/catalysts', :locals => {:catalyst => @catalyst} %>
 
-      </div>
+        </div>
+        <a href="#" class="more-content" id="more-cat">More...</a>
+        <%= will_paginate @catalyst, :param_name => 'cat_page', :id => "cat-pagination" %>
       </div>
       <div class="clr"></div>
     </div>
@@ -48,32 +58,31 @@
       <h3>Competitors</h3><!--<div class="small-follow-btn"><a href="#"></a></div>-->
       <div class="box-col-div">
       <div id="competitor">
-        <div id="vote_competitor" class="scroll">
-          <%= render 'companies/competitor' %>
-        </div>
-      </div>
-
-        <% if current_user %>
+        <div class="form-box">
+        <% if can?(:create, Competitor) %>
         <p><%= link_to "Add Competitor", "#.", :id => 'company_competitor_slide', :class => "readmore-link" %>
           </p>
           <%= render :partial => 'competitors/add_competitor' %>
         <% end %>
+        </div>
+        <div id="vote_competitor" class="scroll">
+          <%= render :partial => 'companies/competitor', :locals => {:competitors => @competitors}%>
+        </div>
+        <a href="#" class="more-content" id="more-comp"></a>
+        <%= will_paginate @competitors, :param_name => 'comp_page', :id => "comp-pagination" %>
       </div>
+    </div>
 
 
       <div class="clr"></div>
     </div>
-
-
     <div class="box-col">
-      <h3>Risks to company</h3><!--<div class="small-follow-btn"><a href="#"></a></div>-->
-      <div id="vote_risk">
-        <%= render 'companies/risk' %>
+      <h3>Risks to company</h3>
+      <div id="vote_risk" class="box-col-div">
+        <%= render :partial => 'companies/risk', :locals => {:risks => @risks} %>
+        <a href="#" class="more-content" id="more-risk"></a>
+        <%= will_paginate @risks, :param_name => 'risk_page', :id => "risk-pagination" %>
       </div>
-
-
-
-
       <div class="clr"></div>
     </div>
 

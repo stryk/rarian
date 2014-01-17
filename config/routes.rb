@@ -13,6 +13,9 @@ Rarian::Application.routes.draw do
     member {
       put :follow
       put :unfollow
+      get :blips
+      get :sellpitch
+      get :buypitch
     }
     resources :blips
     resources :target_prices

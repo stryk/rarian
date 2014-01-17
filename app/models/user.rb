@@ -32,12 +32,12 @@ class User < ActiveRecord::Base
 
   ROLES = %w[admin moderator standard banned]
 
-  has_many :pitches
-  has_many :blips
-  has_many :questions
-  has_many :answers
-  has_many :comments
-  has_many :catalysts
+  has_many :pitches, :dependent => :destroy
+  has_many :blips, :dependent => :destroy
+  has_many :questions, :dependent => :destroy
+  has_many :answers, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
+  has_many :catalysts, :dependent => :destroy
 
 
   def password_required?

@@ -1,5 +1,5 @@
-<div class="rows-div">
-    <% Competitor.get_competitors(@company).each do |competitor| %>
+
+    <% competitors.each do |competitor| %>
       <div id="competitor_<%= competitor.id.to_s %>">
       <%= render :partial => 'shared/voting_list', :locals => {:cobj => competitor,
                                                                :company => @company,
@@ -16,4 +16,3 @@
     <% end %>
 
   <div class="clr"></div>
-</div><!-- end of rows-div -->

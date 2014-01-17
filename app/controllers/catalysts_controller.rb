@@ -2,6 +2,13 @@ class CatalystsController < ApplicationController
   prepend_before_filter :find_company
   load_and_authorize_resource
 
+  def index
+    @catalyst = Catalyst.where(['company_id = ? and date >= ?', @company.id, Date.today]).order("date asc").paginate(:page => params[:cat_page])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     @catalyst = Catalyst.find(params[:catalyst_id]) rescue Catalyst.new
     @catalyst = @catalyst.update_attributes(:date => params[:catalyst][:date],
@@ -10,14 +17,17 @@ class CatalystsController < ApplicationController
                                :content => params[:catalyst][:content])
     #@catalyst.new_record? ? @catalyst.save :
     #  @catalyst.update_attributes(:content => params[:catalyst][:content])
-    @catalyst = Catalyst.where(:company_id => @company.id).order("date ASC").group_by(&:date)
+    @catalyst = Catalyst.where(['company_id = ? and date >= ?', @company.id, Date.today]).order("date asc").paginate(:page => params[:cat_page])
+    respond_to do |format|
+      format.js { render 'create' }
+    end
   end
 
   def destroy
     Catalyst.where(:id => params[:id]).last.destroy
-    @catalyst = Catalyst.where(:company_id => @company.id).order("date ASC").group_by(&:date)
+    @deleted_catalyst_id = params[:id]
     respond_to do |format|
-      format.js { render 'create' }
+      format.js
     end
   end
 

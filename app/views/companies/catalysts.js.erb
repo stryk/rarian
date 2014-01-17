@@ -1,4 +1,4 @@
-$("#catalyst").html('<%= j render :partial =>'shared/catalysts', :locals => {:catalyst => @catalyst} %>');
+$("#catalyst").append('<%= j render :partial =>'shared/catalysts', :locals => {:catalyst => @catalyst} %>');
 $("#more-cat").spin(false);
 $("#more-cat").html('More...');
 $('#cat-pagination').replaceWith("<%= j will_paginate @catalyst, :param_name => 'cat_page', :id => 'cat-pagination'  %>");

@@ -1,0 +1,10 @@
+$("#risks_list").append('<%= j render :partial => 'companies/risks_list', :locals => {:risks => @risks, :company => @company} %>');
+$("#more-risk").spin(false);
+$('#risk-pagination').replaceWith("<%= j will_paginate @risks, :param_name => 'risk_page', :id => 'risk-pagination'  %>");
+$('#risk-pagination').hide();
+url = $('#risk-pagination .next_page').attr('href');
+if (!url) {
+	$("#more-risk").html('');
+} else {
+	$("#more-risk").html('More...');
+}

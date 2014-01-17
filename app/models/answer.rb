@@ -18,6 +18,7 @@ class Answer < ActiveRecord::Base
   make_voteable
 
   acts_as_commentable
+  self.per_page = 10
 
   def get_full_title
     "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+content

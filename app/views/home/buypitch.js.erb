@@ -1,5 +1,23 @@
-$("#buy_list").html('<%=j raw (render :partial => "shared/pitches_list", :locals => {:objs => @pitchs,
-                                                                  :company => @company, :child_objs => nil,
-                                                                  :objs_text => nil,
-                                                                  :child_objs_text => nil,
-                                                                  :show_link => true, :show_ticker => true}).gsub!("\n", "") %>');
+<% if @append == true %>
+	$("#buy_list").append('<%=j raw (render :partial => "shared/pitches_list", :locals => {:objs => @pitchs,
+	                                                                  :company => @company, :child_objs => nil,
+	                                                                  :objs_text => nil,
+	                                                                  :child_objs_text => nil,
+	                                                                  :show_link => true, :show_ticker => true}).gsub!("\n", "") %>');
+
+
+<% else %>
+	$("#buy_list").html('<%=j raw (render :partial => "shared/pitches_list", :locals => {:objs => @pitchs,
+	                                                                  :company => @company, :child_objs => nil,
+	                                                                  :objs_text => nil,
+	                                                                  :child_objs_text => nil,
+	                                                                  :show_link => true, :show_ticker => true}).gsub!("\n", "") %>');
+<% end %>
+$("#more-lp").spin(false);
+$("#more-lp").html('More...');
+$('#lp-pagination').replaceWith("<%= j will_paginate @pitchs, :param_name => 'lp_page', :id => 'lp-pagination'  %>");
+$('#lp-pagination').hide();
+url = $('#lp-pagination .next_page').attr('href');
+if (!url) {
+	$("#more-lp").html('');
+}
