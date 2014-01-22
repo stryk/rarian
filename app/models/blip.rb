@@ -24,7 +24,7 @@ class Blip < ActiveRecord::Base
 
   acts_as_commentable
 
-  self.per_page = 2
+  self.per_page = 10
 
   def get_full_title
     "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+"<a href='/companies/#{company.friendly_id}'>"+company.ticker+'</a>'+": "+created_at.strftime("%m/%d/%Y")+": "+content

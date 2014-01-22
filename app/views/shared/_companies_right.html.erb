@@ -1,10 +1,10 @@
-<h3>Alpha Blips <%= select_tag("sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global",
+<h3>Alpha Blips <div style="float:right"><%= select_tag("sort_by", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global",
                               data: {
                                 remote: true,
                                 url: company_blips_path(@company),
                                 update: "message_div_id"
                               }
-                   ) %>
+                   ) %></div>
   </h3>
 </h3>
 
@@ -25,6 +25,8 @@
     <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips, :company => @company, :child_objs => nil, :objs_text => nil,
       :child_objs_text => nil, :show_ticker => false} %>
   </div>
+  <a href="#" class="more-content" id="more-blp">More...</a>
+  <div id="blp-pagination"><%= will_paginate @blips, :param_name => 'blp_page'%></div>
 
 </div>
 

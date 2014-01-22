@@ -24,7 +24,7 @@
                                                                   } %>
           </div>
           <a href="#" class="more-content" id="more-lp">More...</a>
-          <%= will_paginate @buy_pitchs, :param_name => 'lp_page', :id => "lp-pagination"  %>
+          <div id="lp-pagination"><%= will_paginate @buy_pitchs, :param_name => 'lp_page'%></div>
         </div>
       </div>
 
@@ -52,7 +52,7 @@
                                                                     :show_ticker => true} %>
           </div>
           <a href="#" class="more-content" id="more-sp">More...</a>
-          <%= will_paginate @sell_pitchs, :param_name => 'sp_page', :id => "sp-pagination" %>
+          <div id="sp-pagination"><%= will_paginate @sell_pitchs, :param_name => 'sp_page'%></div>
           <!-- end of rows-div -->
 
         </div>
@@ -85,17 +85,6 @@
           <% else %>
             <%= select_tag("home_blip_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %></h3>
           <% end %>
-
-
-        <%#= select_tag("range", "<option value='10'>Last 10 days</option><option value='15'>Last 15 days</option><option value='30'>Last 30 days</option>".html_safe, class: "selectbox-global",
-                         data: {
-                           remote: true,
-                           url: "/home/blips",
-
-                           update: "message_div_id"
-                         }
-              ) %>
-
         </h3>
 
         <div id="blips_list" class="scroll">
@@ -103,7 +92,7 @@
           :locals => {:objs => @blips, :child_objs => nil, :objs_text => nil, :child_objs_text => nil, :show_ticker => true} %>
         </div>
         <a href="#" class="more-content" id="more-blp">More...</a>
-        <%= will_paginate @blips, :param_name => 'blp_page', :id => "blp-pagination"  %>
+        <div id="blp-pagination"><%= will_paginate @blips, :param_name => 'blp_page', :id => "blp-pagination"  %></div>
 
 
 

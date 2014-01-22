@@ -33,19 +33,14 @@
                                                               :child_objs_text => nil,
                                                               :show_link => true, :show_ticker => false
                                                               } %>
-      <!--<div class="topreason-input-txt">-->
-      <!--<div class="input-txt">-->
-      <!--<span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>-->
-      <%#= link_to "Be the first to add reason to buy...", "#.", :class => "inputo-txt" ,:id => "add_reason_to_buy_link"%>
-      <!--</div>-->
-      <!--</div>-->
     </div>
-    <!--</div>-->
+    <a href="#" class="more-content" id="more-lp">More...</a>
+    <div id="lp-pagination"><%= will_paginate @buy_pitches, :param_name => 'lp_page'%></div>
 
   </div>
 
   <div class="box-col middle-margin">
-    <h3 class="middleh3">Short Pitch: Reasons to Sell
+    <h3 class="middleh3">Short Pitch: Reasons to Sell<div style="float:right"><%= select_tag("company_sell_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %></div>
     </h3>
 
     <div class="input-txt">
@@ -70,14 +65,9 @@
                                                               :child_objs_text => nil,
                                                               :show_link => true, :show_ticker => false
                                                               } %>
-      <!--<div class="topreason-input-txt">-->
-      <!--<div class="input-txt">-->
-      <!--<span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>-->
-      <!--<%#= link_to " Be the first to add reason to sell...", "#.", :class => "inputo-txt" ,:id => "add_reason_to_sell_link"%>-->
-      <!--</div>-->
-      <!--</div>-->
     </div>
-    <!--</div>-->
+    <a href="#" class="more-content" id="more-sp">More...</a>
+    <div id="sp-pagination"><%= will_paginate @sell_pitches, :param_name => 'sp_page'%></div>
 
 
     <div class="clr"></div>

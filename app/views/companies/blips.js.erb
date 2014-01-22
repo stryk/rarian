@@ -1,13 +1,13 @@
 <% if @append == true %>
 	$("#blips_list").append('<%=j raw (render :partial => "shared/blips_list", :locals => {:objs => @blips, :child_objs => nil,
-		:objs_text => nil, :child_objs_text => nil, :show_ticker => true }).gsub!("\n", "") %>');
+		:objs_text => nil, :child_objs_text => nil, :show_ticker => false }).gsub!("\n", "") %>');
 <% else %>
 	$("#blips_list").html('<%=j raw (render :partial => "shared/blips_list", :locals => {:objs => @blips, :child_objs => nil,
-		:objs_text => nil, :child_objs_text => nil, :show_ticker => true }).gsub!("\n", "") %>');
+		:objs_text => nil, :child_objs_text => nil, :show_ticker => false }).gsub!("\n", "") %>');
 <% end %>
 $("#more-blp").spin(false);
 $("#more-blp").html('More...');
-$('#blp-pagination').replaceWith("<%= j will_paginate @blips, :param_name => 'blp_page', :id => 'blp-pagination'  %>");
+$('#blp-pagination').html("<%= j will_paginate @blips, :param_name => 'blp_page', :id => 'blp-pagination'  %>");
 $('#blp-pagination').hide();
 url = $('#blp-pagination .next_page').attr('href');
 if (!url) {

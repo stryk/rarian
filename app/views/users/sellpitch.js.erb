@@ -1,5 +1,23 @@
-$("#sell_list").html('<%=j raw (render :partial => "shared/pitches_list", :locals => {:objs => @sellpitchs,
-                                                                  :company => @company, :child_objs => nil,
-                                                                  :objs_text => nil,
-                                                                  :child_objs_text => nil,
-                                                                  :show_link => true, :show_ticker => true}) %>');
+<% if @append == true %>
+	$("#sell_list").append('<%=j raw (render :partial => "shared/pitches_list", :locals => {:objs => @pitchs,
+	                                                                  :company => @company, :child_objs => nil,
+	                                                                  :objs_text => nil,
+	                                                                  :child_objs_text => nil,
+	                                                                  :show_link => true, :show_ticker => true}).gsub!("\n", "") %>');
+
+
+<% else %>
+	$("#sell_list").html('<%=j raw (render :partial => "shared/pitches_list", :locals => {:objs => @pitchs,
+	                                                                  :company => @company, :child_objs => nil,
+	                                                                  :objs_text => nil,
+	                                                                  :child_objs_text => nil,
+	                                                                  :show_link => true, :show_ticker => true}).gsub!("\n", "") %>');
+<% end %>
+$("#more-sp").spin(false);
+$("#more-sp").html('More...');
+$('#sp-pagination').replaceWith("<%= j will_paginate @pitchs, :param_name => 'sp_page', :id => 'sp-pagination'  %>");
+$('#sp-pagination').hide();
+url = $('#sp-pagination .next_page').attr('href');
+if (!url) {
+	$("#more-sp").html('');
+}

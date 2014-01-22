@@ -22,6 +22,6 @@ $(document).on "change", "#company_sell_sort", ->
   company_slug = $("#company-slug").data("slug")
   $.ajax url: "/companies/"+ company_slug + "/sellpitch?sort_by="+$('#company_sell_sort').val()
 
-$(document).on "change", "#company_blip_sort", ->
-  company_slug = $("#company-slug").data("slug")
-  $.ajax url: "/companies/"+ company_slug + "/blips?sort_by="+$('#company_blip_sort').val()
+# $(document).on "change", "#company_blip_sort", ->
+#   company_slug = $("#company-slug").data("slug")
+#   $.ajax url: "/companies/"+ company_slug + "/blips?sort_by="+$('#company_blip_sort').val()

@@ -5,7 +5,7 @@
 <% end %>
 $("#more-blp").spin(false);
 $("#more-blp").html('More...');
-$('#blp-pagination').replaceWith("<%= j will_paginate @blips, :param_name => 'blp_page', :id => 'blp-pagination'  %>");
+$('#blp-pagination').html("<%= j will_paginate @blips, :param_name => 'blp_page', :id => 'blp-pagination'  %>");
 $('#blp-pagination').hide();
 url = $('#blp-pagination .next_page').attr('href');
 if (!url) {

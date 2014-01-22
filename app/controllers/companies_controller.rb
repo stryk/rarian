@@ -8,25 +8,25 @@ class CompaniesController < ApplicationController
   skip_authorize_resource :only => [:index, :search]
   load_and_authorize_resource
 
-	def index
-		
-
+	def index		
   end
 
   def show
-    @blips = @company.blips.order("created_at DESC")
-    @buy_pitches = @company.pitches.buy_pitch.order("created_at DESC").limit(10)
-    @sell_pitches = @company.pitches.sell_pitch.order("created_at DESC").limit(10)
+    params[:sort_by] = "default"
+    @buy_pitches = get_records(@company.pitches.buy_pitch, params, {:type => 'longpitchs'})
+    @sell_pitches = get_records(@company.pitches.sell_pitch, params, {:type => 'shortpitchs'})
+    @blips = get_records(@company.blips, params,{:type => 'blips'})
+
     @catalyst = Catalyst.where(['company_id = ? and date >= ?', @company.id, Date.today]).order("date asc").paginate(:page => params[:cat_page])
     @competitors = Competitor.where(:company_id => @company.id).select("id, company_id, competitor_id, user_id, net_votes").order("net_votes DESC").paginate(:page => params[:comp_page])
     @risks = @company.risks.order("net_votes DESC").paginate(:page => params[:risk_page])
     respond_to do |format|
       format.js {
         if params[:lp_page].present?
-          @pitchs = @buy_pitchs
+          @pitchs = @buy_pitches
           render 'buypitch.js.erb'
         elsif params[:sp_page].present?
-          @pitchs = @sell_pitchs
+          @pitchs = @sell_pitches
           render 'sellpitch.js.erb'
         elsif params[:blp_page].present?
           render 'blips.js.erb'

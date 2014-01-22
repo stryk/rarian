@@ -14,7 +14,7 @@
 
 $("#more-sp").spin(false);
 $("#more-sp").html('More...');
-$('#sp-pagination').replaceWith("<%= j will_paginate @pitchs, :param_name => 'sp_page', :id => 'sp-pagination'  %>");
+$('#sp-pagination').html("<%= j will_paginate @pitchs, :param_name => 'sp_page', :id => 'sp-pagination'  %>");
 $('#sp-pagination').hide();
 url = $('#sp-pagination .next_page').attr('href');
 if (!url) {

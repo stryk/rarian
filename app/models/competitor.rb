@@ -9,7 +9,7 @@ class Competitor < ActiveRecord::Base
 
   validates :competitor_id, :company_id, :user_id, presence: true
   validate :not_duplicative_competitor
-  self.per_page = 2
+  self.per_page = 10
 
   def self.get_competitors(company)
     where(:company_id => company.id).select("id, company_id, competitor_id, user_id, net_votes").order("net_votes DESC")

@@ -12,7 +12,7 @@ class Risk < ActiveRecord::Base
   attr_accessible :company_id, :user_id, :risk, :net_votes, :points
 
   validates :risk, :company_id, :user_id, presence: true
-  self.per_page = 2
+  self.per_page = 10
 
   def get_full_title
     risk

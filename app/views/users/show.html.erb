@@ -10,7 +10,7 @@
     <div class="box-col middle-margin">
     
       <h3>Alpha
-        Blips  <%= select_tag("blip_sort_by", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
+        Blips  <%= select_tag("blip_sort_by", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
         </h3>
 
       <!--<div class="small-follow-btn"><a href="#"></a></div>-->
@@ -18,12 +18,14 @@
         <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips,:child_objs => nil, :objs_text => nil, :child_objs_text => nil,
             :show_ticker => true} %>
       </div>
+      <a href="#" class="more-content" id="more-blp">More...</a>
+      <div id="blp-pagination"><%= will_paginate @blips, :param_name => 'blp_page'%></div>
 
     </div>
   <% end %>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Long Pitches
-      <%= select_tag("buy_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
+      <%= select_tag("buy_sort", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
       </h3>
     <div id="buy_list" class="scroll">
       <%= render :partial => 'shared/pitches_list', :locals => {:objs => @buypitchs,
@@ -34,10 +36,12 @@
                                                                      :show_ticker => true
                                                                   } %>
   </div>
-            </div>
+    <a href="#" class="more-content" id="more-lp">More...</a>
+    <div id="lp-pagination"><%= will_paginate @buypitchs, :param_name => 'lp_page'%></div>
+  </div>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Short Pitches
-      <%= select_tag("sell_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
+      <%= select_tag("sell_sort", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
       </h3>
     <div id="sell_list" class="scroll">
       <%= render :partial => 'shared/pitches_list', :locals => {:objs => @sellpitchs,
@@ -49,10 +53,12 @@
                                                                   } %>
 
   </div>
-            </div>
+    <a href="#" class="more-content" id="more-sp">More...</a>
+    <div id="sp-pagination"><%= will_paginate @sellpitchs, :param_name => 'sp_page'%></div>
+  </div>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Questions
-      <%= select_tag("question_sort","<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
+      <%= select_tag("question_sort","<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
       </h3>
     <div id="question_list" class="scroll">
       <%= render :partial => 'users/question', :locals => {:objs => @question,
@@ -65,7 +71,7 @@
     </div>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Answers
-      <%= select_tag("answer_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
+      <%= select_tag("answer_sort", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
   </h3>
     <div id="answer_list" class="scroll">
       <%= render :partial => 'users/answer', :locals => {:objs => @answer,
@@ -79,7 +85,7 @@
           </div>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Comments
-      <%= select_tag("comment_sort", "<option value='desc'>Recent</option><option value='asc'>Old</option>".html_safe, class: "selectbox-global") %>
+      <%= select_tag("comment_sort", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
      </h3>
     <div id="comment_list" class="scroll">
       <%= render :partial => 'users/comment', :locals => {:objs => @comment,

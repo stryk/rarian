@@ -4,12 +4,28 @@ class UsersController < ApplicationController
   skip_authorize_resource :only => :show
 
   def show
-    @blips = get_objects(@user.blips, params)
-    @buypitchs = get_objects(@user.pitches.buy_pitch, params)
-    @sellpitchs = get_objects(@user.pitches.sell_pitch, params)
+    params[:sort_by] = 'desc' if params[:sort_by].blank?
+    @buypitchs = get_records(@user.pitches.buy_pitch, params, {:type => 'longpitchs'})
+    @sellpitchs = get_records(@user.pitches.sell_pitch, params, {:type => 'shortpitchs'})
+    @blips = get_records(@user.blips, params, {:type => 'blips'})
     @question = get_objects(@user.questions, params)
     @answer = get_objects(@user.answers, params)
     @comment = get_objects(@user.comments, params)
+    respond_to do |format|
+      format.js {
+        @append = true
+        if params[:lp_page].present?
+          @pitchs = @buypitchs
+          render 'buypitch.js.erb'
+        elsif params[:sp_page].present?
+          @pitchs = @sellpitchs
+          render 'sellpitch.js.erb'
+        elsif params[:blp_page].present?
+          render 'blips.js.erb'
+        end
+      }
+      format.html
+    end
   end
 
   def new
@@ -51,9 +67,10 @@ class UsersController < ApplicationController
   end
 
  def blips
+    @append = true if params[:blp_page].present?
     @user = User.find_by_id(params[:uid])
     if @user.present?
-      @blips = get_objects(@user.blips, params)
+      @blips = get_records(@user.blips, params, {:type => 'blips'})
     end
    respond_to do |format|
      format.js
@@ -61,9 +78,10 @@ class UsersController < ApplicationController
  end
 
   def buypitch
+    @append = true if params[:lp_page].present?
     @user = User.find_by_id(params[:uid])
     if @user.present?
-      @buypitchs = get_objects(@user.pitches.buy_pitch, params)
+      @pitchs = get_records(@user.pitches.buy_pitch, params, {:type => 'longpitchs'})
     else
       @buypitchs = nil
     end
@@ -73,9 +91,10 @@ class UsersController < ApplicationController
   end
 
   def sellpitch
+    @append = true if params[:sp_page].present?
     @user = User.find_by_id(params[:uid])
     if @user.present?
-      @sellpitchs = get_objects(@user.pitches.sell_pitch, params)
+      @pitchs = get_records(@user.pitches.sell_pitch, params, {:type => 'shortpitchs'})
     end
     respond_to do |format|
       format.js
