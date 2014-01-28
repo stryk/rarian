@@ -23,7 +23,7 @@
  */
 
  // Handles image pasting in Firefox
-CKEDITOR.plugins.add( 'imagepaste',
+CKEDITOR.plugins.add('imagepaste',
 {
 	init : function( editor )
 	{

@@ -1,6 +1,7 @@
 class Pitch < ActiveRecord::Base
 
   before_save :sanitize_content, :process_tags
+  after_save :trasfer_to_s3
   attr_accessible :title, :multimedia_content, :action, :user_id, :company_id, :net_votes, :points
 
   module Point
@@ -13,6 +14,7 @@ class Pitch < ActiveRecord::Base
   validates_length_of :title, :maximum => 200, :allow_blank => false
   belongs_to :user
   belongs_to :company
+  has_many :s3objects, as: :storable, :dependent => :destroy
 
   scope :buy_pitch, -> {where({:action => "buy"})}
   scope :sell_pitch, -> {where({:action => "sell"})}
@@ -57,30 +59,39 @@ class Pitch < ActiveRecord::Base
 private
 
   def process_tags
-    parse_content = Nokogiri::HTML.fragment(self.multimedia_content)
-    parse_content.css("img").each do |image_tag|
-      content_img_link = image_tag["src"]
-      # changing the file_name in the path
-      image_filename = File.basename(content_img_link)
-      image_pathname = File.dirname(content_img_link)
-      new_filename = image_filename[8..-1]
-      new_img_link = image_pathname + '/' + new_filename
+    unless self.offloaded
+      parse_content = Nokogiri::HTML.fragment(self.multimedia_content)
+      parse_content.css("img").each do |image_tag|
+        unless image_tag["src"][0..3] == 'http'
+          content_img_link = image_tag["src"]
+          # changing the file_name in the path
+          image_filename = File.basename(content_img_link)
+          image_pathname = File.dirname(content_img_link)
+          new_filename = image_filename[8..-1]
+          new_img_link = image_pathname + '/' + new_filename
 
-      # creating a new <a href> tag
-      image_tag.name = "a"
-      image_tag['href'] = new_img_link
-      image_tag['class'] = "nModal"
-      image_tag['title'] = ""
-      image_tag.remove_attribute("src")
-      image_tag.remove_attribute("alt")
+          # creating a new <a href> tag
+          image_tag.name = "a"
+          image_tag['href'] = new_img_link
+          image_tag['class'] = "nModal"
+          image_tag['title'] = ""
+          image_tag.remove_attribute("src")
+          image_tag.remove_attribute("alt")
 
 
-      child_tag = Nokogiri::XML::Node.new "img", parse_content
-      child_tag['src'] = content_img_link
-      child_tag['alt'] = "Missing Image"
-      child_tag.parent = image_tag
+          child_tag = Nokogiri::XML::Node.new "img", parse_content
+          child_tag['src'] = content_img_link
+          child_tag['alt'] = "Missing Image"
+          child_tag.parent = image_tag
+        end
+      end
+      self.multimedia_content = parse_content.to_html
     end
-    self.multimedia_content = parse_content.to_html
+  end
+  def trasfer_to_s3
+    unless self.offloaded
+      ContentProcessingWorker.perform_async(self.id,true)
+    end
   end
 end
 

@@ -23,6 +23,7 @@ class AnswersController < ApplicationController
   end
 
   def update
+    @answer.offloaded = false
     @answer.update_attributes(:content => params[:answer][:content])
     if @answer.errors.blank?
       respond_to do |format|

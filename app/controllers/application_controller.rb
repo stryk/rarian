@@ -49,18 +49,18 @@ class ApplicationController < ActionController::Base
     params[:sort_by] = 'default' if params[:sort_by].blank?
     if params[:sort_by] == "default"
       order_by_sql = <<-SQL
-      CASE WHEN created_at between '#{Date.today - 7}' and '#{Date.today}' THEN 1
-           WHEN created_at between '#{Date.today - 30}' and '#{Date.today - 7}' THEN 2
-           WHEN created_at between '#{Date.today - 90}' and '#{Date.today - 30}' THEN 3
-           ELSE 4
+      CASE WHEN created_at between '#{Date.today - 7}' and '#{Date.today}' THEN 4
+           WHEN created_at between '#{Date.today - 30}' and '#{Date.today - 7}' THEN 3
+           WHEN created_at between '#{Date.today - 90}' and '#{Date.today - 30}' THEN 2
+           ELSE 1
       END
       SQL
       if options[:type] == 'longpitchs'
-        objs = class_name.where('net_votes > 0').order(order_by_sql).paginate(:page => params[:lp_page])
+        objs = class_name.where('net_votes > -1').order(order_by_sql).paginate(:page => params[:lp_page])
       elsif options[:type] == 'shortpitchs'
-        objs = class_name.where('net_votes > 0').order(order_by_sql).paginate(:page => params[:sp_page])
+        objs = class_name.where('net_votes > -1').order(order_by_sql).paginate(:page => params[:sp_page])
       else
-        objs = class_name.where('net_votes > 0').order(order_by_sql).paginate(:page => params[:blp_page])
+        objs = class_name.where('net_votes > -1').order(order_by_sql).paginate(:page => params[:blp_page])
       end
 
     elsif params[:sort_by] == "following"

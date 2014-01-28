@@ -31,6 +31,7 @@ class PitchesController < ApplicationController
   end
 
   def update
+    @pitch.offloaded = false
     @pitch.update_attributes(params[:pitch])
     if @pitch.errors.blank?
       #flash[:notice] = "Successfully added the reason"

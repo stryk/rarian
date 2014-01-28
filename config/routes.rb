@@ -1,4 +1,9 @@
 Rarian::Application.routes.draw do
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.is? :admin } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   mount Ckeditor::Engine => '/ckeditor'
 
   resource :searches do

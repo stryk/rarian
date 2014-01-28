@@ -1,4 +1,6 @@
-
+$(document).on "click", ".nModal", (e) ->
+  e.preventDefault()
+  $(this).nyroModal()
 
 $(document).on "click", "#company_slide", ->
   $("#description_slide_down").toggle "slideDown(1000)", ->

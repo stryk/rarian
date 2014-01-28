@@ -61,6 +61,17 @@ gem 'spinjs-rails'
 
 gem 'will_paginate', '~> 3.0'
 
+gem 'sidekiq'
+gem 'aws-sdk'
+
+gem 'cancan'
+gem "devise", "~> 3.0.0"
+gem 'devise-async'
+
+gem 'friendly_id', :git => 'git@github.com:FriendlyId/friendly_id.git'
+
+gem 'sinatra', '>= 1.3.0', :require => nil
+
 # Thinking-sphinx doc says require mysql2 even if you want to use postgres
 gem 'mysql2', '0.3.12b4'
 gem 'thinking-sphinx'
@@ -75,15 +86,13 @@ group :development do
 	gem 'pg'
 	gem 'debugger'
   gem 'capistrano'
+  
 end
 
 group :production do
 	gem 'pg'
 end
 
-gem 'cancan'
-gem "devise", "~> 3.0.0"
-gem 'friendly_id', :git => 'git@github.com:FriendlyId/friendly_id.git'
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem "factory_girl_rails", "~> 4.0"
