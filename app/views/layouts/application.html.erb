@@ -111,10 +111,9 @@
   </footer>
 
   <script type="text/javascript">
-
-    $(".close-btn").click(function(){
-        $("#flash-message-custom").hide();
-        $("#flash-message").hide();
+    $(document).on("click", ".close-btn", function() {
+        $("#flash-message-custom").hide('slow');
+        $("#flash-message").hide('slow');
     });
   </script>
 

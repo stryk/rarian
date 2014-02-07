@@ -5,25 +5,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.roles = params[:user][:roles] || ["standard"]
     #resource.name = params[:user][:name]
     #resource.mobilenumber = params[:user][:mobilenumber]
-    resource.email_vote = true
+    resource.email_user_activity = true
     resource.email_comment = true
     resource.email_question = true
     resource.email_answer = true
-    resource.email_spam = true
+    resource.email_company_activity = true
     resource.email_follow_me = true
     resource.email_answer_question = true
-    resource.email_sends_message = true
+    resource.email_comment_reply = true
     resource.no_day_newsletter = 7
 
     resource.save
   end
 
   def update
-    if params[:check_type] == 'email_vote' && !params[:email_vote].blank?
-      resource.email_vote = true
+    if params[:check_type] == 'email_user_activity' && !params[:email_user_activity].blank?
+      resource.email_user_activity = true
 
-    elsif params[:check_type] == 'email_vote'
-      resource.email_vote = false
+    elsif params[:check_type] == 'email_user_activity'
+      resource.email_user_activity = false
     end
 
     if params[:check_type] == 'email_comment' && !params[:email_comment].blank?
@@ -46,10 +46,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       resource.email_answer = false
     end
 
-    if params[:check_type] == 'email_spam' && !params[:email_spam].blank?
-      resource.email_spam = true
-    elsif params[:check_type] == 'email_spam'
-      resource.email_spam = false
+    if params[:check_type] == 'email_company_activity' && !params[:email_company_activity].blank?
+      resource.email_company_activity = true
+    elsif params[:check_type] == 'email_company_activity'
+      resource.email_company_activity = false
     end
 
     if params[:check_type] == 'email_follow_me' && !params[:email_follow_me].blank?
@@ -64,10 +64,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       resource.email_answer_question = false
     end
 
-    if params[:check_type] == 'email_sends_message' && !params[:email_sends_message].blank?
-      resource.email_sends_message = true
-    elsif params[:check_type] == 'email_sends_message'
-      resource.email_sends_message = false
+    if params[:check_type] == 'email_comment_reply' && !params[:email_comment_reply].blank?
+      resource.email_comment_reply = true
+    elsif params[:check_type] == 'email_comment_reply'
+      resource.email_comment_reply = false
     end
     resource.no_day_newsletter = params[:user][:no_day_newsletter] if params[:user] && params[:user][:no_day_newsletter]
 
@@ -84,11 +84,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
      if resource.save
-       flash[:notice] = "sucessfuly updated"
+       @msg = "sucessfuly updated"
        redirect_to root_path if params[:user] && params[:user][:password]
      else
        #raise resource.errors.full_messages.inspect
-       flash[:notice] = "Failed to update"
+       @msg = "Failed to update"
        #return redirect_to '/users/setting'
      end
     respond_to do |format|

@@ -5,8 +5,7 @@ $('#answer_to_<%= @question.class.name.downcase+'-'+@question.id.to_s %>').prepe
                                                              :comments => true,
                                                              :show_link => false, :refresh_div => false} %>').hide().fadeIn('slow');
 
-
-$('#create_answer-<%= @question.id %>').toggle("slideDown(1000)");
+$('#create_answer-<%= @question.id.to_s %>').hide('slow');
 
 setTimeout(function(){
     $("#flash-message-custom").hide();

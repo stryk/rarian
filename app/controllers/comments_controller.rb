@@ -12,8 +12,10 @@ class CommentsController < ApplicationController
     @comment = @comment_obj.comments.create(:comment => params[:comment][:comment],
                                     :user_id => current_user.id)
     if !@comment.errors.full_messages.blank?
+
       flash[:error] = @comment.errors.full_messages
     else
+      EmailCommentActionWorker.perform_async(@comment.id)
       respond_to do |format|
         format.js
       end

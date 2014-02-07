@@ -30,7 +30,7 @@ class Pitch < ActiveRecord::Base
   end
 
   def get_reference
-    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' | '
+    "<a href='/users/#{user.friendly_id}'>"+user.name+'</a>'+' | '
   end
 
   def up_vote
@@ -59,6 +59,7 @@ class Pitch < ActiveRecord::Base
 private
 
   def process_tags
+    self.offloaded = false if self.offloaded.blank?
     unless self.offloaded
       parse_content = Nokogiri::HTML.fragment(self.multimedia_content)
       parse_content.css("img").each do |image_tag|
@@ -89,6 +90,7 @@ private
     end
   end
   def trasfer_to_s3
+    self.offloaded = false if self.offloaded.blank?
     unless self.offloaded
       ContentProcessingWorker.perform_async(self.id,true)
     end

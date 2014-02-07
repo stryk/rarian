@@ -10,7 +10,10 @@
  *
  *= require_self
  *= require jqueryui-editable
+ *= require jquery.ui.core
+ *= require jquery.ui.theme
  *= require nyroModal
+ *= require dataTables/src/demo_table_jui.css
  *= require_tree .
  */
  

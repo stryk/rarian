@@ -27,7 +27,7 @@ class Blip < ActiveRecord::Base
   self.per_page = 10
 
   def get_full_title
-    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+"<a href='/companies/#{company.friendly_id}'>"+company.ticker+'</a>'+": "+created_at.strftime("%m/%d/%Y")+": "+content
+    "<a href='/users/#{user.friendly_id}'>"+user.name+'</a>'+' '+"<a href='/companies/#{company.friendly_id}'>"+company.ticker+'</a>'+": "+created_at.strftime("%m/%d/%Y")+": "+content
   end
 
   def up_vote
@@ -44,6 +44,6 @@ class Blip < ActiveRecord::Base
   end
 
   def get_reference
-    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' | '
+    "<a href='/users/#{user.friendly_id}'>"+user.name+'</a>'+' | '
   end
 end

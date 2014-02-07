@@ -1,21 +1,31 @@
 <div class="row">
 	<div class="span3">
 		<div class="left_column">
-			<h3>Wizards</h3>
+			<h3>Companies</h3>
 		</div>
 	</div>
 	<div class="span6">
-		<div class="center_column">
-			<% @companies.each do |company| %>
-				<p>Name: <%= link_to company.name, company_path(company) %></p>
-				<p>Ticker: <%= company.ticker %></p>
-				<p>Exchange: <%= company.exchange %></p>
-				<p>Sector: <%= company.sector %></p>
-				<p>Industry: <%= company.industry %></p>
-				<p>Last close: <%= company.quotes.last.price %></p>
-				<br>
-			<% end %>
+		<div class="center_column">			
+			<table id="companies" class="display" data-source="<%= companies_url(format: "json") %>">
+				<thead>
+					<tr>
+						<th><%= Time.now.year %> Upside</th>
+						<th>Name</th>
+						<th>Ticker</th>
+						<th>Exchange</th>
+						<th>Sector</th>
+						<th>Industry</th>
+						<th>Last Price</th>
+						<th><%= Time.now.year %> Tgt. Pr.</th>
+						<th>Mkt Cap</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
 		</div>
+
+
 	</div>
   <% if can? :import, Company %>
 	<div class="span3">

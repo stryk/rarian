@@ -1,5 +1,6 @@
 class ContentProcessingWorker
 	include Sidekiq::Worker
+	sidekiq_options :retry => false
 
 	def perform(id, is_pitch)
 
@@ -25,6 +26,7 @@ class ContentProcessingWorker
 		parse_content = Nokogiri::HTML.fragment(content)
 
 	    parse_content.css("a").each do |image_tag|
+	    	
 	      	if image_tag['class'] == "nModal"
 		      content_img_link = image_tag["href"]
 		      unless content_img_link[0..4] == 'https'
@@ -32,22 +34,22 @@ class ContentProcessingWorker
 				image_filename = File.basename(content_img_link)
 				image_pathname = File.dirname(content_img_link)
 				random_hex = SecureRandom.hex
-				new_key = image_pathname[18..-1] + '/' + random_hex + '/' + image_filename
+				
+				new_key = image_pathname + '/' + random_hex + '/' + image_filename
 				imagefile = File.open(Rails.root.join("public").to_s + content_img_link,'r+b')
 				content_md5 = Digest::MD5.base64digest(File.read(imagefile.path))
 				obj = bucket.objects[new_key].write(:file => imagefile, :content_md5 => content_md5)
-
-				if obj.exists?
+				if obj.exists? && image_tag.child.present?
+					
 					image_tag["href"] = 'https://' + configatron.AWS_S3_BUCKET + '.s3.amazonaws.com/' + new_key
 					child_img_link = image_tag.child['src']
 					child_filename = File.basename(child_img_link)
 					child_pathname = File.dirname(child_img_link)
-					new_child_key = image_pathname[18..-1] + '/' + random_hex + '/' + child_filename
+					new_child_key = image_pathname + '/' + random_hex + '/' + child_filename
 					child_file = File.open(Rails.root.join("public").to_s + child_img_link,'r+b')
 					child_content_md5 = Digest::MD5.base64digest(File.read(child_file.path))
 					child_obj = bucket.objects[new_child_key].write(:file => child_file, :content_md5 => child_content_md5)
-					if child_obj.exists?
-						
+					if child_obj.exists?						
 						image_tag.child['src'] = 'https://' + configatron.AWS_S3_BUCKET + '.s3.amazonaws.com/' + new_child_key
 						if is_pitch
 							article.multimedia_content = parse_content.to_html
@@ -59,6 +61,7 @@ class ContentProcessingWorker
 						article.save
 						File.delay_for(30.minutes, :retry => false).delete(imagefile.path)
 						File.delay_for(30.minutes, :retry => false).delete(child_file.path)
+						
 					end
 				end
 		  	  end

@@ -68,14 +68,17 @@ gem 'cancan'
 gem "devise", "~> 3.0.0"
 gem 'devise-async'
 
-gem 'friendly_id', :git => 'git@github.com:FriendlyId/friendly_id.git'
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'jquery-ui-rails'
+# gem 'friendly_id', :git => 'git@github.com:FriendlyId/friendly_id.git'
+gem 'friendly_id', "~> 5.0.1"
 
 gem 'sinatra', '>= 1.3.0', :require => nil
 
 # Thinking-sphinx doc says require mysql2 even if you want to use postgres
 gem 'mysql2', '0.3.12b4'
-gem 'thinking-sphinx'
-
+gem 'thinking-sphinx', '~> 3.1.0'
+gem 'ts-sidekiq-delta', '~> 0.2.0'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

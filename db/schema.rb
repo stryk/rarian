@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128071758) do
+ActiveRecord::Schema.define(version: 20140205005016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -254,8 +254,8 @@ ActiveRecord::Schema.define(version: 20140128071758) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                            default: "",    null: false
-    t.string   "encrypted_password",               default: "",    null: false
+    t.string   "email",                            default: "",                    null: false
+    t.string   "encrypted_password",               default: "",                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -267,8 +267,8 @@ ActiveRecord::Schema.define(version: 20140128071758) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "roles_mask"
-    t.integer  "up_votes",                         default: 0,     null: false
-    t.integer  "down_votes",                       default: 0,     null: false
+    t.integer  "up_votes",                         default: 0,                     null: false
+    t.integer  "down_votes",                       default: 0,                     null: false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -278,10 +278,10 @@ ActiveRecord::Schema.define(version: 20140128071758) do
     t.datetime "locked_at"
     t.string   "authentication_token"
     t.string   "name"
-    t.boolean  "email_vote"
+    t.boolean  "email_user_activity"
     t.boolean  "email_follow_me"
     t.boolean  "email_answer_question"
-    t.boolean  "email_sends_message"
+    t.boolean  "email_comment_reply"
     t.boolean  "email_comment"
     t.boolean  "email_question"
     t.boolean  "email_answer"
@@ -294,11 +294,14 @@ ActiveRecord::Schema.define(version: 20140128071758) do
     t.string   "userinterest"
     t.string   "company"
     t.string   "blog"
-    t.boolean  "email_spam",                       default: false
+    t.boolean  "email_company_activity",           default: false
+    t.datetime "last_emailed_at",                  default: '2014-01-31 04:33:55'
+    t.string   "slug"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
   create_table "votings", force: true do |t|
     t.string   "voteable_type"

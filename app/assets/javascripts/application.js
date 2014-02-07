@@ -20,5 +20,6 @@
 //= require ckeditor/ckeditor
 //= require jquery.nyroModal.custom.min
 //= require jquery.spin
+//= require dataTables/jquery.dataTables
 //= require_tree .
 //= require rails.validations

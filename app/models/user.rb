@@ -1,5 +1,4 @@
 
-
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -8,11 +7,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :token_authenticatable, :confirmable, :lockable, :timeoutable and :omniauthable
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: [:slugged, :finders]
+
   mount_uploader :image, ImageUploader
 
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :email_vote,:email_follow_me,
-                  :email_answer_question, :email_sends_message, :email_comment, :email_question, :email_answer,
-                  :email_spam, :no_day_newsletter, :mobilenumber, :image, :aboutuser, :company, :blog, :roles
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :email_user_actvity,:email_follow_me,
+                  :email_answer_question, :email_comment_reply, :email_comment, :email_question, :email_answer,
+                  :email_company_activity, :no_day_newsletter, :mobilenumber, :image, :aboutuser, :company, :blog, :roles
   attr_accessor :roles
 
   validates :mobilenumber, :numericality => true, :allow_blank => true
@@ -73,5 +75,11 @@ class User < ActiveRecord::Base
       group(&:company_id)
   end
 
+  def slug_candidates
+    [
+      :name,
+      [:name, :id]
+    ]
+  end
 end
 

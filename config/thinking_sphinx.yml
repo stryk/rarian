@@ -1,0 +1,4 @@
+production:
+  pid_file: /home/dk/www/alphapitch/shared/tmp/searchd.pid
+  indices_location: /home/dk/www/alphapitch/shared/db/sphinx
+  configuration_file: /home/dk/www/alphapitch/shared/production.sphinx.conf

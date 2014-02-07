@@ -1,5 +1,8 @@
-(function($) {
 
+(function($) {
+	$('.ckeditor').ckeditor({
+  // optional config
+	});
 	$("a.home.menu").unbind().click(function(){
 		if($("#access:visible").length == 0){
 			$("#access").slideDown();
@@ -38,6 +41,8 @@
 //})
 
 })( jQuery );
+
+
 
 function toggle_visibility_from_hidden(id) {
        var e = document.getElementById(id);

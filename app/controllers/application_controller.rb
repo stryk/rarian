@@ -49,18 +49,21 @@ class ApplicationController < ActionController::Base
     params[:sort_by] = 'default' if params[:sort_by].blank?
     if params[:sort_by] == "default"
       order_by_sql = <<-SQL
-      CASE WHEN created_at between '#{Date.today - 7}' and '#{Date.today}' THEN 4
-           WHEN created_at between '#{Date.today - 30}' and '#{Date.today - 7}' THEN 3
-           WHEN created_at between '#{Date.today - 90}' and '#{Date.today - 30}' THEN 2
-           ELSE 1
+      CASE WHEN created_at between '#{Date.today - 7}' and '#{Date.today + 1}' and net_votes >= 0 THEN 1
+           WHEN created_at between '#{Date.today - 14}' and '#{Date.today - 7}' and net_votes >= 1 THEN 2
+           WHEN created_at between '#{Date.today - 21}' and '#{Date.today - 14}' and net_votes >= 5 THEN 3
+           WHEN created_at between '#{Date.today - 30}' and '#{Date.today - 21}' and net_votes >= 10 THEN 4
+           WHEN created_at between '#{Date.today - 60}' and '#{Date.today - 30}' and net_votes >= 20 THEN 5
+           WHEN created_at between '#{Date.today - 90}' and '#{Date.today - 60}' and net_votes >= 40 THEN 6
+           ELSE 7
       END
       SQL
       if options[:type] == 'longpitchs'
-        objs = class_name.where('net_votes > -1').order(order_by_sql).paginate(:page => params[:lp_page])
+        objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:lp_page])
       elsif options[:type] == 'shortpitchs'
-        objs = class_name.where('net_votes > -1').order(order_by_sql).paginate(:page => params[:sp_page])
+        objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:sp_page])
       else
-        objs = class_name.where('net_votes > -1').order(order_by_sql).paginate(:page => params[:blp_page])
+        objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:blp_page])
       end
 
     elsif params[:sort_by] == "following"

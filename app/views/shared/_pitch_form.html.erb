@@ -20,6 +20,10 @@
       </p>
 
   <% end %>
+  <script type="text/javascript">
+    
+    CKEDITOR.replace( "editor_<%= pitch.id.to_s %>" );
+  </script>
 
 <% else %>
   <%= form_for(Pitch.new, :url => company_pitches_path(@company), :remote => true, :validate => true ,:html => {:id => "new_pitch_"+option.to_s+"_form",:class => 'form-horizontal'}) do |f| %>

@@ -22,11 +22,11 @@ class Question < ActiveRecord::Base
   self.per_page = 10
 
   def get_reference
-    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' | '
+    "<a href='/users/#{user.friendly_id}'>"+user.name+'</a>'+' | '
   end
 
   def get_full_title
-    "<a href='/users/#{user.id}'>"+user.name+'</a>'+' '+content
+    "<a href='/users/#{user.friendly_id}'>"+user.name+'</a>'+' '+content
   end
 
   def child_link_name

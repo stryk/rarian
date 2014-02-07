@@ -14,6 +14,7 @@ class AnswersController < ApplicationController
     if @answer.errors.blank?
       #flash[:notice] = "Successfully added the answer"
       @msg = "Successfully added the answer"
+      EmailAnswerActionWorker.perform_async(@answer.id, current_user.id)
       #redirect_to company_path(@company)
     else
       #flash[:error] = @answer.errors.full_messages.join(",")

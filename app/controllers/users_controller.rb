@@ -37,7 +37,10 @@ class UsersController < ApplicationController
   end
 
   def follow
-    current_user.follow(@user)
+    if current_user.present?
+      current_user.follow(@user)
+      EmailFollowActionWorker.perform_async(current_user.id, @user.id)
+    end
   end
 
   def unfollow

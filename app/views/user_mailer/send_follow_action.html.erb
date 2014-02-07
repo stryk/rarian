@@ -1,0 +1,9 @@
+<h3>Dear <%= @followee.name %>,</h3>
+
+<p><%= link_to @follower.name, user_url(@follower) %> is now following you.
+
+<br>Thank you,
+
+<br>AlphaPitch Team</p>
+
+<p><%= link_to "Your member page", user_url(@followee) %></p>

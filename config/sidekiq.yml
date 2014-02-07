@@ -7,5 +7,6 @@ production:
 :queues:
   - [priority, 9]
   - [devise_mailer, 8]
+  - [ts_delta, 2]
   - [default, 5]
-  - [mailer, 3]
+  - [mailer, 6]

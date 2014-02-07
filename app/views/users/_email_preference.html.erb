@@ -1,26 +1,30 @@
 <div id="middle-container">
   <div class="row">
     <div class="content-area">
-      <h2 class="page-title">E-mail</h2>
+      <h2 class="page-title">E-mail Preferences</h2>
 
       <div class="edit-account-container">
         <div class="acount-left">
           <div class="account-row">
-            <div class="account-col1">Someone starts following me</div>
+            <div class="account-col1">When someone starts to follow me.</div>
             <% options = current_user.email_follow_me ? {:checked => true} : {} %>
             <div class="account-col2"><%= check_box :email_follow_me, 0, {data: {remote: true, url: users_path(:id => current_user.id, :check_type => "email_follow_me"),
                                                                                  update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
 
-            <div class="account-col1">Someone asks me to answer a question:</div>
+            <div class="account-col1">When someone answers my question.</div>
             <% options = current_user.email_answer_question ? {:checked => true} : {} %>
             <div class="account-col2"><%= check_box :email_answer_question, 0, {data: {remote: true, url: users_path(:id => current_user.id, :check_type => "email_answer_question"),
                                                                                        update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
 
-            <div class="account-col1">Someone sends me a message</div>
-            <% options = current_user.email_sends_message ? {:checked => true} : {} %>
-            <div class="account-col2"><%= check_box :email_sends_message, 0, {data: {remote: true, url: users_path(:id => current_user.id, :check_type => "email_sends_message"),
+            <div class="account-col1">When someone comments on my contribution.</div>
+            <% options = current_user.email_comment ? {:checked => true} : {} %>
+            <div class="account-col2"><%= check_box :email_comment, 0, {data: {remote: true, url: users_path(:id => current_user.id, :check_type => "email_comment"),
+                                                                               update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>                                                                        
+            <div class="account-col1">When someone replies to my comment.</div>
+            <% options = current_user.email_comment_reply ? {:checked => true} : {} %>
+            <div class="account-col2"><%= check_box :email_comment_reply, 0, {data: {remote: true, url: users_path(:id => current_user.id, :check_type => "email_comment_reply"),
                                                                                      update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
-
+            
 
           </div>
         </div>
@@ -43,27 +47,14 @@
       <div class="edit-account-container">
         <div class="acount-left">
           <div class="account-row">
-            <div class="account-col1">Someone starts following me</div>
-            <% options = current_user.email_vote ? {:checked => true} : {} %>
-            <div class="account-col2"><%= check_box :email_vote, 0, {data: {remote: true, url: users_path(:id => current_user.id, :check_type => "email_vote"),
+            <div class="account-col1">On new company activities for companies I follow.</div>
+            <% options = current_user.email_company_activity ? {:checked => true} : {} %>
+            <div class="account-col2"><%= check_box :email_company_activity, 0, {data: {remote: true, url: users_path(:id => current_user.id, :check_type => "email_company_activity"),
                                                                             update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
 
-            <div class="account-col1">Someone writes a comment</div>
-            <% options = current_user.email_comment ? {:checked => true} : {} %>
-            <div class="account-col2"><%= check_box :email_comment, 0, {data: {remote: true, url: users_path(:id => current_user.id, :check_type => "email_comment"),
-                                                                               update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
-            <div class="account-col1">Someone adds on answer to my question</div>
-            <% options = current_user.email_question ? {:checked => true} : {} %>
-            <div class="account-col2"><%= check_box :email_question, 0, {data: {remote: true, url: users_path(:id => current_user.id, :check_type => "email_question"),
-                                                                                update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
-            <div class="account-col1"> Someone adds a comment to my answer</div>
-            <% options = current_user.email_answer ? {:checked => true} : {} %>
-            <div class="account-col2"><%= check_box :email_answer, 0, {data: {remote: true, url: users_path(:id => current_user.id, :check_type => "email_answer"),
-                                                                              update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
-
-            <div class="account-col1"> Marks as spam</div>
-            <% options = current_user.email_spam ? {:checked => true} : {} %>
-            <div class="account-col2"><%= check_box :email_spam, 0, {data: {remote: true, url: users_path(:id => current_user.id, :check_type => "email_spam"),
+            <div class="account-col1">On new user activities for the users I follow.</div>
+            <% options = current_user.email_user_activity ? {:checked => true} : {} %>
+            <div class="account-col2"><%= check_box :email_user_activity, 0, {data: {remote: true, url: users_path(:id => current_user.id, :check_type => "email_user_activity"),
                                                                             update: "message_div_id", :method => 'put'}}.merge(options) %></p> </div>
 
 
@@ -86,7 +77,7 @@
                                update: "message_div_id", :method => 'put') do |f| %>
 
                     <div class="account-col2"><%= f.text_field :no_day_newsletter %>
-                      days<%= button_tag 'Update', :class => "btn btn-warning", :id => "news"
+                      days<%= button_tag 'Update', :class => "button small brown", :id => "news"
                     %> </p>
                     </div>
                   <% end %>

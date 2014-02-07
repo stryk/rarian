@@ -1,3 +1,9 @@
+$("#flash-message-custom").html('<div class="success"><p><span class="close-btn"><a href="#" class="close-btn" ><img src="/assets/close-btn.png" class="close-btn" alt=""></a></span><%= @msg %></p></div>');
+$("#flash-message-custom").show();
+    setTimeout(function() {
+        $("#flash-message-custom").hide('blind', {}, 300)
+    }, 2000);
+
 <% if params[:user] && params[:user][:company] %>
    $("#company_list").html('<%=j raw (render :partial => "users/company").gsub!("\n", "")%>');
 

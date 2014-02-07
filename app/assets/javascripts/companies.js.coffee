@@ -27,3 +27,10 @@ $(document).on "change", "#company_sell_sort", ->
 # $(document).on "change", "#company_blip_sort", ->
 #   company_slug = $("#company-slug").data("slug")
 #   $.ajax url: "/companies/"+ company_slug + "/blips?sort_by="+$('#company_blip_sort').val()
+jQuery ->
+  $('#companies').dataTable
+    sPaginationType: "full_numbers"
+    bJQueryUI: true
+    bProcessing: true
+    bServerSide: true
+    sAjaxSource: $("#companies").data('source')

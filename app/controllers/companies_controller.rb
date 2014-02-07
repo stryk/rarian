@@ -8,7 +8,11 @@ class CompaniesController < ApplicationController
   skip_authorize_resource :only => [:index, :search]
   load_and_authorize_resource
 
-	def index		
+	def index
+    respond_to do |format|
+      format.html
+      format.json { render json: CompaniesDatatable.new(view_context)}
+    end
   end
 
   def show
@@ -22,6 +26,7 @@ class CompaniesController < ApplicationController
     @risks = @company.risks.order("net_votes DESC").paginate(:page => params[:risk_page])
     respond_to do |format|
       format.js {
+        @append = true
         if params[:lp_page].present?
           @pitchs = @buy_pitches
           render 'buypitch.js.erb'
@@ -52,8 +57,9 @@ class CompaniesController < ApplicationController
   end
 
 	def import
-		Company.import(params[:file], params[:exchange], params[:date])
-		redirect_to companies_path, notice: "Company quotes imported."
+    tempfile = params[:file].tempfile.path
+    CompanyImportFileWorker.perform_async(tempfile, params[:exchange], params[:date])
+		redirect_to companies_path, notice: "Company quotes being imported."
   end
 
   def new_pitch
