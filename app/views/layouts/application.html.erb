@@ -22,6 +22,7 @@
       $( "#format" ).change(function() {
         $( "#datepicker" ).datepicker( "option", "dateFormat", $( this ).val() );
       });
+      $('.scroll-pane').jScrollPane();
     });
   </script>
 </head>
@@ -35,24 +36,23 @@
             <img src="/assets/logo.png" alt="AlphaPitch">
           <% end %>
         </h1></div>
-
-        <div class="top-tickers">
-
-          <div class="tickers-div">
-            <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrollamount=3>
-              <% MostActiveTicker.get_active_companies.each do |active_ticker| %>
-                <%= link_to active_ticker.company.ticker, company_path(active_ticker.company) %> &nbsp;
-              <% end %>
-            </marquee>
-          </div>
-        </div>
+        <div class="top-search-div">
+                  <div class="top-search clear-fix">
+                    <%= form_tag(searches_path, :class => 'pull-right', :remote => true) do %>
+                      <%= text_field('q', 'search', :class => 'search-input', :placeholder => "Search by Ticker, Company name") %>
+                      <%= submit_tag('', :class => 'search-btn') %>
+                      <div class="clr"></div>
+                    <% end %>
+                  </div>
+                </div>
+        
 
         <div class="top-login-space">
           <ul class="top-link">
             <li>
               <% if user_signed_in? && current_user%>
                 <div class="pic-div">
-                  <a href="#"><%= image_tag current_user.image_url(:tiny_thumb).to_s %><%= '  ' + current_user.name %></a>
+                  <a href="#" class="username-pic"><span class="arrow"><%= image_tag current_user.image_url(:tiny_thumb).to_s %><%= '  ' + current_user.name %></span></a>
                 </div>
                 <ul>
                   <li><%= link_to "View Profile", user_path(current_user) %></li>
@@ -61,7 +61,7 @@
                   <li class="last"><%=link_to 'Logout',destroy_user_session_path,:method => 'delete' %></li>
                 </ul>
               <% else %>
-                <%= link_to 'Sign In', new_user_session_path %>
+                <%= link_to 'Register/Sign In', new_user_session_path %>
               <% end %>
             </li>
           </ul>
@@ -69,8 +69,10 @@
 
 
         <div class="clr"></div>
-
-        <nav class="navdiv">
+      </div>
+      <div class="navdiv">
+        <div class="row">
+        <nav>
           <ul class="navul">
             <li>
               <a href="#">Sectors</a>
@@ -88,10 +90,25 @@
             <li><a href="#">Nav Link 7</a></li>
             <li><a href="#">Nav Link 8</a></li>
           </ul>
+          <div class="clr"></div>
         </nav>
+      </div>
 
+    </div>
+      <div class="top-tickers">
+        <div class="row">
+          <div class="tickers-div">
+            <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrollamount=3>
+              Active Tickers: &nbsp;
+              <% MostActiveTicker.get_active_companies.each do |active_ticker| %>
+                <%= link_to active_ticker.company.ticker, company_path(active_ticker.company) %> &nbsp;
+              <% end %>
+            </marquee>
+          </div>
+        </div>
 
       </div>
+      <div class="clr"></div>
     </div>
     <!-- end of header top -->
   </header>

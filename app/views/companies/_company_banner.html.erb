@@ -23,13 +23,3 @@
     });
   </script>
 </div><!-- end of stock-div -->
-<div class="search-box">
-  <div class="search-div">
-    <%= form_tag(searches_path, :class => 'pull-right', :remote => true) do %>
-      <%= text_field('q', 'search', :class => 'search-query search-input', :placeholder => "Search by Ticker, Company name") %>
-      <%= submit_tag('', :class => 'search-button') %>
-      <div class="clr"></div>
-    <% end %>
-  </div>
-  <div class="clr"></div>
-</div><!-- end of search-box -->

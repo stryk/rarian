@@ -89,7 +89,7 @@ group :development do
 	gem 'pg'
 	gem 'debugger'
   gem 'capistrano'
-  
+  gem 'rack-mini-profiler'
 end
 
 group :production do
