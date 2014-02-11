@@ -3,24 +3,36 @@ class VotesController < ApplicationController
   before_filter :get_obj
 
   def up
-    begin
-      authorize! :up, @obj, :message => "You must sign-in to vote."
-      @company =  Company.friendly.find(params[:company_id].downcase)
-      current_user.up_vote(@obj)
-    rescue MakeVoteable::Exceptions::AlreadyVotedError
-      # if the user clicks on the vote twice means user is unvoting
-      current_user.unvote(@obj)
+    if user_signed_in?
+      begin
+        authorize! :up, @obj, :message => "You must sign-in to vote."
+        @company =  Company.friendly.find(params[:company_id].downcase)
+        current_user.up_vote(@obj)
+      rescue MakeVoteable::Exceptions::AlreadyVotedError
+        # if the user clicks on the vote twice means user is unvoting
+        current_user.unvote(@obj)
+      end
+    else
+      respond_to do |format|
+        format.js {render 'signup'}
+      end
     end
   end
 
   def down
-    begin
-      authorize! :up, @obj, :message => "You must sign-in to vote."
-      @company =  Company.friendly.find(params[:company_id].downcase)
-      current_user.down_vote(@obj)
-    rescue MakeVoteable::Exceptions::AlreadyVotedError
-      # if the user clicks on the vote twice means user is unvoting
-      current_user.unvote(@obj)
+    if user_signed_in?
+      begin
+        authorize! :up, @obj, :message => "You must sign-in to vote."
+        @company =  Company.friendly.find(params[:company_id].downcase)
+        current_user.down_vote(@obj)
+      rescue MakeVoteable::Exceptions::AlreadyVotedError
+        # if the user clicks on the vote twice means user is unvoting
+        current_user.unvote(@obj)
+      end
+    else
+      respond_to do |format|
+        format.js {render 'signup'}
+      end
     end
   end
 

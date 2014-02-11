@@ -7,7 +7,7 @@
           <%= link_to "Add a new comment", "#" %>     
       </div>
     <% else %>
-        <%= link_to 'Login to comment', new_user_session_path %>
+        <a href="#" class="session_start">Login to comment</a>
     <% end %>
     <div class="comment-box" id="comment_form_<%=@comment_obj.class.name.downcase + @comment_obj.id.to_s %>" style="display: none">
         <%= form_for(Comment.new, :url => send("company_#{@comment_obj.class.name.downcase}_comments_path", @comment_obj.company, @comment_obj), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>

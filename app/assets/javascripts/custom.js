@@ -33,6 +33,11 @@
 		}
 	});
 
+	$(document).on("click", ".session_start", function() {
+		$( "#session_start" ).trigger('click');
+		return false;
+		e.preventDefault();
+	});
 
 //$(document).ready(function(){
 //  $('.input-required').each(function(){
@@ -41,8 +46,6 @@
 //})
 
 })( jQuery );
-
-
 
 function toggle_visibility_from_hidden(id) {
        var e = document.getElementById(id);

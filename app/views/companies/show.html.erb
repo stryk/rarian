@@ -17,7 +17,7 @@
         <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
         <%= link_to "Add reason to buy...", "#.", :class => "inputo-txt", :id => "add_reason_to_buy_link" %>
       <% else %>
-        <%= link_to 'Login to contribute a long pitch', new_user_session_path %>
+        <a href="#" class="session_start">Login to contribute a long pitch</a>
       <% end %>
     </div>
     <div class="text-editor-container" id="add_reason_to_buy_link_slide_down" style="display: none">
@@ -48,7 +48,7 @@
         <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
         <%= link_to " Add reason to sell...", "#.", :class => "inputo-txt", :id => "add_reason_to_sell_link" %>
       <% else %>
-        <%= link_to 'Login to contribute a short pitch', new_user_session_path %>
+        <a href="#" class="session_start">Login to contribute a short pitch</a>
       <% end %>
     </div>
 
@@ -81,7 +81,7 @@
             <% if can?(:create, Question) %>
               <%= link_to "Ask a Question", '#.', :class => "readmore-link", :id => "add_question_link" %>
             <% else %>
-              <%= link_to 'Login to ask a question', new_user_session_path %>
+              <a href="#" class="session_start">Login to ask a question</a>
             <% end %>
           <div style="display: none" id='add_question_form'>
             <%= render 'questions/add_question', :locals => {:company => @company} %>

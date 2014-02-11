@@ -61,7 +61,7 @@
                   <li class="last"><%=link_to 'Logout',destroy_user_session_path,:method => 'delete' %></li>
                 </ul>
               <% else %>
-                <%= link_to 'Register/Sign In', new_user_session_path %>
+                <a href="#signin-nmodal" class="nModal" id="session_start">Register/Sign In</a>
               <% end %>
             </li>
           </ul>
@@ -113,7 +113,73 @@
     <!-- end of header top -->
   </header>
   <!-- end of header -->
+  <div id="signin-nmodal" style="display: none">
+    <div id="alphapitchbox-modal-window" class="alphapitchbox-window">
+      <div id="readlater_register_login" class="regi-sign-box clear-fix">
+          
+            <div class="joinNow_content">
+              <div class="top_title_area">
+                  <h3>Open Investment Community</h3>
+                    <p class="text">AlphaPitch is an exciting new way to share investment insights on companies.</p>
+                 </div>
+                 
+                
+                  <div class="register_form">
+                      <h3>Register Here:</h3>
+                      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true, :html => {:class => 'form-vertical'}) do |f| %>
 
+                      
+                          <fieldset><span>Choose Username</span>
+                          <%= f.text_field :name, :autofocus => true, :class => "inputbox input-required", :validate => { :presence => true } %>
+                          </fieldset>
+
+                          <fieldset><span>Email Address</span>
+                          <%= f.email_field :email, :autofocus => false, :class => "inputbox input-required", :validate => { :presence => true } %>
+                          </fieldset>
+                          <fieldset><span>Create Password:</span>
+                          <%= f.password_field :password, :class => "inputbox  input-required", :validate => { :presence => true } %>
+                          </fieldset>
+                          <fieldset><span>Confirm Password:</span>
+                          <%= f.password_field :password_confirmation, :class => "inputbox input-required", :validate => { :presence => true } %>
+                          </fieldset>
+                          <div class="agree">
+                            <input type="checkbox">I agree to <a target="_blank" href="#">Terms of Use</a> &amp; <a target="_blank" href="#">Privacy Policy</a>
+                          </div>
+
+                      
+                        <%= f.submit "Sign up", :class => 'button medium  brown' %>
+                      
+
+                      <p>
+                        <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+                          <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+                          <%= link_to "Didn't receive confirmation email?", new_confirmation_path(resource_name) %><br />
+                        <% end -%>
+                        </p>
+                    <% end %>
+                     
+                    </div>
+                                    
+            </div>
+            
+            <div id="readlater_login" class="readlater_login">
+              <h3>Already Joined?</h3>
+                <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :validate => true, :html => {:class => 'form-vertical'}) do |f| %>
+                  <fieldset><span>Email Address</span>
+                    <%= f.text_field :email, :class => 'inputbox' %></fieldset>
+                  <fieldset><span>Password:</span>
+                    <%= f.password_field :password, :class => 'inputbox' %></fieldset>
+                  <fieldset><%= f.check_box :remember_me %><%= f.label :remember_me %></fieldset>
+                  <%= f.submit 'Sign in', :class => 'button blue medium' %>
+                  <% save_location %>
+                <% end %>
+                <%= link_to "Forgot your password?", new_password_path(:user), :class => 'agree' %>
+            </div>           
+        </div>              
+    </div>
+    <br class='clr'>
+  </div>
+    <!-- end of modal -->
   <div id="middle-container">
     <div class="row">
       <%= render 'layouts/messages' %>

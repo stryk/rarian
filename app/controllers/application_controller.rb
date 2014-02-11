@@ -107,4 +107,24 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_in_path_for(resource)
+    if session[:return_address].present?
+      path = session[:return_address]
+      session.delete(:return_address)
+      return path
+    else
+      return root_path
+    end
+  end
+
+  def after_sign_up_path_for(resource)
+    if session[:return_address].present?
+      path = session[:return_address]
+      session.delete(:return_address)
+      return path
+    else
+      return root_path
+    end
+  end
+
 end
