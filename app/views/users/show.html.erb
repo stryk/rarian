@@ -1,19 +1,23 @@
-<div class="top-stock-search">
-</div><!-- end of top-stock-search -->
+
 <div class="clr"></div>
 
 <%= render 'users_left' %>
 <span id="uid" data-uid="<%= @user.id %>"></span>
 
 <div class="middle-panel">
-  <% if true %>
+  
     <div class="box-col middle-margin">
     
       <h3>Alpha
-        Blips  <%= select_tag("blip_sort_by", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
-        </h3>
+        Blips
+        <div style="float:right"><span class="dropdown">
+          <%= select_tag("blip_sort_by", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+        </span></div>
+      </h3>
 
       <!--<div class="small-follow-btn"><a href="#"></a></div>-->
+      <div class="box-col-topreason">
+      <div class="rows-div">
       <div id="blips_list" class="scroll">
         <%= render :partial => 'shared/blips_list', :locals => {:objs => @blips,:child_objs => nil, :objs_text => nil, :child_objs_text => nil,
             :show_ticker => true} %>
@@ -22,11 +26,17 @@
       <div id="blp-pagination"><%= will_paginate @blips, :param_name => 'blp_page'%></div>
 
     </div>
-  <% end %>
+  </div>
+</div>
+  
   <div class="box-col middle-margin">
     <h3 class="middleh3">Long Pitches
-      <%= select_tag("buy_sort", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+      <div style="float:right"><span class="dropdown">
+        <%= select_tag("buy_sort", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+      </span></div>
       </h3>
+      <div class="box-col-topreason">
+      <div class="rows-div">
     <div id="buy_list" class="scroll">
       <%= render :partial => 'shared/pitches_list', :locals => {:objs => @buypitchs,
                                                                     :company => @company, :child_objs => nil,
@@ -39,10 +49,16 @@
     <a href="#" class="more-content" id="more-lp">More...</a>
     <div id="lp-pagination"><%= will_paginate @buypitchs, :param_name => 'lp_page'%></div>
   </div>
+</div>
+</div>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Short Pitches
-      <%= select_tag("sell_sort", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
-      </h3>
+      <div style="float:right"><span class="dropdown">
+        <%= select_tag("sell_sort", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+      </span></div>
+    </h3>
+    <div class="box-col-topreason">
+      <div class="rows-div">
     <div id="sell_list" class="scroll">
       <%= render :partial => 'shared/pitches_list', :locals => {:objs => @sellpitchs,
                                                                     :company => @company, :child_objs => nil,
@@ -56,10 +72,15 @@
     <a href="#" class="more-content" id="more-sp">More...</a>
     <div id="sp-pagination"><%= will_paginate @sellpitchs, :param_name => 'sp_page'%></div>
   </div>
+</div></div>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Questions
+      <div style="float:right"><span class="dropdown">
       <%= select_tag("question_sort","<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+      </span> </div>
       </h3>
+      <div class="box-col-topreason">
+      <div class="rows-div">
     <div id="question_list" class="scroll">
       <%= render :partial => 'users/question', :locals => {:objs => @question,
                                                             :child_objs => nil,
@@ -69,10 +90,15 @@
 
   </div>
     </div>
+  </div></div>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Answers
+      <div style="float:right"><span class="dropdown">
       <%= select_tag("answer_sort", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+    </span></div>
   </h3>
+  <div class="box-col-topreason">
+      <div class="rows-div">
     <div id="answer_list" class="scroll">
       <%= render :partial => 'users/answer', :locals => {:objs => @answer,
                                                            :child_objs => nil,
@@ -82,11 +108,15 @@
 
   </div>
 
-          </div>
+          </div></div></div>
   <div class="box-col middle-margin">
     <h3 class="middleh3">Comments
+      <div style="float:right"><span class="dropdown">
       <%= select_tag("comment_sort", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+    </span></div>
      </h3>
+     <div class="box-col-topreason">
+      <div class="rows-div">
     <div id="comment_list" class="scroll">
       <%= render :partial => 'users/comment', :locals => {:objs => @comment,
                                                          :child_objs => nil,
@@ -96,6 +126,7 @@
      </div>
 
           </div>
+        </div></div>
   <div class="clr"></div>
 </div>
 

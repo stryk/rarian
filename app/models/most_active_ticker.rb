@@ -34,7 +34,7 @@ class MostActiveTicker < ActiveRecord::Base
   end
 
   def self.get_active_companies
-     where("active_date = '#{Date.today}'").order("no_of_votes DESC")
+     where("active_date between '#{Date.today-3}' and '#{Date.today+1}'").order("no_of_votes DESC")
      # TODO we should do grouping for uniq company
      #group('company_id')
   end

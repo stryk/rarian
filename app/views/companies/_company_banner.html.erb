@@ -1,14 +1,6 @@
 <div class="stock-div">
   <% pricing_hash = get_pricing_details(@company) %>
-  <h2> <%= @company.ticker %> $ <%= pricing_hash[:latest_price] %>
-    <% if pricing_hash[:percentage_diff].to_i > 0 %>
-      <span class="arrow-up"></span>
-      <%= pricing_hash[:price_diff] %>  (<%= pricing_hash[:percentage_diff] %>%)
-    <% elsif pricing_hash[:percentage_diff].to_i < 0 %>
-      <span class="arrow-down"></span>
-      <%= pricing_hash[:price_diff] %>  (<%= pricing_hash[:percentage_diff] %>%)
-    <% end %>
-    </h2>
+  <h2> <%= @company.ticker %> $ <%= pricing_hash[:latest_price] %></h2>
   <span id="company_follow">
     <%= render :partial => 'shared/follow_buttons', :locals => {:obj => @company,
                                                                 :follow_link => follow_company_path(@company),

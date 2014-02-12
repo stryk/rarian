@@ -6,7 +6,9 @@
 
 function ck_load() {
   $('.ckeditor').each(function(){
-    CKEDITOR.replace( $(this).attr('name') );
+  	if (!jQuery.contains(document, $(this).attr('name'))) {
+    	CKEDITOR.replace( $(this).attr('name') );
+    }
   });
 }
 

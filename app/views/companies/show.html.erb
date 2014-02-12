@@ -1,6 +1,6 @@
 <div id = "company-slug" data-slug = "<%= @company.slug.to_s %>"></div>
-<div class="top-stock-search">
-  <%= render 'company_banner' %>
+<div class="top-stock-search clear-fix">
+  <%= render 'company_banner' %>            
 </div><!-- end of top-stock-search -->
 <div class="clr"></div>
 
@@ -10,8 +10,12 @@
 
   <div class="box-col middle-margin">
     <h3 class="middleh3">Long Pitch: Reasons to Buy
-      <div style="float:right"><%= select_tag("company_buy_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %></div>
+      <div style="float:right"><span class="dropdown">
+        <%= select_tag("company_buy_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+      </span></div>
     </h3>
+    <div class="box-col-topreason">
+      <div class="rows-div">
     <div class="input-txt">
       <% if can?(:create, Pitch) %>
         <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
@@ -36,13 +40,19 @@
     </div>
     <a href="#" class="more-content" id="more-lp">More...</a>
     <div id="lp-pagination"><%= will_paginate @buy_pitches, :param_name => 'lp_page'%></div>
-
   </div>
+  </div>
+</div>
 
   <div class="box-col middle-margin">
-    <h3 class="middleh3">Short Pitch: Reasons to Sell<div style="float:right"><%= select_tag("company_sell_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %></div>
+    <h3 class="middleh3">Short Pitch: Reasons to Sell<div style="float:right">
+      <div class="dropdown">
+        <%= select_tag("company_sell_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+      </div>
+    </div>
     </h3>
-
+    <div class="box-col-topreason">
+      <div class="rows-div">
     <div class="input-txt">
       <% if can?(:create, Pitch) %>
         <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
@@ -72,6 +82,7 @@
 
     <div class="clr"></div>
   </div>
+</div></div>
 
   <div class="box-col">
     <h3>Burning Q&A</h3>
@@ -109,8 +120,6 @@
 <div class="clr"></div>
 </div>
 
-
-<%= render 'searches/search_modal' %>
 <div id="comments_list"></div>
 <script type="text/javascript">
 

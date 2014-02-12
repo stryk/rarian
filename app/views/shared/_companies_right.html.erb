@@ -1,10 +1,10 @@
-<h3>Alpha Blips <div style="float:right"><%= select_tag("sort_by", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global",
+<h3>Alpha Blips <div style="float:right"><span class="dropdown"><%= select_tag("sort_by", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global",
                               data: {
                                 remote: true,
                                 url: company_blips_path(@company),
                                 update: "message_div_id"
                               }
-                   ) %></div>
+                   ) %></span></div>
   </h3>
 </h3>
 

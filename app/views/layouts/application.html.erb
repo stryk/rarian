@@ -52,7 +52,7 @@
             <li>
               <% if user_signed_in? && current_user%>
                 <div class="pic-div">
-                  <a href="#" class="username-pic"><span class="arrow"><%= image_tag current_user.image_url(:tiny_thumb).to_s %><%= '  ' + current_user.name %></span></a>
+                  <a href="#" class="username-pic"><span class="arrow"><%= '  ' + current_user.name %></span></a>
                 </div>
                 <ul>
                   <li><%= link_to "View Profile", user_path(current_user) %></li>
@@ -67,7 +67,7 @@
           </ul>
         </div>
 
-
+        <%= render 'searches/search_modal' %>
         <div class="clr"></div>
       </div>
       <div class="navdiv">
@@ -75,14 +75,14 @@
         <nav>
           <ul class="navul">
             <li>
-              <a href="#">Sectors</a>
+              <a href="#">Size</a>
               <ul>
-                <li><%= link_to "SmidCap", "#" %></li>
-                <li><%= link_to "LargeCap", "#" %></li>
-                <li><%= link_to "Value", "#" %></li> 
+                <li><%= link_to "SmallCap <$1B", "#" %></li>
+                <li><%= link_to "MidCap <$10B", "#" %></li>
+                <li><%= link_to "LargeCap $10+B", "#" %></li> 
               </ul>
             </li>
-            <li><a href="#">Nav Link 2</a></li>
+            <li><a href="#">Industries</a></li>
             <li><a href="#">Nav Link 3</a></li>
             <li><a href="#">Nav Link 4</a></li>
             <li><a href="#">Nav Link 5</a></li>
@@ -151,8 +151,7 @@
                       
 
                       <p>
-                        <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
-                          <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+                        <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>                      
                           <%= link_to "Didn't receive confirmation email?", new_confirmation_path(resource_name) %><br />
                         <% end -%>
                         </p>

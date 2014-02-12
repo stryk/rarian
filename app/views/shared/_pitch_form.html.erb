@@ -21,8 +21,11 @@
 
   <% end %>
   <script type="text/javascript">
-    
-    CKEDITOR.replace( "editor_<%= pitch.id.to_s %>" );
+  
+    if (!jQuery.contains(document, $("#editor_<%= pitch.id.to_s %>"))) {
+      CKEDITOR.replace( "editor_<%= pitch.id.to_s %>" );
+    }
+  
   </script>
 
 <% else %>

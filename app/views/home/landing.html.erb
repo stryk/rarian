@@ -6,11 +6,13 @@
 
     <div class="box-col">
       <h3 class="middleh3">Long Pitch: Reasons to Buy
+        <div style="float:right"><span class="dropdown">
         <% if user_signed_in? %>
-          <%= select_tag("home_buy_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %> </h3>
+          <%= select_tag("home_buy_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %>
         <% else %>
-          <%= select_tag("home_buy_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %> </h3>
-        <% end %>  
+          <%= select_tag("home_buy_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+        <% end %>
+      </span></div>
       </h3>
       <div class="box-col-topreason">
         <div class="rows-div">
@@ -33,11 +35,13 @@
 
     <div class="box-col">
       <h3 class="middleh3">Short Pitch: Reasons to Sell
+        <div style="float:right"><span class="dropdown">
         <% if user_signed_in? %>
-          <%= select_tag("home_sell_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %></h3>
+          <%= select_tag("home_sell_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %>
         <% else %>
-          <%= select_tag("home_sell_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %></h3>
+          <%= select_tag("home_sell_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
         <% end %>
+      </span></div>
       </h3>
 
       <div class="box-col-topreason">
@@ -63,37 +67,27 @@
     </div>
   </div>
   <div class="landing-right-panel">
-    <div class="search-box">
-      <div class="search-div">
-        <%= form_tag(searches_path, :class => 'pull-right', :remote => true) do %>
-          <%= text_field('q', 'search', :class => 'search-query search-input', :placeholder => "Search by Ticker, Company Name") %>
-          <%= submit_tag('', :class => 'search-button') %>
-          <div class="clr"></div>
-        <% end %>
-      </div>
-      <div class="clr"></div>
-    </div><!-- end of search-box -->
-
-    <%= render 'searches/search_modal' %>
-  </br>
     <div class="box-col">
       <div class="rows-div">
-        <h3>Alpha
-          Blips
+        <h3>AlphaBlips
+          <div style="float:right"><span class="dropdown">
           <% if user_signed_in? %>
-            <%= select_tag("home_blip_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %></h3>
+            <%= select_tag("home_blip_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %>
           <% else %>
-            <%= select_tag("home_blip_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %></h3>
+            <%= select_tag("home_blip_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
           <% end %>
+        </span></div>
         </h3>
-
+        <div class="box-col-topreason">
+      <div class="rows-div">
         <div id="blips_list" class="scroll">
           <%= render :partial => 'shared/blips_list', 
           :locals => {:objs => @blips, :child_objs => nil, :objs_text => nil, :child_objs_text => nil, :show_ticker => true} %>
         </div>
         <a href="#" class="more-content" id="more-blp">More...</a>
         <div id="blp-pagination"><%= will_paginate @blips, :param_name => 'blp_page', :id => "blp-pagination"  %></div>
-
+      </div>
+    </div>
 
 
         <!-- end of left-panel -->

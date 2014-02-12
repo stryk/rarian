@@ -39,13 +39,23 @@
 		e.preventDefault();
 	});
 
-//$(document).ready(function(){
-//  $('.input-required').each(function(){
-//    $(this).closest('label').after("<em>*</em>");
-//  });
-//})
+	$(document).on("click", "#change-portrait", function() {
+		$( "#change-portrait" ).hide('slow');
+		$("#update-portrait").show('slow');
+		return false;
+		e.preventDefault();
+	});
+
+	
 
 })( jQuery );
+
+// $(document).ready(function(){
+//  document.getElementById("uploadBtn").onchange = function () {
+// 	    document.getElementById("uploadFile").value = this.value;
+// 	};
+// });
+
 
 function toggle_visibility_from_hidden(id) {
        var e = document.getElementById(id);
@@ -62,3 +72,5 @@ function toggle_visibility_from_visible(id) {
        else
           e.style.display = 'none';
 };
+
+

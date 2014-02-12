@@ -7,7 +7,10 @@
 </div>
 
 <script type="text/javascript">
-    
-    CKEDITOR.replace( "edit_answer_content_<%= answer.id.to_s %>" );
-  </script>
+
+    if (!jQuery.contains(document, $("#edit_answer_content_<%= answer.id.to_s %>"))) {
+    	CKEDITOR.replace( "edit_answer_content_<%= answer.id.to_s %>" );
+    }
+
+</script>
 

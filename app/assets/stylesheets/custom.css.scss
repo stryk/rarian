@@ -365,17 +365,19 @@ input {
   .top-search {
     margin: 0;
     padding: 0;
-    background: #fff;
+    background: transparent;
+    pointer-events: none;
     -webkit-border-radius: 2px 2px 2px;
     border-radius: 2px 2px 2px;
   }
   .search-input {
+    pointer-events: auto;
     margin: 0;
     padding: 5px;
     color: #666;
     font-size: 14px;
     border: 0;
-    background: transparent;
+    background: #fff;
     float: left;
     width: 88%;
     display: inline-block;
@@ -2289,7 +2291,6 @@ h2.page-title {
 
 .reg-follow-btn {
   margin: 0 0 10px 0px;
-  padding: 0;
   display: inline-block;
   position: relative;
   top: 0;
@@ -2455,37 +2456,46 @@ h5.error-title {
   text-align: center;
 }
 
-// /*
-// .regi-sign-box fieldset span {
-//     display: block;
-//     font-size: 14px;
-//     padding: 0 0 1px;
-// }
 
-// .regi-sign-box fieldset input {
-//     display: block;
-//     float: left;
-//     font-size: 14px;
-//     height: 18px;
-//     padding: 3px 5px;
-//  }
-// .alphabox-window .readlater_register_login input {
-//     border-color: #919191 #E1E1E1 #E1E1E1 #919191;
-//     border-style: solid;
-//     border-width: 1px;
-// }
-// .readlater_register_login .readlater_register fieldset span.gray_note {
-//     clear: both;
-//     color: #959595;
-//     font-size: 0.75em;
-//     width: auto;
-// }
-// .readlater_register_login .readlater_login {
-//     background: url("http://static3.cdn-seekingalpha.com/images/universal/readlater_login_gray_repeatx.png?1390211486") repeat-x scroll 0 0 #E9EBE7;
-//     display: inline;
-//     float: right;
-//     height: 320px;
-//     padding: 16px 13px 0;
-//     width: 219px !important;
-// }
-// */
+/* Custom settings */
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+}
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.dropdown p {
+  display: inline-block;
+  font-weight: bold;
+}
+
+.dropdown select {
+      border: 1 !important;  /*Removes border*/
+      -webkit-appearance: none;  /*Removes default chrome and safari style*/
+      -moz-appearance: none; /* Removes Default Firefox style*/
+      background: url('dropdown_arrow.gif') no-repeat;  /*Adds background-image*/
+      background-position: 80px 1px;  /*Position of the background-image*/
+      width: 100px; /*Width of select dropdown to give space for arrow image*/
+      text-indent: 0.01px; /* Removes default arrow from firefox*/
+      text-overflow: "";  /*Removes default arrow from firefox*/
+
+      /*My custom style for fonts*/
+
+      color: #1455a2;
+}
+
+select::-ms-expand {
+display: none;
+}

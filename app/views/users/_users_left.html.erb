@@ -4,21 +4,34 @@
     <div class="box-col">
       <h3><%= @user.name %></h3>
       <div class="profile-pic-box">
-        <div class="pic-div"><%= image_tag @user.image_url(:thumb).to_s %>
-          <% if user_signed_in? %>
-            <% if @user.id == current_user.id %>
-              <%= form_for @user, :method => 'post', :url => { :action => "imageuploader" }, :html => {:multipart => true} do |f| %>
-
-                <%= f.file_field :image %>
-                <%= f.submit 'save'%>
-              <%end%>
-            <%end%>
+        <div class="pic-div">
+          <% if @user.image.present? %>
+            <%= image_tag @user.image_url(:thumb).to_s %>
+          <% else %>
+            <%= image_tag '100-100.png' %>
           <% end %>
+        <a href="#" id="change-portrait">Update photo</a>  
         </div>
+
         <div id="follow_detail" >
           <%= render :partial => 'follow_details' %>
         </div>
         <div class="clr"></div>
+        
+        <div id="update-portrait" style="display: none">
+          <% if user_signed_in? %>
+              <% if @user.id == current_user.id %>
+                <%= form_for @user, :method => 'post', :url => { :action => "imageuploader" }, :html => {:multipart => true} do |f| %>              
+                  <div class="fileUpload">
+                      <input id="uploadFile" class="inputbox" size="35" placeholder="Choose File" disabled="disabled" />
+                      <%= f.file_field :image, :class => "upload", :id => "uploadBtn" %>
+                      <%= f.hidden_field :remove_avatar, :value => true %>
+                  </div>                                  
+                  <div style="padding-left: 10px; padding-bottom: 10px;"><%= f.submit 'Save', :class => 'button small brown'%></div>
+                <%end%>
+              <%end%>
+            <% end %>
+        </div>
       </div>
 
       <div class="clr"></div>
