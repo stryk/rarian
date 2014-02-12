@@ -78,24 +78,27 @@
       </div>
       <p>
         <%= link_to("Comments (#{comments_count})", send("company_#{cobj.class.name.downcase}_comments_path", cobj.company, cobj), :remote => true ) %>
-        <% if child_objs_present %>
-            <% if user_signed_in? && can?(:create, Answer) %>
-            | <a id="accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">
-                <%= ("<b>"+cobj.child_link_name+"</b>").html_safe %>
-              </a>
-            <% end %>
 
-            <div id="comment_list_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>" style="display:none">
-              <!-- this block is needed for new comments to show up -->
-            </div>
+          <% if child_objs_present %>
+              <% if user_signed_in? && can?(:create, Answer) %>
+              | <a id="accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">
+                  <%= ("<b>"+cobj.child_link_name+"</b>").html_safe %>
+                </a>
+              <% end %>
 
-            <div class="span12">
+              <div id="comment_list_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>" style="display:none">
+                <!-- this block is needed for new comments to show up -->
+              </div>
 
-            <%= render :partial => 'answers/form', :locals => {:company => cobj.company, :question => cobj,
-                                                                 :child_objs => child_objs,
-                                                                 :child_objs_text => child_objs_text} %>
-            </div>
-        <% end %>
+              <div class="span12">
+
+              <%= render :partial => 'answers/form', :locals => {:company => cobj.company, :question => cobj,
+                                                                   :child_objs => child_objs,
+                                                                   :child_objs_text => child_objs_text} %>
+              </div>
+            
+          <% end %>
+        
       </p>
 
       <div id="comment_list_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>" style="display:none">

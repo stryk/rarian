@@ -13,20 +13,32 @@
 <% end %>
 </span>
 <div id="answer_to_<%= question.class.name.downcase+'-'+question.id.to_s %>">
-  <% !child_objs.blank? && question.send(child_objs).each do |child_obj| %>
-    <div id="answer-<%= child_obj.id.to_s %>">
-    <%= render :partial => 'shared/voting_list', :locals => {:cobj => child_obj, :company => company,
-                                                             :text_val => child_objs_text,
-                                                             :child_objs_present => false,
-                                                             :comments_count => child_obj.comments.count,
-                                                             :comments => true,
-                                                             :show_link => false, :refresh_div => false} %>
-    </div>
-    <script type="text/javascript">
-      $('#jTruncate_truncate-<%= child_obj.id %>').jTruncate({
-        length: 50
-      });
-    </script>
+  <% if child_objs.present? %>
+    <div class="clr"></div>
+    <a href="#" id="show-answers-for-question-<%= question.id %>">Show answers (<%= question.answers.count %>)</a>
+    <div id="answers-for-question-<%= question.id %>" style="display: none">
+    <% question.send(child_objs).each do |child_obj| %>
+      <div id="answer-<%= child_obj.id.to_s %>" class="answers-div">
+      <%= render :partial => 'shared/qa_item', :locals => {:cobj => child_obj, :company => company,
+                                                               :text_val => child_objs_text,
+                                                               :child_objs_present => false,
+                                                               :comments_count => child_obj.comments.count,
+                                                               :comments => true,
+                                                               :show_link => false, :refresh_div => false} %>
+      </div>
+      <script type="text/javascript">
+        $('#jTruncate_truncate-<%= child_obj.id %>').jTruncate({
+          length: 50
+        });
+        $(document).on("click", "#show-answers-for-question-<%= question.id %>", function() {
+          $( "#answers-for-question-<%= question.id %>" ).show('slow');
+          return false;
+          e.preventDefault();
+        });
+
+      </script>
+    <% end %>
+  </div>  
   <% end %>
 </div>
   <script type="text/javascript">

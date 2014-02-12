@@ -1662,7 +1662,7 @@ input {
     margin: 0 5px 0 0;
     padding: 0;
     float: left;
-    width: 8%;
+    width: 4%;
     color: #222;
     font-size: 12px;
     line-height: normal;
@@ -1679,7 +1679,7 @@ input {
   .left-box .q-title {
     margin: 0 0 5px 0;
     padding: 0;
-    width: 40%;
+    width: 100%;
     /*float:left;*/
   }
   .answer-comment-box {
@@ -2458,6 +2458,29 @@ h5.error-title {
 
 
 /* Custom settings */
+
+.blip-item {
+    .left-box {
+    margin: 0 5px 0 0;
+    padding: 0;
+    float: left;
+    width: 7%;
+    color: #222;
+    font-size: 12px;
+    line-height: normal;
+  }
+  .right-box {
+    margin: 0;
+    padding: 0;
+    float: left;
+    width: 90%;
+    color: #222;
+    font-size: 12px;
+    line-height: normal;
+  }
+}
+
+
 
 .fileUpload {
   position: relative;

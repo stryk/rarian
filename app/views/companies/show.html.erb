@@ -87,10 +87,10 @@
   <div class="box-col">
     <h3>Burning Q&A</h3>
     <div class="qa-container">
-      <div class="qa-input-txt">
+      <div class="qa-row">
         <div class="input-txt">
             <% if can?(:create, Question) %>
-              <%= link_to "Ask a Question", '#.', :class => "readmore-link", :id => "add_question_link" %>
+              <%= link_to "Ask a Question", '#.', :class => "ask-qs-txt", :id => "add_question_link" %>
             <% else %>
               <a href="#" class="session_start">Login to ask a question</a>
             <% end %>
@@ -98,13 +98,13 @@
             <%= render 'questions/add_question', :locals => {:company => @company} %>
           </div>
         </div>
-      </div>
-      <div class="list_questions">
+      
+      <div class="question-ans-container">
         <%= render :partial => 'questions/list', :locals => {:questions => @company.questions.all, :company => @company} %>
       </div>
 
       
-
+      </div>
     </div>
   </div>
 
