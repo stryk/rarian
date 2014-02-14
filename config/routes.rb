@@ -133,8 +133,7 @@ Rarian::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#landing'
 
-
-
+  get 'companies/type/:get' => 'home#landing', as: :home_landing_type
   put '/' => 'companies#index'
 
 

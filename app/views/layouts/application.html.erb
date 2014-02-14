@@ -38,9 +38,9 @@
         </h1></div>
         <div class="top-search-div">
                   <div class="top-search clear-fix">
-                    <%= form_tag(searches_path, :class => 'pull-right', :remote => true) do %>
-                      <%= text_field('q', 'search', :class => 'search-input', :placeholder => "Search by Ticker, Company name") %>
-                      <%= submit_tag('', :class => 'search-btn') %>
+                    <%= form_tag(searches_path(:format => 'json'), :class => 'pull-right', :remote => true) do %>
+                      <%= text_field('q', 'search', :class => 'search-input', :id => 'global_search', :placeholder => "Search by Ticker, Company name") %>
+                      <%= link_to('', '#.', :class => 'search-btn', :id => 'global_search_link') %>
                       <div class="clr"></div>
                     <% end %>
                   </div>
@@ -77,9 +77,9 @@
             <li>
               <a href="#">Size</a>
               <ul>
-                <li><%= link_to "SmallCap <$1B", "#" %></li>
-                <li><%= link_to "MidCap <$10B", "#" %></li>
-                <li><%= link_to "LargeCap $10+B", "#" %></li> 
+                <li><%= link_to "SmallCap <$1B", home_landing_type_path('small_cap') %></li>
+                <li><%= link_to "MidCap <$10B", home_landing_type_path('mid_cap') %></li>
+                <li><%= link_to "LargeCap $10+B", home_landing_type_path('large_cap') %></li> 
               </ul>
             </li>
             <li><a href="#">Sector</a></li>
@@ -197,7 +197,73 @@
         $("#flash-message-custom").hide('slow');
         $("#flash-message").hide('slow');
     });
+
+    $(function () {
+    var widgetInst = $('#global_search').autocomplete({
+      source: function (request, response) {
+        $.ajax({
+          url: '<%= searches_path %>', 
+          dataType: "json",         
+          type: "POST",
+          data: {
+            featureClass: "P",
+            style: "full",
+            maxRows: 12,
+            name_startsWith: request.term
+          },
+          success: function (data) {
+            response($.map(data.options, function (item) {
+              return {
+                label: item.name,
+                value: item.name,
+                id: item.id,
+                divider: item.divider,
+                url: item.url
+              }
+            }));
+            $('#global_search').val($('#global_search').val().trim());
+          }
+        });
+      },
+      select: function (event, ui) {
+        window.location = ui.item.url;
+        $('#competitor_competitor_id').val(ui.item.id);
+      },
+      items: 5,
+      minLength: 1,
+      open: function () {
+        $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+      },
+      close: function () {
+        $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+      }
+
+    }).data('ui-autocomplete');
+
+    widgetInst._renderItem = function( ul, item ) {
+                if(item.divider == true){
+                  return $( "<li class='ui-menu-divider'></li>" ).data("item.autocomplete", item)
+                    .append(item.label)
+                    .appendTo( ul );
+                }else{
+                return $( "<li class='selected'></li>" ).data("item.autocomplete", item)
+                    .append( "<a href='"+item.url+"'>" + item.label + "</a>")
+                    .appendTo( ul );
+                }
+        };
+
+    
+    
+  });
+  
+  $('#global_search_link').click(function(){
+    $('#global_search').val($('#global_search').val()+' ');
+    $('#global_search').trigger('keydown');
+  });
+
   </script>
+
+  
 
 </div>
 </body>

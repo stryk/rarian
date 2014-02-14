@@ -47,6 +47,8 @@ class ApplicationController < ActionController::Base
 
   def get_records(class_name, params = {}, options = {})
     params[:sort_by] = 'default' if params[:sort_by].blank?
+    company_ids = options[:company_ids]
+
     if params[:sort_by] == "default"
       order_by_sql = <<-SQL
       CASE WHEN created_at between '#{Date.today - 7}' and '#{Date.today + 1}' and net_votes >= 0 THEN 1
@@ -58,30 +60,66 @@ class ApplicationController < ActionController::Base
            ELSE 7
       END
       SQL
+
+      if !company_ids.blank?
+        class_name = class_name.where(:company_id => company_ids)
+      end
+
       if options[:type] == 'longpitchs'
-        objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:lp_page])
+        if !params[:get].blank? && company_ids.blank?
+          objs = []
+        else
+          objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:lp_page])
+        end
+        
       elsif options[:type] == 'shortpitchs'
-        objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:sp_page])
+        if !params[:get].blank? && company_ids.blank?
+          objs = []
+        else
+          objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:sp_page])
+        end
+        
       else
-        objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:blp_page])
+        if !params[:get].blank? && company_ids.blank?
+          objs = []
+        else
+          objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:blp_page])  
+        end
       end
 
     elsif params[:sort_by] == "following"
-      companies = current_user.follows_by_type('Company').map(&:followable)
-      if options[:type] == 'longpitchs'
-        objs = class_name.where(:company_id => companies.map(&:id)).order("created_at desc").paginate(:page => params[:lp_page])
-      elsif options[:type] == 'shortpitchs'
-        objs = class_name.where(:company_id => companies.map(&:id)).order("created_at desc").paginate(:page => params[:sp_page])
+      if company_ids.blank?
+        follow_company_ids = current_user.follows_by_type('Company').map(&:followable).map(&:id)
       else
-        objs = class_name.where(:company_id => companies.map(&:id)).order("created_at desc").paginate(:page => params[:blp_page])
+        follow_company_ids = current_user.follows_by_type('Company').map(&:followable).map(&:id).flatten & company_ids
+      end
+      if options[:type] == 'longpitchs'
+        objs = class_name.where(:company_id => follow_company_ids).order("created_at desc").paginate(:page => params[:lp_page])
+      elsif options[:type] == 'shortpitchs'
+        objs = class_name.where(:company_id => follow_company_ids).order("created_at desc").paginate(:page => params[:sp_page])
+      else
+        if !params[:get].blank? && company_ids.blank?
+          objs = []
+        else
+          objs = class_name.where(:company_id => follow_company_ids).order("created_at desc").paginate(:page => params[:blp_page])
+        end
+        
       end
     else
+      if !company_ids.blank?
+        class_name = class_name.where(:company_id => company_ids)
+      end
       if options[:type] == 'longpitchs'
         objs = class_name.order("created_at #{params[:sort_by]}").paginate(:page => params[:lp_page])
       elsif options[:type] == 'shortpitchs'
         objs = class_name.order("created_at #{params[:sort_by]}").paginate(:page => params[:sp_page])
       else
-        objs = class_name.order("created_at #{params[:sort_by]}").paginate(:page => params[:blp_page])
+        if !params[:get].blank? && company_ids.blank?
+          objs = []
+        else
+          objs = class_name.order("created_at #{params[:sort_by]}").paginate(:page => params[:blp_page])
+        end
+        
       end      
     end
     return objs
