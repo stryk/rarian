@@ -23,6 +23,8 @@ gem 'acts_as_commentable'
 
 gem "acts_as_follower"
 
+gem "acts_as_tree", "~> 1.5.0"
+
 gem "rmagick"
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

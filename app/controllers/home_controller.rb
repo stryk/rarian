@@ -6,12 +6,12 @@ class HomeController < ApplicationController
 
   def landing
     params[:sort_by] = "default"
-    company_ids = Quote.get_cap(params[:get])
-    @buy_pitchs = get_records(Pitch.buy_pitch, params, {:type => 'longpitchs', :company_ids => company_ids})
-    @sell_pitchs = get_records(Pitch.sell_pitch, params, {:type => 'shortpitchs', :company_ids => company_ids})
-    @blips = get_records(Blip.all, params, {:type => 'blips', :company_ids => company_ids})
+    company_ids, company_type = Quote.get_cap(params)
+    @buy_pitchs = get_records(Pitch.buy_pitch, params, {:type => 'longpitchs', :company_ids => company_ids, :company_type => company_type})
+    @sell_pitchs = get_records(Pitch.sell_pitch, params, {:type => 'shortpitchs', :company_ids => company_ids, :company_type => company_type})
+    @blips = get_records(Blip.all, params, {:type => 'blips', :company_ids => company_ids, :company_type => company_type})
 
-    if !params[:get].blank? && company_ids.blank?
+    if !company_type.blank? && company_ids.blank?
       @catalyst = []
     elsif !company_ids.blank?
       @catalyst = Catalyst.where(['date >= ?', Date.today]).where(:company_id => company_ids).order("date asc").paginate(:page => params[:cat_page])

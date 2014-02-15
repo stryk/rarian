@@ -66,21 +66,21 @@ class ApplicationController < ActionController::Base
       end
 
       if options[:type] == 'longpitchs'
-        if !params[:get].blank? && company_ids.blank?
+        if !options[:company_type].blank? && company_ids.blank?
           objs = []
         else
           objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:lp_page])
         end
         
       elsif options[:type] == 'shortpitchs'
-        if !params[:get].blank? && company_ids.blank?
+        if !options[:company_type].blank? && company_ids.blank?
           objs = []
         else
           objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:sp_page])
         end
         
       else
-        if !params[:get].blank? && company_ids.blank?
+        if !options[:company_type].blank? && company_ids.blank?
           objs = []
         else
           objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:blp_page])  
@@ -98,7 +98,7 @@ class ApplicationController < ActionController::Base
       elsif options[:type] == 'shortpitchs'
         objs = class_name.where(:company_id => follow_company_ids).order("created_at desc").paginate(:page => params[:sp_page])
       else
-        if !params[:get].blank? && company_ids.blank?
+        if !options[:company_type].blank? && company_ids.blank?
           objs = []
         else
           objs = class_name.where(:company_id => follow_company_ids).order("created_at desc").paginate(:page => params[:blp_page])
@@ -114,7 +114,7 @@ class ApplicationController < ActionController::Base
       elsif options[:type] == 'shortpitchs'
         objs = class_name.order("created_at #{params[:sort_by]}").paginate(:page => params[:sp_page])
       else
-        if !params[:get].blank? && company_ids.blank?
+        if !options[:company_type].blank? && company_ids.blank?
           objs = []
         else
           objs = class_name.order("created_at #{params[:sort_by]}").paginate(:page => params[:blp_page])

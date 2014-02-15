@@ -74,21 +74,34 @@
         <div class="row">
         <nav>
           <ul class="navul">
+            <% Navigation.where(:parent_id => nil).all.each do |navigation| %>
+
             <li>
-              <a href="#">Size</a>
+              <a href="#"><%= navigation.name %></a>
               <ul>
-                <li><%= link_to "SmallCap <$1B", home_landing_type_path('small_cap') %></li>
-                <li><%= link_to "MidCap <$10B", home_landing_type_path('mid_cap') %></li>
-                <li><%= link_to "LargeCap $10+B", home_landing_type_path('large_cap') %></li> 
+                <% if !navigation.get_chidrens.all.last.try(:sector).blank? %>
+                  <% child_navs = navigation.get_chidrens.group_by(&:sector)  %>
+                <% elsif !navigation.query_hashs.blank? %>
+                  <% child_navs = navigation.get_chidrens.all %>
+                <% else %>
+                  <% child_navs = navigation.get_chidrens  %>
+                <% end %>
+                
+                <% if child_navs.is_a?(Array) %>
+                  <% child_navs.each do |child_nav| %>
+                    <li><%= link_to child_nav.name, navigation.generate_url(child_nav) %></li>
+                  <% end %>
+                <% elsif child_navs.is_a?(Hash) %>
+                  <% child_navs.each do |seperator, child_nav| %>
+                    <li><%= seperator %></li>
+                    <% child_nav.each do |c_nav| %>
+                      <li><%= link_to c_nav.name, navigation.generate_url(c_nav) %></li>
+                    <% end %>
+                  <% end %>
+                <% end %>
               </ul>
             </li>
-            <li><a href="#">Sector</a></li>
-            <li><a href="#">Industries</a></li>
-            <li><a href="#">Nav Link 4</a></li>
-            <li><a href="#">Nav Link 5</a></li>
-            <li><a href="#">Nav Link 6</a></li>
-            <li><a href="#">Nav Link 7</a></li>
-            <li><a href="#">Nav Link 8</a></li>
+            <% end %>
           </ul>
           <div class="clr"></div>
         </nav>
