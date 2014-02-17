@@ -26,7 +26,9 @@
                                                                   } %>
           </div>
           <a href="#" class="more-content" id="more-lp">More...</a>
-          <div id="lp-pagination"><%= will_paginate @buy_pitchs, :param_name => 'lp_page'%></div>
+          <% if !@buy_pitchs.blank? %>
+            <div id="lp-pagination"><%= will_paginate @buy_pitchs, :param_name => 'lp_page'%></div>
+          <% end %>
         </div>
       </div>
 
@@ -56,7 +58,9 @@
                                                                     :show_ticker => true} %>
           </div>
           <a href="#" class="more-content" id="more-sp">More...</a>
-          <div id="sp-pagination"><%= will_paginate @sell_pitchs, :param_name => 'sp_page'%></div>
+          <% if !@sell_pitchs.blank? %>
+            <div id="sp-pagination"><%= will_paginate @sell_pitchs, :param_name => 'sp_page'%></div>
+          <% end %>
           <!-- end of rows-div -->
 
         </div>
@@ -85,9 +89,12 @@
           :locals => {:objs => @blips, :child_objs => nil, :objs_text => nil, :child_objs_text => nil, :show_ticker => true} %>
         </div>
         <a href="#" class="more-content" id="more-blp">More...</a>
+        <% if !@blips.blank? %>
         <div id="blp-pagination"><%= will_paginate @blips, :param_name => 'blp_page', :id => "blp-pagination"  %></div>
-      </div>
+	<% end %>    
+  </div>
     </div>
+
 
 
         <!-- end of left-panel -->
@@ -105,7 +112,9 @@
         </div>
         <a href="#" class="more-content" id="more-cat">More...</a>
       </div>
+      <% if !@catalyst.blank? %>
         <%= will_paginate @catalyst, :param_name => 'cat_page', :id => "cat-pagination" %>
+      <% end %>
         <div class="clr"></div>
       </div>
 

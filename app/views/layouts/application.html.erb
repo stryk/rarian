@@ -38,9 +38,9 @@
         </h1></div>
         <div class="top-search-div">
                   <div class="top-search clear-fix">
-                    <%= form_tag(searches_path, :class => 'pull-right', :remote => true) do %>
-                      <%= text_field('q', 'search', :class => 'search-input', :placeholder => "Search by Ticker, Company name") %>
-                      <%= submit_tag('', :class => 'search-btn') %>
+                    <%= form_tag(searches_path(:format => 'json'), :class => 'pull-right', :remote => true) do %>
+                      <%= text_field('q', 'search', :class => 'search-input', :id => 'global_search', :placeholder => "Search by Ticker, Company name") %>
+                      <%= link_to('', '#.', :class => 'search-btn', :id => 'global_search_link') %>
                       <div class="clr"></div>
                     <% end %>
                   </div>
@@ -74,21 +74,34 @@
         <div class="row">
         <nav>
           <ul class="navul">
+            <% Navigation.where(:parent_id => nil).all.each do |navigation| %>
+
             <li>
-              <a href="#">Size</a>
+              <a href="#"><%= navigation.name %></a>
               <ul>
-                <li><%= link_to "SmallCap <$1B", "#" %></li>
-                <li><%= link_to "MidCap <$10B", "#" %></li>
-                <li><%= link_to "LargeCap $10+B", "#" %></li> 
+                <% if !navigation.get_chidrens.all.last.try(:sector).blank? %>
+                  <% child_navs = navigation.get_chidrens.group_by(&:sector)  %>
+                <% elsif !navigation.query_hashs.blank? %>
+                  <% child_navs = navigation.get_chidrens.all %>
+                <% else %>
+                  <% child_navs = navigation.get_chidrens  %>
+                <% end %>
+                
+                <% if child_navs.is_a?(Array) %>
+                  <% child_navs.each do |child_nav| %>
+                    <li><%= link_to child_nav.name, navigation.generate_url(child_nav) %></li>
+                  <% end %>
+                <% elsif child_navs.is_a?(Hash) %>
+                  <% child_navs.each do |seperator, child_nav| %>
+                    <li><%= seperator %></li>
+                    <% child_nav.each do |c_nav| %>
+                      <li><%= link_to c_nav.name, navigation.generate_url(c_nav) %></li>
+                    <% end %>
+                  <% end %>
+                <% end %>
               </ul>
             </li>
-            <li><a href="#">Sector</a></li>
-            <li><a href="#">Industries</a></li>
-            <li><a href="#">Nav Link 4</a></li>
-            <li><a href="#">Nav Link 5</a></li>
-            <li><a href="#">Nav Link 6</a></li>
-            <li><a href="#">Nav Link 7</a></li>
-            <li><a href="#">Nav Link 8</a></li>
+            <% end %>
           </ul>
           <div class="clr"></div>
         </nav>
@@ -197,7 +210,73 @@
         $("#flash-message-custom").hide('slow');
         $("#flash-message").hide('slow');
     });
+
+    $(function () {
+    var widgetInst = $('#global_search').autocomplete({
+      source: function (request, response) {
+        $.ajax({
+          url: '<%= searches_path %>', 
+          dataType: "json",         
+          type: "POST",
+          data: {
+            featureClass: "P",
+            style: "full",
+            maxRows: 12,
+            name_startsWith: request.term
+          },
+          success: function (data) {
+            response($.map(data.options, function (item) {
+              return {
+                label: item.name,
+                value: item.name,
+                id: item.id,
+                divider: item.divider,
+                url: item.url
+              }
+            }));
+            $('#global_search').val($('#global_search').val().trim());
+          }
+        });
+      },
+      select: function (event, ui) {
+        window.location = ui.item.url;
+        $('#competitor_competitor_id').val(ui.item.id);
+      },
+      items: 5,
+      minLength: 1,
+      open: function () {
+        $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+      },
+      close: function () {
+        $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+      }
+
+    }).data('ui-autocomplete');
+
+    widgetInst._renderItem = function( ul, item ) {
+                if(item.divider == true){
+                  return $( "<li class='ui-menu-divider'></li>" ).data("item.autocomplete", item)
+                    .append(item.label)
+                    .appendTo( ul );
+                }else{
+                return $( "<li class='selected'></li>" ).data("item.autocomplete", item)
+                    .append( "<a href='"+item.url+"'>" + item.label + "</a>")
+                    .appendTo( ul );
+                }
+        };
+
+    
+    
+  });
+  
+  $('#global_search_link').click(function(){
+    $('#global_search').val($('#global_search').val()+' ');
+    $('#global_search').trigger('keydown');
+  });
+
   </script>
+
+  
 
 </div>
 </body>
