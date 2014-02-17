@@ -1,6 +1,6 @@
 class ContentProcessingWorker
 	include Sidekiq::Worker
-	sidekiq_options :retry => false
+	sidekiq_options :retry => 3
 
 	def perform(id, is_pitch)
 

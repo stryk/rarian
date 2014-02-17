@@ -13,12 +13,16 @@ class TargetPrice < ActiveRecord::Base
 
   def identify_median
     sorted = TargetPrice.where(:year => year, :company_id => company_id).map(&:target_price).sort
-    len = sorted.length
-    if len % 2 == 0 # if even
-      median_value = (sorted[(len / 2) - 1] + sorted[len / 2]) / 2.0
+    if sorted.present?
+      len = sorted.length
+      if len % 2 == 0 # if even
+        median_value = (sorted[(len / 2) - 1] + sorted[len / 2]) / 2.0
+      else
+        median_value = sorted[(len - 1) / 2]
+      end
+      MedianTargetPrice.new_median(median_value, company_id, year)
     else
-      median_value = sorted[(len - 1) / 2]
+      MedianTargetPrice.find_by_company_id(company_id).destroy
     end
-    MedianTargetPrice.new_median(median_value, company_id, year)
   end
 end

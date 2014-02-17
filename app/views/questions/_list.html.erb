@@ -1,5 +1,4 @@
-
-  <%= render :partial => 'shared/qa_list', :locals =>  {:objs => questions,:company => @company,
+<%= render :partial => 'shared/qa_list', :locals =>  {:objs => questions,:company => @company,
                                                            :child_objs => "answers",:objs_text => "<strong>Q.</strong> ",
                                                            :child_objs_text => "<strong>A.</strong> "} %>
 <!--wrap question and Answer with p tag-->

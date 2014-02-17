@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
+  before_filter :load_user
   load_and_authorize_resource
   skip_authorize_resource :only => :show
 
@@ -151,6 +152,14 @@ class UsersController < ApplicationController
     # obj_relationship.order("created_at #{params[:sort_by]}").where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
     obj_relationship.order("created_at #{params[:sort_by]}")
 
+  end
+
+  def load_user
+    if params[:id] == nil
+      @user = nil
+    else
+      @user= User.friendly.find(params[:id].to_s.downcase)
+    end
   end
 
 end

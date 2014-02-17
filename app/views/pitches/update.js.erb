@@ -1,4 +1,4 @@
-$("#pitch_item_<%= @pitch.id %>").hide('slow')
+
 $("#pitch_item_<%= @pitch.id %>").html('<%=j render :partial => 'shared/pitch_item', :locals => {:cobj => @pitch, :text_val => nil,
                                                            :child_objs_present => nil,
                                                            :child_objs => nil,
@@ -6,7 +6,8 @@ $("#pitch_item_<%= @pitch.id %>").html('<%=j render :partial => 'shared/pitch_it
                                                            :comments_count => @pitch.comments.count,
                                                            :comments => true, :show_link => true, :refresh_div => false,
                                                            :show_ticker => false,
-                                                       		:position => 0} %>').show('slow');
+                                                       		:position => 0} %>');
+
 
 //$('.scroll-pane').jScrollPane();
 $("#flash-message-custom").html('<div class="success"><p><span class="close-btn"><a href="#" class="close-btn" ><img src="/assets/close-btn.png" class="close-btn" alt=""></a></span><%= @msg %></p></div>');

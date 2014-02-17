@@ -1,12 +1,14 @@
 :concurrency: 5
 :pidfile: ./tmp/pids/sidekiq.pid
-staging:
-  :concurrency: 5
-production:
-  :concurrency: 10
 :queues:
   - [priority, 9]
   - [devise_mailer, 8]
   - [ts_delta, 2]
   - [default, 5]
   - [mailer, 6]
+development:
+  :concurrency: 5
+staging:
+  :concurrency: 5
+production:
+  :concurrency: 10

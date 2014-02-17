@@ -82,7 +82,7 @@ table {
 
 body {
   background: #f3f3f4;
-  font: 14px / 21px "pt_sansregular", sans-serif;
+  font: 14px / 21px "dhelvetica", sans-serif;
   color: #222;
   -webkit-font-smoothing: antialiased;
   /* Fix for webkit rendering */
@@ -94,8 +94,9 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   color: #000;
-  font-family: 'vag_roundedbold';
-  font-weight: 400;
+  // font-family: 'vag_roundedbold';
+  font-family: 'dhelvetica';
+  font-weight: bold;
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -2284,6 +2285,60 @@ h2.page-title {
   font-family: 'MatrixditRegular';
   src: url('/assets/fonts/matrixdit.eot');
   src: url('/assets/fonts/matrixdit.eot#iefix') format("embedded-opentype"), url('/assets/fonts/matrixdit.woff') format("woff"), url('/assets/fonts/matrixdit.ttf') format("truetype"), url('/assets/fonts/matrixdit.svg#MatrixditRegular') format("svg");
+}
+
+@font-face {
+  font-family: 'dhelvetica';
+  src: url('/assets/fonts/texgyreheros-regular.otf') format("opentype");
+}
+
+@font-face {
+  font-family: 'dhelvetica';
+  font-weight: bold;
+  src: url('/assets/fonts/texgyreheros-bold.otf') format("opentype");
+}
+
+
+@font-face {
+  font-family: 'dhelvetica';
+  font-weight: normal;
+  font-style: italic;
+  src: url('/assets/fonts/texgyreheros-italic.otf') format("opentype");
+}
+
+
+@font-face {
+  font-family: 'dhelvetica';
+  font-weight: bold;
+  font-style: italic;
+  src: url('/assets/fonts/texgyreheros-bolditalic.otf') format("opentype");
+}
+
+@font-face {
+  font-family: 'dhelvetica-narrow';
+  src: url('/assets/fonts/texgyreheroscn-regular.otf') format("opentype");
+}
+
+@font-face {
+  font-family: 'dhelvetica-narrow';
+  font-weight: bold;
+  src: url('/assets/fonts/texgyreheroscn-bold.otf') format("opentype");
+}
+
+
+@font-face {
+  font-family: 'dhelvetica-narrow';
+  font-weight: normal;
+  font-style: italic;
+  src: url('/assets/fonts/texgyreheroscn-italic.otf') format("opentype");
+}
+
+
+@font-face {
+  font-family: 'dhelvetica-narrow';
+  font-weight: bold;
+  font-style: italic;
+  src: url('/assets/fonts/texgyreheroscn-bolditalic.otf') format("opentype");
 }
 
 
