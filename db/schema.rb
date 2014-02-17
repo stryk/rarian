@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205005016) do
+ActiveRecord::Schema.define(version: 20140214133913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +163,16 @@ ActiveRecord::Schema.define(version: 20140205005016) do
     t.datetime "updated_at"
   end
 
+  create_table "navigations", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.string   "url"
+    t.string   "query_hashs"
+    t.string   "model_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pitches", force: true do |t|
     t.string   "action"
     t.text     "multimedia_content"
@@ -297,6 +307,7 @@ ActiveRecord::Schema.define(version: 20140205005016) do
     t.boolean  "email_company_activity",           default: false
     t.datetime "last_emailed_at",                  default: '2014-01-31 04:33:55'
     t.string   "slug"
+    t.boolean  "delta",                            default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

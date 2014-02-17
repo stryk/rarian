@@ -3,7 +3,7 @@ class Navigation < ActiveRecord::Base
 	attr_accessible :url, :name, :parent_id, :query_hashs, :model_name
 	store :query_hashs, accessors: [ :group, :where ]
 
-	def get_chidrens
+	def get_children
 		if self.query_hashs.blank?
 			self.children
 		else
@@ -18,7 +18,7 @@ class Navigation < ActiveRecord::Base
 				childrens = self.model_name.constantize.select(self.query_hashs[:select])
 			end
 
-			childrens
+			return childrens
 		end
 	end
 

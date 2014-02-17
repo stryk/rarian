@@ -17,10 +17,10 @@ class Quote < ActiveRecord::Base
       group('company_id').select('count(quotes.id), quotes.company_id').map(&:company_id)
       return_value = [company_ids, 'get']
     elsif params[:sector]
-    	company_ids = Company.where(:sector => params[:sector]).all.map(&:id)
+    	company_ids = Company.where(:sector => params[:sector]).to_a.map(&:id)
     	return_value = [company_ids, 'sector']
     elsif params[:industry]
-    	company_ids = Company.where(:sector => params[:industry]).all.map(&:id)
+    	company_ids = Company.where(:sector => params[:industry]).to_a.map(&:id)
     	return_value = [company_ids, 'industry']
     else
       return_value = [[], '']
