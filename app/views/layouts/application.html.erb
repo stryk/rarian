@@ -73,33 +73,47 @@
       <div class="navdiv">
         <div class="row">
         <nav>
-          <ul class="navul">
+          <ul class="nav">
             <% Navigation.where(:parent_id => nil).to_a.each do |navigation| %>
 
             <li>
               <a href="#"><%= navigation.name %></a>
-              <ul>
                 <% if !navigation.get_children.all.last.try(:sector).blank? %>
                   <% child_navs = navigation.get_children.group_by(&:sector)  %>
                 <% elsif !navigation.query_hashs.blank? %>
                   <% child_navs = navigation.get_children.all %>
                 <% else %>
-                  <% child_navs = navigation.get_children  %>
+                  <% child_navs = navigation.get_children.all %>
                 <% end %>
                 
                 <% if child_navs.is_a?(Array) %>
+                <div class="dropdown_1columns">
+                  <div class="col_1">
+                    <ul>
                   <% child_navs.each do |child_nav| %>
                     <li><%= link_to child_nav.name, navigation.generate_url(child_nav) %></li>
                   <% end %>
+                </ul>
+                </div>
+                </div>
                 <% elsif child_navs.is_a?(Hash) %>
-                  <% child_navs.each do |separator, child_nav| %>
-                    <li><%= separator %></li>
+                  <div class="dropdown_1columns">
+                  <% child_navs.each do |seperator, child_nav| %>
+                      
+                    <div class="col_1">
+                      <h3><%= seperator %></h3>
+                    <ul>
                     <% child_nav.each do |c_nav| %>
                       <li><%= link_to c_nav.name, navigation.generate_url(c_nav) %></li>
                     <% end %>
+                  </ul>
+                    
+                    </div>
                   <% end %>
+                  </div>
                 <% end %>
-              </ul>
+                  
+
             </li>
             <% end %>
           </ul>
@@ -255,7 +269,7 @@
 
     widgetInst._renderItem = function( ul, item ) {
                 if(item.divider == true){
-                  return $( "<li class='ui-menu-divider'></li>" ).data("item.autocomplete", item)
+                  return $( "<li></li>" ).data("item.autocomplete", item)
                     .append(item.label)
                     .appendTo( ul );
                 }else{
