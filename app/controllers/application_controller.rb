@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  http_basic_authenticate_with name: "ap", password: "money", except: :index
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
 
@@ -78,7 +77,14 @@ class ApplicationController < ActionController::Base
         else
           objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:sp_page])
         end
-        
+      
+      elsif options[:type] == 'questions'
+        if !options[:company_type].blank? && company_ids.blank?
+          objs = []
+        else
+          objs = class_name.where('net_votes >= -1').order(order_by_sql, "net_votes desc, created_at desc").paginate(:page => params[:question_page])
+      end
+
       else
         if !options[:company_type].blank? && company_ids.blank?
           objs = []
@@ -97,6 +103,8 @@ class ApplicationController < ActionController::Base
         objs = class_name.where(:company_id => follow_company_ids).order("created_at desc").paginate(:page => params[:lp_page])
       elsif options[:type] == 'shortpitchs'
         objs = class_name.where(:company_id => follow_company_ids).order("created_at desc").paginate(:page => params[:sp_page])
+      elsif options[:type] == 'questions'
+        objs = class_name.where(:company_id => follow_company_ids).order("created_at desc").paginate(:page => params[:question_page])  
       else
         if !options[:company_type].blank? && company_ids.blank?
           objs = []
@@ -113,6 +121,8 @@ class ApplicationController < ActionController::Base
         objs = class_name.order("created_at #{params[:sort_by]}").paginate(:page => params[:lp_page])
       elsif options[:type] == 'shortpitchs'
         objs = class_name.order("created_at #{params[:sort_by]}").paginate(:page => params[:sp_page])
+      elsif options[:type] == 'questions'
+        objs = class_name.order("created_at #{params[:sort_by]}").paginate(:page => params[:question_page])
       else
         if !options[:company_type].blank? && company_ids.blank?
           objs = []

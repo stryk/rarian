@@ -1,0 +1,17 @@
+<% show_ticker = show_ticker rescue nil %>
+<% show_link_boolean = show_link rescue nil %>
+
+<% objs.each do |cobj| %>
+  <p><a href='/companies/<%= cobj.company.ticker %>'><%= cobj.company.ticker %>:</a> <%= cobj.question.content %></p>
+  <div class="<%=cobj.class.to_s.downcase%>-item" id="<%=cobj.class.to_s.downcase%>_item_<%= cobj.id %>">
+  <%= render :partial => 'shared/qa_item', :locals => {:cobj => cobj, :text_val => objs_text,
+                                                           :child_objs_present => false,
+                                                           :child_objs => child_objs,
+                                                           :child_objs_text => child_objs_text,
+                                                           :comments_count => cobj.comments.count,
+                                                           :comments => true, :show_link => show_link_boolean, 
+                                                           :show_ticker => false,
+                                                           :refresh_div => false} %>
+  </div>                                                
+  <hr>
+<% end %>

@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
     @company_lists = Company.search params['name_startsWith'] unless params['name_startsWith'].strip.blank?
     options = []
     
-    options << {:id => '', :name => "Company", :divider => true} if !@company_lists.blank?
+    options << {:id => '', :name => "Companies", :divider => true} if !@company_lists.blank?
 
     @company_lists.each do |company|
       options << {:id => company.id, :name => company.name + "-" + company.ticker, :divider => '', :url => company_path(company)}
@@ -14,7 +14,7 @@ class SearchesController < ApplicationController
     @user_lists = []
     @user_lists = User.search '*'+params['name_startsWith']+'*' unless params['name_startsWith'].strip.blank?
 
-    options << {:id => '', :name => "User", :divider => true} unless @user_lists.blank?
+    options << {:id => '', :name => "Members", :divider => true} unless @user_lists.blank?
 
     @user_lists.each do |user|
       options << {:id => user.id, :name => user.name, :divider => '', :url => user_path(user)}

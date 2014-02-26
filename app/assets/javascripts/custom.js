@@ -50,11 +50,14 @@
 
 })( jQuery );
 
-// $(document).ready(function(){
-//  document.getElementById("uploadBtn").onchange = function () {
-// 	    document.getElementById("uploadFile").value = this.value;
-// 	};
-// });
+$(document).ready(function(){
+	uploadBtn = document.getElementById("uploadBtn")
+	if(uploadBtn) {
+	 document.getElementById("uploadBtn").onchange = function () {
+		    document.getElementById("uploadFile").value = this.value;
+		};
+	}
+});
 
 
 function toggle_visibility_from_hidden(id) {

@@ -6,8 +6,8 @@ class Answer < ActiveRecord::Base
   attr_accessible :content, :user_id, :company_id, :question_id, :net_votes, :points
 
   module Point
-    UP = 2
-    DOWN = -2
+    UP = 6
+    DOWN = -6
   end
 
   belongs_to :user

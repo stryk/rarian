@@ -9,8 +9,8 @@ class UsersController < ApplicationController
     @buypitchs = get_records(@user.pitches.buy_pitch, params, {:type => 'longpitchs'})
     @sellpitchs = get_records(@user.pitches.sell_pitch, params, {:type => 'shortpitchs'})
     @blips = get_records(@user.blips, params, {:type => 'blips'})
-    @question = get_objects(@user.questions, params)
-    @answer = get_objects(@user.answers, params)
+    @questions = get_objects(@user.questions, params)
+    @answers = get_objects(@user.answers, params)
     @comment = get_objects(@user.comments, params)
     respond_to do |format|
       format.js {
@@ -51,24 +51,32 @@ class UsersController < ApplicationController
 
   def credits
     @credit_sum = 0
-    @buy_pitches = current_user.pitches.buy_pitch.where("points > 0")
-    @credit_sum += @buy_pitches.map(&:points).inject{|sum,x| sum + x } if !@buy_pitches.blank?
-    @sell_pitches = current_user.pitches.sell_pitch.where("points > 0")
-    @credit_sum += @sell_pitches.map(&:points).inject{|sum,x| sum + x } if !@sell_pitches.blank?
-    @blips = current_user.blips.where("points > 0")
-    @credit_sum += @blips.map(&:points).inject{|sum,x| sum + x } if !@blips.blank?
-    @questions = current_user.questions.where("points > 0")
-    @credit_sum += @questions.map(&:points).inject{|sum,x| sum + x } if !@questions.blank?
-    @answers = current_user.answers.where("points > 0")
-    @credit_sum += @answers.map(&:points).inject{|sum,x| sum + x } if !@answers.blank?
-    @catalysts = current_user.catalysts.where("points > 0")
-    @credit_sum += @catalysts.map(&:points).inject{|sum,x| sum + x } if !@catalysts.blank?
+    @buy_pitches = current_user.pitches.buy_pitch
+    @bp_credit = @buy_pitches.map(&:net_votes).inject{|sum,x| sum + x } if !@buy_pitches.blank?
+    @sell_pitches = current_user.pitches.sell_pitch
+    @sp_credit = @sell_pitches.map(&:net_votes).inject{|sum,x| sum + x } if !@sell_pitches.blank?
+    @blips = current_user.blips
+    @blips_credit = @blips.map(&:net_votes).inject{|sum,x| sum + x } if !@blips.blank?
+    @questions = current_user.questions
+    @questions_credit = @questions.map(&:net_votes).inject{|sum,x| sum + x } if !@questions.blank?
+    @answers = current_user.answers
+    @answers_credit = @answers.map(&:net_votes).inject{|sum,x| sum + x } if !@answers.blank?
+    @competitors = current_user.competitors
+    @comp_credit = @competitors.map(&:net_votes).inject{|sum,x| sum + x } if !@competitors.blank?
+    @risks = current_user.risks
+    @risks_credit = @risks.map(&:net_votes).inject{|sum,x| sum + x } if !@risks.blank?
+    @credit_sum = (@bp_credit * 9) + (@sp_credit * 9) + (@blips_credit * 3) + (@questions_credit * 3) + (@answers_credit * 6) + @comp_credit + (@risks_credit * 2)
+
   end
 
   def update
 
 
   end
+
+  def about
+
+  end 
 
  def blips
     @append = true if params[:blp_page].present?
@@ -151,7 +159,6 @@ class UsersController < ApplicationController
     # params[:range] = 10 if params[:range].blank?
     # obj_relationship.order("created_at #{params[:sort_by]}").where("created_at between '#{Date.today - params[:range].to_i}' and '#{Date.today}'")
     obj_relationship.order("created_at #{params[:sort_by]}")
-
   end
 
   def load_user

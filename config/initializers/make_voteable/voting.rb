@@ -23,19 +23,18 @@ module MakeVoteable
     end
 
     def update_top_users
-
       if voteable.try(:user) && voteable.try(:company)
         if self.up_vote?
-          TopUser.up_vote(voteable.user, voteable.company)
+          TopUser.up_vote(voteable.user, voteable.company, self)
         else
-          TopUser.down_vote(voteable.user, voteable.company)
+          TopUser.down_vote(voteable.user, voteable.company, self)
         end
       end
     end
 
     def undo_top_users
       value = self.up_vote? ? 1 : -1
-      TopUser.undo_vote(voteable.user, voteable.company, value) if(voteable.try(:user) && voteable.try(:company))
+      TopUser.undo_vote(voteable.user, voteable.company, value, self) if(voteable.try(:user) && voteable.try(:company))
     end
 
     def update_competitor

@@ -1,0 +1,31 @@
+Bug Fixes:
+- Check price target, make sure when someone deletes the price, it's reflected properly. - Done
+- Server doesn't run thinking sphinx - fix this -done
+- Formatting error on credit page/profile page/ etc. - done
+- Register must require checking terms - done
+- Forgot email doesn't work properly/email uniqueness check should be turned off - done
+- button should use nicer css - done
+
+
+- client side validations 
+- fix menu / too wide
+- footer at the bottom
+- Amazon S3 needs better error checking for update timeouts - done
+- User page, formatting for questions/answers/comments - done
+
+Features
+- email template to work properly
+- Credit page
+- Questions needs pagination - done
+- File upload
+- Quotes using YQL
+- Pagination for answers
+- Pagination for q&a in user pages
+- Portrait to S3
+
+
+
+
+
+Nice to Haves:
+- Nav bar additional selections

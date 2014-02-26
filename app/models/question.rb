@@ -3,8 +3,8 @@ class Question < ActiveRecord::Base
   attr_accessible :content, :user_id, :company_id, :net_votes, :points
 
   module Point
-    UP = 2
-    DOWN = -2
+    UP = 3
+    DOWN = -3
   end
 
   belongs_to :user
@@ -19,7 +19,7 @@ class Question < ActiveRecord::Base
   make_voteable
 
   acts_as_commentable
-  self.per_page = 10
+  self.per_page = 5
 
   def get_reference
     "<a href='/users/#{user.friendly_id}'>"+user.name+'</a>'+' | '

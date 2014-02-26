@@ -3,7 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   $(".nModal").nyroModal()
-
   
 $(document).on "click", "#mobile_number_edit", ->
   $("#show_mobile_number_div").toggle "slideDown(1000)", ->

@@ -18,9 +18,8 @@
   <!-- end of login-banner-container -->
   <div class="clr"></div>
 
-  <div class="login-btm-container">
-    <div class="row">
-
+<div class="login-btm-container">
+  <div class="row">
       <div class="login-box">
         <p>
           <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical'}) do |f| %>
@@ -32,15 +31,21 @@
             </div>
           </center>
 
-        <% end %>
-        <p><span class="remember-span"> <input type="checkbox"> Remember Me</span>
-          <span class="forgot-span"><a href="devise/shared/links">Forgot Password?</a></span></p> </center>
+          <% end %>
+        </p>
+        <p>
+          <span class="remember-span">
+            <input type="checkbox"> Remember Me
+          </span>
+          <span class="forgot-span">
+            <a href="devise/shared/links">Forgot Password?</a>
+          </span>
+        </p> 
 
         <div class="clr"></div>
       </div>
 
-    </div>
-    <!-- end of login-btm-container -->
   </div>
+    <!-- end of login-btm-container -->
 </div>
 

@@ -39,3 +39,27 @@
   color: #000080;
   cursor: pointer;
 }
+
+.message {
+  color: red;
+}
+
+.credit-list {
+  font-weight: bold;
+  color: #000080;
+  .accent {
+    color: #800000;
+  }
+}
+
+.ui-menu {
+  font-weight: bold;
+  font-style: italic;
+  
+  .ui-menu-item {
+    font-weight: regular;
+    font-style: normal;
+  
+  }
+
+}

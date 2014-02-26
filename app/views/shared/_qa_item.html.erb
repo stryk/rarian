@@ -80,7 +80,7 @@
         <%= link_to("Comments (#{comments_count})", send("company_#{cobj.class.name.downcase}_comments_path", cobj.company, cobj), :remote => true ) %>
 
           <% if child_objs_present %>
-              <% if user_signed_in? && can?(:create, Answer) %>
+              <% if user_signed_in? && can?(:create, Answer) && (cobj.user != current_user) %>
               | <a id="accordion2-<%= cobj.id %>" href="#collapseOne-<%= cobj.id %>">
                   <%= ("<b>"+cobj.child_link_name+"</b>").html_safe %>
                 </a>

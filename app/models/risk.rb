@@ -3,8 +3,8 @@ class Risk < ActiveRecord::Base
   belongs_to :user
 
   module Point
-    UP = 1
-    DOWN = -1
+    UP = 2
+    DOWN = -2
   end
 
   make_voteable

@@ -38,7 +38,9 @@ class ContentProcessingWorker
 				new_key = image_pathname + '/' + random_hex + '/' + image_filename
 				imagefile = File.open(Rails.root.join("public").to_s + content_img_link,'r+b')
 				content_md5 = Digest::MD5.base64digest(File.read(imagefile.path))
-				obj = bucket.objects[new_key].write(:file => imagefile, :content_md5 => content_md5)
+				file_size = imagefile.size.to_i
+				obj = bucket.objects[new_key].write(:file => imagefile, :options => {:content_md5 => content_md5, :estimated_content_length => file_size, 
+					:acl => :public_read})
 				if obj.exists? && image_tag.child.present?
 					
 					image_tag["href"] = 'https://' + configatron.AWS_S3_BUCKET + '.s3.amazonaws.com/' + new_key

@@ -1,96 +1,75 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-<meta name="viewport" content="width=device-width" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>AlphaPitch</title>
-<link rel="stylesheet" type="text/css" href="css/email.css" />
-</head>
-<body bgcolor="#FFFFFF">
-<!-- HEADER -->
-<table class="head-wrap" bgcolor="#3b5998">
-  <tr>
-    <td></td>
-    <td class="header container" ><div class="content">
-        <table bgcolor="#3b5998">
-          <tr>
-            <td><img src="images/logo.png" alt="AlphaPitch" /></td>
-            <td align="right"><h6 class="collapse">Basic</h6></td>
-          </tr>
-        </table>
-      </div></td>
-    <td></td>
-  </tr>
-</table>
-<!-- /HEADER -->
-<!-- BODY -->
-<table class="body-wrap">
-  <tr>
-    <td></td>
-    <td class="container" bgcolor="#FFFFFF"><div class="content">
-        <table>
-          <tr>
-            <td><h3>Hi, <%= @questioner.name %>,</h3>
-              <p class="lead"><%= link_to @answerer.name, user_url(@answerer) %> has answered your question:</p>
-              <p>The answer posted is as follows:</p>
-              <%= @answer.content.html_safe %>
+  <title>AlphaPitch - Someone has answered your question</title>
+  <style>
+  body {
+    background-color: #EFEFEF;
+    color: #2E2F30;
+    text-align: center;
+    font-family: arial, sans-serif;
+  }
 
-              <!-- Callout Panel -->
-              <p class="callout"> <%= link_to "Your member page", user_url(@questioner) %></p>
-              <!-- /Callout Panel -->
-              <!-- social & contact -->
-              <table class="social" width="100%">
-                <tr>
-                  <td><!-- column 1 -->
-                    <table align="left" class="column">
-                      <tr>
-                        <td><h5 class="">Connect with Us:</h5>
-                          <p class=""><a href="#" class="soc-btn fb">Facebook</a> <a href="#" class="soc-btn tw">Twitter</a> <a href="#" class="soc-btn gp">Google+</a></p></td>
-                      </tr>
-                    </table>
-                    <!-- /column 1 -->
-                    <!-- column 2 -->
-                    <table align="left" class="column">
-                      <tr>
-                        <td><h5 class="">Contact Info:</h5>
-                          <p><br/>
-                            Email: <strong><a href="emailto:member_services@alphapitch.com">member_services@alphapitch.com</a></strong></p></td>
-                      </tr>
-                    </table>
-                    <!-- /column 2 -->
-                    <span class="clear"></span> </td>
-                </tr>
-              </table>
-              <!-- /social & contact -->
-            </td>
-          </tr>
-        </table>
-      </div>
-      <!-- /content -->
-    </td>
-    <td></td>
-  </tr>
-</table>
-<!-- /BODY -->
-<!-- FOOTER -->
-<table class="footer-wrap">
-  <tr>
-    <td></td>
-    <td class="container"><!-- content -->
-      <div class="content">
-        <table>
-          <tr>
-            <td align="center"><p> <a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">
-                <unsubscribe>Unsubscribe</unsubscribe>
-                </a> </p></td>
-          </tr>
-        </table>
-      </div>
-      <!-- /content -->
-    </td>
-    <td></td>
-  </tr>
-</table>
-<!-- /FOOTER -->
+  div.dialog {
+    width: 25em;
+    margin: 4em auto 0 auto;
+    border: 1px solid #CCC;
+    border-right-color: #999;
+    border-left-color: #999;
+    border-bottom-color: #BBB;
+    border-top: #B00100 solid 4px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    background-color: white;
+    padding: 7px 4em 0 4em;
+  }
+
+  div.content {
+    width: 45em;
+    margin: 2em auto 0 auto;
+    border: 1px solid #CCC;
+    border-right-color: #999;
+    border-left-color: #999;
+    border-bottom-color: #BBB;
+    border-top: blue solid 4px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    background-color: white;
+    padding: 7px 4em 0 4em;
+  }
+
+
+  h1 {
+    font-size: 100%;
+    color: #730E15;
+    line-height: 1.5em;
+  }
+
+  body > p {
+    width: 33em;
+    margin: 0 auto 1em;
+    padding: 1em 0;
+    background-color: #F7F7F7;
+    border: 1px solid #CCC;
+    border-right-color: #999;
+    border-bottom-color: #999;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-color: #DADADA;
+    color: #666;
+    box-shadow:0 3px 8px rgba(50, 50, 50, 0.17);
+  }
+  </style>
+</head>
+
+<body>
+  <!-- This file lives in public/422.html -->
+  <div class="dialog">
+    <h1>Hi, <%= @questioner.name %>,</h1>
+    <p><%= link_to @answerer.name, user_url(@answerer) %> has answered your question:</p>
+    <p>The answer posted is as follows:</p>
+    <div class="content"><%= @answer.content.html_safe %></div>
+  </div>
 </body>
 </html>
+

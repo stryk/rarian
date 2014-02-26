@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
   has_many :answers, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :catalysts, :dependent => :destroy
+  has_many :competitors, :dependent => :destroy
+  has_many :risks, :dependent => :destroy
 
 
   def password_required?

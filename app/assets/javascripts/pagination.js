@@ -42,7 +42,19 @@ $(function () {
 		$("#more-blp").html('');
 	}
 
-
+	$(document).on("click", "#more-question", function() {
+		url = $('#question-pagination .next_page').attr('href');
+		if (url) {
+			$("#more-question").html('');
+			$("#more-question").spin('small');
+			$.getScript(url);
+		}
+		return false;
+	});
+	qtn_url = $('#question-pagination .next_page').attr('href');
+	if (!qtn_url) {
+		$("#more-question").html('');
+	}
 
 
 	$(document).on("click", "#more-cat", function() {

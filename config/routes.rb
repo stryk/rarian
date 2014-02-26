@@ -21,6 +21,7 @@ Rarian::Application.routes.draw do
       get :blips
       get :sellpitch
       get :buypitch
+      get :questions
     }
     resources :blips
     resources :target_prices
@@ -137,6 +138,9 @@ Rarian::Application.routes.draw do
   get 'companies/sector/:sector' => 'home#landing', as: :home_landing_sector
   get 'companies/industry/:industry' => 'home#landing', as: :home_landing_industry
   put '/' => 'companies#index'
+  get '/contact' => 'home#contact_us', as: :home_contact_us
+  get '/about' => 'home#about', as: :home_about_us
+  get '/terms' => 'home#terms', as: :terms
 
 
 

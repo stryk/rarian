@@ -19,7 +19,7 @@
     margin-right:30px;
     margin-top:7px;*/
     border:none;
-	background:url(../images/nav-dividar.png) no-repeat left center;
+	background:url(/assets/nav-dividar.png) no-repeat left center;
 	padding: 12px;
 	line-height:normal;
 }

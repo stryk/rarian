@@ -1,4 +1,6 @@
 <% show_ticker = show_ticker rescue nil %>
+<% show_link_boolean = show_link rescue nil %>
+
 <% objs.each do |cobj| %>
   <div class="<%=cobj.class.to_s.downcase%>-item" id="<%=cobj.class.to_s.downcase%>_item_<%= cobj.id %>">
    <% show_link_boolean = (show_link rescue false)  %>

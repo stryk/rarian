@@ -12,16 +12,16 @@ class CompanyImportFileWorker
 				CSV.foreach(tempfile.path, headers: true) do |row|
 					begin
 						row_hash = row.to_hash
-						company = Company.find_by(ticker: row_hash['Symbol'].html_safe, name: row_hash['Name'].html_safe)
+						company = Company.find_by(ticker: row_hash['Symbol'], name: row_hash['Name'].gsub(/&#39;/, "'"))
 						if company.blank?
 							company = Company.find_by(ticker: row_hash['Symbol'], name: row_hash['Name'])
 						end
 						company = Company.new if company.blank?
-						company.name = row_hash['Name'].html_safe
-						company.ticker = row_hash['Symbol'].html_safe
+						company.name = row_hash['Name'].gsub(/&#39;/, "'")
+						company.ticker = row_hash['Symbol'].gsub(/\^/, "-")
 						company.exchange = exchange
-						company.sector = row_hash['Sector'].html_safe
-						company.industry = row_hash['industry'].html_safe
+						company.sector = row_hash['Sector']
+						company.industry = row_hash['industry']
 						quote = company.quotes.build
 						quote.price = row_hash['LastSale'].to_d
 						quote.market_cap = row_hash['MarketCap'].to_d

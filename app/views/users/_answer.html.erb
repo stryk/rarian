@@ -1,3 +1,0 @@
-<% objs.each do |answer| %>
-<%= link_to answer.company.ticker, company_path(answer.company.ticker) %>: <%= answer.get_full_title.html_safe %> </br>
-<% end %>

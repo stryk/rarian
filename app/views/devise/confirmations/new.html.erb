@@ -6,7 +6,7 @@
       <div class="sign-container">
 
 
-<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name),:validate => true, :html => { :method => :post }) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name),:html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>
 
    <p><label class="lbltxt">Your Email</label><em>*</em><br>
@@ -15,7 +15,7 @@
             </label>
           </p>
 
-  <div><%= f.submit "Resend confirmation instructions" %></div>
+  <div><%= f.submit "Resend confirmation instructions", :class => "button medium brown" %></div>
 <% end %>
 
 

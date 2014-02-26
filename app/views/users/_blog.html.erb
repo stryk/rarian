@@ -1,4 +1,4 @@
-<%= @user.blog%>
+<p><%= @user.blog%></p>
 <% if user_signed_in?  && @user.id == current_user.id %>
 <%= link_to "Edit", "#.",
             :id => "blog" ,
@@ -6,9 +6,7 @@
 <div class="slide-div" id="show_blog_down" style="display: none">
   <%= form_for(current_user, :remote => true, url: users_path(:id => current_user.id),
                update: "message_div_id", :method => 'put') do |f| %>
-
-      <%=	 f.label :blog %>
-      <%= f.text_area :blog %>
+      <%= f.text_area :blog , :cols => "27",:rows => 5 %>
 
 
 

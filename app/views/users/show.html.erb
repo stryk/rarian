@@ -74,41 +74,37 @@
   </div>
 </div></div>
   <div class="box-col middle-margin">
-    <h3 class="middleh3">Questions
-      <div style="float:right"><span class="dropdown">
+
+    <h3>Your Questions<div style="float:right"><span class="dropdown">
       <%= select_tag("question_sort","<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
-      </span> </div>
-      </h3>
-      <div class="box-col-topreason">
-      <div class="rows-div">
-    <div id="question_list" class="scroll">
-      <%= render :partial => 'users/question', :locals => {:objs => @question,
-                                                            :child_objs => nil,
-                                                            :objs_text => nil,
-                                                            :child_objs_text => nil,
-                                                            :show_link => true} %>
-
-  </div>
+      </span> </div></h3>
+    <div class="qa-container">
+      <div class="qa-row">
+      <div id="questions_list" class="question-ans-container">
+        <%= render :partial => 'shared/qa_list', :locals =>  {:objs => @questions, :show_ticker => true,
+                                                           :child_objs => "answers",:objs_text => "<strong>Q.</strong> ",
+                                                           :child_objs_text => "<strong>A.</strong> "} %>
+      </div>
+      </div>
     </div>
-  </div></div>
-  <div class="box-col middle-margin">
-    <h3 class="middleh3">Answers
-      <div style="float:right"><span class="dropdown">
-      <%= select_tag("answer_sort", "<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
-    </span></div>
-  </h3>
-  <div class="box-col-topreason">
-      <div class="rows-div">
-    <div id="answer_list" class="scroll">
-      <%= render :partial => 'users/answer', :locals => {:objs => @answer,
-                                                           :child_objs => nil,
-                                                           :objs_text => nil,
-                                                           :child_objs_text => nil,
-                                                           :show_link => true} %>
-
   </div>
+  <div class="box-col middle-margin">
 
-          </div></div></div>
+    <h3>Your Answers<div style="float:right"><span class="dropdown">
+      <%= select_tag("answer_sort","<option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+      </span> </div></h3>
+    <div class="qa-container">
+      <div class="qa-row">
+      <div id="answer_list" class="question-ans-container">
+        <%= render :partial => 'users/answers', :locals =>  {:objs => @answers, :show_ticker => true,
+                                                           :child_objs => "answers",:objs_text => "<strong>A.</strong> ",
+                                                           :child_objs_text => "<strong>A.</strong> "} %>
+      </div>
+      </div>
+    </div>
+  </div>
+ 
+<!-- 
   <div class="box-col middle-margin">
     <h3 class="middleh3">Comments
       <div style="float:right"><span class="dropdown">
@@ -126,7 +122,7 @@
      </div>
 
           </div>
-        </div></div>
+        </div></div> -->
   <div class="clr"></div>
 </div>
 
@@ -152,7 +148,7 @@
 
 
   <div class="box-col">
-    <h3>Company: </h3>
+    <h3>Profession: </h3>
     <div id='company_list' class="box-col-div">
      <%= render :partial => 'users/company' %>
     </div>

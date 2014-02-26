@@ -2,6 +2,10 @@ class Competitor < ActiveRecord::Base
   belongs_to :competitor_company, :foreign_key => :competitor_id, :class_name => "Company"
   belongs_to :company
   belongs_to :user
+  module Point
+    UP = 1
+    DOWN = -1
+  end
 
   make_voteable
 

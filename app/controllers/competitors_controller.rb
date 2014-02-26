@@ -2,7 +2,6 @@ class CompetitorsController < ApplicationController
   load_and_authorize_resource :company
 
   def create
-    debugger
     unless params[:competitor][:competitor_id] == @company.id.to_s
       @competitor = @company.competitors.create(:competitor_id => params[:competitor][:competitor_id], :user_id => current_user.id)
       if @competitor.errors.blank?

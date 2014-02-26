@@ -73,7 +73,7 @@ Rarian::Application.configure do
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
-  config.action_mailer.default_url_options = { :host => '198.211.110.54' }
+  config.action_mailer.default_url_options = { :host => 'www.alphapitch.com' }
   config.action_mailer.default_url_options[:only_path] = false
   config.action_mailer.delivery_method = :ses
    # Don't care if the mailer can't send.

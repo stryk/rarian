@@ -1,0 +1,13 @@
+<% if @append == true %>
+	$("#questions-list").append('<%=j raw (render :partial => "questions/list", :locals => {:questions => @questions, :company => @company} ).gsub!("\n", "") %>');
+<% else %>
+	$("#questions-list").html('<%=j raw (render :partial => "questions/list", :locals => {:questions => @questions, :company => @company}).gsub!("\n", "") %>');
+<% end %>
+$("#more-question").spin(false);
+$("#more-question").html('More...');
+$('#question-pagination').html("<%= j will_paginate @questions, :param_name => 'question_page', :id => 'question-pagination'  %>");
+$('#question-pagination').hide();
+url = $('#question-pagination .next_page').attr('href');
+if (!url) {
+	$("#more-question").html('');
+}

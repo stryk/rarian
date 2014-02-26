@@ -3,8 +3,8 @@ class Blip < ActiveRecord::Base
   belongs_to :company
 
   module Point
-    UP = 2
-    DOWN = -2
+    UP = 3
+    DOWN = -3
   end
 
 

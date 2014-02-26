@@ -295,6 +295,14 @@ button::-moz-focus-inner, ::-moz-focus-inner {
   }
 }
 
+input[type=submit]:disabled,
+button:disabled {
+  border: 0;
+  padding: 6px 10px;
+  opacity: 0.5;
+  filter: alpha(opacity = 50);
+}
+
 .medium-buttons .button {
   margin-bottom: 10px;
   margin-right: 20px;
@@ -403,8 +411,9 @@ input {
   border-bottom: 1px solid #3b5998;
   .tickers-div {
     padding: 5px;
-    font-size: 12px;
+    font-size: 14px;
     color: #3b5998;
+    font-weight: normal;
     font-family: 'MatrixditRegular';
   }
 }
@@ -802,7 +811,7 @@ input {
 #middle-container {
   clear: both;
   margin: 0;
-  padding: 180px 0 100px 0;
+  padding: 160px 0 100px 0;
   position: relative;
   z-index: 10;
 }
@@ -1308,7 +1317,7 @@ input {
   background: #d8dfea;
   border-top: 5px solid #3b5998;
   position: relative;
-  z-index: 100;
+  z-index: 10;
 }
 
 .footerlinks {
@@ -2009,7 +2018,7 @@ h2.page-title {
   margin: 10px 0 0 0;
   padding: 10px 0 20px 0;
   border-top: 2px solid #ccc;
-  background: #fff;
+  // background: #fff;
   .credit-left {
     margin: 0 30px 0 20px;
     padding: 0;
@@ -2073,7 +2082,7 @@ h2.page-title {
 .edit-account-container {
   margin: 0;
   padding: 20px 0 40px 0;
-  background: #fff;
+  // background: #fff;
   .acount-left {
     margin: 0;
     padding: 0 30px 0 20px;
@@ -2227,6 +2236,21 @@ h2.page-title {
   margin: 0;
   padding: 20px;
   background: #fff;
+  ul {
+    list-style-type: disc ;
+    margin: 10px;
+    li {
+      margin: 10px;
+      padding-left: 30px;
+    }
+  }
+  ol {
+   margin: 10px;
+    li {
+      margin: 10px;
+      padding-left: 30px;
+    } 
+  }
 }
 
 .sign-container p, .blog-container p, .about-container p, .help-container p {

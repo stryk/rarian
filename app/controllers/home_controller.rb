@@ -38,6 +38,16 @@ class HomeController < ApplicationController
     end
   end
 
+  def contact_us
+
+  end
+
+  def terms
+
+  end
+
+
+
   def blips
     @append = true if params[:blp_page].present?
     @blips = get_records(Blip.all, params,{:type => 'blips'})

@@ -1,53 +1,54 @@
-<div class="panels-box">
-  <div class="left-panel">
-    <div class="box-col">
-      <div class="clr"></div>
-    </div>
-  </div>
-</div>
-<div id="middle-container">
+
+
   <div class="row">
     <div class="content-area">
-      <h2 class="page-title">Credits</h2>
+      <h2 class="page-title">AlphaPoints</h2>
 
-      <div class="edit-account-container">
-
-            Credits make content you care about on AlphaPitch more prominent. This prominence can help questions get answered, or get more attention for answers and posts.
-            You'll spend credits to ask someone to answer or promote content. You'll earn credits when people vote up your answers or follow your questions.
-            For more, see <a href="#">What are AlphaPitch credits?</a>
+      <div class="about-container">
+        <p>AlphaPoints earn you respect, following, and influence in the investor community.  The formula to earn these credits is simple: (1) provide great pitches supported by facts, (2) ask insightful questions, (3) answer outstanding questions; (4) list competitors; (5) write blips; and (6) list risks for the company.  The more you contribute; the more influence you gain through up votes.  Users receive the following number of AlphaPoints for each vote by the community:</p>
+        <div class="credit-list">
+          <ul>
+            <li>Long Pitch Vote: <span class="accent">9</span> Points</li>
+            <li>Short Pitch Vote: <span class="accent">9</span> Points</li>
+            <li>Question Vote: <span class="accent">3</span> Points</li>
+            <li>Answer Vote: <span class="accent">6</span> Points</li>
+            <li>Blips Vote: <span class="accent">3</span> Points</li>
+            <li>Competitor Section Vote: <span class="accent">1</span> Points</li>
+            <li>Risks to Company Vote: <span class="accent">2</span> Points</li>
+          </ul>
+        </div>
+      </br>
+        <p>Each down vote will penalize the user the same number of points — this encourages users to provide original and useful insightful content.  Users will be ranked based on these points in the “Top Contributors” section for each company.</p>
         <div class="credit-container">
           <div class="credit-left">
             <div class="credit-head-row">
-              <div class="credit-col1"><strong>Your Credits</strong></div>
-              <div class="credit-col2"><strong><%= @credit_sum %></strong></div>
+              <div class="credit-col1"><strong>AlphaPoints Summary</strong></div>
+              <div class="credit-col2"><strong>Total <%= @credit_sum %> pts</strong></div>
             </div>
             <div class="credit-row">
-              <% @buy_pitches.each do |pitch| %>
-                <div class="credit-col1 lefttxt"><%= pitch.net_votes %> Vote on your pitch to <%= pitch.title %></div>
-                <div class="credit-col2"><strong><%= pitch.points %></strong></div>
-              <% end %>
-              <% @sell_pitches.each do |pitch| %>
-                <div class="credit-col1 lefttxt"><%= pitch.net_votes %> Vote on your pitch to <%= pitch.title %></div>
-                <div class="credit-col2"><strong><%= pitch.points %></strong></div>
-              <% end %>
-              <% @blips.each do |blip| %>
-                <div class="credit-col1 lefttxt"><%= blip.net_votes %> Vote on your blip to <%= blip.content.truncate(27, :separator => ' ') %></div>
-                <div class="credit-col2"><strong><%= blip.points %></strong></div>
-              <% end %>
-              <% @questions.each do |question| %>
-                <div class="credit-col1 lefttxt"><%= question.net_votes %> Vote on your blip to <%= question.content.truncate(27, :separator => ' ') %></div>
-                <div class="credit-col2"><strong><%= question.points %></strong></div>
-              <% end %>
-              <% @answers.each do |answer| %>
-                <div class="credit-col1 lefttxt"><%= answer.net_votes %> Vote on your blip to <%= answer.content.truncate(27, :separator => ' ') %></div>
-                <div class="credit-col2"><strong><%= answer.points %></strong></div>
-              <% end %>
-              <% @catalysts.each do |catalyst| %>
-                <div class="credit-col1 lefttxt"><%= catalyst.net_votes %> Vote on your blip to <%= catalyst.content.truncate(27, :separator => ' ') %></div>
-                <div class="credit-col2"><strong><%= catalyst.points %></strong></div>
-              <% end %>
-            </div>
+                <div class="credit-col1 lefttxt"><%= @bp_credit %> net votes on your long pitches</div>
+                <div class="credit-col2"><strong>X 9 = <%= @bp_credit * 9 %> pts</strong></div>
+              
+                <div class="credit-col1 lefttxt"><%= @sp_credit %> net votes on your short pitches</div>
+                <div class="credit-col2"><strong>X 9 = <%= @sp_credit * 9 %> pts</strong></div>
+                
+                <div class="credit-col1 lefttxt"><%= @questions_credit %> net votes on your questions</div>
+                <div class="credit-col2"><strong>X 3 = <%= @questions_credit * 3 %> pts</strong></div>
 
+                <div class="credit-col1 lefttxt"><%= @answers_credit %> net votes on your answers</div>
+                <div class="credit-col2"><strong>X 6 = <%= @answers_credit * 6 %> pts</strong></div>
+
+                <div class="credit-col1 lefttxt"><%= @blips_credit %> net votes on your blips</div>
+                <div class="credit-col2"><strong>X 3 = <%= @blips_credit * 3 %> pts</strong></div>
+
+                <div class="credit-col1 lefttxt"><%= @comp_credit %> net votes on your blips</div>
+                <div class="credit-col2"><strong>X 1 = <%= @comp_credit * 1 %> pts</strong></div>
+
+                <div class="credit-col1 lefttxt"><%= @risks_credit %> net votes on your blips</div>
+                <div class="credit-col2"><strong>X 2 = <%= @risks_credit * 2 %> pts</strong></div>
+            </div>
+                <div class="credit-col1 lefttxt">Total Points</div>
+                <div class="credit-col2"><strong><%= @credit_sum %> pts</strong></div>
           </div>
 
         </div>

@@ -1,4 +1,4 @@
-<%= @user.aboutuser%>
+<p><%= @user.aboutuser%></p>
 <% if user_signed_in? && @user.id == current_user.id %>
 <%= link_to "Edit", "#.",
             :id => "about_user" ,
@@ -7,8 +7,7 @@
   <%= form_for(current_user, :remote => true, url: users_path(:id => current_user.id),
                update: "message_div_id", :method => 'put') do |f| %>
 
-      <%=	 f.label :aboutuser %>
-      <%= f.text_area :aboutuser %>
+      <%= f.text_area :aboutuser, :cols => "27",:rows => 5 %>
 
 
 

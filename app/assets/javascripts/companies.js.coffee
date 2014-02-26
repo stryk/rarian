@@ -1,6 +1,8 @@
 $(document).on "click", ".nModal", (e) ->
   e.preventDefault()
   $(this).nyroModal()
+  $("#register-form").enableClientSideValidations()
+  $("#signin-form").enableClientSideValidations()
 
 $(document).on "click", "#company_slide", ->
   $("#description_slide_down").toggle "slideDown(1000)", ->
@@ -23,6 +25,10 @@ $(document).on "change", "#company_buy_sort", ->
 $(document).on "change", "#company_sell_sort", ->
   company_slug = $("#company-slug").data("slug")
   $.ajax url: "/companies/"+ company_slug + "/sellpitch?sort_by="+$('#company_sell_sort').val()
+
+$(document).on "change", "#company_questions_sort", ->
+  company_slug = $("#company-slug").data("slug")
+  $.ajax url: "/companies/"+ company_slug + "/questions?sort_by="+$('#company_questions_sort').val()
 
 # $(document).on "change", "#company_blip_sort", ->
 #   company_slug = $("#company-slug").data("slug")

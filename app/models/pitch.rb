@@ -5,8 +5,8 @@ class Pitch < ActiveRecord::Base
   attr_accessible :title, :multimedia_content, :action, :user_id, :company_id, :net_votes, :points
 
   module Point
-    UP = 5
-    DOWN = -5
+    UP = 9
+    DOWN = -9
   end
 
   validates :title, :multimedia_content, :company_id, :user_id, presence: true

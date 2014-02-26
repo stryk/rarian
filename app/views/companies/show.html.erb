@@ -85,7 +85,11 @@
 </div></div>
 
   <div class="box-col">
-    <h3>Burning Q&A</h3>
+    <h3>Burning Q&A<div style="float:right">
+      <div class="dropdown">
+        <%= select_tag("company_questions_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+      </div>
+    </div></h3>
     <div class="qa-container">
       <div class="qa-row">
         <div class="input-txt">
@@ -99,10 +103,11 @@
           </div>
         </div>
       
-      <div class="question-ans-container">
-        <%= render :partial => 'questions/list', :locals => {:questions => @company.questions.all, :company => @company} %>
+      <div class="question-ans-container" id="questions-list">
+        <%= render :partial => 'questions/list', :locals => {:questions => @questions, :company => @company} %>
       </div>
-
+      <a href="#" class="more-content" id="more-question">More...</a>
+      <div id="question-pagination"><%= will_paginate @questions, :param_name => 'question_page'%></div>
       
       </div>
     </div>

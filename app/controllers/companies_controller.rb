@@ -1,5 +1,4 @@
 class CompaniesController < ApplicationController
-
   
   before_filter :load_company
   skip_before_filter :load_company, :only => :index
@@ -20,7 +19,7 @@ class CompaniesController < ApplicationController
     @buy_pitches = get_records(@company.pitches.buy_pitch, params, {:type => 'longpitchs'})
     @sell_pitches = get_records(@company.pitches.sell_pitch, params, {:type => 'shortpitchs'})
     @blips = get_records(@company.blips, params,{:type => 'blips'})
-
+    @questions = get_records(@company.questions, params, {:type => 'questions'})
     @catalyst = Catalyst.where(['company_id = ? and date >= ?', @company.id, Date.today]).order("date asc").paginate(:page => params[:cat_page])
     @competitors = Competitor.where(:company_id => @company.id).select("id, company_id, competitor_id, user_id, net_votes").order("net_votes DESC").paginate(:page => params[:comp_page])
     @risks = @company.risks.order("net_votes DESC").paginate(:page => params[:risk_page])
@@ -39,6 +38,8 @@ class CompaniesController < ApplicationController
           render 'catalysts.js.erb'
         elsif params[:comp_page].present?
           render 'competitors.js.erb'
+        elsif params[:question_page].present?
+          render 'questions.js.erb'  
         elsif params[:risk_page].present?
           render 'risks.js.erb'
         end
@@ -68,12 +69,15 @@ class CompaniesController < ApplicationController
 
   def search
     company = Company.arel_table
-    companies = Company.where(company[:name].matches("%#{params[:name_startsWith]}%").or(company[:ticker].matches("%#{params[:name_startsWith]}%")))
+    companies = Company.where(:ticker => params[:name_startsWith].upcase)
+    if companies.blank?
+      companies = Company.where((company[:ticker].matches("%#{params[:name_startsWith]}%")).or(company[:name].matches("%#{params[:name_startsWith]}%"))).order(:ticker)
+    end
     options = []
     show_options = []
     companies.each do |company|
-      options << {:id => company.id, :name => company.name + "-" + company.ticker}
-      show_options << company.name + "-" + company.ticker
+      options << {:id => company.id, :name => company.ticker  + "-" + company.name}
+      show_options << company.ticker  + "-" + company.name
     end
     render :json => {:options => options, :show_options => show_options}
   end
@@ -113,6 +117,14 @@ class CompaniesController < ApplicationController
   def buypitch
     @append = true if params[:lp_page].present?
     @pitchs = get_records(@company.pitches.buy_pitch, params, {:type => 'longpitchs'})
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def questions
+    @append = true if params[:question_page].present?
+    @questions = get_records(@company.questions, params, {:type => 'questions'})
     respond_to do |format|
       format.js
     end
