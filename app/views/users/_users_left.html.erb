@@ -10,7 +10,9 @@
           <% else %>
             <%= image_tag '100-100.png' %>
           <% end %>
-        <a href="#" id="change-portrait">Update photo</a>  
+          <% if user_signed_in? %>
+            <a href="#" id="change-portrait">Update photo</a>
+          <% end %>
         </div>
 
         <div id="follow_detail" >

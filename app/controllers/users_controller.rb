@@ -51,6 +51,13 @@ class UsersController < ApplicationController
 
   def credits
     @credit_sum = 0
+    @bp_credit = 0
+    @sp_credit = 0
+    @blips_credit = 0
+    @questions_credit = 0
+    @answers_credit = 0
+    @comp_credit = 0
+    @risks_credit = 0
     @buy_pitches = current_user.pitches.buy_pitch
     @bp_credit = @buy_pitches.map(&:net_votes).inject{|sum,x| sum + x } if !@buy_pitches.blank?
     @sell_pitches = current_user.pitches.sell_pitch

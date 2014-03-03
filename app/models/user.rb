@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   validates :mobilenumber, :numericality => true, :allow_blank => true
   validates :email, presence: true
   validates :email, uniqueness: {:case_sensitive => false},  if: -> { self.email.present? }
-  validates :name, uniqueness: true, presence: true, length: {maximum: 15, minimum: 3}
+  validates :name, uniqueness: true, case_sensitive: false, presence: true, length: {maximum: 15, minimum: 3}
   validates_confirmation_of :password
 
   # Setup accessible (or protected) attributes for your model

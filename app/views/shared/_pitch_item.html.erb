@@ -103,7 +103,7 @@
 <div class="clr"></div>
 <script type="text/javascript">
 
-  $(document).on("click", "#show_title_link_<%= cobj.id%>", function() {
+  $(document).off("click", "#show_title_link_<%= cobj.id%>").on("click", "#show_title_link_<%= cobj.id%>", function () {
     toggle_visibility_from_visible("truncated_title_<%= cobj.id %>");
     toggle_visibility_from_hidden("full_title_<%= cobj.id %>");
     $("#multimedia_content_for_title_<%= cobj.id %>").toggle("slideDown(1000)", function () {

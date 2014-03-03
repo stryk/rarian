@@ -57,11 +57,11 @@
             <% end %>
             <% if can? :destroy, cobj %>
                <% if cobj.class.to_s == 'Question' %>
-                   | <%= link_to "Delete", company_question_path(cobj.company, cobj), :method => 'delete', :confirm => 'Are you sure you want to delete this pitch?', :remote => true %>
+                   | <%= link_to "Delete", company_question_path(cobj.company, cobj), :method => 'delete', :confirm => 'Are you sure you want to delete this question?', :remote => true %>
                 <% elsif cobj.class.to_s == 'Answer' %>
-                   | <%= link_to "Delete", company_question_answer_path(cobj.company, cobj.question, cobj), :method => 'delete', :confirm => 'Are you sure you want to delete this pitch?', :remote => true %>
+                   | <%= link_to "Delete", company_question_answer_path(cobj.company, cobj.question, cobj), :method => 'delete', :confirm => 'Are you sure you want to delete this answer?', :remote => true %>
                 <% elsif cobj.class.to_s == 'Blip' %>
-                   | <%= link_to "Delete", company_blip_path(cobj.company, cobj), :method => 'delete', :confirm => 'Are you sure you want to delete this pitch?', :remote => true %>
+                   | <%= link_to "Delete", company_blip_path(cobj.company, cobj), :method => 'delete', :confirm => 'Are you sure you want to delete this blip?', :remote => true %>
                 <% end %>
             <% end %>
       </div>

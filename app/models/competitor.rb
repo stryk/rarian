@@ -1,4 +1,5 @@
 class Competitor < ActiveRecord::Base
+  before_create :not_duplicative_competitor
   belongs_to :competitor_company, :foreign_key => :competitor_id, :class_name => "Company"
   belongs_to :company
   belongs_to :user
@@ -12,7 +13,6 @@ class Competitor < ActiveRecord::Base
   attr_accessible :company_id, :user_id, :competitor_id, :net_votes
 
   validates :competitor_id, :company_id, :user_id, presence: true
-  validate :not_duplicative_competitor
   self.per_page = 10
 
   def self.get_competitors(company)
@@ -38,6 +38,7 @@ class Competitor < ActiveRecord::Base
   def not_duplicative_competitor
     if company.competitors.where(:competitor_id => competitor_id).present?
       errors.add(:competition_exists, "Already in the competitor list.")
+      return false
     end
   end
 end

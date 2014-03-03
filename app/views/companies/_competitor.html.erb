@@ -1,4 +1,9 @@
 
+   <% competitors = competitors rescue nil %>
+   <% if competitors.blank? %>
+      <% competitors = [] %>
+      <% competitors << @obj %>
+   <% end %>
     <% competitors.each do |competitor| %>
       <div id="competitor_<%= competitor.id.to_s %>">
       <%= render :partial => 'shared/voting_list', :locals => {:cobj => competitor,

@@ -1,4 +1,4 @@
-class CleanUpS3objectsWorker
+class YqlQuoteWorker
 	include Sidekiq::Worker
 	sidekiq_options :retry => 5
 

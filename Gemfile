@@ -82,6 +82,8 @@ gem 'mysql2', '0.3.12b4'
 gem 'thinking-sphinx', '~> 3.1.0'
 gem 'ts-sidekiq-delta', '~> 0.2.0'
 gem 'httparty'
+gem 'newrelic_rpm'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -97,6 +99,7 @@ end
 
 group :production do
 	gem 'pg'
+  
 end
 
 group :development, :test do

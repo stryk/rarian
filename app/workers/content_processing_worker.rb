@@ -64,7 +64,11 @@ class ContentProcessingWorker
 						File.delay_for(30.minutes, :retry => false).delete(imagefile.path)
 						File.delay_for(30.minutes, :retry => false).delete(child_file.path)
 						
+					else
+						raise 'error uploading child object to S3'
 					end
+				else
+					raise 'error uploading object to S3'
 				end
 		  	  end
 	        end
