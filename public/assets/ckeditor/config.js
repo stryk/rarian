@@ -38,6 +38,8 @@ CKEDITOR.editorConfig = function (config) {
 
   config.scayt_autoStartup = true;
 
+  config.allowedContent = true;
+
   // Rails CSRF token
   config.filebrowserParams = function () {
     var csrf_token, csrf_param, meta,

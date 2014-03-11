@@ -1,5 +1,6 @@
 Rarian::Application.routes.draw do
   require 'sidekiq/web'
+  require 'sidetiq/web'
   authenticate :user, lambda { |u| u.is? :admin } do
     mount Sidekiq::Web => '/sidekiq'
   end

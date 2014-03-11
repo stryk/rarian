@@ -49,6 +49,7 @@
 
         <div class="top-login-space">
           <ul class="top-link">
+            <li><div class="fb-like" data-href="https://www.facebook.com/AlphaPitch" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>&nbsp;&nbsp;</li>
             <li>
               <% if user_signed_in? && current_user%>
                 <div class="pic-div">
@@ -214,8 +215,10 @@
   </div>
   <footer id="footer">
     <div class="row">
-      <div class="footerlinks"><a href="about">About</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/terms">Terms and Conditions</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/contact">Contact Us</a></div>
+      <div class="footerlinks"><a href="about">About</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/terms">Terms and Conditions</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/contact">Contact Us</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://plus.google.com/117469077138187492036" rel="publisher">Google+</a></div>
       <div class="footer-copy"><p>Copyright&copy; 2014. All Rights AlphaPitch.</p></div>
+
     </div>
   </footer>
 
@@ -304,6 +307,17 @@
 
 </div>
 </body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=746424572055812";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
 </html>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -315,3 +329,23 @@
   ga('send', 'pageview');
 
 </script>
+
+
+<!-- AddThis Smart Layers BEGIN -->
+<!-- Go to http://www.addthis.com/get/smart-layers to customize -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51062e3e6cde247d"></script>
+<script type="text/javascript">
+  addthis.layers({
+    'theme' : 'transparent', 
+    'follow' : {
+      'services' : [
+        {'service': 'facebook', 'id': 'alphapitch'},
+        {'service': 'twitter', 'id': 'AlphaPitch'},
+        {'service': 'google_follow', 'id': '117469077138187492036'}
+      ]
+    },  
+    'whatsnext' : {},  
+    'recommended' : {} 
+  });
+</script>
+<!-- AddThis Smart Layers END -->

@@ -45,7 +45,7 @@ class Answer < ActiveRecord::Base
 
   def sanitize_content
     if content
-      ActionController::Base.helpers.sanitize content, tags: %w{p strong em u span ol li ul img}, attributes: %w{style color src alt}
+      ActionController::Base.helpers.sanitize content, tags: %w{p strong em u span ol li ul img a}, attributes: %w{style color src alt href class}
     end
   end
 
@@ -72,7 +72,6 @@ class Answer < ActiveRecord::Base
           image_tag.remove_attribute("src")
           image_tag.remove_attribute("alt")
 
-
           child_tag = Nokogiri::XML::Node.new "img", parse_content
           child_tag['src'] = content_img_link
           child_tag['alt'] = "Missing Image"
@@ -84,7 +83,7 @@ class Answer < ActiveRecord::Base
   end
   def trasfer_to_s3
     unless self.offloaded
-      ContentProcessingWorker.perform_async(self.id,false)
+      ContentProcessingWorker.delay_for(1.minute, :retry => false).perform_async(self.id,false)
     end
   end
 end

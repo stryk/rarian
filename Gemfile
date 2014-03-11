@@ -55,8 +55,6 @@ gem "aws-ses"
 
 gem "configatron"
 
-gem "carrierwave"
-
 gem "nokogiri"
 
 gem 'spinjs-rails'
@@ -65,6 +63,8 @@ gem 'will_paginate', '~> 3.0'
 
 gem 'sidekiq'
 gem 'aws-sdk'
+gem 'fog'
+gem 'carrierwave_backgrounder'
 
 gem 'cancan'
 gem "devise", "~> 3.0.0"
@@ -83,6 +83,7 @@ gem 'thinking-sphinx', '~> 3.1.0'
 gem 'ts-sidekiq-delta', '~> 0.2.0'
 gem 'httparty'
 gem 'newrelic_rpm'
+gem 'sidetiq'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

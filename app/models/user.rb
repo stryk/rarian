@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   friendly_id :slug_candidates, use: [:slugged, :finders]
 
   mount_uploader :image, ImageUploader
+  process_in_background :image
+  store_in_background :image
 
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :email_user_actvity,:email_follow_me,
                   :email_answer_question, :email_comment_reply, :email_comment, :email_question, :email_answer,

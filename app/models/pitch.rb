@@ -1,6 +1,6 @@
 class Pitch < ActiveRecord::Base
 
-  before_save :sanitize_content, :process_tags
+  before_save :process_tags
   after_save :trasfer_to_s3
   attr_accessible :title, :multimedia_content, :action, :user_id, :company_id, :net_votes, :points
 
@@ -48,7 +48,7 @@ class Pitch < ActiveRecord::Base
 
   def sanitize_content
     if multimedia_content
-      ActionController::Base.helpers.sanitize multimedia_content, tags: %w{p strong em u span ol li ul img}, attributes: %w{style color src alt}
+      ActionController::Base.helpers.sanitize multimedia_content, tags: %w{p strong em u span ol li ul img a}, attributes: %w{style color src alt href class}
     end
   end
 
@@ -59,11 +59,14 @@ class Pitch < ActiveRecord::Base
 private
 
   def process_tags
+    self.sanitize_content
     self.offloaded = false if self.offloaded.blank?
     unless self.offloaded
-      parse_content = Nokogiri::HTML.fragment(self.multimedia_content)
+      copy_content = String.new(self.multimedia_content)
+      parse_content = Nokogiri::HTML::DocumentFragment.parse(copy_content)
       parse_content.css("img").each do |image_tag|
         unless image_tag["src"][0..3] == 'http'
+          
           content_img_link = image_tag["src"]
           # changing the file_name in the path
           image_filename = File.basename(content_img_link)
@@ -85,14 +88,14 @@ private
           child_tag['alt'] = "Missing Image"
           child_tag.parent = image_tag
         end
-      end
+      end      
       self.multimedia_content = parse_content.to_html
     end
   end
   def trasfer_to_s3
     self.offloaded = false if self.offloaded.blank?
     unless self.offloaded
-      ContentProcessingWorker.perform_async(self.id,true)
+      ContentProcessingWorker.delay_for(1.minute, :retry => false).perform_async(self.id,true)
     end
   end
 end

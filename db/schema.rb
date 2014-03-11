@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140214133913) do
+ActiveRecord::Schema.define(version: 20140311201638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,7 +109,8 @@ ActiveRecord::Schema.define(version: 20140214133913) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
-    t.boolean  "delta",       default: true
+    t.boolean  "delta",            default: true
+    t.datetime "quote_updated_at", default: '2014-03-11 20:21:44'
   end
 
   add_index "companies", ["active"], name: "index_companies_on_active", using: :btree
@@ -117,6 +118,7 @@ ActiveRecord::Schema.define(version: 20140214133913) do
   add_index "companies", ["industry"], name: "index_companies_on_industry", using: :btree
   add_index "companies", ["ipo_year"], name: "index_companies_on_ipo_year", using: :btree
   add_index "companies", ["name"], name: "index_companies_on_name", using: :btree
+  add_index "companies", ["quote_updated_at"], name: "index_companies_on_quote_updated_at", using: :btree
   add_index "companies", ["sector"], name: "index_companies_on_sector", using: :btree
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
   add_index "companies", ["ticker"], name: "index_companies_on_ticker", using: :btree
@@ -308,6 +310,8 @@ ActiveRecord::Schema.define(version: 20140214133913) do
     t.datetime "last_emailed_at",                  default: '2014-01-31 04:33:55'
     t.string   "slug"
     t.boolean  "delta",                            default: true
+    t.string   "image_tmp"
+    t.boolean  "image_processing"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
