@@ -11,6 +11,9 @@ Rarian::Application.routes.draw do
     post :index
   end
 
+  resources :pitches, :only => [:show]
+  
+
   resources :companies do
     collection {
       post :import
@@ -136,8 +139,10 @@ Rarian::Application.routes.draw do
   root 'home#landing'
 
   get 'companies/type/:get' => 'home#landing', as: :home_landing_type
+  get 'companies/style/:style' => 'home#landing', as: :home_landing_style
+  get 'companies/index/:index' => 'home#landing', as: :home_landing_index
   get 'companies/sector/:sector' => 'home#landing', as: :home_landing_sector
-  get 'companies/industry/:industry' => 'home#landing', as: :home_landing_industry
+  # get 'companies/industry/:industry' => 'home#landing', as: :home_landing_industry
   put '/' => 'companies#index'
   get '/contact' => 'home#contact_us', as: :home_contact_us
   get '/about' => 'home#about', as: :home_about_us

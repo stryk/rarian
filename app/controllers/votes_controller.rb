@@ -40,7 +40,7 @@ class VotesController < ApplicationController
     @obj = if !params[:blip_id].blank?
             Blip.where(:id => params[:blip_id]).last
            elsif !params[:pitch_id].blank?
-             Pitch.where(:id => params[:pitch_id]).last
+             Pitch.friendly.find(params[:pitch_id])
            elsif !params[:answer_id].blank?
              Answer.where(:id =>  params[:answer_id]).last
            elsif !params[:question_id].blank?

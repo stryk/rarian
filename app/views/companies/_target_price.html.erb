@@ -1,14 +1,14 @@
 <% MedianTargetPrice.two_year_price(@company.id).each do |median_price| %>
   <% if median_price.price.to_i > 0 %>
     <p><%= median_price.year %> : <%= number_to_currency(median_price.price) %>
-      (<%= get_percent(median_price.price.to_f, @company.last_and_previous_closing_price.first.price) %> %)
+      (<%= get_percent(median_price.price.to_f, @company.quotes.last.price) %> %)
     </p>
   <% end %>
   <% if user_signed_in? %>
     <% target_price = TargetPrice.where(:year => median_price.year, :company_id => @company.id, :user_id => current_user.id).last %>
     <% if !target_price.blank? %>
       <p> Your <%= target_price.year %>: <%= number_to_currency(target_price.target_price) %>
-        (<%= get_percent(target_price.target_price.to_f, @company.last_and_previous_closing_price.first.price) %> %)
+        (<%= get_percent(target_price.target_price.to_f, @company.quotes.last.price) %> %)
          | <%= link_to "delete", company_target_price_path(@company, target_price), :method => 'delete', :remote => true %></p>
     <% end %>
   <% end %>

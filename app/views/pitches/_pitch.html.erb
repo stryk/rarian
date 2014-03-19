@@ -30,20 +30,15 @@
       <% if show_link %>
         <%#= link_to("#{text_val.try(:html_safe)}#{send("show_title", cobj)}".html_safe, show_link(cobj, company),
                                                     :id => "show_title_link_"+cobj.id.to_s, :remote => true) %>
-        <div class="pitch-title">
-          <% if show_ticker %>
-                <div style='float:left;'><a href='/companies/<%= cobj.company.ticker %>'><%= cobj.company.ticker %>:&nbsp;</a></div>
-              <% end %>
         <div id="show_title_link_<%= cobj.id %>">
-          <div id="truncated_title_<%= cobj.id %>" style="display: true">
-              
-                <%= link_to send("show_title", cobj).truncate(70), pitch_path(cobj) %>
-          </div>
-          <div id="full_title_<%= cobj.id %>" style="display: none">
-                <%= link_to send("show_title", cobj), pitch_path(cobj) %>
+          
+          <div id="full_title_<%= cobj.id %>" style="display: true" class="pitch-title">
+              <% if show_ticker %>
+                <a href='/companies/<%= cobj.company.ticker %>'><%= cobj.company.ticker %>:</a>                
+              <% end %>
+                <%= send("show_title", cobj) %>
           </div>
         </div>
-      </div>
         <div class="item_reference">                                              
           <%= send("show_ref", cobj).html_safe + time_ago_in_words(cobj.created_at) + " ago. "%> 
             <% if can? :edit, cobj %>
@@ -56,7 +51,7 @@
         <div class="text-editor-container" id="update_pitch_slide_down_<%= cobj.id %>" style="display: none">
           <%= render :partial => 'shared/pitch_form', :locals => {:pitch => cobj, :option => cobj.action} %>
         </div>
-        <div class="multimedia_content" id="multimedia_content_for_title_<%= cobj.id %>" style="display: none">
+        <div class="multimedia_content" id="multimedia_content_for_title_<%= cobj.id %>" style="display: true">
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style "
             addthis:url="<%= url_for pitch_url(cobj) %>"
@@ -118,15 +113,6 @@
 <div class="clr"></div>
 <script type="text/javascript">
 
-  $(document).off("click", "#show_title_link_<%= cobj.id%>").on("click", "#show_title_link_<%= cobj.id%>", function (e) {
-    toggle_visibility_from_visible("truncated_title_<%= cobj.id %>");
-    toggle_visibility_from_hidden("full_title_<%= cobj.id %>");
-    $("#multimedia_content_for_title_<%= cobj.id %>").toggle("slideDown(1000)", function () {
-    });
-    e.preventDefault();
-  });
-
-
 
   $(document).off("click", "#pitch_update_link_<%= cobj.id %>").on("click", "#pitch_update_link_<%= cobj.id %>", function() {
     $("#update_pitch_slide_down_<%= cobj.id%>").toggle("slideDown(1000)", function () {
@@ -150,9 +136,7 @@
     $('#downvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>').html('');
     <% end %>
   <% end %>
-  <% if(position >= 0 && position < 3) %>
-    $("#show_title_link_<%= cobj.id%>").trigger('click');
-  <% end %>
+  
 
   $("#edit_reason_<%= cobj.id.to_s %>_submit").on("click",function() {
     $("#edit_pitch_<%= cobj.id.to_s %>_form").spin();

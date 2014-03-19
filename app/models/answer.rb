@@ -56,7 +56,7 @@ class Answer < ActiveRecord::Base
     unless self.offloaded
       parse_content = Nokogiri::HTML.fragment(self.content)
       parse_content.css("img").each do |image_tag|
-        unless image_tag["src"][0..3] == 'http'
+        unless(image_tag["src"][0..3] == 'http' || image_tag.parent.attr('class') == "nModal")          
           content_img_link = image_tag["src"]
           # changing the file_name in the path
           image_filename = File.basename(content_img_link)

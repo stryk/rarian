@@ -9,6 +9,7 @@
 <script type="text/javascript">
 
     if (!jQuery.contains(document, $("#edit_answer_content_<%= answer.id.to_s %>"))) {
+
     	CKEDITOR.replace( "edit_answer_content_<%= answer.id.to_s %>" );
     }
 

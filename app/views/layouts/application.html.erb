@@ -71,50 +71,37 @@
         <%= render 'searches/search_modal' %>
         <div class="clr"></div>
       </div>
+
       <div class="navdiv">
         <div class="row">
         <nav>
-          <ul class="nav">
-            <% Navigation.where(:parent_id => nil).to_a.each do |navigation| %>
+          <ul class="navul">
+            <% Navigation.where(:parent_id => nil).all.each do |navigation| %>
 
             <li>
               <a href="#"><%= navigation.name %></a>
+              <ul>
                 <% if !navigation.get_children.all.last.try(:sector).blank? %>
-                  <% child_navs = navigation.get_children.group_by(&:sector)  %>
+                  <% child_navs = navigation.get_chidrens.group_by(&:sector)  %>
                 <% elsif !navigation.query_hashs.blank? %>
                   <% child_navs = navigation.get_children.all %>
                 <% else %>
-                  <% child_navs = navigation.get_children.all %>
+                  <% child_navs = navigation.get_children.all  %>
                 <% end %>
                 
                 <% if child_navs.is_a?(Array) %>
-                <div class="dropdown_1columns">
-                  <div class="col_1">
-                    <ul>
                   <% child_navs.each do |child_nav| %>
                     <li><%= link_to child_nav.name, navigation.generate_url(child_nav) %></li>
                   <% end %>
-                </ul>
-                </div>
-                </div>
                 <% elsif child_navs.is_a?(Hash) %>
-                  <div class="dropdown_1columns">
                   <% child_navs.each do |seperator, child_nav| %>
-                      
-                    <div class="col_1">
-                      <h3><%= seperator %></h3>
-                    <ul>
+                    <li><%= seperator %></li>
                     <% child_nav.each do |c_nav| %>
                       <li><%= link_to c_nav.name, navigation.generate_url(c_nav) %></li>
                     <% end %>
-                  </ul>
-                    
-                    </div>
                   <% end %>
-                  </div>
                 <% end %>
-                  
-
+              </ul>
             </li>
             <% end %>
           </ul>
@@ -123,6 +110,7 @@
       </div>
 
     </div>
+    
       <div class="top-tickers">
         <div class="row">
           <div class="tickers-div">
@@ -319,14 +307,15 @@
 
 
 </html>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-38660452-3', 'alphapitch.com');
-  ga('send', 'pageview');
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ ga('create', 'UA-48896371-1', 'alphapitch.com');
+ ga('send', 'pageview');
 
 </script>
 
@@ -343,9 +332,7 @@
         {'service': 'twitter', 'id': 'AlphaPitch'},
         {'service': 'google_follow', 'id': '117469077138187492036'}
       ]
-    },  
-    'whatsnext' : {},  
-    'recommended' : {} 
+    }   
   });
 </script>
 <!-- AddThis Smart Layers END -->

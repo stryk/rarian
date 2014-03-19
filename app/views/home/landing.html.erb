@@ -1,7 +1,9 @@
 <div class="clr"></div>
 
 <div class="panels-box">
-
+  <% if @filter.present? %>
+    <h3>Applied Filter: <%= @filter %> </h3></br>
+  <% end %>
   <div class="landing-left-panel">
 
     <div class="box-col">

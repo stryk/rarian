@@ -1,5 +1,5 @@
 class AddNavigationMenuItems < ActiveRecord::Migration
-  def change
+  def up
   	size_navigation = Navigation.create(name: 'Size')
   	size_navigation.children.create(name: 'SmallCap <$1B', :url => '/companies/type/small_cap')
   	size_navigation.children.create(name: 'MidCap <$10B', :url => '/companies/type/mid_cap')
@@ -16,4 +16,10 @@ class AddNavigationMenuItems < ActiveRecord::Migration
   	size_navigation.save
   	
   end
+  def down
+    Navigation.find_by_name('Size').destroy
+    Navigation.find_by_name('Sector').destroy
+    Navigation.find_by_name('Industries').destroy
+  end
+
 end

@@ -8,9 +8,13 @@ class PitchesController < ApplicationController
   end
 
   def show
-    @pitch = Pitch.where(:id => params[:id])
-
+    @pitch = Pitch.friendly.find(params[:id])
+    if @pitch.present?
+      @blips = get_records(@pitch.company.blips, params,{:type => 'blips'})
+      @catalyst = Catalyst.where(['company_id = ? and date >= ?', @pitch.company.id, Date.today]).order("date asc").paginate(:page => params[:cat_page])
+    end
     respond_to do |format|
+      format.html
       format.js {}
     end
   end
@@ -48,7 +52,7 @@ class PitchesController < ApplicationController
   end
 
   def destroy
-    deleted_pitch = Pitch.where(:id => params[:id]).last
+    deleted_pitch = Pitch.friendly.find(params[:id])
     @deleted_pitch_id = deleted_pitch.id
     deleted_pitch.destroy
     respond_to do |format|
@@ -59,7 +63,9 @@ class PitchesController < ApplicationController
   private
 
   def load_company
-    @company= Company.friendly.find((params[:company_id]).downcase)
+    if params[:company_id].present?
+      @company= Company.friendly.find((params[:company_id]).downcase)
+    end
   end
 
   

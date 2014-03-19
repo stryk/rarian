@@ -43,6 +43,17 @@
 			<%= submit_tag "Import" %>
 		<% end %>
 
+		</br>
+		</br>
+		<p>Import Index Data</p>
+
+		<%= form_tag import_companies_path, multipart: true do %>
+			<%= file_field_tag :file %>
+			<%= hidden_field_tag :index, true %>
+			<%= submit_tag "Import" %>
+		<% end %>
+
+
 	</div>
   <% end %>
 </div>

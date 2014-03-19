@@ -30,7 +30,7 @@ CKEDITOR.editorConfig = function (config) {
   config.filebrowserUploadUrl = "/ckeditor/attachment_files";
 
   //remove advanced tab from image properties
-  config.removeDialogTabs = 'image:advanced';
+  config.removeDialogTabs = 'image:advanced;image:Link;link:advanced;link:upload';
 
   config.removePlugins = 'elementspath';
   

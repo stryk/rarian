@@ -10,7 +10,7 @@ class HomeController < ApplicationController
     @buy_pitchs = get_records(Pitch.buy_pitch, params, {:type => 'longpitchs', :company_ids => company_ids, :company_type => company_type})
     @sell_pitchs = get_records(Pitch.sell_pitch, params, {:type => 'shortpitchs', :company_ids => company_ids, :company_type => company_type})
     @blips = get_records(Blip.all, params, {:type => 'blips', :company_ids => company_ids, :company_type => company_type})
-
+    @filter = applied_filter(params)
     if !company_type.blank? && company_ids.blank?
       @catalyst = []
     elsif !company_ids.blank?
@@ -44,6 +44,35 @@ class HomeController < ApplicationController
 
   def terms
 
+  end
+
+  def applied_filter(params)
+    if params[:get] && params[:get] == 'small_cap'
+      return "Small Cap - Market Cap less than $1B"
+    elsif params[:get] && params[:get] == 'mid_cap'
+      return "Mid Cap - Market Cap between $1B - $10B"
+    elsif params[:get] && params[:get] == 'large_cap'
+      return "Large Cap - Market Cap greater than $10B"
+    elsif params[:sector]
+      return "Sector - " + params[:sector]
+    elsif params[:index] && params[:index] == 'snp500'
+      return "Index - S&P 500"
+    elsif params[:index] && params[:index] == 'snp400'
+      return "Index - S&P 400"
+    elsif params[:index] && params[:index] == 'snp600'
+      return "Index - S&P 600"
+    elsif params[:index] && params[:index] == 'nasdaq100'
+      return "Index - Nasdaq 100"
+    elsif params[:style] && params[:style] == 'value'
+      return "Value Stocks"
+    elsif params[:style] && params[:style] == 'growth'
+      return "Growth Stocks"
+    elsif params[:style] && params[:style] == 'momentum'
+      return "Momentum Stocks - Stocks that have gained value in last 3mos, 1yr, and 3yrs."
+    elsif params[:style] && params[:style] == 'dividend'
+      return "Dividend Stocks - Stocks that historically yielded more than 4% in dividends."
+    end
+    return nil
   end
 
 

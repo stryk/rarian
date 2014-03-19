@@ -59,8 +59,12 @@ class CompaniesController < ApplicationController
 
 	def import
     tempfile = params[:file].tempfile.path
-    CompanyImportFileWorker.perform_async(tempfile, params[:exchange], params[:date])
-		redirect_to companies_path, notice: "Company quotes being imported."
+    if params[:index] == "true"
+      CompanyCategoryImportWorker.perform_async(tempfile)
+    else
+      CompanyImportFileWorker.perform_async(tempfile, params[:exchange], params[:date])
+    end
+		redirect_to companies_path, notice: "Company data being imported."
   end
 
   def new_pitch

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311201638) do
+ActiveRecord::Schema.define(version: 20140319050417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,18 @@ ActiveRecord::Schema.define(version: 20140311201638) do
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
   add_index "companies", ["ticker"], name: "index_companies_on_ticker", using: :btree
 
+  create_table "company_groups", force: true do |t|
+    t.string   "name"
+    t.integer  "group_id"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "company_groups", ["company_id"], name: "index_company_groups_on_company_id", using: :btree
+  add_index "company_groups", ["group_id"], name: "index_company_groups_on_group_id", using: :btree
+  add_index "company_groups", ["name"], name: "index_company_groups_on_name", using: :btree
+
   create_table "competitors", force: true do |t|
     t.integer  "user_id"
     t.integer  "company_id"
@@ -146,6 +158,13 @@ ActiveRecord::Schema.define(version: 20140311201638) do
 
   add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
   add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
+
+  create_table "groups", force: true do |t|
+    t.string "name"
+    t.string "description"
+  end
+
+  add_index "groups", ["name"], name: "index_groups_on_name", using: :btree
 
   create_table "median_target_prices", force: true do |t|
     t.integer  "company_id"
@@ -188,7 +207,10 @@ ActiveRecord::Schema.define(version: 20140311201638) do
     t.integer  "net_votes",          limit: 2, default: 0
     t.integer  "points",                       default: 0
     t.boolean  "offloaded",                    default: false
+    t.string   "slug"
   end
+
+  add_index "pitches", ["slug"], name: "index_pitches_on_slug", unique: true, using: :btree
 
   create_table "questions", force: true do |t|
     t.text     "content"
@@ -200,9 +222,11 @@ ActiveRecord::Schema.define(version: 20140311201638) do
     t.integer  "down_votes",           default: 0, null: false
     t.integer  "net_votes",  limit: 2, default: 0
     t.integer  "points",               default: 0
+    t.string   "slug"
   end
 
   add_index "questions", ["company_id"], name: "index_questions_on_company_id", using: :btree
+  add_index "questions", ["slug"], name: "index_questions_on_slug", unique: true, using: :btree
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "quote_imports", force: true do |t|
@@ -220,6 +244,12 @@ ActiveRecord::Schema.define(version: 20140311201638) do
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "dayshigh",   default: 0.0
+    t.decimal  "dayslow",    default: 0.0
+    t.decimal  "yearhigh",   default: 0.0
+    t.decimal  "yearlow",    default: 0.0
+    t.decimal  "change",     default: 0.0
+    t.decimal  "volume",     default: 0.0
   end
 
   add_index "quotes", ["date_time"], name: "index_quotes_on_date_time", using: :btree

@@ -1,0 +1,90 @@
+<div class="clr"></div>
+
+<div class="panels-box">
+  <div class="landing-left-panel">
+
+    <div class="box-col">
+      <h3 class="middleh3"><%= link_to @pitch.company.ticker, company_path(@pitch.company) %> - Pitch</h3>
+      <div class="box-col-topreason">
+        <div class="rows-div">
+          <div id="buy_list" class="scroll">
+               <div class="pitch-item" id="pitch_item_<%= @pitch.id %>">
+                <%= render :partial => 'pitch', :locals => {:cobj => @pitch, :text_val => nil,
+                                                                       :child_objs_present => false,
+                                                                       :child_objs => nil,
+                                                                       :child_objs_text => nil,
+                                                                       :comments_count => @pitch.comments.count,
+                                                                       :comments => true, :show_link => true, :refresh_div => false,
+                                                                       :show_ticker => true,
+                                                                        :position => 0} %>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="landing-right-panel">
+    <div class="box-col">
+      <div class="rows-div">
+        <h3>AlphaBlips
+          <div style="float:right"><span class="dropdown">
+          <% if user_signed_in? %>
+            <%= select_tag("home_blip_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option><option value='following'>Following</option>".html_safe, class: "selectbox-global") %>
+          <% else %>
+            <%= select_tag("home_blip_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+          <% end %>
+        </span></div>
+        </h3>
+        <div class="box-col-topreason">
+      <div class="rows-div">
+        <div id="blips_list" class="scroll">
+          <%= render :partial => 'shared/blips_list', 
+          :locals => {:objs => @blips, :child_objs => nil, :objs_text => nil, :child_objs_text => nil, :show_ticker => true} %>
+        </div>
+        <a href="#" class="more-content" id="more-blp">More...</a>
+        <% if !@blips.blank? %>
+        <div id="blp-pagination"><%= will_paginate @blips, :param_name => 'blp_page', :id => "blp-pagination"  %></div>
+	<% end %>    
+  </div>
+    </div>
+
+
+
+        <!-- end of left-panel -->
+
+
+        <div class="clr"></div>
+      </div>
+      <!-- end of box div -->
+
+      <div class="box-col">
+        <h3>Stock Catalysts</h3>
+        <div class="box-col-div">
+        <div id="catalyst">
+          <%= render :partial =>'shared/catalysts', :locals => {:catalyst => @catalyst} %>
+        </div>
+        <a href="#" class="more-content" id="more-cat">More...</a>
+      </div>
+      <% if !@catalyst.blank? %>
+        <%= will_paginate @catalyst, :param_name => 'cat_page', :id => "cat-pagination" %>
+      <% end %>
+        <div class="clr"></div>
+      </div>
+
+
+      <div class="clr"></div>
+    </div>
+
+  </div>
+  <!-- end of right-panel -->
+
+  <div class="clr"></div>
+</div><!-- end of panels-box -->
+
+
+</div>
+<div class="clr"></div>
+</div><!-- end of middle container -->

@@ -1,5 +1,8 @@
 class Pitch < ActiveRecord::Base
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
   before_save :process_tags
   after_save :trasfer_to_s3
   attr_accessible :title, :multimedia_content, :action, :user_id, :company_id, :net_votes, :points
@@ -59,14 +62,13 @@ class Pitch < ActiveRecord::Base
 private
 
   def process_tags
-    self.sanitize_content
+    self.multimedia_content = self.sanitize_content
     self.offloaded = false if self.offloaded.blank?
     unless self.offloaded
       copy_content = String.new(self.multimedia_content)
       parse_content = Nokogiri::HTML::DocumentFragment.parse(copy_content)
       parse_content.css("img").each do |image_tag|
-        unless image_tag["src"][0..3] == 'http'
-          
+        unless(image_tag["src"][0..3] == 'http' || image_tag.parent.attr('class') == "nModal")          
           content_img_link = image_tag["src"]
           # changing the file_name in the path
           image_filename = File.basename(content_img_link)
@@ -88,6 +90,9 @@ private
           child_tag['alt'] = "Missing Image"
           child_tag.parent = image_tag
         end
+        if image_tag.parent.parent.attr('class') == "nModal"
+          image_tag.parent.parent.remove
+        end
       end      
       self.multimedia_content = parse_content.to_html
     end
@@ -98,6 +103,13 @@ private
       ContentProcessingWorker.delay_for(1.minute, :retry => false).perform_async(self.id,true)
     end
   end
+
+   def slug_candidates
+    [
+      [company.ticker, :title],
+      [company.ticker, :title, :id]
+    ]
+    end
 end
 
 

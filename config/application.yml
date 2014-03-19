@@ -5,9 +5,11 @@ development:
   AWS_SECRET_ACCESS_KEY: ssKLZ9+uCAy6cX2RMHVDHhswYPCYdzCwDCuRSvbw
   AWS_S3_BUCKET: rarian
   DEFAULT_EMAIL: support@dejed.com
+  AUTO_QUOTE_UPDATE: true
 production:
   AWS_ACCESS_KEY_ID: AKIAINB3JIMFHB4PR5QA
   AWS_SECRET_ACCESS_KEY: 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
   AWS_S3_BUCKET: alphapitch
   DEFAULT_EMAIL: member_services@alphapitch.com
+  AUTO_QUOTE_UPDATE: true
 
