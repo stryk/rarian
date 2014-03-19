@@ -57,6 +57,10 @@ $(document).ready(function(){
 		    document.getElementById("uploadFile").value = this.value;
 		};
 	}
+
+	// for addthis - dynamic loading of content
+	addthis.init(); 
+
 });
 
 

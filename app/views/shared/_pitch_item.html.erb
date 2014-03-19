@@ -68,10 +68,12 @@
             <a class="addthis_button_compact"></a>
             <a class="addthis_counter addthis_bubble_style"></a>
             </div>
-            <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51062e3e6cde247d"></script>
+            <script type="text/javascript">
+              var addthis_config = {"data_track_addressbar":true};
+              addthis.toolbox('.addthis_toolbox');
+            </script>
             <!-- AddThis Button END -->
-            
+
             <%= send("show_multimedia_content",cobj).html_safe %>
         </div>
         <div class='clr'>

@@ -1,4 +1,4 @@
-ThinkingSphinx::Index.define :company, :with => :active_record, :delta => ThinkingSphinx::Deltas::SidekiqDelta do
+ThinkingSphinx::Index.define :company, :with => :active_record do
   indexes name, :sortable => true
   indexes ticker
   set_property :enable_star => 1

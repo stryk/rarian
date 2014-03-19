@@ -84,6 +84,8 @@ gem 'ts-sidekiq-delta', '~> 0.2.0'
 gem 'httparty'
 gem 'newrelic_rpm'
 gem 'sidetiq'
+gem 'sitemap_generator'
+gem 'whenever', :require => false
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

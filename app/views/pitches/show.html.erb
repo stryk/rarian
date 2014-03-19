@@ -1,10 +1,11 @@
+<% title(@pitch.company.ticker + ": " + @pitch.title) %>
 <div class="clr"></div>
 
 <div class="panels-box">
   <div class="landing-left-panel">
 
     <div class="box-col">
-      <h3 class="middleh3"><%= link_to @pitch.company.ticker, company_path(@pitch.company) %> - Pitch</h3>
+      <h3 class="middleh3"><%= link_to @pitch.company.ticker, company_path(@pitch.company) %> - <%= @pitch.company.name.truncate(60) %></h3>
       <div class="box-col-topreason">
         <div class="rows-div">
           <div id="buy_list" class="scroll">

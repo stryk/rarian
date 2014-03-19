@@ -6,7 +6,7 @@ class YqlQuoteWorker
 	recurrence do
 		minute_hand = []
 		0.step(55,5) {|num| minute_hand << num}
-		weekly(1).day(1,2,3,4,5).hour_of_day(9, 10, 11, 12, 13, 14, 15, 16, 17).minute_of_hour(minute_hand)
+		weekly(1).day(1,2,3,4,5).hour_of_day(4).minute_of_hour(minute_hand)
 	end 
 	def perform
 		if configatron.AUTO_QUOTE_UPDATE == true

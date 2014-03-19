@@ -4,11 +4,5 @@ class AddSlugToPitchesQuestions < ActiveRecord::Migration
     add_index :pitches, :slug, unique: true
   	add_column(:questions, :slug, :string)
     add_index :questions, :slug, unique: true
-    Pitch.all.each do |p|
-    	p.save
-    end
-    Question.all.each do |q|
-    	q.save
-    end
   end
 end

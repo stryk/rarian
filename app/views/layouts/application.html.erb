@@ -6,7 +6,7 @@
 <html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>AlphaPitch - Stock Market Research and Analysis</title>
+  <title>AlphaPitch - <%= content_for?(:title) ? yield(:title) : "Stock Market Research and Analysis" %></title>
   <meta name="apple-touch-fullscreen" content="yes"/>
 
   <link rel="shortcut icon" href="assets/favicon.ico">
@@ -25,6 +25,7 @@
       $('.scroll-pane').jScrollPane();
     });
   </script>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51062e3e6cde247d"></script>
 </head>
 <body>
 <div id="wrapper">
