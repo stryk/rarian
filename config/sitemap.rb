@@ -38,7 +38,9 @@ SitemapGenerator::Sitemap.create do
     add pitch_path(pitch), lastmod: pitch.updated_at
   end
   Company.find_each do |company|
-    add company_path(company), lastmod: company.updated_at
+    if(company.pitches.present? || company.questions.present?)
+      add company_path(company), lastmod: company.updated_at
+    end
   end
 end
 # SitemapGenerator::Sitemap.ping_search_engines

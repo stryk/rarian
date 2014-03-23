@@ -40,7 +40,7 @@ class TopUser < ActiveRecord::Base
   end
 
   def self.get_top_users(company, no_limit)
-    where(:company_id => company.id).order("no_of_votes DESC").limit(no_limit)
+    where("company_id = ? AND no_of_votes > 0", company.id).order("no_of_votes DESC").limit(no_limit)
   end
 
   def self.get_user_companies(current_user, no_limit)

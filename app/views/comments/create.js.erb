@@ -1,4 +1,5 @@
 $("#no_comments").hide();
+$("#comment_form_<%=@comment_obj.class.name.downcase + @comment_obj.id.to_s %>").toggle("slideDown(1000)", function () {});
 $("#<%= @comment_obj.class.name.downcase + @comment_obj.id.to_s %>_comment_textbox").val("");
 $("#list_all_comments_<%= @comment_obj.class.name.downcase+'_'+@comment_obj.id.to_s %>").prepend('<%=j render :partial => "shared/comment_item", :locals => {:comment => @comment, :comment_obj => @comment_obj, :jresponse => true} %>').hide().fadeIn('slow');
 $('#jTruncate_truncate-<%= @comment.id %>').jTruncate({});

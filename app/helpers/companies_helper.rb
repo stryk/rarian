@@ -15,8 +15,8 @@ module CompaniesHelper
       latest_price = 0
       change = 0
     else
-      latest_price = latest_quote.price
-      change = latest_quote.change
+      latest_price = latest_quote.price || 0
+      change = latest_quote.change || 0
     end
     last_closing_quote = company.quotes.where("DATE(created_at) = DATE(?) AND closing = true",Time.now - 1.day).order("created_at ASC").last
     if last_closing_quote.blank?

@@ -25,7 +25,6 @@ set :shared_children, %w{public/uploads public/uploads/ckeditor}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :keep_releases, 5
 
-after "deploy:update_crontab"
 
 namespace :deploy do
 
@@ -36,11 +35,11 @@ namespace :deploy do
       # execute :touch, release_path.join('tmp/restart.txt')
     end
   end
-  
-  desc 'Update the crontab file'
-  task :update_crontab, :roles => :db do
-    run "cd #{release_path} && whenever --update-crontab #{application}"
-  end
+
+  # desc 'Update the crontab file'
+  # task :update_crontab, :roles => :db do
+  #   run "cd #{release_path} && whenever --update-crontab #{application}"
+  # end
 
 
   after :restart, :clear_cache do

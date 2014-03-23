@@ -15,7 +15,9 @@ class CommentsController < ApplicationController
 
       flash[:error] = @comment.errors.full_messages
     else
-      EmailCommentActionWorker.perform_async(@comment.id)
+      unless(@comment_obj.user.id == @current_user.id)
+        EmailCommentActionWorker.perform_async(@comment.id)
+      end
       respond_to do |format|
         format.js
       end

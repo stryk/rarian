@@ -6,6 +6,9 @@
 <html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="keywords" content="<%= meta_keywords %>" /> 
+  <meta name="description" content="<%= meta_description %>" />
+  <meta http-equiv="content-language" content="en-us">
   <title>AlphaPitch - <%= content_for?(:title) ? yield(:title) : "Stock Market Research and Analysis" %></title>
   <meta name="apple-touch-fullscreen" content="yes"/>
 
@@ -265,14 +268,12 @@
                     .append(item.label)
                     .appendTo( ul );
                 }else{
+                  item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<font color='0000FF'>$1</font>");
                 return $( "<li class='selected'></li>" ).data("item.autocomplete", item)
                     .append( "<a href='"+item.url+"'>" + item.label + "</a>")
                     .appendTo( ul );
                 }
         };
-
-    
-    
   });
   
   $('#global_search_link').click(function(){

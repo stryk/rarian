@@ -21,7 +21,16 @@ class CompanyCategoryImportWorker
 						company = Company.new if company.blank?
 						company.name = row_hash['Name'].gsub(/&#39;/, "'")
 						company.ticker = row_hash['Symbol'].gsub(/\^/, "-")
-						company.sector = row_hash['GICSSectors']
+						if row_hash['GICSSectors'] == "NA"
+							company.sector = "Miscellaneous"
+						elsif row_hash['GICSSectors'] == "Information Technology"
+							company.sector = "Technology"
+						elsif row_hash['GICSSectors'] == "Telecommunication Services"
+							company.sector = "Telecom"
+						else
+							company.sector = row_hash['GICSSectors']
+						end
+						
 						company.industry = row_hash['GICSIndustries']
 
 						key = 'S&P 500'

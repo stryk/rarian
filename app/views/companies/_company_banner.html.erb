@@ -7,13 +7,14 @@
       <% else %>
           <span class="arrow-down"></span> 
       <% end %>
-      <%= number_to_currency(pricing_hash[:price_diff]) + '(' + pricing_hash[:percentage_diff].to_s + '%)' %></h2></h2>
+      <%= number_to_currency(pricing_hash[:price_diff]) + '(' + pricing_hash[:percentage_diff].to_s + '%)' %></h2>
     <% end %>
   <span id="company_follow">
     <%= render :partial => 'shared/follow_buttons', :locals => {:obj => @company,
                                                                 :follow_link => follow_company_path(@company),
                                                                 :unfollow_link => unfollow_company_path(@company),
                                                                 :big_small => 'small'} %>
+                                                                
   </span>
   <h1> <%= @company.name %> ( <%= @company.exchange %> )</h1>
   <p class="sub-title"><%= @company.sector %>: <span id="jTruncate_truncate"><%= @company.industry %></span></p>

@@ -1,5 +1,5 @@
 
-<span style='display:none' id='create_answer-<%= question.id %>'>
+<div style='display:none' id='create_answer-<%= question.id %>'>
 <div class="text-editor-container">
 <%= form_for(Answer.new, :url => company_question_answers_path(company, question), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
   <div class="span12">
@@ -11,7 +11,7 @@
   </div>
 </div>
 <% end %>
-</span>
+</div>
 <div id="answer_to_<%= question.class.name.downcase+'-'+question.id.to_s %>">
   <% if child_objs.present? %>
     <div class="clr"></div>
@@ -41,9 +41,10 @@
 </div>
   <script type="text/javascript">
 
-    $('#accordion2-<%= question.id %>').click(function () {
+    $(document).on("click", "#accordion2-<%= question.id %>", function () {
       $('#create_answer-<%= question.id %>').toggle("slideDown(1000)");
       resetEditor2(<%= question.id %>);
+      return false;
     });
 
     function resetEditor2(question_id){

@@ -59,7 +59,8 @@ $(document).ready(function(){
 	}
 
 	// for addthis - dynamic loading of content
-	addthis.init(); 
+	addthis.init();
+	
 
 });
 
