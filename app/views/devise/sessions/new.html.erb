@@ -3,10 +3,9 @@
   <div class="login-banner-container">
     <div class="row">
       <div class="login-banner-txt">
-        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at aliquam massa.</h2>
+        <h2>Welcome To AlphaPitch</h2>
 
-        <h3>Praesent aliquet ipsum nec mattis cursus. Integer sit amet pulvinar dolor. Pellentesque gravida massa
-          lectus, vel porttitor diam laoreet eget. Etiam dapibus nisl in iaculis dictum. Sed id convallis risus.</h3>
+        <h3>AlphaPitch.com provides stock market research and analysis to help investors make informed buy/sell decisions.  AlphaPitch.com is the source for new investment ideas. The site was designed for investors to write and access real-time insights easily and quickly.</h3>
 
         <div class="register-btn"><%= link_to 'Register Today!!!!', new_user_registration_path, :class => "reg-btn-link", :id => "signup" %>
 
@@ -22,11 +21,11 @@
   <div class="row">
       <div class="login-box">
         <p>
-          <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical'}) do |f| %>
+          <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :validate => true, :html => {:class => 'form-vertical'}) do |f| %>
           <center>
             <div>
               <%= f.email_field :email, :placeholder => "E-Mail", :autofocus => true %>
-              <%= f.password_field :password, :placeholder => "**********" %>
+              <%= f.password_field :password, :placeholder => "password" %>
               <input name="submit" type="submit" class="button medium  brown" value="Submit">
             </div>
           </center>

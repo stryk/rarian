@@ -94,9 +94,10 @@ Rarian::Application.routes.draw do
   end
 
 
-  #devise_scope :users do
-  #  get "users/sign_up", :to => "users1/registrations#new"
-  #end
+  # devise_scope :users do
+  #  get "users/sign_up", :to => "home#landing"
+  #  get "users/sign_in", :to => "home#landing"
+  # end
 
   devise_for :users, :controllers => {:registrations => "users/registrations", :sessions => "users/sessions"}
 

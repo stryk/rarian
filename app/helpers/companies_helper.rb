@@ -30,10 +30,11 @@ module CompaniesHelper
      :price_diff => change.round(2), :percentage_diff => get_percent(latest_price, change)}
   end
 
-  def get_percent(latest_price, change)
-    if(change == 0)
+  def get_percent(median_price, last_quote)
+    change = last_quote - median_price
+    if(change == 0 || last_quote == 0)
       return 'NA'
     end
-    return ((change/latest_price)*100).round(2)
+    return ((change/last_quote)*100).round(2)
   end
 end

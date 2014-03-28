@@ -1,8 +1,10 @@
 $(document).on "click", ".nModal", (e) ->
   e.preventDefault()
-  $(this).nyroModal()
-  $("#register-form").enableClientSideValidations()
-  $("#signin-form").enableClientSideValidations()
+  $(this).nyroModal callbacks:
+    afterShowCont: (nm) ->
+      $("#register-form").enableClientSideValidations()
+      $("#signin-form").enableClientSideValidations()
+      return
 
 $(document).on "click", "#company_slide", ->
   $("#description_slide_down").toggle "slideDown(1000)", ->

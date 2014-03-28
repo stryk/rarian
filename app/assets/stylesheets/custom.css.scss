@@ -11,6 +11,17 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   word-wrap: break-word;
 }
 
+html, body { height: 100%; margin: 0; }
+#container {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto 8em;
+}
+#footer, #push {
+  height: 8em;
+}
+
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;

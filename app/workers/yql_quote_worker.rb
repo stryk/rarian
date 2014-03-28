@@ -1,12 +1,12 @@
 class YqlQuoteWorker
 	include Sidekiq::Worker
   	include Sidetiq::Schedulable
-	sidekiq_options :retry => 5
+	sidekiq_options :retry => false
 
 	recurrence do
 		minute_hand = []
-		0.step(55,5) {|num| minute_hand << num}
-		weekly(1).day(1,2,3,4,5).hour_of_day(4).minute_of_hour(minute_hand)
+		0.step(55,10) {|num| minute_hand << num}
+		weekly(1).day(1,2,3,4,5).hour_of_day(22).minute_of_hour(minute_hand)
 	end 
 	def perform
 		if configatron.AUTO_QUOTE_UPDATE == true
@@ -28,12 +28,21 @@ class YqlQuoteWorker
 				if(data['query']['diagnostics']['url'][1]["error"] == nil)
 					companies.each do |company|
 						index = companies.index(company)
-						quote = company.quotes.build
+						today_quote = company.quotes.where('created_at = DATE(?)', Time.now).last
+						if today_quote.present?
+							quote = today_quote
+						else
+							quote = company.quotes.build
+						end
 						quote.price = data['query']['results']['quote'][index]['LastTradePriceOnly']
 						quote.closing = (Time.now.hour >= 16)
 						quote.date_time = Time.now
 						market_cap = data['query']['results']['quote'][index]['MarketCapitalization']
-						quote.market_cap = market_cap[0..-2].to_f if market_cap.present?
+						if(market_cap.present? && (market_cap.include? 'B'))
+							quote.market_cap = market_cap.gsub("B","").to_f
+						elsif(market_cap.present? && (market_cap.include? 'M'))
+							quote.market_cap = market_cap.gsub("M","").to_f / 1000
+						end
 						quote.dayslow = data['query']['results']['quote'][index]['DaysLow']
 						quote.dayshigh = data['query']['results']['quote'][index]['DaysHigh']
 						quote.yearlow = data['query']['results']['quote'][index]['YearLow']

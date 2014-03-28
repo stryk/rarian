@@ -4,6 +4,7 @@
 <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]>
 <html class="no-js" lang="en"><!--<![endif]-->
+<div id="container">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="keywords" content="<%= meta_keywords %>" /> 
@@ -183,18 +184,18 @@
             
             <div id="readlater_login" class="readlater_login">
               <h3>Already Joined?</h3>
-                <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :validate => true, :html => {:class => 'form-vertical', :id => 'signin-form'}) do |f| %>
+                <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), validate: true, :html => {:class => 'form-vertical', :id => 'signin-form'}) do |f| %>
                   <fieldset><span>Email Address</span>
-                    <%= f.text_field :email, :class => 'inputbox' %></fieldset>
+                    <%= f.text_field :email, :class => 'inputbox', :validate => { :uniqueness => false } %></fieldset>
                   <fieldset><span>Password:</span>
-                    <%= f.password_field :password, :class => 'inputbox' %></fieldset>
+                    <%= f.password_field :password, :class => 'inputbox', :validate => { :confirmation => false} %></fieldset>
                   <fieldset><%= f.check_box :remember_me %><%= f.label :remember_me %></fieldset>
                   <%= f.submit 'Sign in', :class => 'button blue medium' %>
                   <% save_location %>
                 <% end %>
                 <%= link_to "Forgot your password?", new_password_path(:user), :class => 'agree' %>
             </div>           
-        </div>              
+        </div> 
     </div>
     <br class='clr'>
   </div>
@@ -205,6 +206,12 @@
       <%= yield %>
     </div>
   </div>
+
+  <div id="push">
+  </div>
+
+</div><!-- end of container   -->
+
   <footer id="footer">
     <div class="row">
       <div class="footerlinks"><a href="about">About</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/terms">Terms and Conditions</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/contact">Contact Us</a>
@@ -299,6 +306,8 @@
 </body>
 
 <div id="fb-root"></div>
+
+
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -338,3 +347,19 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   });
 </script>
 <!-- AddThis Smart Layers END -->
+
+<!-- Webengage -->
+<script id="_webengage_script_tag" type="text/javascript">
+  var _weq = _weq || {};
+  _weq['webengage.licenseCode'] = '311c432d';
+  _weq['webengage.widgetVersion'] = "4.0";
+  
+  (function(d){
+    var _we = d.createElement('script');
+    _we.type = 'text/javascript';
+    _we.async = true;
+    _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
+    var _sNode = d.getElementById('_webengage_script_tag');
+    _sNode.parentNode.insertBefore(_we, _sNode);
+  })(document);
+</script>
