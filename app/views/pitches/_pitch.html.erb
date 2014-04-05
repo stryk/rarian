@@ -1,3 +1,4 @@
+<div itemscope itemtype="http://schema.org/Article">
 
 <div class="left-box">
   <div class="q-title">
@@ -10,7 +11,7 @@
           <%= link_to send("up_company_#{cobj.class.name.downcase}_votes_path", cobj.company, cobj, {:refresh_div => refresh_div}),
                                                      :remote => true, :method => :put, :id => "vote_up_#{cobj.class.name.downcase+"_"+cobj.id.to_s}",
                                                      :class => "voting-up-arrow" do %>
-          <span class="numbers" id="upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>"><%= cobj.try(:net_votes) %></span>
+          <span class="numbers" id="upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>"><meta itemprop="interactionCount" content="UserVotes:<%= cobj.try(:net_votes) %>"/><%= cobj.try(:net_votes) %></span>
           <% end %>
       </span>
       <span class="numbers-bg">
@@ -30,6 +31,8 @@
       <% if show_link %>
         <%#= link_to("#{text_val.try(:html_safe)}#{send("show_title", cobj)}".html_safe, show_link(cobj, company),
                                                     :id => "show_title_link_"+cobj.id.to_s, :remote => true) %>
+        <span itemprop="name">
+
         <div id="show_title_link_<%= cobj.id %>">
           
           <div id="full_title_<%= cobj.id %>" style="display: true" class="pitch-title">
@@ -39,8 +42,9 @@
                 <%= send("show_title", cobj) %>
           </div>
         </div>
+      </span>
         <div class="item_reference">                                              
-          <%= send("show_ref", cobj).html_safe + time_ago_in_words(cobj.created_at) + " ago. "%> 
+          <%= send("show_ref", cobj).html_safe %><span itemprop='datePublished'><%= time_ago_in_words(cobj.created_at) %> ago</span>. 
             <% if can? :edit, cobj %>
                | <%= link_to "Edit", "#.",:id => "pitch_update_link_#{cobj.id}" %>
             <% end %>
@@ -51,6 +55,7 @@
         <div class="text-editor-container" id="update_pitch_slide_down_<%= cobj.id %>" style="display: none">
           <%= render :partial => 'shared/pitch_form', :locals => {:pitch => cobj, :option => cobj.action} %>
         </div>
+        
         <div class="multimedia_content" id="multimedia_content_for_title_<%= cobj.id %>" style="display: true">
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style "
@@ -60,6 +65,7 @@
             <a class="addthis_button_facebook"></a>
             <a class="addthis_button_twitter"></a>
             <a class="addthis_button_google_plusone_share"></a>
+            <a class="addthis_button_stumbleupon"></a>
             <a class="addthis_counter addthis_bubble_style"></a>
             </div>
             <script type="text/javascript">
@@ -70,13 +76,15 @@
             </script>
             <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51062e3e6cde247d"></script>
             <!-- AddThis Button END -->
-            
+            <span itemprop="articleBody">
             <%= send("show_multimedia_content",cobj).html_safe %>
+          </span>
         </div>
         <div class='clr'>
         </div>
       <% else %>
-        <%#= text_val.try(:html_safe) %><%= send("show_title", cobj).html_safe %>
+        <%#= text_val.try(:html_safe) %><span itemprop="name">
+<%= send("show_title", cobj).html_safe %></span>
       <% end %>
 
       <p>
@@ -115,6 +123,7 @@
 </div>
 <hr>
 <div class="clr"></div>
+</div>
 <script type="text/javascript">
 
 

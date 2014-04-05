@@ -1,6 +1,6 @@
 <div class="stock-div">
   <% pricing_hash = get_pricing_details(@company) %>
-  <h2> <%= @company.ticker %> <%= number_to_currency pricing_hash[:latest_price], precision: 2 %>
+  <h2> <span itemprop="tickerSymbol"><%= @company.ticker %></span> <%= number_to_currency pricing_hash[:latest_price], precision: 2 %>
     <% unless pricing_hash[:price_diff] == 0 %>
       <% if pricing_hash[:price_diff] > 0 %>
           <span class="arrow-up"></span>
@@ -16,7 +16,7 @@
                                                                 :big_small => 'small'} %>
                                                                 
   </span>
-  <h1> <%= @company.name %> ( <%= @company.exchange %> )</h1>
+  <h1> <span itemprop="name"><%= @company.name %></span> ( <%= @company.exchange %> )</h1>
   <p class="sub-title"><%= @company.sector %>: <span id="jTruncate_truncate"><%= @company.industry %></span></p>
   <script type="text/javascript">
     $('#jTruncate_truncate').jTruncate({

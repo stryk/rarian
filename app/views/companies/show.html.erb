@@ -1,3 +1,4 @@
+<div itemscope itemtype="http://schema.org/Corporation">
 <% title(@company.ticker + ': ' + @company.name) %>
 <div id = "company-slug" data-slug = "<%= @company.slug.to_s %>"></div>
 <div class="top-stock-search clear-fix">
@@ -5,116 +6,134 @@
 </div><!-- end of top-stock-search -->
 <div class="clr"></div>
 
-<%= render 'shared/companies_left' %>
+<%= image_tag('hide-left-icon.png', :class => "toggle-left-panel") %>
+<div id="dynamic-panel">
+  <%= render 'shared/companies_left' %>
+</div>
 
 <div class="middle-panel">
 
-  <div class="box-col middle-margin">
-    <h3 class="middleh3">Long Pitch: Reasons to Buy
-      <div style="float:right"><span class="dropdown">
-        <%= select_tag("company_buy_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
-      </span></div>
-    </h3>
-    <div class="box-col-topreason">
-      <div class="rows-div">
-    <div class="input-txt">
-      <% if can?(:create, Pitch) %>
-        <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
-        <%= link_to "Add reason to buy...", "#.", :class => "inputo-txt", :id => "add_reason_to_buy_link" %>
-      <% else %>
-        <a href="#" class="session_start">Login to contribute a long pitch</a>
-      <% end %>
-    </div>
-    <div class="text-editor-container" id="add_reason_to_buy_link_slide_down" style="display: none">
-      <%= render :partial => 'shared/pitch_form', :locals => {:pitch => nil, :option => 'buy'} %>
-    </div>
+  <ul id="tabs">
+      <li><a href="#" name="tab1">Buy Insights (<%= @buy_pitches.count if @buy_pitches.present? %>)</a></li>
+      <li><a href="#" name="tab2">Sell Insights (<%= @sell_pitches.count if @buy_pitches.present? %>)</a></li>
+      <li><a href="#" name="tab3">Q&A (<%= @questions.count if @questions.present? %>)</a></li>   
+  </ul>
 
-    <!--<div class="scroll-pane" >-->
-    <div class="box-col-topreason" id="top_reason_to_buy">
+  <div id="tab-content"> 
+      <div id="tab1">
+        <div class="box-col middle-margin">
+          <h3 class="middleh3">Long Pitch: Reasons to Buy
+              <div style="float:right"><span class="dropdown">
+                <%= select_tag("company_buy_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+              </span></div>
+            </h3>
+            <div class="box-col-topreason">
+              <div class="rows-div">
+            <div class="input-txt">
+              <% if can?(:create, Pitch) %>
+                <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
+                <%= link_to "Add reason to buy...", "#.", :class => "inputo-txt", :id => "add_reason_to_buy_link" %>
+              <% else %>
+                <a href="#" class="session_start">Login to contribute a long pitch</a>
+              <% end %>
+            </div>
+            <div class="text-editor-container" id="add_reason_to_buy_link_slide_down" style="display: none">
+              <%= render :partial => 'shared/pitch_form', :locals => {:pitch => nil, :option => 'buy'} %>
+            </div>
 
-      <%= render :partial => 'shared/pitches_list', :locals => {:objs => @buy_pitches,
-                                                              :company => @company, :child_objs => nil,
-                                                              :objs_text => nil,
-                                                              :child_objs_text => nil,
-                                                              :show_link => true, :show_ticker => false
-                                                              } %>
-    </div>
-    <a href="#" class="more-content" id="more-lp">More...</a>
-    <div id="lp-pagination"><%= will_paginate @buy_pitches, :param_name => 'lp_page'%></div>
-  </div>
-  </div>
-</div>
+            <!--<div class="scroll-pane" >-->
+            <div class="box-col-topreason" id="top_reason_to_buy">
 
-  <div class="box-col middle-margin">
-    <h3 class="middleh3">Short Pitch: Reasons to Sell<div style="float:right">
-      <div class="dropdown">
-        <%= select_tag("company_sell_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
-      </div>
-    </div>
-    </h3>
-    <div class="box-col-topreason">
-      <div class="rows-div">
-    <div class="input-txt">
-      <% if can?(:create, Pitch) %>
-        <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
-        <%= link_to " Add reason to sell...", "#.", :class => "inputo-txt", :id => "add_reason_to_sell_link" %>
-      <% else %>
-        <a href="#" class="session_start">Login to contribute a short pitch</a>
-      <% end %>
-    </div>
-
-    <div class="text-editor-container" id="add_reason_to_sell_link_slide_down" style="display: none">
-      <%= render :partial => 'shared/pitch_form', :locals => {:pitch => nil, :option => 'sell'} %>
-    </div>
-
-    <!--<div class="scroll-pane">-->
-    <div class="box-col-topreason" id="top_reason_to_sell">
-      <%= render :partial => 'shared/pitches_list', :locals => {:objs => @sell_pitches,
-                                                              :company => @company,
-                                                              :child_objs => nil,
-                                                              :objs_text => nil,
-                                                              :child_objs_text => nil,
-                                                              :show_link => true, :show_ticker => false
-                                                              } %>
-    </div>
-    <a href="#" class="more-content" id="more-sp">More...</a>
-    <div id="sp-pagination"><%= will_paginate @sell_pitches, :param_name => 'sp_page'%></div>
-
-
-    <div class="clr"></div>
-  </div>
-</div></div>
-
-  <div class="box-col">
-    <h3>Burning Q&A<div style="float:right">
-      <div class="dropdown">
-        <%= select_tag("company_questions_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
-      </div>
-    </div></h3>
-    <div class="qa-container">
-      <div class="qa-row">
-        <div class="input-txt">
-            <% if can?(:create, Question) %>
-              <%= link_to "Ask a Question", '#.', :class => "ask-qs-txt", :id => "add_question_link" %>
-            <% else %>
-              <a href="#" class="session_start">Login to ask a question</a>
-            <% end %>
-          <div style="display: none" id='add_question_form'>
-            <%= render 'questions/add_question', :locals => {:company => @company} %>
+              <%= render :partial => 'shared/pitches_list', :locals => {:objs => @buy_pitches,
+                                                                      :company => @company, :child_objs => nil,
+                                                                      :objs_text => nil,
+                                                                      :child_objs_text => nil,
+                                                                      :show_link => true, :show_ticker => false
+                                                                      } %>
+            </div>
+            <a href="#" class="more-content" id="more-lp">More...</a>
+            <div id="lp-pagination"><%= will_paginate @buy_pitches, :param_name => 'lp_page'%></div>
+          </div>
           </div>
         </div>
-      
-      <div class="question-ans-container" id="questions-list">
-        <%= render :partial => 'questions/list', :locals => {:questions => @questions, :company => @company} %>
       </div>
-      <a href="#" class="more-content" id="more-question">More...</a>
-      <div id="question-pagination"><%= will_paginate @questions, :param_name => 'question_page'%></div>
-      
+
+      <div id="tab2">        
+        <div class="box-col middle-margin">
+            <h3 class="middleh3">Short Pitch: Reasons to Sell<div style="float:right">
+              <div class="dropdown">
+                <%= select_tag("company_sell_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+              </div>
+            </div>
+            </h3>
+            <div class="box-col-topreason">
+              <div class="rows-div">
+            <div class="input-txt">
+              <% if can?(:create, Pitch) %>
+                <span class="user-icon"><img src="/assets/user-icon.png" alt=""></span>
+                <%= link_to " Add reason to sell...", "#.", :class => "inputo-txt", :id => "add_reason_to_sell_link" %>
+              <% else %>
+                <a href="#" class="session_start">Login to contribute a short pitch</a>
+              <% end %>
+            </div>
+
+            <div class="text-editor-container" id="add_reason_to_sell_link_slide_down" style="display: none">
+              <%= render :partial => 'shared/pitch_form', :locals => {:pitch => nil, :option => 'sell'} %>
+            </div>
+
+            <!--<div class="scroll-pane">-->
+            <div class="box-col-topreason" id="top_reason_to_sell">
+              <%= render :partial => 'shared/pitches_list', :locals => {:objs => @sell_pitches,
+                                                                      :company => @company,
+                                                                      :child_objs => nil,
+                                                                      :objs_text => nil,
+                                                                      :child_objs_text => nil,
+                                                                      :show_link => true, :show_ticker => false
+                                                                      } %>
+            </div>
+            <a href="#" class="more-content" id="more-sp">More...</a>
+            <div id="sp-pagination"><%= will_paginate @sell_pitches, :param_name => 'sp_page'%></div>
+
+
+            <div class="clr"></div>
+          </div>
+          </div>
+        </div>
       </div>
-    </div>
+      
+      <div id="tab3">
+        <div class="box-col">
+          <h3>Burning Q&A<div style="float:right">
+            <div class="dropdown">
+              <%= select_tag("company_questions_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+            </div>
+          </div></h3>
+          <div class="qa-container">
+            <div class="qa-row">
+              <div class="input-txt">
+                  <% if can?(:create, Question) %>
+                    <%= link_to "Ask a Question", '#.', :class => "ask-qs-txt", :id => "add_question_link" %>
+                  <% else %>
+                    <a href="#" class="session_start">Login to ask a question</a>
+                  <% end %>
+                <div style="display: none" id='add_question_form'>
+                  <%= render 'questions/add_question', :locals => {:company => @company} %>
+                </div>
+              </div>
+            
+            <div class="question-ans-container" id="questions-list">
+              <%= render :partial => 'questions/list', :locals => {:questions => @questions, :company => @company} %>
+            </div>
+            <a href="#" class="more-content" id="more-question">More...</a>
+            <div id="question-pagination"><%= will_paginate @questions, :param_name => 'question_page'%></div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 
-  <div class="clr"></div>
+  
 </div>
 
 <div class="right-panel">
@@ -127,6 +146,7 @@
 </div>
 
 <div id="comments_list"></div>
+</div>
 <script type="text/javascript">
 
     var current_instance_id;
@@ -159,6 +179,28 @@
     function resetEditor(name){
         CKEDITOR.instances[name].setData("<p></p>");
     }
+
+
+  $(document).ready(function() {
+      $("#tab-content").find("[id^='tab']").hide(); // Hide all content
+      $("#tabs li:first").attr("id","current"); // Activate the first tab
+      $("#tab-content #tab1").fadeIn(); // Show first tab's content
+      
+      $('#tabs a').click(function(e) {
+          e.preventDefault();
+          if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
+           return;       
+          }
+          else{             
+            $("#tab-content").find("[id^='tab']").hide(); // Hide all content
+            $("#tabs li").attr("id",""); //Reset id's
+            $(this).parent().attr("id","current"); // Activate this
+            $('#' + $(this).attr('name')).fadeIn(); // Show content for the current tab
+          }
+      });
+  });
+
+
 </script>
 
 

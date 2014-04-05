@@ -1,3 +1,4 @@
+<div itemscope itemtype="http://schema.org/Article">
 
 <div class="left-box">
   <div class="q-title">
@@ -10,7 +11,7 @@
           <%= link_to send("up_company_#{cobj.class.name.downcase}_votes_path", cobj.company, cobj, {:refresh_div => refresh_div}),
                                                      :remote => true, :method => :put, :id => "vote_up_#{cobj.class.name.downcase+"_"+cobj.id.to_s}",
                                                      :class => "voting-up-arrow" do %>
-          <span class="numbers" id="upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>"><%= cobj.try(:net_votes) %></span>
+          <span class="numbers" id="upvote_number_<%= cobj.class.name.downcase+"_"+cobj.id.to_s %>"><meta itemprop="interactionCount" content="Votes:<%= cobj.try(:net_votes) %>"/><%= cobj.try(:net_votes) %></span>
           <% end %>
       </span>
       <span class="numbers-bg">
@@ -36,16 +37,17 @@
               <% end %>
         <div id="show_title_link_<%= cobj.id %>">
           <div id="truncated_title_<%= cobj.id %>" style="display: true">
-              
-                <%= link_to send("show_title", cobj).truncate(70), pitch_path(cobj) %>
+                <%= link_to send("show_title", cobj).truncate(70), pitch_path(cobj), {:itemprop => 'url'} %>
           </div>
           <div id="full_title_<%= cobj.id %>" style="display: none">
+            <span itemprop="name">
                 <%= link_to send("show_title", cobj), pitch_path(cobj) %>
+            </span>
           </div>
         </div>
       </div>
         <div class="item_reference">                                              
-          <%= send("show_ref", cobj).html_safe + time_ago_in_words(cobj.created_at) + " ago. "%> 
+          <%= send("show_ref", cobj).html_safe %><span itemprop='datePublished'><%= time_ago_in_words(cobj.created_at) %> ago</span>.
             <% if can? :edit, cobj %>
                | <%= link_to "Edit", "#.",:id => "pitch_update_link_#{cobj.id}" %>
             <% end %>
@@ -60,11 +62,12 @@
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style "
             addthis:url="<%= url_for pitch_url(cobj) %>"
-            addthis:title="<%= cobj.company.ticker + " : " + cobj.title %>"
-            addthis:description="<%= cobj.multimedia_content %>" >
+            addthis:title="<%= cobj.company.ticker + " : " + cobj.title.truncate(30) %>"
+            addthis:description="<%= cobj.multimedia_content.truncate(300) %>" >
             <a class="addthis_button_facebook"></a>
             <a class="addthis_button_twitter"></a>
             <a class="addthis_button_google_plusone_share"></a>
+            <a class="addthis_button_stumbleupon"></a>
             <a class="addthis_counter addthis_bubble_style"></a>
             </div>
             <script type="text/javascript">
@@ -120,6 +123,8 @@
 </div>
 <hr>
 <div class="clr"></div>
+</div>
+
 <script type="text/javascript">
 
   $(document).off("click", "#show_title_link_<%= cobj.id%>").on("click", "#show_title_link_<%= cobj.id%>", function (e) {

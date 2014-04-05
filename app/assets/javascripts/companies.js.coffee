@@ -1,10 +1,11 @@
 $(document).on "click", ".nModal", (e) ->
   e.preventDefault()
-  $(this).nyroModal callbacks:
+  $(this).nm callbacks:
     afterShowCont: (nm) ->
       $("#register-form").enableClientSideValidations()
       $("#signin-form").enableClientSideValidations()
       return
+  $(this).nmManual
 
 $(document).on "click", "#company_slide", ->
   $("#description_slide_down").toggle "slideDown(1000)", ->
@@ -42,3 +43,22 @@ jQuery ->
     bProcessing: true
     bServerSide: true
     sAjaxSource: $("#companies").data('source')
+
+  $('.nModal').nyroModal callbacks:
+    afterShowCont: (nm) ->
+      $("#register-form").enableClientSideValidations()
+      $("#signin-form").enableClientSideValidations()
+      return
+
+
+$(document).on "click", ".toggle-left-panel", ->
+  $("#dynamic-panel").toggle "slideLeft(1000)"
+  if ($(".toggle-left-panel").attr("src") == "/assets/hide-left-icon.png")
+    $(this).attr("src", $(this).attr("src").replace("hide-left-icon.png", "hide-right-icon.png"))
+    $(".middle-panel").css({ width: '65%'})
+    $(".right-panel").css({ width: '31%'})
+  else 
+    $(this).attr("src", $(this).attr("src").replace("hide-right-icon.png", "hide-left-icon.png"))
+    $(".middle-panel").css({ width: '45%'})
+    $(".right-panel").css({ width: '25%'})
+

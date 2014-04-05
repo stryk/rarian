@@ -1,4 +1,4 @@
-<% if params[:refresh_div] == "false" %>
+  <% if params[:refresh_div] == "false" %>
 	<% if current_user.up_voted?(@obj) %>
 		$("#vote_down_" + '<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').hide();
 		$("#vote_up_" + '<%= @obj.class.name.downcase+'_'+@obj.id.to_s %>').show();

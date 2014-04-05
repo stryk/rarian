@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if IE 8]>
 <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]>
-<html class="no-js" lang="en"><!--<![endif]-->
-<div id="container">
-<head>
+<html class="no-js" lang="en"><![endif]-->
+
+<head>  
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="keywords" content="<%= meta_keywords %>" /> 
   <meta name="description" content="<%= meta_description %>" />
@@ -31,7 +32,19 @@
   </script>
   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51062e3e6cde247d"></script>
 </head>
+
 <body>
+<div id="container">
+  <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=746424572055812";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+
 <div id="wrapper">
   <header>
     <div class="header-top">
@@ -304,18 +317,6 @@
 
 </div>
 </body>
-
-<div id="fb-root"></div>
-
-
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=746424572055812";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
 
 </html>
 

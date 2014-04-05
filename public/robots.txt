@@ -2,5 +2,6 @@
 #
 # To ban all spiders from the entire site uncomment the next two lines:
 User-agent: *
-Disallow: /users/confirmation/
+Disallow: /users/confirmation/new
+Sitemap: http://www.alphapitch.com/sitemaps/sitemap.xml.gz
 

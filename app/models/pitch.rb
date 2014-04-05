@@ -33,7 +33,7 @@ class Pitch < ActiveRecord::Base
   end
 
   def get_reference
-    "<a href='/users/#{user.friendly_id}'>"+user.name+'</a>'+' | '
+    "<a href='/users/#{user.friendly_id}'><span itemprop='author'>"+user.name+'</span></a>'+' | '
   end
 
   def up_vote

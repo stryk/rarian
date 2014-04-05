@@ -51,8 +51,7 @@
   <% end %>
 
   <script type="text/javascript">
-    $("#editor_buy").maxlength({max: 5000});
-    $("#editor_sell").maxlength({max: 5000});
+    
     <% if pitch.blank? %>
       <% if option.to_s == "buy" %>
         $('#create_reason_buy_submit').click(function() {

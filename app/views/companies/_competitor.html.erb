@@ -1,3 +1,6 @@
+<% if @obj.present? %>
+  <% competitors = [] << @obj if competitors.blank? %>
+<% end %>
 <% if competitors.present? %>
     <% competitors.each do |competitor| %>
       <div id="competitor_<%= competitor.id.to_s %>">

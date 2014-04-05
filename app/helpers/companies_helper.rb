@@ -11,6 +11,7 @@ module CompaniesHelper
 
   def get_pricing_details(company)
     latest_quote = company.quotes.last
+    last_closing_price = 0
     if latest_quote.blank?
       latest_price = 0
       change = 0
@@ -27,14 +28,29 @@ module CompaniesHelper
       last_closing_price = last_closing_quote.price
     end
     {:latest_price => latest_price, :previous_price => last_closing_price,
-     :price_diff => change.round(2), :percentage_diff => get_percent(latest_price, change)}
+     :price_diff => change.round(2), :percentage_diff => get_change_percent(latest_price, change)}
   end
 
   def get_percent(median_price, last_quote)
-    change = last_quote - median_price
+    change = median_price - last_quote
     if(change == 0 || last_quote == 0)
-      return 'NA'
+      return '0.0'
     end
-    return ((change/last_quote)*100).round(2)
+    percent = ((change/last_quote)*100).round(2)
+    if percent > 0
+      return "+" + percent.to_s
+    end
+    return percent.to_s
+  end
+
+  def get_change_percent(last_price, change)
+    if(change == 0 || last_price == 0)
+      return 0
+    end
+    percent = ((change/(last_price-change))*100).round(2)
+    if percent > 0
+      return "+" + percent.to_s
+    end
+    return percent.to_s
   end
 end

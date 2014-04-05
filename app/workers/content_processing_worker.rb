@@ -33,6 +33,7 @@ class ContentProcessingWorker
 					# changing the file_name in the path
 					image_filename = File.basename(content_img_link)
 					image_pathname = File.dirname(content_img_link)
+					image_pathname[0] = ''
 					random_hex = SecureRandom.hex
 					
 					new_key = image_pathname + '/' + random_hex + '/' + image_filename

@@ -24,24 +24,25 @@
   #   end
 SitemapGenerator::Sitemap.default_host = 'http://www.alphapitch.com'
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::WaveAdapter.new
-SitemapGenerator::Sitemap.sitemaps_host = "http://alphapitch.s3.amazonaws.com/"
+# SitemapGenerator::Sitemap.sitemaps_host = "http://alphapitch.s3.amazonaws.com/"
 SitemapGenerator::Sitemap.public_path = 'public/'
 SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
 
 
 SitemapGenerator::Sitemap.create do
-  add '/', :changefreq => 'daily'
-  add '/contact', :changefreq =>  'monthly'
-  add '/about', :changefreq =>  'monthly'
-  add '/terms', :changefreq =>  'monthly'
-  Pitch.find_each do |pitch|
-    add pitch_path(pitch), lastmod: pitch.updated_at
-  end
+  add root_path, :changefreq => 'daily'
+  
   Company.find_each do |company|
     if(company.pitches.present? || company.questions.present?)
       add company_path(company), lastmod: company.updated_at
     end
   end
+  Pitch.find_each do |pitch|
+    add pitch_path(pitch), lastmod: pitch.updated_at
+  end
+  add '/contact', :changefreq =>  'monthly'
+  add '/about', :changefreq =>  'monthly'
+  add '/terms', :changefreq =>  'monthly'
 end
-# SitemapGenerator::Sitemap.ping_search_engines
+SitemapGenerator::Sitemap.ping_search_engines
 
