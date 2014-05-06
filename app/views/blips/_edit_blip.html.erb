@@ -1,5 +1,5 @@
 <div id="edit_blip" class="slide-div">
-  <%= form_for(blip, :url => company_blip_path(@company,blip), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
+  <%= form_for(blip, :url => company_blip_path(blip.company, blip), :html => {:class => 'form-horizontal'}, :validate => true, :remote => true) do |f| %>
     <%= f.label :content, :class => "control-label" %>
     <%= f.text_area :content, :class => "slide-input", :rows => 5, :id => ("edit_blip_content_" + blip.id.to_s), :validate => true %>
 

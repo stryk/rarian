@@ -4,9 +4,9 @@
 <div class="panels-box">
   <div class="landing-left-panel">
 
-    <div class="box-col">
+    <div class="box-col-pitch">
       <h3 class="middleh3"><%= link_to @pitch.company.ticker, company_path(@pitch.company) %> - <%= @pitch.company.name.truncate(60) %></h3>
-      <div class="box-col-topreason">
+      
         <div class="rows-div">
           <div id="buy_list" class="scroll">
                <div class="pitch-item" id="pitch_item_<%= @pitch.id %>">
@@ -21,7 +21,7 @@
               </div>
             
           </div>
-        </div>
+        
       </div>
 
       <div class="clr"></div>

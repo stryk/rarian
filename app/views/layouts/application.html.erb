@@ -94,6 +94,9 @@
         <div class="row">
         <nav>
           <ul class="navul">
+            <li>
+              <%= link_to "Home", root_path %>
+            </li>
             <% Navigation.where(:parent_id => nil).all.each do |navigation| %>
 
             <li>
@@ -331,7 +334,6 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 </script>
 
-
 <!-- AddThis Smart Layers BEGIN -->
 <!-- Go to http://www.addthis.com/get/smart-layers to customize -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51062e3e6cde247d"></script>
@@ -344,10 +346,16 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         {'service': 'twitter', 'id': 'AlphaPitch'},
         {'service': 'google_follow', 'id': '117469077138187492036'}
       ]
-    }   
+    },  
+    'whatsnext' : {},  
+    'recommended' : {
+      'title': 'Other Articles from AlphaPitch'
+    }
+    
   });
 </script>
 <!-- AddThis Smart Layers END -->
+
 
 <!-- Webengage -->
 <script id="_webengage_script_tag" type="text/javascript">

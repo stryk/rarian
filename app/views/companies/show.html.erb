@@ -6,7 +6,7 @@
 </div><!-- end of top-stock-search -->
 <div class="clr"></div>
 
-<%= image_tag('hide-left-icon.png', :class => "toggle-left-panel") %>
+<img alt="Hide left icon" class="toggle-left-panel" src="/assets/hide-left-icon.png">
 <div id="dynamic-panel">
   <%= render 'shared/companies_left' %>
 </div>
@@ -14,9 +14,9 @@
 <div class="middle-panel">
 
   <ul id="tabs">
-      <li><a href="#" name="tab1">Buy Insights (<%= @buy_pitches.count if @buy_pitches.present? %>)</a></li>
-      <li><a href="#" name="tab2">Sell Insights (<%= @sell_pitches.count if @buy_pitches.present? %>)</a></li>
-      <li><a href="#" name="tab3">Q&A (<%= @questions.count if @questions.present? %>)</a></li>   
+      <li><a href="#" name="tab1">Buy Insights <%= ("("+@buy_pitches.count.to_s+")") if @buy_pitches.present? %></a></li>
+      <li><a href="#" name="tab2">Sell Insights <%= ("("+@sell_pitches.count.to_s+")") if @sell_pitches.present? %></a></li>
+      <li><a href="#" name="tab3">Q&A <%= ("("+@questions.count.to_s+")") if @questions.present? %></a></li>   
   </ul>
 
   <div id="tab-content"> 
@@ -183,8 +183,20 @@
 
   $(document).ready(function() {
       $("#tab-content").find("[id^='tab']").hide(); // Hide all content
-      $("#tabs li:first").attr("id","current"); // Activate the first tab
-      $("#tab-content #tab1").fadeIn(); // Show first tab's content
+      <% if @buy_pitches.present? %>
+        $("#tabs li:first").attr("id","current"); // Activate the first tab
+        $("#tab-content #tab1").fadeIn(); // Show first tab's content
+      <% elsif @sell_pitches.present? %>
+        $("#tabs li:eq(1)").attr("id","current"); // Activate the second tab
+        $("#tab-content #tab2").fadeIn(); // Show first tab's content
+      <% elsif @questions.present? %>
+        $("#tabs li:eq(2)").attr("id","current"); // Activate the third tab
+        $("#tab-content #tab3").fadeIn(); // Show first tab's content
+      <% else %>
+        $("#tabs li:first").attr("id","current"); // Activate the first tab
+        $("#tab-content #tab1").fadeIn(); // Show first tab's content
+      <% end %>
+      
       
       $('#tabs a').click(function(e) {
           e.preventDefault();

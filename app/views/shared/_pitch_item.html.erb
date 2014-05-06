@@ -62,12 +62,11 @@
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style "
             addthis:url="<%= url_for pitch_url(cobj) %>"
-            addthis:title="<%= cobj.company.ticker + " : " + cobj.title.truncate(30) %>"
-            addthis:description="<%= cobj.multimedia_content.truncate(300) %>" >
+            addthis:title="$<%= cobj.company.ticker + " : " + cobj.title.truncate(30) %>"
+            addthis:description="<%= strip_tags(cobj.multimedia_content).truncate(300) %>" >
             <a class="addthis_button_facebook"></a>
             <a class="addthis_button_twitter"></a>
             <a class="addthis_button_google_plusone_share"></a>
-            <a class="addthis_button_stumbleupon"></a>
             <a class="addthis_counter addthis_bubble_style"></a>
             </div>
             <script type="text/javascript">

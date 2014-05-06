@@ -92,7 +92,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
        #return redirect_to '/users/setting'
      end
     respond_to do |format|
-      format.html { render :text => "ok"  }
+      format.html {}
       format.js {}
     end
    end

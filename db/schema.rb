@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328014509) do
+ActiveRecord::Schema.define(version: 20140506194455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,27 @@ ActiveRecord::Schema.define(version: 20140328014509) do
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
   add_index "answers", ["user_id", "company_id"], name: "index_answers_on_user_id_and_company_id", using: :btree
   add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
+
+  create_table "attachments", force: true do |t|
+    t.string   "description"
+    t.integer  "company_id"
+    t.integer  "user_id"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.string   "file_type"
+    t.integer  "file_size_in_kb"
+    t.string   "file_name"
+    t.string   "attached_file"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attached_file_tmp"
+  end
+
+  add_index "attachments", ["attachable_id", "attachable_type"], name: "index_attachments_on_attachable_id_and_attachable_type", using: :btree
+  add_index "attachments", ["company_id"], name: "index_attachments_on_company_id", using: :btree
+  add_index "attachments", ["file_name"], name: "index_attachments_on_file_name", using: :btree
+  add_index "attachments", ["file_type"], name: "index_attachments_on_file_type", using: :btree
+  add_index "attachments", ["user_id"], name: "index_attachments_on_user_id", using: :btree
 
   create_table "blips", force: true do |t|
     t.integer  "user_id"

@@ -13,6 +13,7 @@ Rarian::Application.routes.draw do
 
   resources :pitches, :only => [:show]
   
+  resources :attachments
 
   resources :companies do
     collection {

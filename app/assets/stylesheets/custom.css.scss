@@ -1010,6 +1010,7 @@ input {
   }
 }
 
+
 .middleh3 {
   line-height: 24px;
   margin-top: -3px !important;
@@ -1062,6 +1063,32 @@ input {
     margin: 0;
     padding: 0 0 10px 0;
     font-size: 12px;
+    color: #222;
+    line-height: normal;
+  }
+  .rows-div {
+    margin: 0 0 5px 0;
+    padding: 10px;
+    background: #fff;
+  }
+}
+
+.box-col-pitch {
+  margin: 5px 0 0 0;
+  padding: 0;
+  h3 {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    font-size: 18px;
+    border-bottom: 2px solid #3b5998;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: 0;
+    padding: 0 0 10px 0;
+    font-size: 16px;
     color: #222;
     line-height: normal;
   }

@@ -17,6 +17,7 @@ class Company < ActiveRecord::Base
   has_many :target_prices
   has_many :company_groups
   has_many :groups, through: :company_groups
+  has_many :attachments
   attr_accessible :ticker, :name, :slug
   acts_as_followable
   self.per_page = 30

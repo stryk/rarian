@@ -23,6 +23,7 @@ class CompaniesController < ApplicationController
     @catalyst = Catalyst.where(['company_id = ? and date >= ?', @company.id, Date.today]).order("date asc").paginate(:page => params[:cat_page])
     @competitors = Competitor.where(:company_id => @company.id).select("id, company_id, competitor_id, user_id, net_votes").order("net_votes DESC").paginate(:page => params[:comp_page])
     @risks = @company.risks.order("net_votes DESC").paginate(:page => params[:risk_page])
+    @attachments = @company.attachments
     respond_to do |format|
       format.js {
         @append = true

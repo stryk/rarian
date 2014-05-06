@@ -4,12 +4,14 @@ development:
   AWS_ACCESS_KEY_ID: AKIAINB3JIMFHB4PR5QA
   AWS_SECRET_ACCESS_KEY: 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
   AWS_S3_BUCKET: rarian
+  AWS_FILE_BUCKET: rarefiles
   DEFAULT_EMAIL: support@dejed.com
   AUTO_QUOTE_UPDATE: true
 production:
   AWS_ACCESS_KEY_ID: AKIAINB3JIMFHB4PR5QA
   AWS_SECRET_ACCESS_KEY: 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
   AWS_S3_BUCKET: alphapitch
+  AWS_FILE_BUCKET: alphapitch_files
   DEFAULT_EMAIL: member_services@alphapitch.com
   AUTO_QUOTE_UPDATE: true
 
