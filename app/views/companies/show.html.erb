@@ -14,9 +14,10 @@
 <div class="middle-panel">
 
   <ul id="tabs">
-      <li><a href="#" name="tab1">Buy Insights <%= ("("+@buy_pitches.count.to_s+")") if @buy_pitches.present? %></a></li>
-      <li><a href="#" name="tab2">Sell Insights <%= ("("+@sell_pitches.count.to_s+")") if @sell_pitches.present? %></a></li>
-      <li><a href="#" name="tab3">Q&A <%= ("("+@questions.count.to_s+")") if @questions.present? %></a></li>   
+      <li><a href="#" name="tab1">Buy <%= ("("+@buy_pitches.count.to_s+")") if @buy_pitches.present? %></a></li>
+      <li><a href="#" name="tab2">Sell <%= ("("+@sell_pitches.count.to_s+")") if @sell_pitches.present? %></a></li>
+      <li><a href="#" name="tab3">Q&A <%= ("("+@questions.count.to_s+")") if @questions.present? %></a></li>
+      <li><a href="#" name="tab4">Downloads <%= ("("+@attachments.count.to_s+")") if @attachments.present? %></a></li>
   </ul>
 
   <div id="tab-content"> 
@@ -129,6 +130,36 @@
             
             </div>
           </div>
+        </div>
+      </div>
+      <div id="tab4">
+        <div class="box-col">
+          <h3>Downloads<div style="float:right">
+            <div class="dropdown">
+              <%= select_tag("company_questions_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
+            </div>
+          </div></h3>
+
+          <div class="box-col-div">
+            <% if current_user %>
+            <p><a href="#." role="button" id="new_attachment_<%= @company.id %>">Attach a file</a></p>
+            <div style="display: none" id="new_attachment_slide_down_<%= @company.id %>">
+              <%= form_for Attachment.new, :html => {:multipart => true} do |f| %>              
+                <div class="fileUpload">
+                    <input id="uploadFile" class="inputbox" size="35" placeholder="Choose File" disabled="disabled" />
+                    <%= f.file_field :attached_file, :class => "upload", :id => "uploadBtn" %>
+                    <%= f.hidden_field :company_id, :value => @company.id %>
+                    <%= f.hidden_field :user_id, :value => current_user.id %>
+                </div>                                  
+                <div style="padding-left: 10px; padding-bottom: 10px;"><%= f.submit 'Submit', :class => 'button small brown'%></div>
+              <%end%>
+
+            </div>
+            <% end %>
+            <hr>
+            <%= render :partial => 'attachments' %>
+          </div>
+
         </div>
       </div>
   </div>

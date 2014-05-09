@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506194455) do
+ActiveRecord::Schema.define(version: 20140508180038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,12 +51,20 @@ ActiveRecord::Schema.define(version: 20140506194455) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "attached_file_tmp"
+    t.string   "signature"
+    t.boolean  "scanned"
+    t.datetime "scan_timestamp"
+    t.string   "scan_provider"
+    t.string   "scan_id"
   end
 
   add_index "attachments", ["attachable_id", "attachable_type"], name: "index_attachments_on_attachable_id_and_attachable_type", using: :btree
   add_index "attachments", ["company_id"], name: "index_attachments_on_company_id", using: :btree
   add_index "attachments", ["file_name"], name: "index_attachments_on_file_name", using: :btree
   add_index "attachments", ["file_type"], name: "index_attachments_on_file_type", using: :btree
+  add_index "attachments", ["scan_id"], name: "index_attachments_on_scan_id", using: :btree
+  add_index "attachments", ["scan_timestamp", "scan_provider"], name: "index_attachments_on_scan_timestamp_and_scan_provider", using: :btree
+  add_index "attachments", ["signature"], name: "index_attachments_on_signature", using: :btree
   add_index "attachments", ["user_id"], name: "index_attachments_on_user_id", using: :btree
 
   create_table "blips", force: true do |t|

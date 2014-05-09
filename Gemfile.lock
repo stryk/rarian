@@ -128,6 +128,10 @@ GEM
     friendly_id (5.0.1)
       activerecord (~> 4.0.0)
     hike (1.2.3)
+    httmultiparty (0.3.14)
+      httparty (>= 0.7.3)
+      mimemagic
+      multipart-post
     httparty (0.13.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -152,6 +156,7 @@ GEM
       activerecord (>= 3.0.0)
     middleware (0.1.0)
     mime-types (1.25.1)
+    mimemagic (0.2.1)
     mimetype-fu (0.1.2)
     mini_magick (3.7.0)
       subexec (~> 0.2.1)
@@ -159,6 +164,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.4)
     multi_xml (0.5.5)
+    multipart-post (2.0.0)
     mysql2 (0.3.12b4)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
@@ -318,6 +324,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   fog
   friendly_id (~> 5.0.1)
+  httmultiparty
   httparty
   jbuilder (~> 1.2)
   jquery-datatables-rails!

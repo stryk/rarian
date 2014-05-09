@@ -1,4 +1,9 @@
 <% @attachments.each do |file| %>
 	<p><%= file.file_name + file.file_type %></p>
+	<% if file.scanned == true %>
+		<p>Available for download</p>
+	<% else %>
+		<p>virus scan in progress...</p>
+	<% end %>
 	<hr>
 <% end %>

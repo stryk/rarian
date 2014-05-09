@@ -18,7 +18,7 @@ class AttachedFileUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "data/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "data/#{mounted_as}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -61,10 +61,11 @@ class AttachedFileUploader < CarrierWave::Uploader::Base
     self.fog_credentials = {
       :provider               => 'AWS',              # required
       :aws_access_key_id      => configatron.AWS_ACCESS_KEY_ID,     # required
-      :aws_secret_access_key  => configatron.AWS_SECRET_ACCESS_KEY    # required
+      :aws_secret_access_key  => configatron.AWS_SECRET_ACCESS_KEY,   # required
+      :path_style => true
     }
     self.fog_directory = configatron.AWS_FILE_BUCKET
-
+    self.asset_host = 'https://files.alphapitch.com'
   end
 
 end
