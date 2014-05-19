@@ -11,9 +11,13 @@ Rarian::Application.routes.draw do
     post :index
   end
 
-  resources :pitches, :only => [:show]
+  resources :pitches, :only => [:show, :index, :update]
   
-  resources :attachments
+  resources :attachments do
+    member {
+      get :download
+    }
+  end
 
   resources :companies do
     collection {
@@ -113,12 +117,12 @@ Rarian::Application.routes.draw do
       get :answer
       get :comment
       post :imageuploader
+      get :admin
 
 
     }
 
     member {
-
       put :follow
       put :unfollow
 

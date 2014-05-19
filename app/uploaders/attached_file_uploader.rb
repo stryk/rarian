@@ -1,4 +1,5 @@
 # encoding: utf-8
+# require 'carrierwave_single_store.rb' 
 
 class AttachedFileUploader < CarrierWave::Uploader::Base
 
@@ -17,6 +18,8 @@ class AttachedFileUploader < CarrierWave::Uploader::Base
   # process :set_content_type
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
+
+
   def store_dir
     "data/#{mounted_as}/#{model.id}"
   end
@@ -52,6 +55,11 @@ class AttachedFileUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  def extension_black_list
+    %w(bat chm cmd com cpl crt exe hlp hta inf ins isp jse lnk mdb ms pcd pif reg scr sct shs vb ws zip tar tz)
+  end
+
   def fog_public
     false
   end

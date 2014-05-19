@@ -1,7 +1,7 @@
 <% MedianTargetPrice.two_year_price(@company.id).each do |median_price| %>
   <% if median_price.price.to_i > 0 %>
     <p><%= median_price.year %> : <%= number_to_currency(median_price.price) %>
-      (<%= get_percent(median_price.price.to_f, @company.quotes.last.price) %> %)
+      (<%= get_percent(median_price.price.to_f, @company.last_price) %> %)
     </p>
   <% end %>
   <% if user_signed_in? %>

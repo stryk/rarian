@@ -2640,3 +2640,41 @@ h5.error-title {
 select::-ms-expand {
 display: none;
 }
+
+.maxlength-feedback {
+  font-size: 10px;
+}
+
+.file_upload_form {
+  border: 1px solid #ddd;
+  span:before{
+   content: '\a' ; 
+   white-space: pre;  
+  }
+
+}
+
+  .file_description {
+   border-color: #ddd; 
+  }
+
+  .file_description_box {
+
+    font-size: 80%;
+
+    .desc {
+      text-decoration: bold;
+    }
+
+  }
+
+.rss_img {
+  vertical-align: -5%;
+}
+
+
+.blurred-text {
+   color: transparent;
+   cursor: pointer;
+   text-shadow: 0 0 2px rgba(0,0,0,0.5);
+}

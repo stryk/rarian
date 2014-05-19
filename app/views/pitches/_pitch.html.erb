@@ -35,7 +35,7 @@
 
         <div id="show_title_link_<%= cobj.id %>">
           
-          <div id="full_title_<%= cobj.id %>" style="display: true" class="pitch-title">
+          <div id="full_title_<%= cobj.id %>" style="display: true" class="pitch-show-title">
               <% if show_ticker %>
                 <a href='/companies/<%= cobj.company.ticker %>'><%= cobj.company.ticker %>:</a>                
               <% end %>
@@ -50,11 +50,45 @@
             <% end %>
             <% if can? :delete, cobj %>
                | <%= link_to "Delete", company_pitch_path(cobj.company, cobj), :method => 'delete', :confirm => 'Are you sure you want to delete this pitch?', :remote => true %>
+
+               | <%= link_to "Attach File", "#.",:id => "attach_file_link_#{cobj.class.name.downcase}_#{cobj.id}" %>
             <% end %>
         </div>
         <div class="text-editor-container" id="update_pitch_slide_down_<%= cobj.id %>" style="display: none">
           <%= render :partial => 'shared/pitch_form', :locals => {:pitch => cobj, :option => cobj.action} %>
         </div>
+        <% if can? :delete, cobj  %>
+            
+          <div style="display: none"  class="file_upload_form" id="pitch_attachment_slide_down_<%= cobj.class.name.downcase + cobj.id.to_s %>">
+              <%= form_for Attachment.new, :html => {:multipart => true} do |f| %>              
+                <div class="fileUpload1">
+                   
+                    <p>
+                      <%= f.file_field :attached_file, :class => "upload", :id => "uploadBtn-#{ cobj.id.to_s }" %>
+                    </p>
+                    <p>
+                      <%= f.text_area :description, :placeholder => "description", :class => "file_description", :cols => 40, :rows => 5, :id => ("new_attachment_description_#{cobj.class.name.downcase}#{cobj.id.to_s}")%>
+                    </p>
+                    
+                      <%= f.hidden_field :company_id, :value => cobj.company.id %>
+                      <%= f.hidden_field :attachable_id, :value => cobj.id %>
+                      <%= f.hidden_field :attachable_type, :value => cobj.class %>
+                    
+                    <%= f.hidden_field :user_id, :value => current_user.id %>
+                </div>                                  
+                <div style="padding-left: 10px; padding-bottom: 10px;"><%= f.submit 'Submit', :class => 'button small brown'%></div>
+              <%end%>
+            </div>
+        <% end %>
+        <!-- attachment form END -->
+        <% if cobj.attachments.present? %>
+          <p style="font-size: 80%;"><a href="#." role="button" id="show_attachments_for_pitch_<%= cobj.id %>">(This article has <%= pluralize(cobj.attachments.count, "file attachment") %>.)</a></p>
+          <div id="attachments_for_pitch_<%= cobj.id %>" style="display:none">
+            <hr>
+            <%= render :partial => 'shared/attachments', :locals => {:attachments => cobj.attachments} %>
+          </div>
+        <% end %>
+
         
         <div class="multimedia_content" id="multimedia_content_for_title_<%= cobj.id %>" style="display: true">
             <!-- AddThis Button BEGIN -->
@@ -153,6 +187,18 @@
   $("#edit_reason_<%= cobj.id.to_s %>_submit").on("click",function() {
     $("#edit_pitch_<%= cobj.id.to_s %>_form").spin();
   });
+
+    $("#new_attachment_description_<%= cobj.class.name.downcase + cobj.id.to_s %>").maxlength({max: 140});
+
+  $("#attach_file_link_<%=cobj.class.name.downcase %>_<%= cobj.id %>").on("click",function() {
+    $("#pitch_attachment_slide_down_<%= cobj.class.name.downcase + cobj.id.to_s %>").toggle("slideDown(1000)");
+  });
+
+  $("#show_attachments_for_pitch_<%= cobj.id %>").on("click",function() {
+    $("#attachments_for_pitch_<%= cobj.id %>").toggle("slideDown(1000)");
+  });
+
+  
 
 </script>
 

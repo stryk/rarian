@@ -128,6 +128,8 @@ GEM
     friendly_id (5.0.1)
       activerecord (~> 4.0.0)
     hike (1.2.3)
+    html_truncator (0.4.0)
+      nokogiri (~> 1.5)
     httmultiparty (0.3.14)
       httparty (>= 0.7.3)
       mimemagic
@@ -324,6 +326,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   fog
   friendly_id (~> 5.0.1)
+  html_truncator (~> 0.2)
   httmultiparty
   httparty
   jbuilder (~> 1.2)

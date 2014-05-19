@@ -134,21 +134,24 @@
       </div>
       <div id="tab4">
         <div class="box-col">
-          <h3>Downloads<div style="float:right">
-            <div class="dropdown">
-              <%= select_tag("company_questions_sort", "<option value='default'>Default</option><option value='desc'>Latest</option><option value='asc'>Oldest</option>".html_safe, class: "selectbox-global") %>
-            </div>
-          </div></h3>
+          <h3>Downloads</h3>
 
           <div class="box-col-div">
             <% if current_user %>
             <p><a href="#." role="button" id="new_attachment_<%= @company.id %>">Attach a file</a></p>
-            <div style="display: none" id="new_attachment_slide_down_<%= @company.id %>">
+            <div style="display: none" class="file_upload_form" id="new_attachment_slide_down_<%= @company.id %>">
               <%= form_for Attachment.new, :html => {:multipart => true} do |f| %>              
                 <div class="fileUpload">
-                    <input id="uploadFile" class="inputbox" size="35" placeholder="Choose File" disabled="disabled" />
-                    <%= f.file_field :attached_file, :class => "upload", :id => "uploadBtn" %>
-                    <%= f.hidden_field :company_id, :value => @company.id %>
+                    <input id="uploadFile-company" class="inputbox" size="35" placeholder="Choose File" disabled="disabled" />
+                    <p>
+                      <%= f.file_field :attached_file, :class => "upload", :id => "uploadBtn-company" %>
+                    </p>
+                    <p>
+                      <%= f.text_area :description, :placeholder => "description", :class => "file_description", :cols => 48, :rows => 5, :id => ("new_attachment_description")%>
+                    </p>
+                   
+                      <%= f.hidden_field :company_id, :value => @company.id %>
+                    
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                 </div>                                  
                 <div style="padding-left: 10px; padding-bottom: 10px;"><%= f.submit 'Submit', :class => 'button small brown'%></div>
@@ -157,7 +160,7 @@
             </div>
             <% end %>
             <hr>
-            <%= render :partial => 'attachments' %>
+            <%= render :partial => 'shared/attachments', :locals => {:attachments => @attachments, :tabs => "_"} %>
           </div>
 
         </div>
@@ -223,6 +226,9 @@
       <% elsif @questions.present? %>
         $("#tabs li:eq(2)").attr("id","current"); // Activate the third tab
         $("#tab-content #tab3").fadeIn(); // Show first tab's content
+      <% elsif @downloads.present? %>
+        $("#tabs li:eq(3)").attr("id","current"); // Activate the third tab
+        $("#tab-content #tab4").fadeIn(); // Show first tab's content
       <% else %>
         $("#tabs li:first").attr("id","current"); // Activate the first tab
         $("#tab-content #tab1").fadeIn(); // Show first tab's content
@@ -239,9 +245,25 @@
             $("#tabs li").attr("id",""); //Reset id's
             $(this).parent().attr("id","current"); // Activate this
             $('#' + $(this).attr('name')).fadeIn(); // Show content for the current tab
+
+            uploadBtn = document.getElementById("uploadBtn-company")
+            if(uploadBtn) {
+             document.getElementById("uploadBtn-company").onchange = function () {
+                  document.getElementById("uploadFile-company").value = this.value;
+              };
+            }
           }
       });
+
+
+      
+      
   });
+
+
+
+    $("#new_attachment_description").maxlength({max: 140});
+
 
 
 </script>

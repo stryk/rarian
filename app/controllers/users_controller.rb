@@ -29,6 +29,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def admin
+    @buypitchs = Pitch.where("action = 'buy'").order('published asc, created_at desc').paginate(:page => params[:buy_page], :per_page => 5)
+    @sellpitchs = Pitch.where("action = 'sell'").order('created_at desc').paginate(:page => params[:sell_page], :per_page => 5)
+  end
+
   def new
 
   end

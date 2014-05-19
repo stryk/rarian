@@ -18,9 +18,11 @@ class Pitch < ActiveRecord::Base
   belongs_to :user
   belongs_to :company
   has_many :s3objects, as: :storable, :dependent => :destroy
+  has_many :attachments, :as => :attachable
 
-  scope :buy_pitch, -> {where({:action => "buy"})}
-  scope :sell_pitch, -> {where({:action => "sell"})}
+  scope :buy_pitch, -> {where({published: true, :action => "buy"})}
+  scope :sell_pitch, -> {where({published: true, :action => "sell"})}
+  scope :published, -> { where(published: true) }
 
   make_voteable
 

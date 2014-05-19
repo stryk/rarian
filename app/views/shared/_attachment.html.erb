@@ -1,0 +1,60 @@
+<% tabs = tabs rescue "" %>
+<p><% if user_signed_in? %>
+      <%= link_to "#{file.file_name.truncate(40) + file.file_type}", download_attachment_path(file) %> (<%= number_to_human_size(file.file_size_in_kb * 1024)%>)
+    <% else %>
+      <a href="#" class="session_start"><%= file.file_name.truncate(40) + file.file_type %> </a>(<%= number_to_human_size(file.file_size_in_kb * 1024)%>)
+    <% end %>
+  <% if file.attachable.present? %>
+    </br>
+    Re: <%= link_to "#{file.attachable.company.ticker + "-" + file.attachable.title}", pitch_path(file.attachable) %>
+  <% end %>
+	<% if file.description.present? %>
+		<div class="file_description_box">
+			<!-- <div class="desc">Description</div> -->
+			<%= file.description %>
+			<% if can? :delete, Attachment %>
+				</br>
+				<a href="#" id="show_description_<%= tabs.to_s + file.id.to_s %>">edit description</a>
+			<% end %>
+    </div>
+	<% elsif can? :delete, Attachment %>
+		</br><a href="#" id="show_description_<%= tabs.to_s + file.id.to_s %>">add description</a>
+	<% end %>
+</p>
+<div style="display: none"  class="file_upload_form" id="attachment_slide_down_<%= tabs.to_s + file.id.to_s %>">
+      <%= form_for file, :remote => true do |f| %>              
+        <div class="fileUpload1">
+            <p>
+              <%= f.text_area :description, :placeholder => "description", :class => "file_description", :cols => 40, :rows => 5, :id => ("new_attachment_description_#{tabs.to_s + file.id.to_s}")%>
+            </p>
+        </div>                                  
+        <div style="padding-left: 10px; padding-bottom: 10px;"><%= f.submit 'Submit', :class => 'button small brown'%></div>
+      <%end%>
+    </div>
+
+<% if file.scanned == true %>
+	<div class="item_reference">                                              
+      <%= link_to file.user.name, user_path(file.user) %> | <span itemprop='datePublished'><%= time_ago_in_words(file.created_at) %> ago</span>. |
+        <% if user_signed_in? %>
+           <%= link_to "Download", download_attachment_path(file) %>
+        <% else %>
+           <a href="#" class="session_start">Download</a>
+        <% end %>
+        <% if can? :delete, file %>
+           | <%= link_to "Delete", attachment_path(file), :method => 'delete', :confirm => 'Are you sure you want to delete this file?' %>
+        <% end %>
+    </div>
+<% else %>
+	<p style="color: red;">virus scan in progress...</p>
+<% end %>
+<hr>
+
+<script type="text/javascript">
+
+$(document).off("click", "#show_description_<%= tabs.to_s + file.id.to_s %>").on("click", "#show_description_<%= tabs.to_s + file.id.to_s %>", function() {
+    $("#attachment_slide_down_<%= tabs.to_s + file.id.to_s %>").toggle("slideDown(1000)", function () {
+      });
+    $("#new_attachment_description_<%= tabs.to_s + file.id.to_s%>").maxlength({max: 140});
+  });
+
+</script>

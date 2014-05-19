@@ -59,6 +59,14 @@ class Company < ActiveRecord::Base
     quotes.order("date_time DESC").limit(2)
   end
 
+  def last_price
+  	if quotes.present?
+  		quotes.last.price
+  	else
+  		0
+  	end
+  end
+
 
 	def slug_candidates
 		[

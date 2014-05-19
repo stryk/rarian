@@ -1,0 +1,1 @@
+$("#attachment_<%= @attachment.class.name.downcase + @attachment.id.to_s%>").html('<%=j render :partial => 'shared/attachment', :locals => {:file => @attachment} %>');

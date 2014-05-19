@@ -1,0 +1,95 @@
+<div class="clr"></div>
+
+<div class="panels-box">
+  <div class="landing-left-panel">
+    <ul id="tabs">
+        <li><a href="#" name="tab1">Buy Insights</a></li>
+        <li><a href="#" name="tab2">Sell Insights</a></li>
+    </ul>
+
+    <div id="tab-content"> 
+        <div id="tab1">
+      <div class="box-col">
+      <h3 class="middleh3">Long Pitch: Reasons to Buy
+      </h3>
+      <div class="box-col-topreason">
+        <div class="rows-div">
+          <div id="buy_list" class="scroll">
+            <%= render :partial => 'admin_pitchlist', :locals => {:objs => @buypitchs,
+                                                                     :child_objs => nil,
+                                                                    :objs_text => nil,
+                                                                    :child_objs_text => nil,
+                                                                    :show_link => true,
+                                                                    :show_ticker => true
+                                                                  } %>
+          </div>
+          <% if !@buypitchs.blank? %>
+            <div><%= will_paginate @buypitchs, :param_name => 'buy_page'%></div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="clr"></div>
+      </div>
+    </div>
+
+    <div id="tab2">
+      <div class="box-col">
+      <h3 class="middleh3">Short Pitch: Reasons to Sell
+      </h3>
+
+      <div class="box-col-topreason">
+        <div class="rows-div">
+
+          <div id="sell_list" class="scroll">
+            <%= render :partial => 'admin_pitchlist', :locals => {:objs => @sellpitchs, :child_objs => nil,
+                                                                    :objs_text => nil,
+                                                                    :child_objs_text => nil,
+                                                                    :show_link => true,
+                                                                    :show_ticker => true} %>
+          </div>
+          <a href="#" class="more-content" id="more-sp">More...</a>
+          <% if !@sellpitchs.blank? %>
+            <div><%= will_paginate @sellpitchs, :param_name => 'sell_page'%></div>
+          <% end %>
+          <!-- end of rows-div -->
+
+        </div>
+
+      </div>
+
+      <div class="clr"></div>
+    </div>
+
+    </div>
+  </div>
+    <script>
+    $(document).ready(function() {
+        $(".pagination").show();
+        $("#tab-content").find("[id^='tab']").hide(); // Hide all content
+        $("#tabs li:first").attr("id","current"); // Activate the first tab
+        $("#tab-content #tab1").fadeIn(); // Show first tab's content
+        
+        $('#tabs a').click(function(e) {
+            e.preventDefault();
+            if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
+             return;       
+            }
+            else{             
+              $("#tab-content").find("[id^='tab']").hide(); // Hide all content
+              $("#tabs li").attr("id",""); //Reset id's
+              $(this).parent().attr("id","current"); // Activate this
+              $('#' + $(this).attr('name')).fadeIn(); // Show content for the current tab
+            }
+        });
+    });
+    </script>
+
+  </div>
+  <div class="landing-right-panel">
+    <div class="box-col">
+  
+  </div>
+    </div>
+
+

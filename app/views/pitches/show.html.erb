@@ -1,4 +1,6 @@
-<% title(@pitch.company.ticker + ": " + @pitch.title) %>
+<% title(@pitch.company.ticker + " - " + @pitch.title) %>
+<% content_for :meta_description, truncate("#{sanitize (@pitch.multimedia_content), tags: %w{}}", length: 140, separator: ' ') %>
+
 <div class="clr"></div>
 
 <div class="panels-box">
@@ -16,7 +18,7 @@
                                                                        :child_objs_text => nil,
                                                                        :comments_count => @pitch.comments.count,
                                                                        :comments => true, :show_link => true, :refresh_div => false,
-                                                                       :show_ticker => true,
+                                                                       :show_ticker => false,
                                                                         :position => 0} %>
               </div>
             

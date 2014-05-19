@@ -1,0 +1,7 @@
+<% tabs = tabs rescue "" %>
+
+<% attachments.each do |file| %>
+	<div id="attachment_<%= file.class.name.downcase + file.id.to_s%>">
+		<%= render :partial => 'shared/attachment', :locals => {:file => file, :tabs => tabs} %>
+	</div>
+<% end %>

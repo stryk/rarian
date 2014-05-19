@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508180038) do
+ActiveRecord::Schema.define(version: 20140514215056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -278,6 +278,8 @@ ActiveRecord::Schema.define(version: 20140508180038) do
     t.integer  "points",                       default: 0
     t.boolean  "offloaded",                    default: false
     t.string   "slug"
+    t.boolean  "published",                    default: false
+    t.datetime "published_at"
   end
 
   add_index "pitches", ["action", "company_id", "created_at"], name: "action_company_created_ix", using: :btree
@@ -286,6 +288,8 @@ ActiveRecord::Schema.define(version: 20140508180038) do
   add_index "pitches", ["company_id"], name: "index_pitches_on_company_id", using: :btree
   add_index "pitches", ["created_at"], name: "index_pitches_on_created_at", using: :btree
   add_index "pitches", ["net_votes"], name: "index_pitches_on_net_votes", using: :btree
+  add_index "pitches", ["published", "published_at"], name: "index_pitches_on_published_and_published_at", using: :btree
+  add_index "pitches", ["published"], name: "index_pitches_on_published", using: :btree
   add_index "pitches", ["slug"], name: "index_pitches_on_slug", unique: true, using: :btree
   add_index "pitches", ["title"], name: "index_pitches_on_title", using: :btree
   add_index "pitches", ["user_id", "company_id"], name: "index_pitches_on_user_id_and_company_id", using: :btree
