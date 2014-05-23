@@ -54,10 +54,12 @@
             <% end %>
             <% if can? :delete, cobj %>
                | <%= link_to "Delete", company_pitch_path(cobj.company, cobj), :method => 'delete', :confirm => 'Are you sure you want to delete this pitch?', :remote => true %>
+            <% end %>
+            <% if can? :edit, cobj %>
                | <%= link_to "Attach File", "#.",:id => "attach_file_link_#{cobj.class.name.downcase}_#{cobj.id}" %>
             <% end %>
         </div>
-        <% if can? :delete, cobj  %>
+        <% if can? :edit, cobj  %>
             
           <div style="display: none"  class="file_upload_form" id="pitch_attachment_slide_down_<%= cobj.class.name.downcase + cobj.id.to_s %>">
               <%= form_for Attachment.new, :html => {:multipart => true} do |f| %>              
@@ -206,4 +208,5 @@
 
 
 </script>
+
 

@@ -41,6 +41,7 @@ class Ability
       can :destroy, [Catalyst, Answer, Competitor, Risk, Blip, Attachment], :user_id => user.id
       can :cu, Blip, :user_id => user.id
       can :create, [Comment, Pitch, Blip, Catalyst, Question, Answer, Competitor, Risk, Attachment]
+      can :download, Attachment
       can [:update, :destroy], Comment, :user_id => user.id
       can [:update], Pitch, :user_id => user.id
       can :read, Comment
@@ -74,5 +75,6 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end
 end
+
 
 

@@ -90,7 +90,6 @@ gem 'unf'
 gem 'whenever', :require => false
 gem 'carrierwave-mimetype-fu'
 gem "html_truncator", "~>0.2"
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

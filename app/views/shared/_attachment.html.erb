@@ -1,9 +1,17 @@
 <% tabs = tabs rescue "" %>
-<p><% if user_signed_in? %>
-      <%= link_to "#{file.file_name.truncate(40) + file.file_type}", download_attachment_path(file) %> (<%= number_to_human_size(file.file_size_in_kb * 1024)%>)
+<p><% if file.scanned == true %>
+    <% if user_signed_in? %>
+      <%= link_to file.file_name.truncate(40) + file.file_type, download_attachment_path(file), remote: true %> (<%= number_to_human_size(file.file_size_in_kb * 1024)%>)
     <% else %>
       <a href="#" class="session_start"><%= file.file_name.truncate(40) + file.file_type %> </a>(<%= number_to_human_size(file.file_size_in_kb * 1024)%>)
     <% end %>
+  <% else %>
+    <%=file.file_name.truncate(40) + file.file_type %> (<%= number_to_human_size(file.file_size_in_kb * 1024)%>)
+  <% end %>
+  <% if file.download_count > 100 %>
+    </br>
+    Download count: <%= number_with_delimiter  file.download_count %>
+  <% end %>
   <% if file.attachable.present? %>
     </br>
     Re: <%= link_to "#{file.attachable.company.ticker + "-" + file.attachable.title}", pitch_path(file.attachable) %>
@@ -36,7 +44,7 @@
 	<div class="item_reference">                                              
       <%= link_to file.user.name, user_path(file.user) %> | <span itemprop='datePublished'><%= time_ago_in_words(file.created_at) %> ago</span>. |
         <% if user_signed_in? %>
-           <%= link_to "Download", download_attachment_path(file) %>
+           <%= link_to "Download", download_attachment_path(file), remote: true %>
         <% else %>
            <a href="#" class="session_start">Download</a>
         <% end %>
@@ -50,6 +58,9 @@
 <hr>
 
 <script type="text/javascript">
+
+
+
 
 $(document).off("click", "#show_description_<%= tabs.to_s + file.id.to_s %>").on("click", "#show_description_<%= tabs.to_s + file.id.to_s %>", function() {
     $("#attachment_slide_down_<%= tabs.to_s + file.id.to_s %>").toggle("slideDown(1000)", function () {

@@ -1,0 +1,10 @@
+ <% if @url.present? %>
+ 	window.location.href = "<%= @url %>";
+ <% else %>	
+ 	$("#flash-message-custom").html('<div class="success"><p><span class="close-btn"><a href="#" class="close-btn" ><img src="/assets/close-btn.png" class="close-btn" alt=""></a></span><%= @msg %></p></div>');
+	$("#flash-message-custom").show();
+
+	setTimeout(function(){
+	    $("#flash-message-custom").hide();
+	},3000);
+ <% end %>

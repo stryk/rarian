@@ -7,11 +7,14 @@
   <%= form_for(current_user, :remote => true, url: users_path(:id => current_user.id),
                update: "message_div_id", :method => 'put') do |f| %>
 
-      <%= f.text_area :userinterest, :cols => "27",:rows => 5  %>
+      <%= f.text_area :userinterest, :id=>"interest-text", :cols => "27",:rows => 5  %>
 
 
 
       <%= f.submit 'Save' ,:class => "button medium brown" %>
   <% end %>
 </div>
+<script type="text/javascript">
+    	$("#interest-text").maxlength({max: 500});
+	</script>
 <% end %>

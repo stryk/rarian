@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514215056) do
+ActiveRecord::Schema.define(version: 20140523211037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140514215056) do
     t.datetime "scan_timestamp"
     t.string   "scan_provider"
     t.string   "scan_id"
+    t.integer  "download_count",    default: 0
   end
 
   add_index "attachments", ["attachable_id", "attachable_type"], name: "index_attachments_on_attachable_id_and_attachable_type", using: :btree

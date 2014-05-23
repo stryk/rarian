@@ -17,12 +17,53 @@
     color: black;
     font: inherit;
     font-size: 12px;
+    padding-bottom: 5px;
   }
   ol {
     margin-left: 23px;
     color: black;
     font: inherit;
     font-size: 12px;
+    padding-bottom: 5px;
+  }
+  img {
+    padding-left: 0px;
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  li {
+    padding-bottom: 5px;
+  }
+}
+
+.pitch_multimedia_content {
+ em {
+    color: black;
+  }
+  p {
+    margin: 0px;
+    padding: 0px;
+  }
+  ul {
+    list-style-type: disc;
+    margin-left: 23px;
+    color: black;
+    font: inherit;
+    font-size: 100%;
+    padding-bottom: 5px;
+  }
+  ol {
+    margin-left: 23px;
+    color: black;
+    font: inherit;
+    font-size: 100%;
+    padding-bottom: 5px;
+  }
+  li {
+    line-height: 1.5;
+    padding-bottom: 5px;
   }
   img {
     padding-left: 0px;

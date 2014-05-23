@@ -6,11 +6,14 @@
 <div class="slide-div" id="show_blog_down" style="display: none">
   <%= form_for(current_user, :remote => true, url: users_path(:id => current_user.id),
                update: "message_div_id", :method => 'put') do |f| %>
-      <%= f.text_area :blog , :cols => "27",:rows => 5 %>
+      <%= f.text_area :blog , id: "blog-text", :cols => "27",:rows => 5 %>
 
 
 
       <%= f.submit 'Save' ,:class => "button medium brown" %>
   <% end %>
 </div>
+<script type="text/javascript">
+  	$("#blog-text").maxlength({max: 250});
+</script>
 <% end %>

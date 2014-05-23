@@ -20,16 +20,20 @@ class AttachmentsController < ApplicationController
 			attachment.save!
 			flash[:error] = 'File received and queued for virus scan.'
 			if params[:attachment][:attachable_id].present?
-				redirect_to pitch_path(:id => params[:attachment][:attachable_id])
+				pitch = Pitch.find(params[:attachment][:attachable_id])
+				redirect_to pitch_path(pitch)
 			else
-		    	redirect_to company_path(:id => params[:attachment][:company_id])
+				comp = Company.find(params[:attachment][:company_id])
+		    	redirect_to company_path(comp)
 		    end
 		rescue ActiveRecord::RecordInvalid
 			flash[:error] = 'Invalid file extension'
 			if params[:attachment][:attachable_id].present?
-				redirect_to pitch_path(:id => params[:attachment][:attachable_id])
+				pitch = Pitch.find(params[:attachment][:attachable_id])
+				redirect_to pitch_path(pitch)
 			else
-		    	redirect_to company_path(:id => params[:attachment][:company_id])
+		    	comp = Company.find(params[:attachment][:company_id])
+		    	redirect_to company_path(comp)
 		    end
 		end
 
@@ -49,12 +53,15 @@ class AttachmentsController < ApplicationController
 
 	def download
 		attachment = Attachment.find(params[:id])
-		if user_signed_in?
-			url = attachment.attached_file.url
-			redirect_to url
+		attachment.download_count += 1
+		@url = nil
+		if attachment.save
+			@url = attachment.attached_file.url
 		else
-			flash[:notice] = "Unauthorized Download Attempt"
-			redirect_to company_path(:id => attachment.company.slug)
+			@msg = "Download error."			
+		end
+		respond_to do |format|
+			format.js
 		end
 	end
 
