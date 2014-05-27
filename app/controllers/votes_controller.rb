@@ -4,13 +4,18 @@ class VotesController < ApplicationController
 
   def up
     if user_signed_in?
-      begin
-        authorize! :up, @obj, :message => "You must sign-in to vote."
-        @company =  Company.friendly.find(params[:company_id].downcase)
-        current_user.up_vote(@obj)
-      rescue MakeVoteable::Exceptions::AlreadyVotedError
-        # if the user clicks on the vote twice means user is unvoting
-        current_user.unvote(@obj)
+      if current_user.is?(:admin)
+        @obj.net_votes += 1
+        @obj.save
+      else
+        begin
+          authorize! :up, @obj, :message => "You must sign-in to vote."
+          @company =  Company.friendly.find(params[:company_id].downcase)
+          current_user.up_vote(@obj)
+        rescue MakeVoteable::Exceptions::AlreadyVotedError
+          # if the user clicks on the vote twice means user is unvoting
+          current_user.unvote(@obj)
+        end
       end
     else
       respond_to do |format|
@@ -21,13 +26,18 @@ class VotesController < ApplicationController
 
   def down
     if user_signed_in?
-      begin
-        authorize! :up, @obj, :message => "You must sign-in to vote."
-        @company =  Company.friendly.find(params[:company_id].downcase)
-        current_user.down_vote(@obj)
-      rescue MakeVoteable::Exceptions::AlreadyVotedError
-        # if the user clicks on the vote twice means user is unvoting
-        current_user.unvote(@obj)
+      if current_user.is?(:admin)
+        @obj.net_votes -= 1
+        @obj.save
+      else
+        begin
+          authorize! :up, @obj, :message => "You must sign-in to vote."
+          @company =  Company.friendly.find(params[:company_id].downcase)
+          current_user.down_vote(@obj)
+        rescue MakeVoteable::Exceptions::AlreadyVotedError
+          # if the user clicks on the vote twice means user is unvoting
+          current_user.unvote(@obj)
+        end
       end
     else
       respond_to do |format|
